@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:first_project/core/route/route.dart';
 import 'package:first_project/core/succesfullcontroler/succesfullcontroler.dart';
 import 'package:first_project/teacher_presentScreen/techerall_widget/techerall_widget.dart';
@@ -8,6 +10,7 @@ import 'package:get/get.dart';
 
 import '../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
 import '../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
+import '../core/route/Genaral_Controler/imagepickurecontroller.dart';
 import '../unity/appColors/appGradient.dart';
 import 'Techechercontrler/techercotroler.dart';
 
@@ -18,6 +21,9 @@ class TechSlash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ImagePickureController imagepickurecontroller = Get.put(
+      ImagePickureController(),
+    );
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -43,7 +49,7 @@ class TechSlash extends StatelessWidget {
             ///     CHECKBOX
             /// ===========================
             Obx(
-                  () => Row(
+              () => Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Checkbox(
@@ -119,25 +125,85 @@ class TechSlash extends StatelessWidget {
             SizedBox(height: 12.h),
 
             /// UPLOAD BOX
-            Container(
-              height: 150.h,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xffF3F5F9),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset('assets/icon/upload.svg'),
-                  SizedBox(height: 10.h),
-                  Text(
-                    'Upload image or pdf',
-                    style: TextStyle(color: Color(0xff888888), fontSize: 16.sp),
+            ///
+            ///
+            ///
+
+            // Inside your build method
+            Obx(() {
+              return GestureDetector(
+                onTap: () {
+                  imagepickurecontroller.getImage();
+                },
+                child: Container(
+                  height: 200.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xffF3F5F9),
+                    borderRadius: BorderRadius.circular(8),
+                    // CONDITION: If path is empty -> No image. If path exists -> Show Image
+                    image: imagepickurecontroller.selectedImagePath.value == ''
+                        ? null
+                        : DecorationImage(
+                            image: FileImage(
+                              File(
+                                imagepickurecontroller.selectedImagePath.value,
+                              ),
+                            ),
+                            fit: BoxFit.cover,
+                          ),
                   ),
-                ],
-              ),
-            ),
+                  // CONDITION: If path is empty -> Show Icon/Text. If path exists -> Show nothing (null)
+                  child: imagepickurecontroller.selectedImagePath.value == ''
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset('assets/icon/upload.svg'),
+                            SizedBox(height: 10.h),
+                            Text(
+                              'Upload image or pdf',
+                              style: TextStyle(
+                                color: Color(0xff888888),
+                                fontSize: 16.sp,
+                              ),
+                            ),
+                          ],
+                        )
+                      : null, // Child is null because the image is in the decoration
+                ),
+              );
+            }),
+
+            // Obx(
+            //    () {
+            //     return GestureDetector(
+            //
+            //       onTap: () {
+            //         imagepickurecontroller.getImage();
+            //       },
+            //       child: Container(
+            //
+            //         height: 150.h,
+            //         width: double.infinity,
+            //         decoration: BoxDecoration(
+            //           color: Color(0xffF3F5F9),
+            //           borderRadius: BorderRadius.circular(8),
+            //         ),
+            //         child: Column(
+            //           mainAxisAlignment: MainAxisAlignment.center,
+            //           children: [
+            //             SvgPicture.asset('assets/icon/upload.svg'),
+            //             SizedBox(height: 10.h),
+            //             Text(
+            //               'Upload image or pdf',
+            //               style: TextStyle(color: Color(0xff888888), fontSize: 16.sp),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //     );
+            //   }
+            // ),
             SizedBox(height: 30.h),
 
             Text(
@@ -167,7 +233,7 @@ class TechSlash extends StatelessWidget {
                     content: Reviewpopupmsg(
                       name: 'Successful',
                       namedetels:
-                      'Your account is under review. You\'ll be notified when your account is approved.',
+                          'Your account is under review. You\'ll be notified when your account is approved.',
                       bu_name1: 'Close',
                       ontap1: () {
                         Get.toNamed(AppRoute.home2);

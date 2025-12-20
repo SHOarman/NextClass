@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chatControllerTeacher.dart';
 import '../../../teacher_presentScreen/chat2/msgController.dart';
 import '../../succesfullcontroler/succesfullcontroler.dart';
+import '../Genaral_Controler/imagepickurecontroller.dart';
 
 class DependencyInjection {
   static void bindings() {
@@ -35,5 +36,9 @@ class DependencyInjection {
     Get.lazyPut(() => Selecttype());
     Get.lazyPut(()=>ChatController());
     Get.lazyPut(()=>Chatcontrollerteacher());
+
+
+    //=========================imagepiker===========================
+    Get.lazyPut(() => ImagePickureController());
   }
 }
