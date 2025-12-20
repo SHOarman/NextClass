@@ -1,0 +1,12 @@
+Analyzing coustom_Textfield.dart...
+
+warning - coustom_Textfield.dart:2:8 - Unused import: 'package:flutter_screenutil/flutter_screenutil.dart'. Try removing the import directive. - unused_import
+warning - coustom_Textfield.dart:126:32 - This function has a nullable return type of 'String?', but ends without returning a value. Try adding a return statement, or if no value is ever returned, try changing the return type to 'void'. - body_might_complete_normally_nullable
+   info - coustom_Textfield.dart:1:1 - The file name 'coustom_Textfield.dart' isn't a lower_case_with_underscores identifier. Try changing the name to follow the lower_case_with_underscores style. - file_names
+   info - coustom_Textfield.dart:86:51 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - coustom_Textfield.dart:207:51 - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement. - deprecated_member_use
+   info - coustom_Textfield.dart:272:3 - Constructors in '@immutable' classes should be declared as 'const'. Try adding 'const' to the constructor declaration. - prefer_const_constructors_in_immutables
+   info - coustom_Textfield.dart:306:3 - Constructors in '@immutable' classes should be declared as 'const'. Try adding 'const' to the constructor declaration. - prefer_const_constructors_in_immutables
+   info - coustom_Textfield.dart:331:3 - Constructors in '@immutable' classes should be declared as 'const'. Try adding 'const' to the constructor declaration. - prefer_const_constructors_in_immutables
+
+8 issues found.
