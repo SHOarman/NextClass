@@ -167,6 +167,9 @@ class _CancelModelState extends State<DeletAccoundteacher> {
                   );
                   Get.toNamed(AppRoute.slashscreen);
                 },
+                clear: () {
+                  reasonController.clear();
+                },
               ),
             ],
           ),

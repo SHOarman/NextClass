@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:get/get.dart';
 
 class GenaralControler extends GetxController {
@@ -30,6 +32,7 @@ class GenaralControler extends GetxController {
 
 class GenaralController extends GetxController {
   RxString selectedCard = ''.obs;
+
 
   void selectCard(String title) {
     selectedCard.value = title;

@@ -11,13 +11,14 @@ class TeacherHomecard extends StatelessWidget {
   final String subtitle;
   final String imagePath;
   final String iconname;
+  final VoidCallback? clear;
 
   const TeacherHomecard({
     super.key,
     required this.title,
     required this.subtitle,
     required this.imagePath,
-    required this.iconname,
+    required this.iconname, this.clear,
   });
 
   @override
@@ -67,6 +68,9 @@ class TeacherHomecard extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               Get.toNamed(AppRoute.create_newclasses);
+              clear?.call();
+
+
             },
             child: Container(
               height: 35,

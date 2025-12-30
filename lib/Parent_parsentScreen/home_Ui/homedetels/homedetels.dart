@@ -66,7 +66,9 @@ class Homedetels extends StatelessWidget {
                     children: [
                       InkWell(
                         borderRadius: BorderRadius.circular(25),
-                        onTap: () {},
+                        onTap: () {
+                          print('printknow');
+                        },
                         child: Container(
                           height: 45,
                           width: 45,
@@ -137,7 +139,7 @@ class Homedetels extends StatelessWidget {
                   const Homecard(
                     title: 'Find the Right Tutor',
                     subtitle:
-                    'Explore subjects, compare tutors,\n and book in minutes.',
+                        'Explore subjects, compare tutors,\n and book in minutes.',
                     imagePath: 'assets/backround/girls.png',
                     iconname: 'Explore',
                   ),
@@ -189,20 +191,24 @@ class Homedetels extends StatelessWidget {
                   SizedBox(
                     height: 280.h, // Adjust the height of the scrollable area
                     child: ListView.builder(
-                      scrollDirection: Axis.horizontal,  // Horizontal scroll
-                      itemCount: 4,  // Number of items
+                      scrollDirection: Axis.horizontal, // Horizontal scroll
+                      itemCount: 4, // Number of items
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
                             height: 400,
-                            width: 200,  // Set the width for each card
+                            width: 200, // Set the width for each card
                             child: Recommendedclasses(
                               selectindex: index,
-                              imagepath: Staticstring.bookingList[index]['imagepath'],
-                              tutorielname: Staticstring.bookingList[index]['tutorielname'],
-                              Subjectname: Staticstring.bookingList[index]['Subjectname'],
-                              classname: Staticstring.bookingList[index]['classname'],
+                              imagepath:
+                                  Staticstring.bookingList[index]['imagepath'],
+                              tutorielname: Staticstring
+                                  .bookingList[index]['tutorielname'],
+                              Subjectname: Staticstring
+                                  .bookingList[index]['Subjectname'],
+                              classname:
+                                  Staticstring.bookingList[index]['classname'],
                               amount: Staticstring.bookingList[index]['amount'],
                             ),
                           ),
@@ -213,29 +219,37 @@ class Homedetels extends StatelessWidget {
 
                   SizedBox(height: 20.h),
 
-
-                  Text('Nearby Classes',style: TextStyle(color: Color(0xff2B2B2B),fontSize: 20,fontWeight: FontWeight.w600),),
+                  Text(
+                    'Nearby Classes',
+                    style: TextStyle(
+                      color: Color(0xff2B2B2B),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   SizedBox(height: 16.h),
-
 
                   /// ================= Grid of Recommended Classes =================
                   GridView.builder(
                     padding: EdgeInsets.only(top: 10),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 12,
-                      childAspectRatio: 0.80, // Fix overflow
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 12,
+                          crossAxisSpacing: 12,
+                          childAspectRatio: 0.80, // Fix overflow
+                        ),
                     itemCount: Staticstring.bookingList.length,
                     itemBuilder: (context, index) {
                       return Recommendedclasses(
                         selectindex: index,
                         imagepath: Staticstring.bookingList[index]['imagepath'],
-                        tutorielname: Staticstring.bookingList[index]['tutorielname'],
-                        Subjectname: Staticstring.bookingList[index]['Subjectname'],
+                        tutorielname:
+                            Staticstring.bookingList[index]['tutorielname'],
+                        Subjectname:
+                            Staticstring.bookingList[index]['Subjectname'],
                         classname: Staticstring.bookingList[index]['classname'],
                         amount: Staticstring.bookingList[index]['amount'],
                       );

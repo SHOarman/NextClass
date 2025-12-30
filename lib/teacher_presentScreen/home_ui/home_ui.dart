@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
 import '../techerall_widget/customcard/customcard.dart';
 import '../techerall_widget/pendingCustomcard/pendingCustomcard.dart';
 import '../techerall_widget/teacher_homecard/customProfilesecationteacher/customProfilesecationteacher.dart';
@@ -17,6 +18,7 @@ class HomeUi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GenaralController controller = GenaralController();
     return Scaffold(
       bottomNavigationBar: Nev_Button2(SelectIndex: 0),
 
@@ -119,6 +121,9 @@ class HomeUi extends StatelessWidget {
                         'Create classes, manage your schedule,\n and connect with parents.',
                     imagePath: 'assets/backround/teacher.png',
                     iconname: 'Create new class',
+
+
+
                   ),
 
                   //==============catadory=======================================

@@ -1,51 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import '../../../core/route/Genaral_Controler/locationController.dart';
 
 class Profilesecation extends StatelessWidget {
   const Profilesecation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GestureDetector(
-              onTap: () {
-                //===================================
-              },
-              child: Image.asset(
-                'assets/backround/Rectangle 5040.png',
-                height: 45,
-                width: 45,
-              ),
-            ),
+    // Controller initialize
+    final UserLocationController locationController = Get.put(UserLocationController());
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Hi, Hans',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff121212),
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Los Angles, Street 2/A, USA',
-                    style: TextStyle(color: Color(0xff2B2B2B), fontSize: 12),
-                  ),
-                ],
-              ),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center, // Center align for better look
+        children: [
+          // 1. Profile Image
+          GestureDetector(
+            onTap: () {
+              // Profile e click korle jai hobe
+            },
+            child:Image.asset('assets/backround/Rectangle 5040.png'
+
+            ,
+            height: 45.h,
+            width: 45.w,
             ),
-          ],
-        ),
+          ),
+
+          SizedBox(width: 12.w), // Image ar text er majhe gap
+
+          // 2. Name and Location Column
+          Expanded( 
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min, 
+              children: [
+                Text(
+                  "Hi, Hans",
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xff121212),
+                  ),
+                ),
+                SizedBox(height: 4.h),
+
+                // ✅ Location with Obx
+                Obx(() => Row( 
+                  children: [
+                    Icon(Icons.location_on, size: 14.sp, color: Colors.grey),
+                    SizedBox(width: 4.w),
+                    Flexible( 
+                      child: Text(
+                        locationController.isLoading.value
+                            ? "Locating..."
+                            : locationController.currentAddress.value.isEmpty
+                            ? "Location not found"
+                            : locationController.currentAddress.value,
+                        style: TextStyle(fontSize: 12.sp, color: Colors.grey),
+                        overflow: TextOverflow.ellipsis, 
+                        maxLines: 1,
+                      ),
+                    ),
+                  ],
+                ),
+                ),
+              ],
+            ),
+          ),
+
+          
+        ],
       ),
     );
   }

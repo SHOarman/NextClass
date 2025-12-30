@@ -10,7 +10,6 @@ import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
 import '../widget/coustom_button/coustom_button.dart';
 import '../widget/coustomcardparsent_teacher/coustomcardparsent_teacher.dart';
 
-
 class OnlodaingScreen extends StatefulWidget {
   const OnlodaingScreen({super.key});
 
@@ -19,8 +18,16 @@ class OnlodaingScreen extends StatefulWidget {
 }
 
 class _OnlodaingScreenState extends State<OnlodaingScreen> {
+  final GenaralControler roleController = Get.put(GenaralControler());
 
-  final GenaralControler  roleController = Get.put(GenaralControler());
+  void initState() {
+    super.initState();
+    // Screen load howar sathe sathe ager selection clear kora hocche
+    // Jate user notun kore abar role select korte pare
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      roleController.selectedRole.value = '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,52 +46,37 @@ class _OnlodaingScreenState extends State<OnlodaingScreen> {
 
               SizedBox(height: 14.h),
 
-              Obx(
-                 () {
-                  return buildRoleCard(
-                    title: Staticstring.parent,
-                    description: Staticstring.parentdetles,
-                    selected: roleController.selectedRole.value == "parent",
-                    onTap: () {
-
-                      roleController.selectRole("parent");
-
-
-                    },
-                  );
-                }
-              ),
+              Obx(() {
+                return buildRoleCard(
+                  title: Staticstring.parent,
+                  description: Staticstring.parentdetles,
+                  selected: roleController.selectedRole.value == "parent",
+                  onTap: () {
+                    roleController.selectRole("parent");
+                  },
+                );
+              }),
               SizedBox(height: 24.h),
-              Obx(
-                 () {
-                  return buildRoleCard(
-                    title: Staticstring.teacher,
-                    description: Staticstring.teacherdetels,
-                    selected: roleController.selectedRole.value == "teacher",
-                    onTap: () {
-                      roleController.selectRole("teacher");
-
-                    },
-                  );
-                }
-              ),
+              Obx(() {
+                return buildRoleCard(
+                  title: Staticstring.teacher,
+                  description: Staticstring.teacherdetels,
+                  selected: roleController.selectedRole.value == "teacher",
+                  onTap: () {
+                    roleController.selectRole("teacher");
+                  },
+                );
+              }),
 
               SizedBox(height: 140.h),
               CustomSuperButton(
                 text: Staticstring.Select,
                 onTap: () {
-
-
-
                   if (roleController.selectedRole.value == "parent") {
                     Get.toNamed(AppRoute.login);
-
-
-                  } else if(roleController.selectedRole.value == "teacher"){
+                  } else if (roleController.selectedRole.value == "teacher") {
                     Get.toNamed(AppRoute.teachscre);
-                  }
-                  else{
-
+                  } else {
                     Get.snackbar(
                       'Error',
                       'Please select a role',
@@ -109,5 +101,3 @@ class _OnlodaingScreenState extends State<OnlodaingScreen> {
     );
   }
 }
-
-

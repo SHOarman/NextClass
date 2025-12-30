@@ -108,6 +108,10 @@ class UpdatePasswordtecher extends StatelessWidget {
                   Get.toNamed(AppRoute.home2);
                 },
                 bgGradient: Appgradient.primaryGradient,
+                clear: () {
+                  confromconttroler.clear();
+                  Ceonfromconttroler.clear();
+                },
               ),
             ],
           ),

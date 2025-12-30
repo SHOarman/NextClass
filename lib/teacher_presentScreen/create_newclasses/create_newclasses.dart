@@ -44,7 +44,7 @@ class _CreateNewclassesState extends State<CreateNewclasses> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 45),
+              SizedBox(height: 40),
               Text(
                 'Create a new class',
                 style: TextStyle(
@@ -84,7 +84,6 @@ class _CreateNewclassesState extends State<CreateNewclasses> {
                   const SizedBox(width: 10),
                   Expanded(
                     child: CustomSuperButton(
-
                       text: currentStep == 2 ? 'Submit' : 'Next',
                       onTap: () {
                         if (currentStep < 2) {
@@ -107,7 +106,6 @@ class _CreateNewclassesState extends State<CreateNewclasses> {
                                     'Close', // optional second button text, leave empty if not needed
                                 ontap2: () {
                                   Get.back();
-
                                 }, // optional second button action
                               ),
                             ),
@@ -115,7 +113,6 @@ class _CreateNewclassesState extends State<CreateNewclasses> {
                         }
                       },
                       bgGradient: Appgradient.primaryGradient,
-
                     ),
                   ),
                 ],

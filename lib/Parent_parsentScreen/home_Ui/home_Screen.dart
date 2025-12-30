@@ -19,6 +19,7 @@ import '../widget/coustomcard/coustomcard.dart';
 class HomeScreen extends StatelessWidget {
   final GenaralController controller = Get.put(GenaralController());
   final Card2 card2Controller = Get.put(Card2());
+  final TextEditingController subjectController = TextEditingController();
 
    HomeScreen({super.key});
 
@@ -179,9 +180,18 @@ class HomeScreen extends StatelessWidget {
                       builder: (ctx) => AlertDialog(
                         backgroundColor: Colors.white,
 
-                        content: AllowLocation(),
+                       // content: AllowLocation(),
+                        content:AllowLocationDialog()
                       ),
                     );
+
+                    //clear previews data=====================================
+
+                    controller.selectedCard.value = '';      // Level Reset
+                    card2Controller.selectedCard.value = ''; // Class Type Reset
+                    subjectController.clear();                // Subject Reset
+
+                    //clear previews data=====================================
                   },
                   bgGradient: LinearGradient(
                     colors: [Color(0xff2563EB), Color(0xff2563EB)],

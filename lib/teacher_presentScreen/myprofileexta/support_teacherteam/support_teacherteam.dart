@@ -15,6 +15,8 @@ class SupportTeacherteam extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController issueController = TextEditingController();
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -35,7 +37,7 @@ class SupportTeacherteam extends StatelessWidget {
               ),
               SizedBox(height: 12.h),
               SimpleCard(
-                controller: TextEditingController(),
+                controller: emailController,
                 hintText: 'Enter your email...',
               ),
 
@@ -48,7 +50,7 @@ class SupportTeacherteam extends StatelessWidget {
               SizedBox(height: 12.h),
               // SimpleCard(controller: TextEditingController(), hintText: 'Enter your issue...'),
               Customdetesl(
-                controller: TextEditingController(),
+                controller: issueController,
                 hintText: 'Enter your issue...',
               ),
               SizedBox(height: 80.h),
@@ -57,9 +59,30 @@ class SupportTeacherteam extends StatelessWidget {
                 text: 'Send',
                 fontSize: 20,
                 onTap: () {
-                  Get.back();
+
+                 Get.back();
+                  // if(issueController==null||issueController.text.isNotEmpty){
+                  //
+                  // Get.snackbar('Success', 'Your message has been sent successfully', duration: Duration(seconds: 2),
+                  //   backgroundColor: Color(0xff2563EB));
+                  // Get.back();
+                  // print('jsks');
+                  //
+                  //
+                  //
+                  //
+                  //
+                  // }
+
+
+
                 },
                 bgGradient: Appgradient.primaryGradient,
+                clear: () {
+                  emailController.clear();
+                  issueController.clear();
+                },
+
               ),
             ],
           ),
