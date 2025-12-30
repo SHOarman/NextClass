@@ -1,24 +1,3 @@
-// import 'package:get/get.dart';
-// import 'package:image_picker/image_picker.dart';
-//
-// class Imagepickurecontroller extends GetxController {
-//   Future getImage() async {
-//     RxString path = ''.obs;
-//
-//     final ImagePicker _picker = ImagePicker();
-//     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
-//     if (image != null) {
-//       path.value = image.path;
-//       print(path.value);
-//
-//     }
-//     else{
-//       print('no image selected');
-//     }
-//
-//   }
-// }
-
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';

@@ -1,4 +1,5 @@
 import 'package:first_project/core/route/Genaral_Controler/Genaral_Controler.dart';
+import 'package:first_project/core/route/Genaral_Controler/dateController.dart';
 import 'package:first_project/teacher_presentScreen/Techechercontrler/techercotroler.dart';
 import 'package:get/get.dart';
 
@@ -40,5 +41,9 @@ class DependencyInjection {
 
     //=========================imagepiker===========================
     Get.lazyPut(() => ImagePickureController());
+
+    //=========================Datepiker===========================
+    Get.lazyPut(() => DateController());
+
   }
 }

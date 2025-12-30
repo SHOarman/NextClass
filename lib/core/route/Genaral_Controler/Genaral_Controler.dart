@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 class GenaralControler extends GetxController {
   //==================onloding=========================
 
+
+
   RxString selectedRole = ''.obs;
 
   void selectRole(String role) {

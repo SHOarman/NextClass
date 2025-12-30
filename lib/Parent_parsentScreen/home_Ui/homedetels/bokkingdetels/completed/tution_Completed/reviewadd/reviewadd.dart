@@ -36,7 +36,7 @@ class _ReviewaddState extends State<Reviewadd> {
             crossAxisAlignment: .start,
             mainAxisAlignment: .start,
             children: [
-              SizedBox(height: 20.h),
+              SizedBox(height: 40.h),
               Center(
                 child: Text(
                   'Rating & Review',

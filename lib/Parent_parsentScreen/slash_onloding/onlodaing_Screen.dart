@@ -73,8 +73,13 @@ class _OnlodaingScreenState extends State<OnlodaingScreen> {
               CustomSuperButton(
                 text: Staticstring.Select,
                 onTap: () {
+
+
+
                   if (roleController.selectedRole.value == "parent") {
                     Get.toNamed(AppRoute.login);
+
+
                   } else if(roleController.selectedRole.value == "teacher"){
                     Get.toNamed(AppRoute.teachscre);
                   }
@@ -95,6 +100,7 @@ class _OnlodaingScreenState extends State<OnlodaingScreen> {
                     Appgradient.primaryGradient.colors[1],
                   ],
                 ),
+
               ),
             ],
           ),

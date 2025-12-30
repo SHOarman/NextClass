@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSuperButton extends StatelessWidget {
+ final VoidCallback? clear;
   final String text;
   final VoidCallback onTap;
 
@@ -21,7 +22,6 @@ class CustomSuperButton extends StatelessWidget {
   final FontWeight fontWeight;
   final Color? borderColor;
 
-
   const CustomSuperButton({
     super.key,
     required this.text,
@@ -37,13 +37,18 @@ class CustomSuperButton extends StatelessWidget {
     this.width,
 
     this.fontSize = 18,
-    this.fontWeight = FontWeight.bold, this.borderColor,
+    this.fontWeight = FontWeight.bold,
+    this.borderColor,
+    this.clear,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: (){
+        onTap();
+        clear?.call();
+      },
       child: Container(
 
         height: height ?? 54.h,
@@ -55,7 +60,6 @@ class CustomSuperButton extends StatelessWidget {
           gradient: bgGradient,
           borderRadius: BorderRadius.circular(8.r),
         ),
-
 
         alignment: Alignment.center,
         child: textGradient == null
@@ -81,6 +85,8 @@ class CustomSuperButton extends StatelessWidget {
                 ),
               ),
       ),
+
     );
+
   }
 }

@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 
 import '../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
 import '../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
+import '../core/route/Genaral_Controler/dateController.dart';
 import '../core/route/Genaral_Controler/imagepickurecontroller.dart';
 import '../unity/appColors/appGradient.dart';
 import 'Techechercontrler/techercotroler.dart';
@@ -24,6 +25,9 @@ class TechSlash extends StatelessWidget {
     ImagePickureController imagepickurecontroller = Get.put(
       ImagePickureController(),
     );
+
+    final DateController controller = Get.put(DateController());
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -95,9 +99,14 @@ class TechSlash extends StatelessWidget {
                 /// FROM
                 Expanded(
                   child: TecherallWidget(
-                    controller: TextEditingController(),
-                    hintText: 'DD/MM/YYYY',
+                    controller: controller.fromDateController,
+                    hintText: 'DD-MM-YYYY',
                     svgPath: "assets/icon/newnew.svg",
+                    readOnly: true,
+                    onIconTap: () {
+                      // Call controller logic
+                      controller.selectDate(context, isFromDate: true);
+                    },
                   ),
                 ),
                 SizedBox(width: 12.w),
@@ -105,9 +114,17 @@ class TechSlash extends StatelessWidget {
                 /// TO
                 Expanded(
                   child: TecherallWidget(
-                    controller: TextEditingController(),
-                    hintText: 'DD/MM/YYYY',
+                    controller:controller.toDateController,
+                    hintText: 'DD-MM-YYYY',
                     svgPath: "assets/icon/newnew.svg",
+
+
+                    readOnly: true,
+                    onIconTap: () {
+                      // Call controller logic
+                      controller.selectDate(context, isFromDate: false);
+                    },
+
                   ),
                 ),
               ],
@@ -121,6 +138,7 @@ class TechSlash extends StatelessWidget {
                 fontSize: 16.sp,
                 fontWeight: FontWeight.bold,
               ),
+
             ),
             SizedBox(height: 12.h),
 
@@ -237,11 +255,14 @@ class TechSlash extends StatelessWidget {
                       bu_name1: 'Close',
                       ontap1: () {
                         Get.toNamed(AppRoute.home2);
+
                       },
                     ),
                   ),
                 );
               },
+              clear:controller.cleartext,
+
               bgGradient: const LinearGradient(
                 colors: [Color(0xff2563EB), Color(0xff2563EB)],
               ),
@@ -249,10 +270,14 @@ class TechSlash extends StatelessWidget {
             SizedBox(height: 16.h),
 
             CustomSuperButton(
+
               text: 'Skip',
               fontWeight: FontWeight.bold,
               fontSize: 20.sp,
-              onTap: () {},
+              onTap: () {
+
+                Get.toNamed(AppRoute.home2);
+              },
               borderColor: Color(0xff2563EB),
               textGradient: Appgradient.primaryGradient,
             ),
