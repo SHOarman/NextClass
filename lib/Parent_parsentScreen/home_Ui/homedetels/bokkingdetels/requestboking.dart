@@ -7,6 +7,7 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import '../../../../core/succesfullcontroler/succesfullcontroler.dart';
 import '../../../../unity/appColors/appGradient.dart';
 import '../../../widget/coustom_button/coustom_button.dart';
+import '../../../widget/successfullmsg/successfullmsg.dart';
 
 class Requestboking extends StatelessWidget {
   const Requestboking({super.key});
@@ -92,9 +93,9 @@ class Requestboking extends StatelessWidget {
                           //====================Request====================done
                         },
                         bu_name2: 'Back to home',
-                        ontap2: () {
-                          Get.back();
-                        },
+                        // ontap2: () {
+                        //   Get.back();
+                        // },
                       ),
                     ),
                   );

@@ -12,10 +12,11 @@ class Profilesecation extends StatelessWidget {
     final UserLocationController locationController = Get.put(UserLocationController());
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center, // Center align for better look
         children: [
+         // SizedBox(height: 12.h,),
           // 1. Profile Image
           GestureDetector(
             onTap: () {
@@ -24,8 +25,8 @@ class Profilesecation extends StatelessWidget {
             child:Image.asset('assets/backround/Rectangle 5040.png'
 
             ,
-            height: 45.h,
-            width: 45.w,
+            height: 50.h,
+            width: 50.w,
             ),
           ),
 
@@ -50,8 +51,8 @@ class Profilesecation extends StatelessWidget {
                 // ✅ Location with Obx
                 Obx(() => Row( 
                   children: [
-                    Icon(Icons.location_on, size: 14.sp, color: Colors.grey),
-                    SizedBox(width: 4.w),
+                  //  Icon(Icons.location_on, size: 14.sp, color: Colors.grey),
+                   // SizedBox(width: 4.w),
                     Flexible( 
                       child: Text(
                         locationController.isLoading.value
@@ -59,7 +60,7 @@ class Profilesecation extends StatelessWidget {
                             : locationController.currentAddress.value.isEmpty
                             ? "Location not found"
                             : locationController.currentAddress.value,
-                        style: TextStyle(fontSize: 12.sp, color: Colors.grey),
+                        style: TextStyle(fontSize: 14.sp, color: Colors.grey),
                         overflow: TextOverflow.ellipsis, 
                         maxLines: 1,
                       ),

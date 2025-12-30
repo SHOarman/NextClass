@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../Services/auth_Controller/auth_Controller.dart';
 import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
 import '../../unity/appColors/appGradient.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,6 +16,10 @@ class RegScreren extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+   final Authcontroller authController = Get.find<Authcontroller>();
+
+
     // Controllers
     TextEditingController nameController = TextEditingController();
     TextEditingController emailController = TextEditingController();

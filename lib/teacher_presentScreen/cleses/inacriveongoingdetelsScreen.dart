@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../Parent_parsentScreen/widget/successfullmsg/successfullmsg.dart';
 import '../../core/succesfullcontroler/succesfullcontroler.dart';
 import '../bokking2/bokkingWidget/Tuitiondetails.dart';
 
