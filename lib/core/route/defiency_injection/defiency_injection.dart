@@ -2,7 +2,10 @@ import 'package:first_project/core/route/Genaral_Controler/Genaral_Controler.dar
 import 'package:first_project/teacher_presentScreen/Techechercontrler/techercotroler.dart';
 import 'package:get/get.dart';
 
+import '../../../Parent_parsentScreen/auth_Screen/auth_Controller/auth_Controller.dart';
 import '../../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chatControllerTeacher.dart';
+
+import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
 import '../../../teacher_presentScreen/chat2/msgController.dart';
 import '../../succesfullcontroler/succesfullcontroler.dart';
 import '../Genaral_Controler/imagepickurecontroller.dart';
@@ -40,5 +43,15 @@ class DependencyInjection {
 
     //=========================imagepiker===========================
     Get.lazyPut(() => ImagePickureController());
+
+
+    //=====================AuthController=========================================...........>>>>>>>>>>
+
+    Get.lazyPut(() => Authcontroller());
+
+    //=====================profileController=========================================...........>>>>>>>>>>
+    Get.lazyPut(() => Profilecontroller());
+
+
   }
 }

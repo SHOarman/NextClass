@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
+import '../../Parent_parsentScreen/widget/successfullmsg/successfullmsg.dart';
 import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
 import '../../core/route/route.dart';
 import '../../core/succesfullcontroler/succesfullcontroler.dart';

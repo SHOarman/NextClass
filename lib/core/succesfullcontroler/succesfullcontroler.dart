@@ -7,7 +7,7 @@ import '../../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
 import '../../unity/appColors/appGradient.dart';
 
 class Successfullmsg extends StatelessWidget {
-  final Function? clear;
+  final Function?clear;
   final String name;
   final String namedetels;
   final String? bu_name1;
@@ -22,14 +22,13 @@ class Successfullmsg extends StatelessWidget {
     this.bu_name1,
     this.ontap1,
     this.bu_name2,
-    this.ontap2,
-    this.clear,
+    this.ontap2, this.clear,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 420,
+      height: 440,
       width: 360,
       constraints: BoxConstraints(maxWidth: 392.w),
       decoration: BoxDecoration(
@@ -39,7 +38,7 @@ class Successfullmsg extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 20.h),
+          SizedBox(height: 10.h),
 
           Center(child: Lottie.asset('assets/loti/Untitled file.json')),
 
@@ -62,18 +61,17 @@ class Successfullmsg extends StatelessWidget {
               style: TextStyle(fontSize: 14.sp, color: Colors.grey[700]),
             ),
           ),
-          SizedBox(height: 30.h),
+        SizedBox(height: 10.h),
 
           // ✅ Button 1
           if (bu_name1 != null)
             CustomSuperButton(
+
               text: bu_name1!,
               bgGradient: Appgradient.primaryGradient,
-              onTap:
-                  ontap1 ??
-                  () {
-                    clear?.call();
-                  },
+              onTap: ontap1 ?? () {
+                // clear!();
+              },
             ),
           SizedBox(height: 10.h),
 
@@ -83,14 +81,13 @@ class Successfullmsg extends StatelessWidget {
               text: bu_name2!,
               borderColor: Appgradient.pramary1,
               textGradient: Appgradient.primaryGradient,
-              onTap:
-                  ontap2 ??
-                  () {
-                    clear?.call();
-                  },
+              onTap: ontap2 ?? () {
+                // clear!();
+              },
             ),
         ],
       ),
+
     );
   }
 }
@@ -148,9 +145,9 @@ class Reviewpopupmsg extends StatelessWidget {
             style: TextStyle(fontSize: 16.sp, color: Colors.grey[700]),
           ),
 
-          SizedBox(height: 40.h),
+          SizedBox(height: 20.h),
 
-          SizedBox(height: 16.h),
+
 
           CustomSuperButton(
             text: bu_name1,

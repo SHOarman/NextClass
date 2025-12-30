@@ -221,7 +221,7 @@ class _RecommendedPageDetesTecher0State
               fontWeight: FontWeight.bold,
               fontSize: 20,
               onTap: () {
-               Get.toNamed(AppRoute.chatconation_teacher);
+                Get.toNamed(AppRoute.chatconation_teacher);
               },
               borderColor: Color(0xff2563EB),
               textGradient: Appgradient.primaryGradient,

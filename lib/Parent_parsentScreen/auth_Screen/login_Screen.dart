@@ -1,4 +1,5 @@
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,12 +10,14 @@ import '../../unity/appColors/appGradient.dart';
 import '../../unity/string_static/strig_static/staticString.dart';
 import '../widget/coustom_Textfield/coustom_Textfield.dart';
 import '../widget/coustom_button/coustom_button.dart';
+import 'auth_Controller/auth_Controller.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final Authcontroller authcontroller = Get.put(Authcontroller());
+
+
 
   final GenaralControler controller = Get.put(GenaralControler());
 
@@ -64,7 +67,7 @@ class LoginScreen extends StatelessWidget {
 
               CustomTextField(
                 hintText: 'Enter your email...',
-                controller: emailController,
+                controller: authcontroller.emailController,
                 iconPath: "assets/icon/Frame.svg",
                 enableValidation: true,
                 keyboardType: TextInputType.emailAddress,
@@ -81,7 +84,7 @@ class LoginScreen extends StatelessWidget {
 
               CustomPasswordFormField(
                 hintText: '********',
-                controller: passwordController,
+                controller: authcontroller.passwordController,
                 iconPath: 'assets/icon/Frame (1).svg',
                 enableValidation: true,
                 regex: RegExp(r'^(?=.*[a-z])(?=.*\d).{8,}$'),
@@ -150,8 +153,8 @@ class LoginScreen extends StatelessWidget {
                     return;
                   }
 
-                  if (emailController.text.isEmpty ||
-                      passwordController.text.isEmpty) {
+                  if (authcontroller.emailController.text.isEmpty ||
+                      authcontroller.passwordController.text.isEmpty) {
                     Get.snackbar(
                       "Error",
                       "Email and password required",

@@ -88,16 +88,6 @@ class Seedetels  extends StatelessWidget {
                   );
                 },
               )
-
-
-
-
-
-
-
-
-
-
             ],
           ),
         ),

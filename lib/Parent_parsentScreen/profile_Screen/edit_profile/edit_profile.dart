@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
 import 'package:first_project/core/route/route.dart';
 import 'package:flutter/material.dart';
@@ -7,12 +9,14 @@ import 'package:get/get.dart';
 
 import '../../../unity/appColors/appGradient.dart';
 import '../../widget/backSleash/backSleash.dart';
+import '../profileController/profileController.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final profilecontroller = Get.put(Profilecontroller());
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -35,24 +39,44 @@ class EditProfile extends StatelessWidget {
               child: Stack(
                 children: [
                   /// Circular profile image with shadow
-                  Container(
-                    height: 120.h,
-                    width: 120.w,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('assets/backround/profile.png'),
-                        fit: BoxFit.cover,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 8,
-                          offset: Offset(0, 4),
+                  GestureDetector(
+                    onTap: () {
+
+                      profilecontroller.pickImg();
+                    },
+
+                    child: Obx(() {
+                      return Container(
+                        height: 120.h,
+                        width: 120.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              spreadRadius: 2,
+                              blurRadius: 8,
+                              offset: Offset(0, 4),
+                            ),
+                          ],
+
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: profilecontroller.hasImage
+                                ? FileImage(
+                                    File(
+                                      profilecontroller.pickedImage.value!.path,
+                                    ),
+                                  )
+                                : const AssetImage(
+                                        'assets/backround/profile.png',
+                                      )
+                                      as ImageProvider,
+                          ),
                         ),
-                      ],
-                    ),
+                      );
+                    }),
                   ),
 
                   /// Edit icon overlay
@@ -153,7 +177,6 @@ class EditProfile extends StatelessWidget {
               text: 'Edit Profile',
               onTap: () {
                 Get.toNamed(AppRoute.editmodel);
-
               },
               bgGradient: Appgradient.primaryGradient,
             ),
