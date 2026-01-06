@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:first_project/core/route/route.dart';
 import 'package:first_project/core/succesfullcontroler/succesfullcontroler.dart';
+import 'package:first_project/teacher_presentScreen/teacherfirstSecationController/teacherfirstSecationController.dart';
 import 'package:first_project/teacher_presentScreen/techerall_widget/techerall_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,11 +23,15 @@ class TechSlash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     ImagePickureController imagepickurecontroller = Get.put(
       ImagePickureController(),
     );
 
     final DateController controller = Get.put(DateController());
+    var teacherfirstsecationcontroller=Get.put(Teacherfirstsecationcontroller());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -99,7 +104,7 @@ class TechSlash extends StatelessWidget {
                 /// FROM
                 Expanded(
                   child: TecherallWidget(
-                    controller: controller.fromDateController,
+                    controller: teacherfirstsecationcontroller.fromDateController,
                     hintText: 'DD-MM-YYYY',
                     svgPath: "assets/icon/newnew.svg",
                     readOnly: true,
@@ -114,7 +119,7 @@ class TechSlash extends StatelessWidget {
                 /// TO
                 Expanded(
                   child: TecherallWidget(
-                    controller:controller.toDateController,
+                    controller:teacherfirstsecationcontroller.toDateController,
                     hintText: 'DD-MM-YYYY',
                     svgPath: "assets/icon/newnew.svg",
 
@@ -235,7 +240,8 @@ class TechSlash extends StatelessWidget {
             SizedBox(height: 16.h),
 
             SimpleCard(
-              controller: TextEditingController(),
+
+              controller: teacherfirstsecationcontroller.educationLevelController,
               hintText: 'Write here.......',
             ),
             SizedBox(height: 34.h),
@@ -244,6 +250,9 @@ class TechSlash extends StatelessWidget {
               fontSize: 20.sp,
               fontWeight: FontWeight.bold,
               onTap: () {
+                teacherfirstsecationcontroller.techerdetels();
+
+
                 showDialog(
                   context: context,
                   builder: (ctx) => AlertDialog(

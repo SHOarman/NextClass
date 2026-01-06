@@ -302,7 +302,9 @@ class SimpleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
+
         prefixIcon: prefixicon
             ? const Icon(Icons.search, color: Colors.grey)
             : null,
@@ -335,6 +337,7 @@ class Customdetesl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       maxLines: 5,
 
       decoration: InputDecoration(

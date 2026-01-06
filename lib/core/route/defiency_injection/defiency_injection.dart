@@ -8,6 +8,7 @@ import '../../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chatControl
 
 import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
 import '../../../teacher_presentScreen/chat2/msgController.dart';
+import '../../../teacher_presentScreen/teacherfirstSecationController/teacherfirstSecationController.dart';
 import '../../succesfullcontroler/succesfullcontroler.dart';
 import '../Genaral_Controler/imagepickurecontroller.dart';
 
@@ -59,6 +60,8 @@ class DependencyInjection {
 
 
     //======================>>>>>>>>>>>>>>>tutoril===============Controller====================>>>>>>>>>>>>>>>>>>>>>>>>
+    //=================firsthome===========================
+    Get.lazyPut(()=>Teacherfirstsecationcontroller());
 
 
 

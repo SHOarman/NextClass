@@ -1,15 +1,18 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
+import '../../../teacher_presentScreen/teacherfirstSecationController/teacherfirstSecationController.dart';
+
 class DateController extends GetxController {
   // 🔹 Reactive variables (obs)
   var fromDate = ''.obs;
   var toDate = ''.obs;
 
   // Text Controllers for the UI widgets
-  final fromDateController = TextEditingController();
-  final toDateController = TextEditingController();
+  // final fromDateController = TextEditingController();
+  // final toDateController = TextEditingController();
 
+  var  datecontoller=Get.put(Teacherfirstsecationcontroller());
   // 🔹 Function to pick a date
   Future<void> selectDate(
     BuildContext context, {
@@ -29,25 +32,25 @@ class DateController extends GetxController {
 
       // 1. Update the Text Controller (visual update in TextField)
       if (isFromDate) {
-        fromDateController.text = formattedDate;
+        datecontoller.fromDateController.text = formattedDate;
         fromDate.value = formattedDate; // Update obs variable
       } else {
-        toDateController.text = formattedDate;
+        datecontoller.toDateController.text = formattedDate;
         toDate.value = formattedDate; // Update obs variable
       }
     }
   }
   cleartext(){
 
-    fromDateController.clear();
-    toDateController.clear();
+    datecontoller.fromDateController.clear();
+    datecontoller. toDateController.clear();
   }
 
   @override
   void onClose() {
 
-    fromDateController.dispose();
-    toDateController.dispose();
+    datecontoller.fromDateController.dispose();
+    datecontoller. toDateController.dispose();
     super.onClose();
   }
 }
