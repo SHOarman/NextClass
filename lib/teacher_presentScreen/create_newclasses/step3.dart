@@ -1,17 +1,19 @@
 import 'package:first_project/unity/appColors/appGradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 import '../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
+import 'classCreateController/classCreateController.dart';
 
 class Step3 extends StatelessWidget {
   const Step3({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController tuitionontroller = TextEditingController();
-    final TextEditingController enrichmentclasscontroller =TextEditingController();
-    final TextEditingController dayofweekcontroller = TextEditingController();
+   var classcreatecontroller = Get.put(Classcreatecontroller());
+
+
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -29,7 +31,7 @@ class Step3 extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Simpletextfield(
-              controller: tuitionontroller,
+              controller:classcreatecontroller. tuitionontroller,
               hintText: 'Write subjects name...',
             ),
             SizedBox(height: 15.h),
@@ -44,7 +46,7 @@ class Step3 extends StatelessWidget {
             SizedBox(height: 10.h),
         
             Simpletextfield(
-              controller: enrichmentclasscontroller,
+              controller: classcreatecontroller.enrichmentclasscontroller,
               hintText: 'Write monthly price for your tuition..',
             ),
             SizedBox(height: 16.h),
@@ -58,7 +60,7 @@ class Step3 extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Simpletextfield(
-              controller: dayofweekcontroller,
+              controller: classcreatecontroller.dayofweekcontroller,
               hintText: 'Write day of the week...',
             ),
             SizedBox(height: 10.h),

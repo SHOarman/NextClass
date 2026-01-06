@@ -1,5 +1,6 @@
 import 'package:first_project/core/route/Genaral_Controler/Genaral_Controler.dart';
 import 'package:first_project/teacher_presentScreen/Techechercontrler/techercotroler.dart';
+import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
 import 'package:get/get.dart';
 
 import '../../../Parent_parsentScreen/auth_Screen/auth_Controller/auth_Controller.dart';
@@ -51,6 +52,21 @@ class DependencyInjection {
 
     //=====================profileController=========================================...........>>>>>>>>>>
     Get.lazyPut(() => Profilecontroller());
+
+
+
+
+
+
+    //======================>>>>>>>>>>>>>>>tutoril===============Controller====================>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+
+
+
+    //===================CreateNewclass===================>>>>>>>>>>>>>>>>>>>>>
+    Get.lazyPut(() => Classcreatecontroller());
 
 
   }

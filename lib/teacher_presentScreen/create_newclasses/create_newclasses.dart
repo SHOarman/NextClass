@@ -6,12 +6,14 @@ import 'package:first_project/unity/appColors/appGradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import '../../Parent_parsentScreen/widget/successfullmsg/successfullmsg.dart';
 import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
 import '../../core/route/route.dart';
 import '../../core/succesfullcontroler/succesfullcontroler.dart';
+import 'classCreateController/classCreateController.dart';
 import 'customStepindecotor.dart';
 
 class CreateNewclasses extends StatefulWidget {
@@ -24,6 +26,7 @@ class CreateNewclasses extends StatefulWidget {
 class _CreateNewclassesState extends State<CreateNewclasses> {
   final GenaralController controller = GenaralController();
   final Card2 card2Controller = Card2();
+  var classcreatecontroller=Get.put(Classcreatecontroller());
 
   int currentStep = 0;
 
@@ -101,7 +104,9 @@ class _CreateNewclassesState extends State<CreateNewclasses> {
                                 namedetels: '',
                                 bu_name1: 'Track class',
                                 ontap1: () {
-                                  Get.toNamed(AppRoute.home2);
+                                  classcreatecontroller.addClass();
+
+                                   Get.toNamed(AppRoute.home2);
                                 },
                                 bu_name2:
                                     'Close', // optional second button text, leave empty if not needed
