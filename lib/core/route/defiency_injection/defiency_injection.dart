@@ -11,6 +11,7 @@ import '../../../teacher_presentScreen/chat2/msgController.dart';
 import '../../../teacher_presentScreen/teacherfirstSecationController/teacherfirstSecationController.dart';
 import '../../succesfullcontroler/succesfullcontroler.dart';
 import '../Genaral_Controler/imagepickurecontroller.dart';
+import '../Genaral_Controler/teachercontroller.dart';
 
 class DependencyInjection {
   static void bindings() {
@@ -62,6 +63,8 @@ class DependencyInjection {
     //======================>>>>>>>>>>>>>>>tutoril===============Controller====================>>>>>>>>>>>>>>>>>>>>>>>>
     //=================firsthome===========================
     Get.lazyPut(()=>Teacherfirstsecationcontroller());
+
+    Get.lazyPut(()=>Teachercontroller());
 
 
 

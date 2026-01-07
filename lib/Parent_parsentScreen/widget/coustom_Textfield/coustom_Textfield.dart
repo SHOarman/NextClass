@@ -7,7 +7,7 @@ import '../../../unity/appColors/appGradient.dart';
 class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
-  final String iconPath;
+   final String? iconPath;
   final bool enableValidation;
   final RegExp? regex;
   final String? errorMessage;
@@ -19,7 +19,7 @@ class CustomTextField extends StatefulWidget {
     super.key,
     required this.controller,
     required this.hintText,
-    required this.iconPath,
+     this.iconPath,
     this.enableValidation = false,
     this.regex,
     this.errorMessage,
@@ -106,7 +106,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               prefixIcon: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: SvgPicture.asset(
-                  widget.iconPath,
+                  widget.iconPath!,
                   height: 20,
                   width: 20,
                   colorFilter: ColorFilter.mode(

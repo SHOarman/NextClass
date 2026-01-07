@@ -15,20 +15,18 @@ import 'package:first_project/teacher_presentScreen/myprofileexta/editprofile2/e
 import 'package:first_project/teacher_presentScreen/myprofileexta/update_passwordtecher/update_passwordtecher.dart';
 import 'package:first_project/teacher_presentScreen/tech_Slash.dart';
 import 'package:get/get.dart';
-
 import '../../Parent_parsentScreen/auth_Screen/Reg_screren.dart';
 import '../../Parent_parsentScreen/auth_Screen/creat_new_password.dart';
 import '../../Parent_parsentScreen/auth_Screen/forget_password.dart';
 import '../../Parent_parsentScreen/auth_Screen/login_Screen.dart';
 import '../../Parent_parsentScreen/auth_Screen/otp_verification.dart';
+import '../../Parent_parsentScreen/auth_Screen/regVerifyScreen.dart';
 import '../../Parent_parsentScreen/home_Ui/filtermodel/filtermodel.dart';
 import '../../Parent_parsentScreen/home_Ui/home_Screen.dart';
-
 import '../../Parent_parsentScreen/home_Ui/homedetels/Recommended_page_detes_techer/Recommended_page_detes_techer0.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/Recommended_page_detes_techer/Recommended_page_detes_techer1.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/Recommended_page_detes_techer/Recommended_page_detes_techer2.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/Recommended_page_detes_techer/Recommended_page_detes_techer3.dart';
-
 import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/accpect/tution_accpectpage/tution_accpectpage1.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/completed/tution_Completed/reviewadd/reviewadd.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/completed/tution_Completed/tusioncomplectfullreviewscreen/tusioncomplectfullreviewscreen.dart';
@@ -63,6 +61,12 @@ import '../../teacher_presentScreen/myprofileexta/editprofile2/editmodel2.dart';
 import '../../teacher_presentScreen/myprofileexta/reviewsecation/reviewsecation.dart';
 import '../../teacher_presentScreen/myprofileexta/support_teacherteam/support_teacherteam.dart';
 
+
+
+
+
+
+
 class AppRoute {
   static const String slashscreen = '/slashscreen';
   static const String onloding = '/onloding';
@@ -73,6 +77,10 @@ class AppRoute {
   static const String forgetpassword = '/forgetpassword';
   static const String otp = '/otp';
   static const String createnewpassword = '/createnewpassword';
+  static const String regVerifyScreen = '/regVerifyScreen';
+  static const String regVerifyScreenteacher = '/regVerifyScreenteacher';
+
+
 
   //===========================home==============================================
   static const String home = '/home';
@@ -105,12 +113,9 @@ class AppRoute {
   static const String requestboking = '/requestboking';
   static const String qutionaries = '/qutionaries';
 
-
-
   //===============homechat=================================================
 
   static const String chatconation_teacher = '/chatconation_teacher';
-
 
   //===========================Recommended_page_detes_techer===================================
 
@@ -151,26 +156,28 @@ class AppRoute {
   static const String inacriveongoingdetelsscreen =
       '/inacriveongoingdetelsscreen';
   static const String activepage = '/activepage';
-  static const String rejectiondetels='/rejectiondetels';
+  static const String rejectiondetels = '/rejectiondetels';
+  //=====================tacherpageauthpage====================================================
 
-
-
+  static const creeatnrewpasswordtec = '/creeatnrewpasswordtec';
+  static const String forgetpasswordtec = '/forgetpasswordtec';
+  static const String loginScreentec = '/loginScreentec';
+  static const String otpverifcationtec = '/otpverifcationtec';
+  static const String regScrerentec = '/regScrerentec';
 
   //====================chatdetss================================
   static const String convarcation = '/convarcation';
 
-  static const String seDetels='/seDetels';
-  static const String logoutscreennew='/logoutscreennew';
-
-
-
-
+  static const String seDetels = '/seDetels';
+  static const String logoutscreennew = '/logoutscreennew';
 
   //==============================tec-newclassscreate=================================
   static const String create_newclasses = '/create_newclasses';
   static const String step1 = '/step1';
   static const String step2 = '/step2';
   static const String step3 = '/step3';
+
+  static const String regVerifyScreenallow='/regVerifyScreenallow';
 
   //=============Boking detelsScareen==============================
   static const String bokkingdetels2 = '/bokkingdetels2';
@@ -210,10 +217,7 @@ class AppRoute {
     GetPage(name: seDetels, page: () => Seedetels()),
     GetPage(name: logoutscreennew, page: () => Logoutscreennew()),
 
-
-
     //================================================, page: page)
-
 
     //====================detels================================
     GetPage(
@@ -291,14 +295,11 @@ class AppRoute {
     GetPage(name: activepage, page: () => Activepage()),
     GetPage(name: rejectiondetels, page: () => Tusionrejestiondetels()),
 
-
-
-
+    //=====================techerauthscsreen =====================================================
 
 
     //============================msgconvasion-============================================
     GetPage(name: convarcation, page: () => ConversationScreen()),
-
 
     //==============================tec-newclassscreate=================================
     GetPage(name: create_newclasses, page: () => CreateNewclasses()),
@@ -341,5 +342,8 @@ class AppRoute {
       page: () => Tusioncomplectfullreviewscreen(),
     ),
     GetPage(name: cancel_model, page: () => CancelModel()),
+    GetPage(name: regVerifyScreenallow, page: () =>RegScreren()),
+    GetPage(name: regVerifyScreen, page: ()=>Regverifyscreen()),
+
   ];
 }

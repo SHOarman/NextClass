@@ -15,7 +15,7 @@ class VerifyOtpScreen extends StatefulWidget {
 }
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
-  // রং ডিফাইন করা হলো
+
   final Color primaryBlue = const Color(0xFF2563EB);
 
   @override
@@ -23,7 +23,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        child: SingleChildScrollView( // কি-বোর্ড ওপেন হলে যাতে এরর না দেয়
+        child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
@@ -72,7 +72,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // ৬টি ইনপুট ফিল্ড তৈরি করা হলো
+
                       _buildOtpField(context, first: true),
                       _buildOtpField(context),
                       _buildOtpField(context),
@@ -170,9 +170,9 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   Widget _buildOtpField(BuildContext context, {bool first = false, bool last = false}) {
     return Container(
       height: 55,
-      width: 45, // বক্সের সাইজ
+      width: 45,
       decoration: BoxDecoration(
-        color: const Color(0xFFF3F4F6), // ডিফল্ট ব্যাকগ্রাউন্ড কালার
+        color: const Color(0xFFF3F4F6),
         borderRadius: BorderRadius.circular(8),
         boxShadow: const [
           BoxShadow(
@@ -183,10 +183,10 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
         ],
       ),
       child: TextField(
-        autofocus: first, // প্রথম বক্সে অটোমেটিক ফোকাস থাকবে
+        autofocus: first,
         onChanged: (value) {
           if (value.length == 1 && !last) {
-            FocusScope.of(context).nextFocus(); // লিখলে পরের ঘরে যাবে
+            FocusScope.of(context).nextFocus();
           }
           if (value.isEmpty && !first) {
             FocusScope.of(context).previousFocus();
@@ -196,7 +196,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
         textAlign: TextAlign.center,
         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         keyboardType: TextInputType.number,
-        maxLength: 1, // একটার বেশি সংখ্যা লেখা যাবে না
+        maxLength: 1,
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
         ],

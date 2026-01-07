@@ -87,8 +87,8 @@ class LoginScreen extends StatelessWidget {
                 controller: authcontroller.passwordController,
                 iconPath: 'assets/icon/Frame (1).svg',
                 enableValidation: true,
-                regex: RegExp(r'^(?=.*[a-z])(?=.*\d).{8,}$'),
-                errorMessage: "Min 8 chars, 1 letter, 1 number",
+                //regex: RegExp(r'^(?=.*[a-z])(?=.*\d).{8,}$'),
+               // errorMessage: "Min 8 chars, 1 letter, 1 number",
               ),
 
               SizedBox(height: 12.h),
@@ -139,19 +139,13 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 80.h),
 
               /// Login Button
+
+
               CustomSuperButton(
                 text: Staticstring.login,
                 fontSize: 20,
                 bgGradient: Appgradient.primaryGradient,
                 onTap: () {
-                  if (!controller.isCheck.value) {
-                    Get.snackbar(
-                      "Error",
-                      "Please accept Remember me",
-                      snackPosition: SnackPosition.BOTTOM,
-                    );
-                    return;
-                  }
 
                   if (authcontroller.emailController.text.isEmpty ||
                       authcontroller.passwordController.text.isEmpty) {
@@ -159,40 +153,19 @@ class LoginScreen extends StatelessWidget {
                       "Error",
                       "Email and password required",
                       snackPosition: SnackPosition.BOTTOM,
+                      backgroundColor: Colors.redAccent,
+                      colorText: Colors.white,
                     );
                     return;
-                  } else {
-                    Get.toNamed(AppRoute.home);
                   }
 
-                  /// Success Dialog
-                  // showDialog(
-                  //   context: context,
-                  //   builder: (ctx) => AlertDialog(backgroundColor:Colors.white,
-                  //
-                  //     content: Successfullmsg(
-                  //       name: 'successfull',
-                  //       namedetels: 'sshhisfi',
-                  //       bu_name1: 'uess',
-                  //       ontap1: () {
-                  //
-                  //         print('897uui');
-                  //       },
-                  //       bu_name2: 'jhjshfs',
-                  //       ontap2: () {
-                  //         print('89789');
-                  //       },
-                  //     ),
-                  //
-                  //
-                  //   ),
-                  // );
+
+
+                  print("Login Clicked. Remember Me: ${controller.isCheck.value}");
+                  authcontroller.login();
                 },
-                //clear: controller.call,
-
-
-
               ),
+
 
               SizedBox(height: 60.h),
 

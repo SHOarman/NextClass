@@ -1,12 +1,16 @@
 import 'package:first_project/core/route/route.dart';
-
-import 'package:first_project/unity/appColors/appGradient.dart';
-import 'package:first_project/unity/string_static/strig_static/staticString.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_navigation/src/snackbar/snackbar.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
+import '../../unity/appColors/appGradient.dart';
+import '../../unity/string_static/strig_static/staticString.dart';
 import '../widget/coustom_button/coustom_button.dart';
 import '../widget/coustomcardparsent_teacher/coustomcardparsent_teacher.dart';
 
@@ -73,9 +77,11 @@ class _OnlodaingScreenState extends State<OnlodaingScreen> {
                 text: Staticstring.Select,
                 onTap: () {
                   if (roleController.selectedRole.value == "parent") {
-                    Get.toNamed(AppRoute.login);
+                    Get.toNamed(AppRoute.regVerifyScreenallow);
                   } else if (roleController.selectedRole.value == "teacher") {
-                    Get.toNamed(AppRoute.teachscre);
+                    //Get.toNamed(AppRoute.teachscre);
+
+                    Get.toNamed(AppRoute.regVerifyScreenallow);
                   } else {
                     Get.snackbar(
                       'Error',
@@ -92,7 +98,6 @@ class _OnlodaingScreenState extends State<OnlodaingScreen> {
                     Appgradient.primaryGradient.colors[1],
                   ],
                 ),
-
               ),
             ],
           ),
