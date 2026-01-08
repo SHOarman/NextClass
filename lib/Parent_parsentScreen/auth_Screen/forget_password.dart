@@ -1,19 +1,23 @@
+import 'dart:ui';
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
 import 'package:first_project/Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
 import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
-import 'package:first_project/core/route/route.dart';
-import 'package:first_project/unity/string_static/strig_static/staticString.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import '../../unity/appColors/appGradient.dart';
+import '../../unity/string_static/strig_static/staticString.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailnewController = TextEditingController();
+    final Authcontroller authcontroller = Get.find<Authcontroller>();
 
     return Scaffold(
       body: SafeArea(
@@ -23,34 +27,20 @@ class ForgetPassword extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Column(
-                  children: [
-                    SizedBox(height: 200.h),
-
-                    Center(
-                      child: Text(
-                        Staticstring.forgotpassword,
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          foreground: Paint()
-                            ..shader = Appgradient.primaryGradient.createShader(
-                              Rect.fromLTWH(0, 0, 0, 0),
-                            ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 12.h),
-                    Center(
-                      child: Text(
-                        Staticstring.forgetdetels,
-                        style: TextStyle(
-                          color: Color(0xff888888),
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
+                // ... (উপরের ডিজাইন কোড একই থাকবে) ...
+                SizedBox(height: 200.h),
+                Center(
+                  child: Text(
+                    Staticstring.forgotpassword,
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                SizedBox(height: 12.h),
+                Center(
+                  child: Text(
+                    Staticstring.forgetdetels,
+                    style: TextStyle(color: Color(0xff888888), fontSize: 12),
+                  ),
                 ),
 
                 SizedBox(height: 40.h),
@@ -59,37 +49,40 @@ class ForgetPassword extends StatelessWidget {
                   style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
                 ),
                 SizedBox(height: 12.h),
+
+                // ✅ ১. সঠিক কন্ট্রোলার বসানো হলো
                 CustomTextField(
                   hintText: 'Enter your email...',
-                  controller: emailnewController,
+                  controller: authcontroller.forgetPasswordController,
                   iconPath: "assets/icon/Frame.svg",
                   enableValidation: true,
-                  regex: RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'),
-                  errorMessage: 'Invalid email format',
                   keyboardType: TextInputType.emailAddress,
                 ),
 
                 SizedBox(height: 64.h),
+
+                // ✅ ২. বাটন ফাংশন
                 CustomSuperButton(
                   text: Staticstring.sendCode,
                   fontSize: 20,
                   textColor: Colors.white,
                   onTap: () {
-
-                    Get.toNamed(AppRoute.otp);
+                    // এখানে আর চেক করার দরকার নেই, কন্ট্রোলার নিজেই চেক করবে
+                    authcontroller.forgetPassword();
                   },
                   bgGradient: Appgradient.primaryGradient,
                 ),
+
                 SizedBox(height: 16.h),
                 CustomSuperButton(
                   text: Staticstring.backtosignin,
                   fontSize: 20,
-                  textColor: Appgradient.primaryGradient.colors[0],
+                  textColor: Colors.blue,
                   onTap: () {
-                   Get.toNamed(AppRoute.reg);
+                    Get.back(); // অথবা Get.toNamed(AppRoute.login);
                   },
-                  bgColor: Color(0xffFFFFFF),
-                  borderColor: Color(0xff2563EB),
+                  bgColor: Colors.white,
+                  borderColor: Colors.blue,
                 ),
               ],
             ),

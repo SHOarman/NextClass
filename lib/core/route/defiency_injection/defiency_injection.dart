@@ -3,7 +3,7 @@ import 'package:first_project/teacher_presentScreen/Techechercontrler/techercotr
 import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
 import 'package:get/get.dart';
 
-import '../../../Parent_parsentScreen/auth_Screen/auth_Controller/auth_Controller.dart';
+import '../../../Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
 import '../../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chatControllerTeacher.dart';
 
 import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
@@ -51,6 +51,7 @@ class DependencyInjection {
     //=====================AuthController=========================================...........>>>>>>>>>>
 
     Get.lazyPut(() => Authcontroller());
+
 
     //=====================profileController=========================================...........>>>>>>>>>>
     Get.lazyPut(() => Profilecontroller());

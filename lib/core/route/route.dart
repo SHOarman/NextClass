@@ -345,5 +345,6 @@ class AppRoute {
     GetPage(name: regVerifyScreenallow, page: () =>RegScreren()),
     GetPage(name: regVerifyScreen, page: ()=>Regverifyscreen()),
 
+
   ];
 }

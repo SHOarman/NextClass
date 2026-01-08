@@ -1,25 +1,28 @@
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 
+// Check your import paths
 import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
 import '../../core/route/route.dart';
 import '../../unity/appColors/appGradient.dart';
 import '../../unity/string_static/strig_static/staticString.dart';
 import '../widget/coustom_Textfield/coustom_Textfield.dart';
 import '../widget/coustom_button/coustom_button.dart';
+ // Import AuthController
 
 class CreatNewPassword extends StatelessWidget {
   const CreatNewPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController confromconttroler = TextEditingController();
-    TextEditingController Ceonfromconttroler = TextEditingController();
 
-    final GenaralControler controller = Get.put(GenaralControler());
+    // 1. Find the AuthController (Do not use local controllers)
+    final Authcontroller authController = Get.find<Authcontroller>();
+
+    // Optional: Keep GeneralController if used for checkbox/theme elsewhere
+    final GenaralControler genController = Get.put(GenaralControler());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -55,33 +58,35 @@ class CreatNewPassword extends StatelessWidget {
 
               SizedBox(height: 44.h),
 
-              /// ===============================Email label
+              /// =============================== Password label
               Text(
                 Staticstring.password,
                 style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
               ),
               SizedBox(height: 12.h),
 
-              /// ====================================Email field
+              /// ==================================== New Password field
               CustomPasswordFormField(
                 hintText: '********',
-                controller: confromconttroler,
+                // 2. Connect to AuthController
+                controller: authController.newPasswordController,
                 iconPath: 'assets/icon/Frame (1).svg',
               ),
 
               SizedBox(height: 24.h),
 
-              ///================================ Password label
+              ///================================ Confirm Password label
               Text(
                 Staticstring.confirmPassword,
                 style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
               ),
               SizedBox(height: 12.h),
 
-              /// Password field
+              /// ==================================== Confirm Password field
               CustomPasswordFormField(
                 hintText: '********',
-                controller: Ceonfromconttroler,
+                // 3. Connect to AuthController
+                controller: authController.confirmNewPasswordController,
                 iconPath: 'assets/icon/Frame (1).svg',
               ),
 
@@ -89,17 +94,14 @@ class CreatNewPassword extends StatelessWidget {
 
               SizedBox(height: 100.h),
 
-              /// Login button
+              /// Update Password button
               CustomSuperButton(
                 text: Staticstring.updatePassword,
                 fontSize: 20,
                 onTap: () {
-                  if (controller == Ceonfromconttroler) {
-                    Get.snackbar('error', 'Password updated successfully!');
-                  } else {
-                    Get.toNamed(AppRoute.login);
-                    Get.snackbar('succes', 'password succesh fully updated!');
-                  }
+                  // 4. Call the function directly.
+                  // The controller handles validation and API calls.
+                  authController.setNewPassword();
                 },
                 bgGradient: Appgradient.primaryGradient,
               ),
