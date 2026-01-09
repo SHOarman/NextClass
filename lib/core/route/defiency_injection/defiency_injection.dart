@@ -4,12 +4,13 @@ import 'package:first_project/teacher_presentScreen/create_newclasses/classCreat
 import 'package:get/get.dart';
 
 import '../../../Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
+import '../../../Parent_parsentScreen/auth_Screen/auth_Controller/parsent_tutorReg_Controller/parsent_tutorReg_Controller.dart';
 import '../../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chatControllerTeacher.dart';
 
 import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
 import '../../../teacher_presentScreen/chat2/msgController.dart';
-import '../../../teacher_presentScreen/teacherfirstSecationController/teacherfirstSecationController.dart';
 import '../../succesfullcontroler/succesfullcontroler.dart';
+import '../Genaral_Controler/dateController.dart';
 import '../Genaral_Controler/imagepickurecontroller.dart';
 import '../Genaral_Controler/teachercontroller.dart';
 
@@ -40,41 +41,31 @@ class DependencyInjection {
 
     //==================Selecttype===============
     Get.lazyPut(() => Selecttype());
-    Get.lazyPut(()=>ChatController());
-    Get.lazyPut(()=>Chatcontrollerteacher());
-
+    Get.lazyPut(() => ChatController());
+    Get.lazyPut(() => Chatcontrollerteacher());
 
     //=========================imagepiker===========================
     Get.lazyPut(() => ImagePickureController());
+    //=============Datepiker============================
+    Get.lazyPut(() => DateController());
 
 
     //=====================AuthController=========================================...........>>>>>>>>>>
 
     Get.lazyPut(() => Authcontroller());
 
-
     //=====================profileController=========================================...........>>>>>>>>>>
     Get.lazyPut(() => Profilecontroller());
 
-
-
-
-
-
     //======================>>>>>>>>>>>>>>>tutoril===============Controller====================>>>>>>>>>>>>>>>>>>>>>>>>
+
+    Get.lazyPut(() => ParsentTutorregController());
+
     //=================firsthome===========================
-    Get.lazyPut(()=>Teacherfirstsecationcontroller());
 
-    Get.lazyPut(()=>Teachercontroller());
-
-
-
-
-
+    Get.lazyPut(() => Teachercontroller());
 
     //===================CreateNewclass===================>>>>>>>>>>>>>>>>>>>>>
     Get.lazyPut(() => Classcreatecontroller());
-
-
   }
 }

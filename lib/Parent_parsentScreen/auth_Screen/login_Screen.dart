@@ -16,7 +16,7 @@ import '../widget/coustom_button/coustom_button.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final Authcontroller authcontroller = Get.find<Authcontroller>();
+  final Authcontroller authcontroller = Get.put(Authcontroller());
 
 
 

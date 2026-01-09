@@ -10,7 +10,6 @@ import '../../unity/appColors/appGradient.dart';
 import '../../unity/string_static/strig_static/staticString.dart';
 import '../widget/coustom_Textfield/coustom_Textfield.dart';
 import '../widget/coustom_button/coustom_button.dart';
- // Import AuthController
 
 class CreatNewPassword extends StatelessWidget {
   const CreatNewPassword({super.key});
@@ -18,10 +17,8 @@ class CreatNewPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // 1. Find the AuthController (Do not use local controllers)
-    final Authcontroller authController = Get.find<Authcontroller>();
+    final Authcontroller authController = Get.put(Authcontroller());
 
-    // Optional: Keep GeneralController if used for checkbox/theme elsewhere
     final GenaralControler genController = Get.put(GenaralControler());
 
     return Scaffold(

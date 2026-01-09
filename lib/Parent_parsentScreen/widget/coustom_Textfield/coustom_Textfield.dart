@@ -142,9 +142,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
 //=============================password==========================
 
+
+// Add your other imports (AppColors, AppGradient, etc.) here
+
 class CustomPasswordFormField extends StatefulWidget {
-  final String hintText;
   final TextEditingController controller;
+  final String hintText;
   final String iconPath;
   final bool enableValidation;
   final RegExp? regex;
@@ -152,8 +155,8 @@ class CustomPasswordFormField extends StatefulWidget {
 
   const CustomPasswordFormField({
     super.key,
-    required this.hintText,
     required this.controller,
+    required this.hintText,
     required this.iconPath,
     this.enableValidation = false,
     this.regex,
@@ -166,22 +169,49 @@ class CustomPasswordFormField extends StatefulWidget {
 }
 
 class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
-  final FocusNode _focusNode = FocusNode();
+  // State variables
   bool _obscureText = true;
   bool isTyping = false;
-
   String? errorMsg;
+  late FocusNode _focusNode;
 
   @override
   void initState() {
     super.initState();
-    _focusNode.addListener(() => setState(() {}));
-    widget.controller.addListener(() {
+    _focusNode = FocusNode();
+
+    // 1. Add listeners securely
+    _focusNode.addListener(_onFocusChange);
+    widget.controller.addListener(_onControllerChange);
+  }
+
+  // ✅ FIX: Extract logic to separate functions so we can remove them later
+  void _onFocusChange() {
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  void _onControllerChange() {
+    // ✅ FIX: Check 'mounted' before calling setState
+    if (mounted) {
       setState(() {
         isTyping = widget.controller.text.isNotEmpty;
         _validateField(widget.controller.text);
       });
-    });
+    }
+  }
+
+  // ✅ CRITICAL FIX: The dispose method was missing!
+  @override
+  void dispose() {
+    // Remove listeners to stop memory leaks and "setState after dispose" errors
+    _focusNode.removeListener(_onFocusChange);
+    widget.controller.removeListener(_onControllerChange);
+
+    // Dispose local focus node
+    _focusNode.dispose();
+    super.dispose();
   }
 
   void _validateField(String value) {
@@ -216,13 +246,14 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
             borderRadius: BorderRadius.circular(8),
             boxShadow: _focusNode.hasFocus
                 ? [
-                    BoxShadow(
-                      color: Appgradient.pramary1.withOpacity(0.7),
-                      blurRadius: 8,
-                      offset: const Offset(-4, 0),
-                      spreadRadius: 0.3,
-                    ),
-                  ]
+              BoxShadow(
+                // Replace 'Appgradient.pramary1' with your actual color if needed
+                color: const Color(0xFF2563EB).withOpacity(0.7),
+                blurRadius: 8,
+                offset: const Offset(-4, 0),
+                spreadRadius: 0.3,
+              ),
+            ]
                 : [],
           ),
           child: TextFormField(
@@ -232,6 +263,8 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
             obscureText: _obscureText,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
+              // We are using custom error text below, so we return null here
+              // to prevent the default error line from showing up
               _validateField(value ?? "");
               return null;
             },
@@ -265,15 +298,19 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
                   color: const Color(0xff2563EB),
                 ),
                 onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
+                  // ✅ FIX: Check 'mounted' here too
+                  if (mounted) {
+                    setState(() {
+                      _obscureText = !_obscureText;
+                    });
+                  }
                 },
               ),
             ),
           ),
         ),
         const SizedBox(height: 6),
+        // Error Message Display
         if (errorMsg != null)
           Text(
             errorMsg!,

@@ -15,7 +15,7 @@ class _RegverifyscreenState extends State<Regverifyscreen> {
   final Color primaryBlue = const Color(0xFF2563EB);
 
   // Find the AuthController
-  final Authcontroller authController = Get.find<Authcontroller>();
+  final Authcontroller authController = Get.put(Authcontroller());
 
   // Create a list of 6 controllers for the 6 boxes
   final List<TextEditingController> otpControllers = List.generate(6, (index) => TextEditingController());

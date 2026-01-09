@@ -1,7 +1,8 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import '../../../teacher_presentScreen/teacherfirstSecationController/teacherfirstSecationController.dart';
+import '../../../Parent_parsentScreen/auth_Screen/auth_Controller/parsent_tutorReg_Controller/parsent_tutorReg_Controller.dart';
+
 
 class DateController extends GetxController {
   // 🔹 Reactive variables (obs)
@@ -12,10 +13,10 @@ class DateController extends GetxController {
   // final fromDateController = TextEditingController();
   // final toDateController = TextEditingController();
 
-  var  datecontoller=Get.put(Teacherfirstsecationcontroller());
+  final ParsentTutorregController parsentTutorregController = Get.put(ParsentTutorregController());
+
   // 🔹 Function to pick a date
-  Future<void> selectDate(
-    BuildContext context, {
+  Future<void> selectDate(BuildContext context, {
     required bool isFromDate,
   }) async {
     final DateTime? pickedDate = await showDatePicker(
@@ -26,31 +27,20 @@ class DateController extends GetxController {
     );
 
     if (pickedDate != null) {
-      // Format: DD-MM-YYYY
+      // ✅ FIX: Server expects DD/MM/YYYY (Slash instead of Hyphen)
       String formattedDate =
-          "${pickedDate.day.toString().padLeft(2, '0')}-${pickedDate.month.toString().padLeft(2, '0')}-${pickedDate.year}";
+          "${pickedDate.day.toString().padLeft(2, '0')}/${pickedDate.month.toString().padLeft(2, '0')}/${pickedDate.year}";
 
-      // 1. Update the Text Controller (visual update in TextField)
       if (isFromDate) {
-        datecontoller.fromDateController.text = formattedDate;
+        parsentTutorregController.fromDateController.text = formattedDate;
         fromDate.value = formattedDate; // Update obs variable
       } else {
-        datecontoller.toDateController.text = formattedDate;
+        parsentTutorregController.toDateController.text = formattedDate;
         toDate.value = formattedDate; // Update obs variable
       }
     }
   }
-  cleartext(){
 
-    datecontoller.fromDateController.clear();
-    datecontoller. toDateController.clear();
-  }
-
-  @override
-  void onClose() {
-
-    datecontoller.fromDateController.dispose();
-    datecontoller. toDateController.dispose();
-    super.onClose();
-  }
 }
+
+

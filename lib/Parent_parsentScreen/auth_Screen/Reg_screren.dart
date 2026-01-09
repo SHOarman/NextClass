@@ -19,7 +19,7 @@ class RegScreren extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    //final Authcontroller authController=Get.put(Authcontroller());
-    final Authcontroller authcontroller=Get.find<Authcontroller>();
+    final Authcontroller authcontroller=Get.put(Authcontroller());
 
 
 

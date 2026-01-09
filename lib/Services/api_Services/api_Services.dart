@@ -18,4 +18,19 @@ class ApiServices {
 
   // Fixed spelling: 'Resedpasswordconfrom' -> 'passwordResetConfirm'
   static const String passwordResetConfirm = '$baseUrl/api/accounts/auth/password_reset_confirm/';
+
+
+  //===============================paresentReg==========================================================
+static const String Parentreg='$baseUrl/api/auth/register/parent/';
+//===============================tutorReg==========================================================
+static const String Tutorreg='$baseUrl/api/auth/register/tutor/';
+
+//======================updatepassword=========================================
+  static const String updatapassword='$baseUrl/api/accounts/users/change_password/';
+  //========================
+
+
+
+
+
 }

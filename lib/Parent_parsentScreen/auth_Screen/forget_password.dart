@@ -17,7 +17,7 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Authcontroller authcontroller = Get.find<Authcontroller>();
+    final Authcontroller authcontroller = Get.put(Authcontroller());
 
     return Scaffold(
       body: SafeArea(
@@ -27,7 +27,7 @@ class ForgetPassword extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ... (উপরের ডিজাইন কোড একই থাকবে) ...
+
                 SizedBox(height: 200.h),
                 Center(
                   child: Text(
@@ -50,7 +50,7 @@ class ForgetPassword extends StatelessWidget {
                 ),
                 SizedBox(height: 12.h),
 
-                // ✅ ১. সঠিক কন্ট্রোলার বসানো হলো
+
                 CustomTextField(
                   hintText: 'Enter your email...',
                   controller: authcontroller.forgetPasswordController,
@@ -61,13 +61,13 @@ class ForgetPassword extends StatelessWidget {
 
                 SizedBox(height: 64.h),
 
-                // ✅ ২. বাটন ফাংশন
+
                 CustomSuperButton(
                   text: Staticstring.sendCode,
                   fontSize: 20,
                   textColor: Colors.white,
                   onTap: () {
-                    // এখানে আর চেক করার দরকার নেই, কন্ট্রোলার নিজেই চেক করবে
+
                     authcontroller.forgetPassword();
                   },
                   bgGradient: Appgradient.primaryGradient,
@@ -79,7 +79,7 @@ class ForgetPassword extends StatelessWidget {
                   fontSize: 20,
                   textColor: Colors.blue,
                   onTap: () {
-                    Get.back(); // অথবা Get.toNamed(AppRoute.login);
+                    Get.back();
                   },
                   bgColor: Colors.white,
                   borderColor: Colors.blue,
