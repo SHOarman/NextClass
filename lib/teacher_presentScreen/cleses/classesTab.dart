@@ -1,6 +1,5 @@
 import 'package:first_project/teacher_presentScreen/cleses/activepage.dart';
 import 'package:first_project/teacher_presentScreen/cleses/inactivepage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Classestab extends StatelessWidget {

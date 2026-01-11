@@ -1,9 +1,10 @@
-import 'dart:io'; // Import this for File
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../core/route/Genaral_Controler/locationController.dart';
 import '../../profile_Screen/profileController/profileController.dart';
+import '../../../Services/api_Services/api_Services.dart'; // ✅ Import ApiServices for BaseURL
 
 class Profilesecation extends StatelessWidget {
   const Profilesecation({super.key});
@@ -22,26 +23,39 @@ class Profilesecation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 
-          // --- START OF DYNAMIC IMAGE CODE ---
+          // --- ✅ DYNAMIC IMAGE CODE START ---
           Obx(() {
+            ImageProvider imageProvider;
+
+            if (profilecontroller.hasImage) {
+              // 1. Local File (Just picked from gallery)
+              imageProvider = FileImage(File(profilecontroller.pickedImage.value!.path));
+            } else if (profilecontroller.profileImgUrl.value.isNotEmpty) {
+              // 2. Server Image
+              String imgUrl = profilecontroller.profileImgUrl.value;
+              if (!imgUrl.startsWith('http')) {
+                imgUrl = "${ApiServices.baseUrl}$imgUrl";
+              }
+              imageProvider = NetworkImage(imgUrl);
+            } else {
+              // 3. Default Asset Image
+              imageProvider = const AssetImage('assets/backround/Rectangle 5040.png');
+            }
+
             return Container(
               height: 50.h,
               width: 50.w,
               decoration: BoxDecoration(
-                shape: BoxShape.circle, // Makes the image round
-                color: Colors.grey[200], // Background color if image fails loading
+                shape: BoxShape.circle,
+                color: Colors.grey[200],
                 image: DecorationImage(
                   fit: BoxFit.cover,
-                  // Logic: If image is picked, show it. Else show default asset.
-                  image: profilecontroller.hasImage
-                      ? FileImage(File(profilecontroller.pickedImage.value!.path))
-                      : const AssetImage('assets/backround/Rectangle 5040.png')
-                  as ImageProvider,
+                  image: imageProvider, // ✅ Dynamic Image Provider
                 ),
               ),
             );
           }),
-          // --- END OF DYNAMIC IMAGE CODE ---
+          // --- ✅ DYNAMIC IMAGE CODE END ---
 
           SizedBox(width: 12.w),
 
@@ -51,17 +65,22 @@ class Profilesecation extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  "Hi, Hans",
+
+                // --- ✅ DYNAMIC NAME START ("Hi, Name") ---
+                Obx(() => Text(
+                  "Hi, ${profilecontroller.fullName.value}", // ✅ নামের আগে Hi, যোগ করা হয়েছে
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
                     color: const Color(0xff121212),
                   ),
-                ),
+                  overflow: TextOverflow.ellipsis,
+                )),
+                // --- ✅ DYNAMIC NAME END ---
+
                 SizedBox(height: 4.h),
 
-                // Location with Obx
+                // Location (As previously implemented)
                 Obx(() => Row(
                   children: [
                     Flexible(

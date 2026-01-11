@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 
 // Check your import paths
 import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
-import '../../core/route/route.dart';
 import '../../unity/appColors/appGradient.dart';
 import '../../unity/string_static/strig_static/staticString.dart';
 import '../widget/coustom_Textfield/coustom_Textfield.dart';
@@ -16,7 +15,6 @@ class CreatNewPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final Authcontroller authController = Get.put(Authcontroller());
 
     final GenaralControler genController = Get.put(GenaralControler());

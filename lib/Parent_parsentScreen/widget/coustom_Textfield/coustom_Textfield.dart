@@ -7,7 +7,7 @@ import '../../../unity/appColors/appGradient.dart';
 class CustomTextField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
-   final String? iconPath;
+  final String? iconPath;
   final bool enableValidation;
   final RegExp? regex;
   final String? errorMessage;
@@ -19,7 +19,7 @@ class CustomTextField extends StatefulWidget {
     super.key,
     required this.controller,
     required this.hintText,
-     this.iconPath,
+    this.iconPath,
     this.enableValidation = false,
     this.regex,
     this.errorMessage,
@@ -103,20 +103,22 @@ class _CustomTextFieldState extends State<CustomTextField> {
               fillColor: fillColor,
               hintText: widget.hintText,
               hintStyle: const TextStyle(color: Color(0xff8B95A8)),
-              prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: SvgPicture.asset(
-                  widget.iconPath!,
-                  height: 20,
-                  width: 20,
-                  colorFilter: ColorFilter.mode(
-                    isTyping || _focusNode.hasFocus
-                        ? const Color(0xFF2563EB)
-                        : const Color(0xff8B95A8),
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
+              prefixIcon: widget.iconPath != null
+                  ? Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: SvgPicture.asset(
+                        widget.iconPath!,
+                        height: 20,
+                        width: 20,
+                        colorFilter: ColorFilter.mode(
+                          isTyping || _focusNode.hasFocus
+                              ? Appgradient.pramary1
+                              : const Color(0xff8B95A8),
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    )
+                  : null,
               prefixIconConstraints: const BoxConstraints(
                 minWidth: 0,
                 minHeight: 0,
@@ -141,7 +143,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
 }
 
 //=============================password==========================
-
 
 // Add your other imports (AppColors, AppGradient, etc.) here
 
@@ -185,7 +186,6 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
     widget.controller.addListener(_onControllerChange);
   }
 
-  // ✅ FIX: Extract logic to separate functions so we can remove them later
   void _onFocusChange() {
     if (mounted) {
       setState(() {});
@@ -193,7 +193,6 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
   }
 
   void _onControllerChange() {
-    // ✅ FIX: Check 'mounted' before calling setState
     if (mounted) {
       setState(() {
         isTyping = widget.controller.text.isNotEmpty;
@@ -202,7 +201,6 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
     }
   }
 
-  // ✅ CRITICAL FIX: The dispose method was missing!
   @override
   void dispose() {
     // Remove listeners to stop memory leaks and "setState after dispose" errors
@@ -246,14 +244,13 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
             borderRadius: BorderRadius.circular(8),
             boxShadow: _focusNode.hasFocus
                 ? [
-              BoxShadow(
-                // Replace 'Appgradient.pramary1' with your actual color if needed
-                color: const Color(0xFF2563EB).withOpacity(0.7),
-                blurRadius: 8,
-                offset: const Offset(-4, 0),
-                spreadRadius: 0.3,
-              ),
-            ]
+                    BoxShadow(
+                      color: Appgradient.pramary1.withOpacity(0.7),
+                      blurRadius: 8,
+                      offset: const Offset(-4, 0),
+                      spreadRadius: 0.3,
+                    ),
+                  ]
                 : [],
           ),
           child: TextFormField(
@@ -282,7 +279,7 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
                   width: 20,
                   colorFilter: ColorFilter.mode(
                     isTyping || _focusNode.hasFocus
-                        ? const Color(0xFF2563EB)
+                        ? Appgradient.pramary1
                         : const Color(0xff8B95A8),
                     BlendMode.srcIn,
                   ),
@@ -295,10 +292,9 @@ class _CustomPasswordFormFieldState extends State<CustomPasswordFormField> {
               suffixIcon: IconButton(
                 icon: Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: const Color(0xff2563EB),
+                  color: Appgradient.pramary1,
                 ),
                 onPressed: () {
-                  // ✅ FIX: Check 'mounted' here too
                   if (mounted) {
                     setState(() {
                       _obscureText = !_obscureText;
@@ -341,7 +337,6 @@ class SimpleCard extends StatelessWidget {
     return TextFormField(
       controller: controller,
       decoration: InputDecoration(
-
         prefixIcon: prefixicon
             ? const Icon(Icons.search, color: Colors.grey)
             : null,

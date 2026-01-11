@@ -24,6 +24,7 @@ class OnlodaingScreen extends StatefulWidget {
 class _OnlodaingScreenState extends State<OnlodaingScreen> {
   final GenaralControler roleController = Get.put(GenaralControler());
 
+  @override
   void initState() {
     super.initState();
     // Screen load howar sathe sathe ager selection clear kora hocche

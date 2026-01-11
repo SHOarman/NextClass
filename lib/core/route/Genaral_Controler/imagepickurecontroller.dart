@@ -37,7 +37,6 @@
 //   }
 // }
 
-
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -47,22 +46,16 @@ class ImagePickureController extends GetxController {
 
   var selectedImagePath = ''.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
   void clearImage() {
     selectedFile.value = null;
     selectedImagePath.value = '';
   }
 
   Future<void> getImage() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
-
       selectedFile.value = File(image.path);
       selectedImagePath.value = image.path;
 

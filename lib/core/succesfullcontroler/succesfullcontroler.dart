@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
@@ -7,7 +6,7 @@ import '../../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
 import '../../unity/appColors/appGradient.dart';
 
 class Successfullmsg extends StatelessWidget {
-  final Function?clear;
+  final Function? clear;
   final String name;
   final String namedetels;
   final String? bu_name1;
@@ -22,7 +21,8 @@ class Successfullmsg extends StatelessWidget {
     this.bu_name1,
     this.ontap1,
     this.bu_name2,
-    this.ontap2, this.clear,
+    this.ontap2,
+    this.clear,
   });
 
   @override
@@ -61,17 +61,18 @@ class Successfullmsg extends StatelessWidget {
               style: TextStyle(fontSize: 14.sp, color: Colors.grey[700]),
             ),
           ),
-        SizedBox(height: 10.h),
+          SizedBox(height: 10.h),
 
           // ✅ Button 1
           if (bu_name1 != null)
             CustomSuperButton(
-
               text: bu_name1!,
               bgGradient: Appgradient.primaryGradient,
-              onTap: ontap1 ?? () {
-                // clear!();
-              },
+              onTap:
+                  ontap1 ??
+                  () {
+                    // clear!();
+                  },
             ),
           SizedBox(height: 10.h),
 
@@ -81,13 +82,14 @@ class Successfullmsg extends StatelessWidget {
               text: bu_name2!,
               borderColor: Appgradient.pramary1,
               textGradient: Appgradient.primaryGradient,
-              onTap: ontap2 ?? () {
-                // clear!();
-              },
+              onTap:
+                  ontap2 ??
+                  () {
+                    // clear!();
+                  },
             ),
         ],
       ),
-
     );
   }
 }
@@ -146,8 +148,6 @@ class Reviewpopupmsg extends StatelessWidget {
           ),
 
           SizedBox(height: 20.h),
-
-
 
           CustomSuperButton(
             text: bu_name1,

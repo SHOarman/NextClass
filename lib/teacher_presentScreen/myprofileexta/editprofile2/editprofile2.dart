@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
 import 'package:first_project/core/route/route.dart';
 import 'package:flutter/material.dart';
@@ -5,14 +6,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
 import '../../../Parent_parsentScreen/widget/backSleash/backSleash.dart';
 import '../../../unity/appColors/appGradient.dart';
+// ✅ Controller & Service Import
+import '../../../Services/api_Services/api_Services.dart';
 
 class EditProfile2 extends StatelessWidget {
   const EditProfile2({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // ✅ Controller Call
+    final Profilecontroller profilecontroller = Get.put(Profilecontroller());
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -30,30 +37,50 @@ class EditProfile2 extends StatelessWidget {
 
             SizedBox(height: 62.h),
 
-            /// ===== Profile Image with edit icon
+            /// ===== Profile Image (Dynamic) =====
             Center(
               child: Stack(
                 children: [
-                  /// Circular profile image with shadow
-                  Container(
-                    height: 120.h,
-                    width: 120.w,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('assets/backround/profile.png'),
-                        fit: BoxFit.cover,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          spreadRadius: 2,
-                          blurRadius: 8,
-                          offset: Offset(0, 4),
+                  Obx(() {
+                    ImageProvider imageProvider;
+
+                    // ১. লোকাল ফাইল (যদি পিক করা হয়)
+                    if (profilecontroller.hasImage) {
+                      imageProvider = FileImage(File(profilecontroller.pickedImage.value!.path));
+                    }
+                    // ২. সার্ভার ইমেজ (যদি থাকে)
+                    else if (profilecontroller.profileImgUrl.value.isNotEmpty) {
+                      String imgUrl = profilecontroller.profileImgUrl.value;
+                      if (!imgUrl.startsWith('http')) {
+                        imgUrl = "${ApiServices.baseUrl}$imgUrl";
+                      }
+                      imageProvider = NetworkImage(imgUrl);
+                    }
+                    // ৩. ডিফল্ট ইমেজ
+                    else {
+                      imageProvider = const AssetImage('assets/backround/profile.png');
+                    }
+
+                    return Container(
+                      height: 120.h,
+                      width: 120.w,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
                         ),
-                      ],
-                    ),
-                  ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            spreadRadius: 2,
+                            blurRadius: 8,
+                            offset: Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
 
                   /// Edit icon overlay
                   Positioned(
@@ -61,15 +88,15 @@ class EditProfile2 extends StatelessWidget {
                     right: 0,
                     child: GestureDetector(
                       onTap: () {
-                        print('Edit profile image tapped');
+                        // ইমেজ পিকার কল করা
+                        profilecontroller.pickImg();
                       },
                       child: Container(
                         height: 35.h,
                         width: 35.w,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Color(0xff2563EB),
                           shape: BoxShape.circle,
-                          // border: Border.all(color: Colors.white, width: 2),
                         ),
                         child: Center(
                           child: SvgPicture.asset(
@@ -93,7 +120,7 @@ class EditProfile2 extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20.sp,
                 fontWeight: FontWeight.w600,
-                color: Color(0xff2B2B2B),
+                color: const Color(0xff2B2B2B),
               ),
             ),
             SizedBox(height: 24.h),
@@ -101,23 +128,36 @@ class EditProfile2 extends StatelessWidget {
             Text(
               'Bio',
               style: TextStyle(
-                color: Color(0xff2B2B2B),
+                color: const Color(0xff2B2B2B),
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
               ),
             ),
 
             SizedBox(height: 8.h),
-            Text(
-              'Lorem ipsum dolor sit amet consectetur. Urna massa mi tellus in sed ullamcorper tortor. Sit sed lorem in dictum. Maecenas elit est metus amet magna. Pretium sed vitae sit posuere. ',
-            ),
+
+            /// ===== ✅ DYNAMIC BIO SHOWING HERE =====
+            Obx(() => Text(
+              profilecontroller.bio.value, // Controller থেকে Bio দেখানো হচ্ছে
+              style: const TextStyle(
+                color: Color(0xff555555),
+                height: 1.5,
+              ),
+            )),
+
             SizedBox(height: 24.h),
-            Text('Personal Details',style: TextStyle(color: Color(0xff2B2B2B),fontSize: 16,
-              fontWeight: FontWeight.w500,),),
+
+            Text(
+              'Personal Details',
+              style: TextStyle(
+                color: const Color(0xff2B2B2B),
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
             SizedBox(height: 8.h),
 
-
-            /// ===== Name Field
+            /// ===== ✅ DYNAMIC NAME =====
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -126,23 +166,25 @@ class EditProfile2 extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xff888888),
+                    color: const Color(0xff888888),
                   ),
                 ),
                 SizedBox(width: 10.w),
-                Text(
-                  'User Name',
+
+                // Name from Controller
+                Obx(() => Text(
+                  profilecontroller.fullName.value,
                   style: TextStyle(
-                    color: Color(0xff888888),
+                    color: const Color(0xff888888),
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                   ),
-                ),
+                )),
               ],
             ),
             SizedBox(height: 16.h),
 
-            /// ===== Email Field
+            /// ===== ✅ DYNAMIC EMAIL =====
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -151,18 +193,20 @@ class EditProfile2 extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
-                    color: Color(0xff888888),
+                    color: const Color(0xff888888),
                   ),
                 ),
                 SizedBox(width: 10.w),
-                Text(
-                  'useremail@gmail.com',
+
+                // Email from Controller
+                Obx(() => Text(
+                  profilecontroller.email.value,
                   style: TextStyle(
-                    color: Color(0xff888888),
+                    color: const Color(0xff888888),
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
                   ),
-                ),
+                )),
               ],
             ),
 
@@ -171,7 +215,8 @@ class EditProfile2 extends StatelessWidget {
             CustomSuperButton(
               text: 'Edit Profile',
               onTap: () {
-               //======================
+                // এডিট পেজে যাওয়ার আগে ডাটা লোড করা হচ্ছে
+                // আপনি চাইলে এখানে Bio-ও পাস করতে পারেন বা কন্ট্রোলারে সেট করতে পারেন
                 Get.toNamed(AppRoute.editmodel2);
               },
               bgGradient: Appgradient.primaryGradient,

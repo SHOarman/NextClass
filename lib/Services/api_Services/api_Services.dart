@@ -26,8 +26,16 @@ static const String Parentreg='$baseUrl/api/auth/register/parent/';
 static const String Tutorreg='$baseUrl/api/auth/register/tutor/';
 
 //======================updatepassword=========================================
-  static const String updatapassword='$baseUrl/api/accounts/users/change_password/';
-  //========================
+  static const String changepassword='$baseUrl/api/accounts/users/change_password/';
+  //========================uploaducommend===============================================
+
+static const String uploadocument="$baseUrl/api/tutors/profiles/upload_document/";
+
+
+//========================updateAcound==============================================
+static const String updateAcound="$baseUrl/api/accounts/users/me/";
+
+
 
 
 

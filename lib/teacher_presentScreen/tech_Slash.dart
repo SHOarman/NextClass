@@ -16,19 +16,22 @@ import 'package:first_project/teacher_presentScreen/techerall_widget/techerall_w
 import 'package:first_project/core/route/route.dart';
 
 class TechSlash extends StatelessWidget {
-  TechSlash({super.key});
+  const TechSlash({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     // ✅ FIX: Use Get.put() to initialize controllers
     final TechSlashController techController = Get.put(TechSlashController());
-    final ImagePickureController imagepickurecontroller = Get.put(ImagePickureController());
+    final ImagePickureController imagepickurecontroller = Get.put(
+      ImagePickureController(),
+    );
     final DateController dateController = Get.put(DateController());
 
     // Main controller might be initialized earlier, so Get.find is okay.
     // If not, change this to Get.put() as well.
-    final ParsentTutorregController parsentTutorregController = Get.put(ParsentTutorregController());
+    final ParsentTutorregController parsentTutorregController = Get.put(
+      ParsentTutorregController(),
+    );
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -55,7 +58,7 @@ class TechSlash extends StatelessWidget {
             ///     CHECKBOX
             /// ===========================
             Obx(
-                  () => Row(
+              () => Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Checkbox(
@@ -155,27 +158,29 @@ class TechSlash extends StatelessWidget {
                     image: imagepickurecontroller.selectedImagePath.value == ''
                         ? null
                         : DecorationImage(
-                      image: FileImage(
-                        File(imagepickurecontroller.selectedImagePath.value),
-                      ),
-                      fit: BoxFit.cover,
-                    ),
+                            image: FileImage(
+                              File(
+                                imagepickurecontroller.selectedImagePath.value,
+                              ),
+                            ),
+                            fit: BoxFit.cover,
+                          ),
                   ),
                   child: imagepickurecontroller.selectedImagePath.value == ''
                       ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset('assets/icon/upload.svg'),
-                      SizedBox(height: 10.h),
-                      Text(
-                        'Upload image or pdf',
-                        style: TextStyle(
-                          color: Color(0xff888888),
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                    ],
-                  )
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset('assets/icon/upload.svg'),
+                            SizedBox(height: 10.h),
+                            Text(
+                              'Upload image or pdf',
+                              style: TextStyle(
+                                color: Color(0xff888888),
+                                fontSize: 16.sp,
+                              ),
+                            ),
+                          ],
+                        )
                       : null,
                 ),
               );
@@ -211,7 +216,7 @@ class TechSlash extends StatelessWidget {
 
                 // Note: The success dialog is now inside the controller logic
               },
-             // clear: dateController.cleartext,
+              // clear: dateController.cleartext,
               bgGradient: const LinearGradient(
                 colors: [Color(0xff2563EB), Color(0xff2563EB)],
               ),

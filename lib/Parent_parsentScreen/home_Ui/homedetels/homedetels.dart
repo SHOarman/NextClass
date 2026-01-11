@@ -196,7 +196,7 @@ class Homedetels extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Container(
+                          child: SizedBox(
                             height: 400,
                             width: 200, // Set the width for each card
                             child: Recommendedclasses(

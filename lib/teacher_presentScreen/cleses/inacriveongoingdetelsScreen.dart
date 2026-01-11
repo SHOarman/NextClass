@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../Parent_parsentScreen/widget/successfullmsg/successfullmsg.dart';
 import '../../core/succesfullcontroler/succesfullcontroler.dart';
 import '../bokking2/bokkingWidget/Tuitiondetails.dart';
 
@@ -51,14 +50,11 @@ class Inacriveongoingdetelsscreen extends StatelessWidget {
                         namedetels: 'Your class listing is now live',
                         bu_name1: 'Edit class',
                         ontap1: () {
-
                           Get.toNamed(AppRoute.classes);
                         },
                         bu_name2: 'Close',
                         ontap2: () {
                           Get.back();
-
-
                         },
                       ),
                     ),
@@ -71,7 +67,6 @@ class Inacriveongoingdetelsscreen extends StatelessWidget {
                 text: 'Delete class',
                 onTap: () {
                   Get.toNamed(AppRoute.home2);
-
                 },
                 borderColor: Appgradient.primaryGradient.colors[0],
                 textGradient: Appgradient.primaryGradient,

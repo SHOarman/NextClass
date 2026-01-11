@@ -5,13 +5,13 @@ import 'dart:convert';
 
 class Classcreatecontroller extends GetxController {
   final TextEditingController tuitionontroller = TextEditingController();
-  final TextEditingController enrichmentclasscontroller = TextEditingController();
+  final TextEditingController enrichmentclasscontroller =
+      TextEditingController();
   final TextEditingController dayofweekcontroller = TextEditingController();
 
-  addClass() async {
+  Future<void> addClass() async {
     try {
       var body = {
-
         'email': tuitionontroller.text,
         'password': enrichmentclasscontroller.text,
         'address': dayofweekcontroller.text,
@@ -33,7 +33,6 @@ class Classcreatecontroller extends GetxController {
         var data = jsonDecode(result.body);
         print(data);
 
-
         clear();
 
         // Optional: Show a success message
@@ -43,12 +42,11 @@ class Classcreatecontroller extends GetxController {
       }
     } catch (e) {
       print("Error: $e");
-
     }
   }
 
   // This method clears the text fields
-  clear() {
+  void clear() {
     tuitionontroller.clear();
     enrichmentclasscontroller.clear();
     dayofweekcontroller.clear();

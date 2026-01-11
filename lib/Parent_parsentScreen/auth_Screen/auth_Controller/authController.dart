@@ -28,6 +28,8 @@ class Authcontroller extends GetxController {
   TextEditingController contenTypeController = TextEditingController();
 
 
+  // For Change Password
+
   //================================= Login Account ==================================
   void loginaccound() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -331,5 +333,12 @@ class Authcontroller extends GetxController {
       Get.snackbar("Error", "Check Internet Connection", backgroundColor: Colors.redAccent);
     }
   }
+
+
+  //====================Change password=====================================================================
+
+
+
+
 
 }

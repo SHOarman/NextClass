@@ -18,7 +18,8 @@ class TeacherHomecard extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.imagePath,
-    required this.iconname, this.clear,
+    required this.iconname,
+    this.clear,
   });
 
   @override
@@ -69,8 +70,6 @@ class TeacherHomecard extends StatelessWidget {
             onTap: () {
               Get.toNamed(AppRoute.create_newclasses);
               clear?.call();
-
-
             },
             child: Container(
               height: 35,

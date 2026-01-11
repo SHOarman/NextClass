@@ -7,7 +7,6 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import '../../../../core/succesfullcontroler/succesfullcontroler.dart';
 import '../../../../unity/appColors/appGradient.dart';
 import '../../../widget/coustom_button/coustom_button.dart';
-import '../../../widget/successfullmsg/successfullmsg.dart';
 
 class Requestboking extends StatelessWidget {
   const Requestboking({super.key});

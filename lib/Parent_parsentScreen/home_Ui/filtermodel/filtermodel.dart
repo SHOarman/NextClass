@@ -10,7 +10,6 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-import '../../../core/succesfullcontroler/succesfullcontroler.dart';
 import '../../../unity/appColors/appGradient.dart';
 import '../../widget/coustom_Textfield/coustom_Textfield.dart';
 import '../../widget/coustom_button/coustom_button.dart';

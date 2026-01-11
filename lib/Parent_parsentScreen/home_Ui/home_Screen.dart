@@ -231,9 +231,7 @@
 //   }
 // }
 
-
 import 'package:first_project/Parent_parsentScreen/home_Ui/allow_location/allow_location.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -248,7 +246,9 @@ import '../widget/coustomcard/coustomcard.dart';
 class HomeScreen extends StatelessWidget {
   final GenaralControler controller = Get.put(GenaralControler());
   final Card2 card2Controller = Get.put(Card2());
-  final ParsentTutorregController parsentTutorregController = Get.put(ParsentTutorregController());
+  final ParsentTutorregController parsentTutorregController = Get.put(
+    ParsentTutorregController(),
+  );
 
   HomeScreen({super.key});
 
@@ -284,27 +284,35 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                      child: Obx(() => CustomCard(
-                        title: "Preschool",
-                        selected: controller.selectedCard.value == "Preschool",
-                        onTap: () => controller.selectCard("Preschool"),
-                      )),
+                      child: Obx(
+                        () => CustomCard(
+                          title: "Preschool",
+                          selected:
+                              controller.selectedCard.value == "Preschool",
+                          onTap: () => controller.selectCard("Preschool"),
+                        ),
+                      ),
                     ),
                     SizedBox(width: 4.w),
                     Expanded(
-                      child: Obx(() => CustomCard(
-                        title: "Primary",
-                        selected: controller.selectedCard.value == "Primary",
-                        onTap: () => controller.selectCard("Primary"),
-                      )),
+                      child: Obx(
+                        () => CustomCard(
+                          title: "Primary",
+                          selected: controller.selectedCard.value == "Primary",
+                          onTap: () => controller.selectCard("Primary"),
+                        ),
+                      ),
                     ),
                     SizedBox(width: 4.w),
                     Expanded(
-                      child: Obx(() => CustomCard(
-                        title: "Secondary",
-                        selected: controller.selectedCard.value == "Secondary",
-                        onTap: () => controller.selectCard("Secondary"),
-                      )),
+                      child: Obx(
+                        () => CustomCard(
+                          title: "Secondary",
+                          selected:
+                              controller.selectedCard.value == "Secondary",
+                          onTap: () => controller.selectCard("Secondary"),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -327,19 +335,27 @@ class HomeScreen extends StatelessWidget {
                   child: Row(
                     children: [
                       Expanded(
-                        child: Obx(() => CustomCard(
-                          title: "Tuition",
-                          selected: card2Controller.selectedCard.value == "Tuition",
-                          onTap: () => card2Controller.selectCard2("Tuition"),
-                        )),
+                        child: Obx(
+                          () => CustomCard(
+                            title: "Tuition",
+                            selected:
+                                card2Controller.selectedCard.value == "Tuition",
+                            onTap: () => card2Controller.selectCard2("Tuition"),
+                          ),
+                        ),
                       ),
                       SizedBox(width: 8.w),
                       Expanded(
-                        child: Obx(() => CustomCard(
-                          title: "Enrichment class",
-                          selected: card2Controller.selectedCard.value == "Enrichment class",
-                          onTap: () => card2Controller.selectCard2("Enrichment class"),
-                        )),
+                        child: Obx(
+                          () => CustomCard(
+                            title: "Enrichment class",
+                            selected:
+                                card2Controller.selectedCard.value ==
+                                "Enrichment class",
+                            onTap: () =>
+                                card2Controller.selectCard2("Enrichment class"),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -374,7 +390,8 @@ class HomeScreen extends StatelessWidget {
                     colors: [Color(0xff2563EB), Color(0xff2563EB)],
                   ),
                   onTap: () async {
-                    if (controller.selectedCard.value.isEmpty || controller.selectedCard.value == "") {
+                    if (controller.selectedCard.value.isEmpty ||
+                        controller.selectedCard.value == "") {
                       Get.snackbar(
                         "Required",
                         "Please select your kid's level!",
@@ -385,7 +402,8 @@ class HomeScreen extends StatelessWidget {
                       return;
                     }
 
-                    if (card2Controller.selectedCard.value.isEmpty || card2Controller.selectedCard.value == "") {
+                    if (card2Controller.selectedCard.value.isEmpty ||
+                        card2Controller.selectedCard.value == "") {
                       Get.snackbar(
                         "Required",
                         "Please select a class type!",
@@ -396,7 +414,9 @@ class HomeScreen extends StatelessWidget {
                       return;
                     }
 
-                    if (parsentTutorregController.WhatsubjectController.text.trim().isEmpty) {
+                    if (parsentTutorregController.WhatsubjectController.text
+                        .trim()
+                        .isEmpty) {
                       Get.snackbar(
                         "Required",
                         "Please write the subject name!",
@@ -407,15 +427,23 @@ class HomeScreen extends StatelessWidget {
                       return;
                     }
 
-                    parsentTutorregController.childEducationLevelController.text =
-                        controller.selectedCard.value.toLowerCase();
+                    parsentTutorregController
+                        .childEducationLevelController
+                        .text = controller.selectedCard.value
+                        .toLowerCase();
 
                     parsentTutorregController.classTypeController.text =
                         card2Controller.selectedCard.value.toLowerCase();
 
-                    print("Level: ${parsentTutorregController.childEducationLevelController.text}");
-                    print("Type: ${parsentTutorregController.classTypeController.text}");
-                    print("Subject: ${parsentTutorregController.WhatsubjectController.text}");
+                    print(
+                      "Level: ${parsentTutorregController.childEducationLevelController.text}",
+                    );
+                    print(
+                      "Type: ${parsentTutorregController.classTypeController.text}",
+                    );
+                    print(
+                      "Subject: ${parsentTutorregController.WhatsubjectController.text}",
+                    );
 
                     // ৫. API কল করুন
                     await parsentTutorregController.Parentregistration();
@@ -432,8 +460,6 @@ class HomeScreen extends StatelessWidget {
                   borderColor: Color(0xff2563EB),
                   textGradient: Appgradient.primaryGradient,
                   onTap: () {
-
-
                     Get.toNamed(AppRoute.homedetels);
 
                     Future.delayed(const Duration(milliseconds: 500), () {

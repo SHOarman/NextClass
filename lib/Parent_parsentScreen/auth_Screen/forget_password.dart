@@ -1,8 +1,6 @@
-import 'dart:ui';
 import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
 import 'package:first_project/Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
 import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -27,7 +25,6 @@ class ForgetPassword extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 SizedBox(height: 200.h),
                 Center(
                   child: Text(
@@ -50,7 +47,6 @@ class ForgetPassword extends StatelessWidget {
                 ),
                 SizedBox(height: 12.h),
 
-
                 CustomTextField(
                   hintText: 'Enter your email...',
                   controller: authcontroller.forgetPasswordController,
@@ -61,13 +57,11 @@ class ForgetPassword extends StatelessWidget {
 
                 SizedBox(height: 64.h),
 
-
                 CustomSuperButton(
                   text: Staticstring.sendCode,
                   fontSize: 20,
                   textColor: Colors.white,
                   onTap: () {
-
                     authcontroller.forgetPassword();
                   },
                   bgGradient: Appgradient.primaryGradient,

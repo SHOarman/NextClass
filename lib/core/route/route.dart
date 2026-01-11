@@ -15,7 +15,7 @@ import 'package:first_project/teacher_presentScreen/myprofileexta/editprofile2/e
 import 'package:first_project/teacher_presentScreen/myprofileexta/update_passwordtecher/update_passwordtecher.dart';
 import 'package:first_project/teacher_presentScreen/tech_Slash.dart';
 import 'package:get/get.dart';
-import '../../Parent_parsentScreen/auth_Screen/Reg_screren.dart';
+import '../../Parent_parsentScreen/auth_Screen/reg_screen.dart';
 import '../../Parent_parsentScreen/auth_Screen/creat_new_password.dart';
 import '../../Parent_parsentScreen/auth_Screen/forget_password.dart';
 import '../../Parent_parsentScreen/auth_Screen/login_Screen.dart';
@@ -61,12 +61,6 @@ import '../../teacher_presentScreen/myprofileexta/editprofile2/editmodel2.dart';
 import '../../teacher_presentScreen/myprofileexta/reviewsecation/reviewsecation.dart';
 import '../../teacher_presentScreen/myprofileexta/support_teacherteam/support_teacherteam.dart';
 
-
-
-
-
-
-
 class AppRoute {
   static const String slashscreen = '/slashscreen';
   static const String onloding = '/onloding';
@@ -79,8 +73,6 @@ class AppRoute {
   static const String createnewpassword = '/createnewpassword';
   static const String regVerifyScreen = '/regVerifyScreen';
   static const String regVerifyScreenteacher = '/regVerifyScreenteacher';
-
-
 
   //===========================home==============================================
   static const String home = '/home';
@@ -177,7 +169,7 @@ class AppRoute {
   static const String step2 = '/step2';
   static const String step3 = '/step3';
 
-  static const String regVerifyScreenallow='/regVerifyScreenallow';
+  static const String regVerifyScreenallow = '/regVerifyScreenallow';
 
   //=============Boking detelsScareen==============================
   static const String bokkingdetels2 = '/bokkingdetels2';
@@ -188,7 +180,7 @@ class AppRoute {
 
     //=========================authscreen============================================
     GetPage(name: login, page: () => LoginScreen()),
-    GetPage(name: reg, page: () => RegScreren()),
+    GetPage(name: reg, page: () => RegScreen()),
     GetPage(name: forgetpassword, page: () => const ForgetPassword()),
     GetPage(name: otp, page: () => const VerifyOtpScreen()),
     GetPage(name: createnewpassword, page: () => const CreatNewPassword()),
@@ -297,7 +289,6 @@ class AppRoute {
 
     //=====================techerauthscsreen =====================================================
 
-
     //============================msgconvasion-============================================
     GetPage(name: convarcation, page: () => ConversationScreen()),
 
@@ -342,9 +333,7 @@ class AppRoute {
       page: () => Tusioncomplectfullreviewscreen(),
     ),
     GetPage(name: cancel_model, page: () => CancelModel()),
-    GetPage(name: regVerifyScreenallow, page: () =>RegScreren()),
-    GetPage(name: regVerifyScreen, page: ()=>Regverifyscreen()),
-
-
+    GetPage(name: regVerifyScreenallow, page: () => RegScreen()),
+    GetPage(name: regVerifyScreen, page: () => Regverifyscreen()),
   ];
 }

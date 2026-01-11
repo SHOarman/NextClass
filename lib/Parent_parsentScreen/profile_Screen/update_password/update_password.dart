@@ -1,10 +1,12 @@
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
+import 'package:first_project/Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-import '../../../core/route/Genaral_Controler/Genaral_Controler.dart';
 import '../../../core/route/route.dart';
 import '../../../unity/appColors/appGradient.dart';
 import '../../../unity/string_static/strig_static/staticString.dart';
@@ -16,10 +18,13 @@ class UpdatePassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController confromconttroler = TextEditingController();
-    TextEditingController Ceonfromconttroler = TextEditingController();
 
-    final GenaralControler controller = Get.put(GenaralControler());
+
+//====================Controllercall===========================================
+
+
+  final Profilecontroller authController = Get.put(Profilecontroller());
+
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -65,7 +70,7 @@ class UpdatePassword extends StatelessWidget {
               /// ====================================Email field
               CustomPasswordFormField(
                 hintText: '********',
-                controller: confromconttroler,
+                controller: authController.currentPassController,
                 iconPath: 'assets/icon/Frame (1).svg',
               ),
 
@@ -81,23 +86,23 @@ class UpdatePassword extends StatelessWidget {
               /// Password field
               CustomPasswordFormField(
                 hintText: '********',
-                controller: Ceonfromconttroler,
+                controller: authController.changeNewPassController,
                 iconPath: 'assets/icon/Frame (1).svg',
               ),
 
-              SizedBox(height: 24.h),
-              Text(
-                'Confirm Password',
-                style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
-              ),
-              SizedBox(height: 12.h),
-
-              /// Password field
-              CustomPasswordFormField(
-                hintText: '********',
-                controller: Ceonfromconttroler,
-                iconPath: 'assets/icon/Frame (1).svg',
-              ),
+              // SizedBox(height: 24.h),
+              // Text(
+              //   'Confirm Password',
+              //   style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
+              // ),
+              // SizedBox(height: 12.h),
+              //
+              // /// Password field
+              // CustomPasswordFormField(
+              //   hintText: '********',
+              //   controller: authController.changeConfirmPassController,
+              //   iconPath: 'assets/icon/Frame (1).svg',
+              // ),
 
               SizedBox(height: 100.h),
 
@@ -106,7 +111,7 @@ class UpdatePassword extends StatelessWidget {
                 text: Staticstring.updatePassword,
                 fontSize: 20,
                 onTap: () {
-                  Get.toNamed(AppRoute.myProfiledetels);
+                  authController.changePassword();
                 },
                 bgGradient: Appgradient.primaryGradient,
               ),

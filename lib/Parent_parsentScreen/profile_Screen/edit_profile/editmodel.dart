@@ -1,17 +1,17 @@
-import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../../unity/appColors/appGradient.dart';
 import '../../widget/coustom_Textfield/coustom_Textfield.dart';
+import '../../widget/coustom_button/coustom_button.dart';
+import '../profileController/profileController.dart';
 
 class EditModel extends StatelessWidget {
   const EditModel({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController editProfileController = TextEditingController();
+    final Profilecontroller profilecontroller = Get.find<Profilecontroller>();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -19,7 +19,6 @@ class EditModel extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// ===== Title
             Center(
               child: Text(
                 'Edit Profile',
@@ -32,21 +31,15 @@ class EditModel extends StatelessWidget {
             ),
             SizedBox(height: 48.h),
 
-            /// ===== Full Name Label
             Text(
               'Full name',
-              style: TextStyle(
-                color: const Color(0xff2B2B2B),
-                fontWeight: FontWeight.w500,
-                fontSize: 16.sp,
-              ),
+              style: TextStyle(color: const Color(0xff2B2B2B), fontWeight: FontWeight.w500, fontSize: 16.sp),
             ),
             SizedBox(height: 16.h),
 
-
-            /// ===== TextField
+            /// ===== TextField (Controller connected)
             Simpletextfield(
-              controller: editProfileController,
+              controller: profilecontroller.editProfileController,
               hintText: 'Write here..',
             ),
 
@@ -57,31 +50,16 @@ class EditModel extends StatelessWidget {
               text: 'Save Changes',
               bgGradient: Appgradient.primaryGradient,
               onTap: () {
-                if (editProfileController.text.isNotEmpty) {
-                  Get.showSnackbar(
-                    GetSnackBar(
-                      message: "Profile updated successfully!",
-                      duration: const Duration(seconds: 2),
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.green,
-                      margin: EdgeInsets.all(20.w),
-                      borderRadius: 12.r,
-                    ),
-                  );
-                  // Delay then close
-                  Future.delayed(const Duration(seconds: 2), () {
-                    Navigator.pop(context);
-                  });
+                if (profilecontroller.editProfileController.text.isNotEmpty) {
+                  // ✅✅✅ API Call Here ✅✅✅
+                  profilecontroller.Editprofile();
                 } else {
-                  Get.showSnackbar(
-                    GetSnackBar(
-                      message: "Please enter your name",
-                      duration: const Duration(seconds: 2),
-                      snackPosition: SnackPosition.BOTTOM,
-                      backgroundColor: Colors.red,
-                      margin: EdgeInsets.all(20.w),
-                      borderRadius: 12.r,
-                    ),
+                  Get.snackbar(
+                    "Required",
+                    "Please enter your name",
+                    backgroundColor: Colors.redAccent,
+                    colorText: Colors.white,
+                    snackPosition: SnackPosition.BOTTOM,
                   );
                 }
               },
@@ -94,7 +72,7 @@ class EditModel extends StatelessWidget {
               textGradient: Appgradient.primaryGradient,
               borderColor: Appgradient.pramary1,
               onTap: () {
-                Navigator.pop(context);
+                Get.back();
               },
             ),
             SizedBox(height: 40.h),

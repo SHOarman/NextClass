@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:first_project/core/route/route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class SlashScreen extends StatefulWidget {
@@ -34,7 +32,8 @@ class _SlashScreenState extends State<SlashScreen> {
               height: 130,
             ),
           ),
-          Positioned(//
+          Positioned(
+            //
             top: 120,
             left: 0,
             right: 0,
@@ -55,4 +54,3 @@ class _SlashScreenState extends State<SlashScreen> {
     );
   }
 }
-

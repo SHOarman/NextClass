@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
+
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import '../../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
 import '../../../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
-import '../../../core/route/Genaral_Controler/Genaral_Controler.dart';
+
 import '../../../core/route/route.dart';
 import '../../../unity/appColors/appGradient.dart';
 import '../../../unity/string_static/strig_static/staticString.dart';
@@ -15,10 +15,13 @@ class UpdatePasswordtecher extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController confromconttroler = TextEditingController();
-    TextEditingController Ceonfromconttroler = TextEditingController();
+    final TextEditingController currentPasswordController =
+        TextEditingController();
+    final TextEditingController newPasswordController = TextEditingController();
+    final TextEditingController confirmPasswordController =
+        TextEditingController();
 
-    final GenaralControler controller = Get.put(GenaralControler());
+    // final GenaralControler controller = Get.put(GenaralControler());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -64,7 +67,7 @@ class UpdatePasswordtecher extends StatelessWidget {
               /// ====================================Email field
               CustomPasswordFormField(
                 hintText: '********',
-                controller: confromconttroler,
+                controller: currentPasswordController,
                 iconPath: 'assets/icon/Frame (1).svg',
               ),
 
@@ -80,7 +83,7 @@ class UpdatePasswordtecher extends StatelessWidget {
               /// Password field
               CustomPasswordFormField(
                 hintText: '********',
-                controller: Ceonfromconttroler,
+                controller: newPasswordController,
                 iconPath: 'assets/icon/Frame (1).svg',
               ),
 
@@ -94,7 +97,7 @@ class UpdatePasswordtecher extends StatelessWidget {
               /// Password field
               CustomPasswordFormField(
                 hintText: '********',
-                controller: Ceonfromconttroler,
+                controller: confirmPasswordController,
                 iconPath: 'assets/icon/Frame (1).svg',
               ),
 
@@ -109,8 +112,9 @@ class UpdatePasswordtecher extends StatelessWidget {
                 },
                 bgGradient: Appgradient.primaryGradient,
                 clear: () {
-                  confromconttroler.clear();
-                  Ceonfromconttroler.clear();
+                  currentPasswordController.clear();
+                  newPasswordController.clear();
+                  confirmPasswordController.clear();
                 },
               ),
             ],
