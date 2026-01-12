@@ -44,7 +44,7 @@ class Step3 extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10.h),
-        
+
             Simpletextfield(
               controller: classcreatecontroller.enrichmentclasscontroller,
               hintText: 'Write monthly price for your tuition..',
@@ -70,3 +70,33 @@ class Step3 extends StatelessWidget {
     );
   }
 }
+
+
+// import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:get/get_core/src/get_main.dart';
+// import 'package:get/get_instance/src/extension_instance.dart';
+//
+// import '../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
+//
+// class Step3 extends StatelessWidget {
+//   const Step3({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final CreateClassController controller = Get.find<CreateClassController>();
+//
+//     return Column(
+//       children: [
+//         Simpletextfield(
+//           controller: controller.subjectController,
+//           hintText: 'Write subjects name...',
+//         ),
+//         Simpletextfield(
+//           controller: controller.priceController,
+//           hintText: 'Price per class...',
+//         ),
+//       ],
+//     );
+//   }
+// }

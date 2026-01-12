@@ -52,3 +52,63 @@ class Classcreatecontroller extends GetxController {
     dayofweekcontroller.clear();
   }
 }
+
+//
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+//
+// class CreateClassController extends GetxController {
+//   // --- Step Management ---
+//   var currentStep = 0.obs;
+//
+//   // --- Step 1 Data ---
+//   var selectedLevel = "Primary".obs; // Default
+//   var selectedGroupType = "Individual".obs; // Default
+//
+//   // --- Step 2 Data ---
+//   var classType = "Tuition".obs;
+//   TextEditingController titleController = TextEditingController();
+//
+//   // --- Step 3 Data ---
+//   TextEditingController subjectController = TextEditingController();
+//   TextEditingController priceController = TextEditingController();
+//   TextEditingController dayController = TextEditingController();
+//
+//   // --- Navigation Logic ---
+//   void nextStep() {
+//     if (currentStep.value < 2) {
+//       currentStep.value++;
+//     } else {
+//       submitClass();
+//     }
+//   }
+//
+//   void previousStep() {
+//     if (currentStep.value > 0) {
+//       currentStep.value--;
+//     }
+//   }
+//
+//   void goToStep(int step) {
+//     currentStep.value = step;
+//   }
+//
+//   // --- API Submit Logic ---
+//   void submitClass() async {
+//     print("Submitting...");
+//     print("Title: ${titleController.text}");
+//     print("Price: ${priceController.text}");
+//     print("Level: ${selectedLevel.value}");
+//
+//     // TODO: Call Provider Here
+//   }
+//
+//   @override
+//   void onClose() {
+//     titleController.dispose();
+//     subjectController.dispose();
+//     priceController.dispose();
+//     dayController.dispose();
+//     super.onClose();
+//   }
+// }

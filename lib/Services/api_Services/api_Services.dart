@@ -34,6 +34,17 @@ static const String uploadocument="$baseUrl/api/tutors/profiles/upload_document/
 
 //========================updateAcound==============================================
 static const String updateAcound="$baseUrl/api/accounts/users/me/";
+//================Createavailability===========================
+static const String Createavailability="$baseUrl/api/tutors/availability/bulk_create/";
+
+//============top_rated============================================
+static const String top_rated ="$baseUrl/api/tutors/profiles/top_rated/";
+
+//========================featuredtutors===============================
+ static const String featuredtutors="$baseUrl/api/tutors/profiles/featured/";
+
+
+
 
 
 

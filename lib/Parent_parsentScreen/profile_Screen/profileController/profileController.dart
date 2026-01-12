@@ -239,7 +239,6 @@
 //   }
 // }
 
-
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -250,7 +249,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../Services/api_Services/api_Services.dart'; // Check your path
 
 class Profilecontroller extends GetxController {
-
   // ================= ✅ REACTIVE VARIABLES ✅ =================
   var fullName = "Loading...".obs;
   var email = "Loading...".obs;
@@ -272,7 +270,8 @@ class Profilecontroller extends GetxController {
 
   final TextEditingController currentPassController = TextEditingController();
   final TextEditingController changeNewPassController = TextEditingController();
-  final TextEditingController changeConfirmPassController = TextEditingController();
+  final TextEditingController changeConfirmPassController =
+      TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
 
@@ -323,7 +322,6 @@ class Profilecontroller extends GetxController {
         // 4. Set text for edit controllers
         editProfileController.text = fullName.value;
         bioController.text = bio.value; // ✅ Set bio text
-
       } else {
         print("Failed to load user data: ${response.statusCode}");
       }
@@ -342,7 +340,7 @@ class Profilecontroller extends GetxController {
   }
 
   // ================= ✅ UPDATE PROFILE API (FINAL FIXED LOGIC) ✅ =================
-// ================= ✅ ULTIMATE FIX FOR BIO UPDATE ✅ =================
+  // ================= ✅ ULTIMATE FIX FOR BIO UPDATE ✅ =================
   Future<void> Editprofile() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
@@ -366,8 +364,8 @@ class Profilecontroller extends GetxController {
       Map<String, dynamic> body = {
         "full_name": editProfileController.text, // Name (Root level)
         "profile": {
-          "bio": bioController.text // ✅ Bio (Nested inside profile)
-        }
+          "bio": bioController.text, // ✅ Bio (Nested inside profile)
+        },
       };
 
       print("📤 Sending JSON Data: ${jsonEncode(body)}");
@@ -408,8 +406,8 @@ class Profilecontroller extends GetxController {
         request.headers.addAll({'Authorization': 'Bearer $token'});
 
         var file = await http.MultipartFile.fromPath(
-            'profile_picture',
-            selectedImagePath.value
+          'profile_picture',
+          selectedImagePath.value,
         );
         request.files.add(file);
 
@@ -426,7 +424,8 @@ class Profilecontroller extends GetxController {
           var data = jsonDecode(response.body);
           if (data['profile_picture'] != null) {
             profileImgUrl.value = data['profile_picture'];
-          } else if (data['user'] != null && data['user']['profile_picture'] != null) {
+          } else if (data['user'] != null &&
+              data['user']['profile_picture'] != null) {
             profileImgUrl.value = data['user']['profile_picture'];
           }
 
@@ -444,13 +443,20 @@ class Profilecontroller extends GetxController {
     // ---------------------------------------------------------
     if (isSuccess) {
       Get.back();
-      Get.snackbar("Success", "Profile Updated Successfully!", backgroundColor: Colors.greenAccent);
-
-
+      Get.snackbar(
+        "Success",
+        "Profile Updated Successfully!",
+        backgroundColor: Colors.greenAccent,
+      );
     } else {
-      Get.snackbar("Error", "Update Failed. Please try again.", backgroundColor: Colors.redAccent);
+      Get.snackbar(
+        "Error",
+        "Update Failed. Please try again.",
+        backgroundColor: Colors.redAccent,
+      );
     }
   }
+
   // ================= LOAD DATA HELPER =================
   void loadCurrentData() {
     editProfileController.text = fullName.value;
@@ -467,8 +473,13 @@ class Profilecontroller extends GetxController {
       return;
     }
 
-    if (currentPassController.text.isEmpty || changeNewPassController.text.isEmpty) {
-      Get.snackbar("Required", "Fill all fields", backgroundColor: Colors.redAccent);
+    if (currentPassController.text.isEmpty ||
+        changeNewPassController.text.isEmpty) {
+      Get.snackbar(
+        "Required",
+        "Fill all fields",
+        backgroundColor: Colors.redAccent,
+      );
       return;
     }
 
@@ -491,7 +502,11 @@ class Profilecontroller extends GetxController {
         currentPassController.clear();
         changeNewPassController.clear();
         Get.back();
-        Get.snackbar("Success", "Password Changed", backgroundColor: Colors.greenAccent);
+        Get.snackbar(
+          "Success",
+          "Password Changed",
+          backgroundColor: Colors.greenAccent,
+        );
       } else {
         Get.snackbar("Error", "Failed", backgroundColor: Colors.redAccent);
       }

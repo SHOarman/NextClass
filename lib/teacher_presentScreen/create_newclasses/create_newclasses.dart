@@ -142,3 +142,104 @@ class _CreateNewclassesState extends State<CreateNewclasses> {
     }
   }
 }
+
+
+// import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
+// import 'package:first_project/teacher_presentScreen/create_newclasses/customStepindecotor.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'step1.dart';
+// import 'step2.dart';
+// import 'step3.dart';
+//
+// class CreateClassScreen extends StatelessWidget {
+//   const CreateClassScreen({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final CreateClassController controller = Get.put(CreateClassController());
+//
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Create a New Class"),
+//         leading: IconButton(
+//           icon: Icon(Icons.arrow_back),
+//           onPressed: () {
+//             if (controller.currentStep.value > 0) {
+//               controller.previousStep();
+//             } else {
+//               Get.back();
+//             }
+//           },
+//         ),
+//       ),
+//       body: Padding(
+//         padding: EdgeInsets.symmetric(horizontal: 16.w),
+//         child: Column(
+//           children: [
+//             SizedBox(height: 10.h),
+//
+//             // --- Custom Step Indicator ---
+//             Obx(() => StepIndicator(
+//               currentStep: controller.currentStep.value,
+//               onStepTap: (step) => controller.goToStep(step),
+//               titles: const ['Step 1', 'Step 2', 'Step 3'],
+//             )),
+//
+//             SizedBox(height: 20.h),
+//
+//             // --- Dynamic Body Content ---
+//             Expanded(
+//               child: Obx(() {
+//                 switch (controller.currentStep.value) {
+//                   case 0:
+//                     return Step1();
+//                   case 1:
+//                     return Step2();
+//                   case 2:
+//                     return Step3();
+//                   default:
+//                     return Step1();
+//                 }
+//               }),
+//             ),
+//
+//             // --- Bottom Buttons ---
+//             Padding(
+//               padding: EdgeInsets.only(bottom: 20.h),
+//               child: Row(
+//                 children: [
+//                   Obx(() => controller.currentStep.value > 0
+//                       ? Expanded(
+//                     child: OutlinedButton(
+//                       onPressed: controller.previousStep,
+//                       child: Text("Previous"),
+//                     ),
+//                   )
+//                       : SizedBox.shrink()),
+//
+//                   SizedBox(width: 10.w),
+//
+//                   // Next / Submit Button
+//                   Expanded(
+//                     child: ElevatedButton(
+//                       style: ElevatedButton.styleFrom(
+//                           backgroundColor: Colors.blue,
+//                           foregroundColor: Colors.white
+//                       ),
+//                       onPressed: controller.nextStep,
+//                       child: Obx(() => Text(
+//                           controller.currentStep.value == 2 ? "Submit" : "Next"
+//                       )),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

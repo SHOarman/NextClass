@@ -85,3 +85,29 @@ class Step2 extends StatelessWidget {
     );
   }
 }
+//
+// import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:get/get_core/src/get_main.dart';
+// import 'package:get/get_instance/src/extension_instance.dart';
+//
+// import '../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
+//
+// class Step2 extends StatelessWidget {
+//   const Step2({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     final CreateClassController controller = Get.find<CreateClassController>();
+//
+//     return Column(
+//         children: [
+//           // ...
+//           Simpletextfield(
+//             controller: controller.titleController,
+//             hintText: 'ex: Class 5 Math Batch',
+//           ),
+//         ]
+//     );
+//   }
+// }
