@@ -1,9 +1,8 @@
-import 'package:first_project/unity/appColors/appGradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
+import '../MapPickerScreen/mapPickerScreen.dart';
 import 'classCreateController/classCreateController.dart';
 
 class Step3 extends StatelessWidget {
@@ -11,92 +10,75 @@ class Step3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   var classcreatecontroller = Get.put(Classcreatecontroller());
+    // Find the class creation controller
+    final CreateClassController controller = Get.find<CreateClassController>();
 
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // --- Class Location Section ---
+        Text("Class Location", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10.h),
 
-
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-
-            Text(
-              'Write the class name that you want to tuition',
-              style: TextStyle(
-                color: Appgradient.TextColor,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
+        // Update the UI automatically when the address changes
+        Obx(() {
+          return InkWell(
+            onTap: () {
+              // Navigate to Map screen and pass the controller
+              Get.to(() => MapPickerScreen(controller: controller));
+            },
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 14.h),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8.r),
+                border: Border.all(color: Colors.grey.shade400),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      controller.addressObs.value.isEmpty
+                          ? "Tap to select location..."
+                          : controller.addressObs.value,
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        color: controller.addressObs.value.isEmpty
+                            ? Colors.grey[600]
+                            : Colors.black,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const Icon(Icons.location_on, color: Colors.blue),
+                ],
               ),
             ),
-            SizedBox(height: 10.h),
-            Simpletextfield(
-              controller:classcreatecontroller. tuitionontroller,
-              hintText: 'Write subjects name...',
-            ),
-            SizedBox(height: 15.h),
-            Text(
-              'Price/class',
-              style: TextStyle(
-                color: Appgradient.TextColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
-            ),
-            SizedBox(height: 10.h),
+          );
+        }),
 
-            Simpletextfield(
-              controller: classcreatecontroller.enrichmentclasscontroller,
-              hintText: 'Write monthly price for your tuition..',
-            ),
-            SizedBox(height: 16.h),
-            Text(
-              'Which day of the week is the class on?',
-              style: TextStyle(
-                color: Appgradient.TextColor,
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(height: 10.h),
-            Simpletextfield(
-              controller: classcreatecontroller.dayofweekcontroller,
-              hintText: 'Write day of the week...',
-            ),
-            SizedBox(height: 10.h),
-          ],
+        SizedBox(height: 20.h),
+
+        // --- Price Input Section ---
+        Text("Price (Monthly/Hourly)", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10.h),
+        Simpletextfield(
+          controller: controller.priceController,
+          hintText: "Enter price (e.g. 5000)",
         ),
-      ),
+
+        SizedBox(height: 20.h),
+
+        // --- Schedule Input Section ---
+        Text("Day of Week", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10.h),
+        Simpletextfield(
+          controller: controller.dayController,
+          hintText: "e.g. Monday, Wednesday",
+        ),
+      ],
     );
   }
 }
-
-
-// import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:get/get_core/src/get_main.dart';
-// import 'package:get/get_instance/src/extension_instance.dart';
-//
-// import '../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
-//
-// class Step3 extends StatelessWidget {
-//   const Step3({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final CreateClassController controller = Get.find<CreateClassController>();
-//
-//     return Column(
-//       children: [
-//         Simpletextfield(
-//           controller: controller.subjectController,
-//           hintText: 'Write subjects name...',
-//         ),
-//         Simpletextfield(
-//           controller: controller.priceController,
-//           hintText: 'Price per class...',
-//         ),
-//       ],
-//     );
-//   }
-// }

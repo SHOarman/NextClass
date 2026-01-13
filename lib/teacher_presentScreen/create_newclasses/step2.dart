@@ -1,113 +1,50 @@
-import 'package:first_project/Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
-import 'package:first_project/core/route/Genaral_Controler/Genaral_Controler.dart';
-import 'package:first_project/unity/appColors/appGradient.dart';
+import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../Parent_parsentScreen/widget/coustomcard/coustomcard.dart';
+import '../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
 
 class Step2 extends StatelessWidget {
   const Step2({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final GenaralControler selectype = Get.put(GenaralControler());
-    final TextEditingController controller = TextEditingController();
+    // Find the class creation controller
+    final CreateClassController controller = Get.find<CreateClassController>();
 
-    return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 40.h),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(height: 10.h),
 
-          Text(
-            'Select class type',
-            style: TextStyle(
-              color: Appgradient.TextColor,
-              fontWeight: FontWeight.w600,
-              fontSize: 16.sp,
-            ),
-          ),
-          SizedBox(height: 16.h),
+        // --- Class Level Input Section ---
+        Text("Class Level", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10.h),
+        Simpletextfield(
+          controller: controller.classLevelInputController,
+          hintText: "ex: class 1-4",
+        ),
 
-          Row(
-            children: [
-              Expanded(
-                child: Obx(
-                  () => Padding(
-                    padding:  EdgeInsets.only(left: 10.sp),
-                    child: CustomCard(
-                      title: "Tuition",
-                      selected: selectype.selectedCard.value == "Tuition",
-                      onTap: () {
-                        selectype.selectedCard("Tuition");
-                      },
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(width: 4.w),
+        SizedBox(height: 20.h),
 
-              Expanded(
-                child: Obx(
-                  () => Padding(
-                    padding: const EdgeInsets.only(left: 00),
-                    child: CustomCard(
-                      title: "Enrichment class",
-                      selected:
-                          selectype.selectedCard.value == "Enrichment class",
-                      onTap: () {
-                        selectype.selectedCard("Enrichment class");
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
+        // --- Class Subject Input Section ---
+        Text("Class Subject", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10.h),
+        Simpletextfield(
+          controller: controller.titleController,
+          hintText: "Enter subject name",
+        ),
 
-          SizedBox(height: 14.h),
+        SizedBox(height: 20.h),
 
-          Text(
-            'Your class level.',
-            style: TextStyle(
-              color: Appgradient.TextColor,
-              fontSize: 16.sp,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-
-          SizedBox(height: 40.h),
-          Simpletextfield(controller: controller, hintText: 'ex: class 1-4'),
-        ],
-      ),
+        // --- Class Details (Description) Section ---
+        Text("Class Details", style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.bold)),
+        SizedBox(height: 10.h),
+        Customdetesl(
+          controller: controller.detailsController,
+          hintText: 'Write down about your class...',
+        ),
+      ],
     );
   }
 }
-//
-// import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
-// import 'package:flutter/cupertino.dart';
-// import 'package:get/get_core/src/get_main.dart';
-// import 'package:get/get_instance/src/extension_instance.dart';
-//
-// import '../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
-//
-// class Step2 extends StatelessWidget {
-//   const Step2({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final CreateClassController controller = Get.find<CreateClassController>();
-//
-//     return Column(
-//         children: [
-//           // ...
-//           Simpletextfield(
-//             controller: controller.titleController,
-//             hintText: 'ex: Class 5 Math Batch',
-//           ),
-//         ]
-//     );
-//   }
-// }

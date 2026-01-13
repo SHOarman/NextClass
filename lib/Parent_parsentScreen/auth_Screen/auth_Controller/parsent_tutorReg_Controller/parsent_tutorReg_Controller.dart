@@ -28,7 +28,7 @@ class ParsentTutorregController extends GetxController {
   final TextEditingController toDateController = TextEditingController();
   final TextEditingController educationLevelController = TextEditingController();
   final TextEditingController institutionController = TextEditingController();
-  // final TextEditingController bioController = TextEditingController(); // BioeController ব্যবহার হচ্ছে, তাই এটা কমেন্ট করে রাখলাম বা চাইলে রিমুভ করতে পারেন
+  // final TextEditingController bioController = TextEditingController();
   final TextEditingController yearsExpController = TextEditingController();
   final TextEditingController teachingPhilosophyController = TextEditingController();
   final TextEditingController personalEduLevelController = TextEditingController();

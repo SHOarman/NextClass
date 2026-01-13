@@ -1,4 +1,8 @@
 class ApiServices {
+
+  ApiServices._();
+
+
   // 1. Base URL (Use 'static const' for immutable strings)
   static const String baseUrl = 'http://10.10.7.51:8000';
 
@@ -42,6 +46,10 @@ static const String top_rated ="$baseUrl/api/tutors/profiles/top_rated/";
 
 //========================featuredtutors===============================
  static const String featuredtutors="$baseUrl/api/tutors/profiles/featured/";
+
+ //==============CreateClasss====================================================
+static const String CreateClass='$baseUrl/api/classes/';
+
 
 
 

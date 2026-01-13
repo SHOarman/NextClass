@@ -1,17 +1,13 @@
-import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
-import 'package:first_project/teacher_presentScreen/create_newclasses/step1.dart';
-import 'package:first_project/teacher_presentScreen/create_newclasses/step2.dart';
-import 'package:first_project/teacher_presentScreen/create_newclasses/step3.dart';
-import 'package:first_project/unity/appColors/appGradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 
-import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
-import '../../core/route/route.dart';
-import '../../core/succesfullcontroler/succesfullcontroler.dart';
+import '../../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
+import '../../teacher_presentScreen/create_newclasses/step1.dart';
+import '../../teacher_presentScreen/create_newclasses/step2.dart';
+import '../../teacher_presentScreen/create_newclasses/step3.dart';
+import '../../unity/appColors/appGradient.dart';
+
 import 'classCreateController/classCreateController.dart';
 import 'customStepindecotor.dart';
 
@@ -23,32 +19,41 @@ class CreateNewclasses extends StatefulWidget {
 }
 
 class _CreateNewclassesState extends State<CreateNewclasses> {
-  final GenaralController controller = GenaralController();
-  final Card2 card2Controller = Card2();
-  var classcreatecontroller = Get.put(Classcreatecontroller());
+  // --- Initialize Controller ---
+  final CreateClassController controller = Get.put(CreateClassController());
 
+  // --- Track Current Step Index ---
   int currentStep = 0;
+
+  // --- 🛠️ Validation Function ---
+  bool _validateCurrentStep() {
+    // Validate Step 2 (Title & Details)
+    if (currentStep == 1) {
+      if (controller.titleController.text.isEmpty) {
+        Get.snackbar("Required", "Please enter class title/subject", backgroundColor: Colors.red, colorText: Colors.white);
+        return false;
+      }
+    }
+    // Note: Validation for Step 1 or Step 3 can be added here if needed.
+    // (Final validation is handled in controller.submitClass)
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-
-        child: Container(
-          width: 440.w,
-          height: 520.h,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(16),
-              topRight: Radius.circular(16),
-            ),
-          ),
+      // Adjust screen layout when keyboard appears
+      resizeToAvoidBottomInset: true,
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 40),
-              Text(
+              SizedBox(height: 20.h),
+
+              // --- Page Title ---
+              const Text(
                 'Create a new class',
                 style: TextStyle(
                   color: Color(0xff2B2B2B),
@@ -59,68 +64,70 @@ class _CreateNewclassesState extends State<CreateNewclasses> {
 
               SizedBox(height: 20.h),
 
-              /// ✅ CUSTOM STEP INDICATOR
+              // --- Step Indicator Widget ---
               StepIndicator(
                 currentStep: currentStep,
-
                 onStepTap: (step) {
-                  setState(() => currentStep = step);
+                  // Allow going back to previous steps, but prevent skipping forward
+                  if (step < currentStep) {
+                    setState(() => currentStep = step);
+                  }
                 },
-                titles: ['Step 1', 'Step 2', 'Step 3'],
+                titles: const ['Step 1', 'Step 2', 'Step 3'],
               ),
 
-              Expanded(child: _stepContent()),
-              Row(
-                children: [
-                  Expanded(
-                    child: CustomSuperButton(
-                      text: currentStep == 2 ? 'Close' : 'Previous',
-                      onTap: () {
-                        if (currentStep > 0) {
-                          setState(() => currentStep--);
-                        }
-                      },
-                      borderColor: Appgradient.primaryGradient.colors[0],
-                      textGradient: Appgradient.primaryGradient,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: CustomSuperButton(
-                      text: currentStep == 2 ? 'Submit' : 'Next',
-                      onTap: () {
-                        if (currentStep < 2) {
-                          // Move to next step
-                          setState(() => currentStep++);
-                        } else {
-                          // ✅ Submit action: Show dialog
-                          showDialog(
-                            context: context,
-                            builder: (ctx) => AlertDialog(
-                              backgroundColor: Colors.white,
-                              content: Successfullmsg(
-                                name: 'Successful',
-                                namedetels: '',
-                                bu_name1: 'Track class',
-                                ontap1: () {
-                                  classcreatecontroller.addClass();
+              SizedBox(height: 20.h),
 
-                                  Get.toNamed(AppRoute.home2);
-                                },
-                                bu_name2:
-                                    'Close', // optional second button text, leave empty if not needed
-                                ontap2: () {
-                                  Get.back();
-                                }, // optional second button action
-                              ),
-                            ),
-                          );
-                        }
-                      },
-                      bgGradient: Appgradient.primaryGradient,
+              // --- Step Content Body ---
+              Expanded(
+                child: SingleChildScrollView( // Enables scrolling for smaller screens
+                  child: _stepContent(),
+                ),
+              ),
+
+              // --- Bottom Button Section ---
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.h),
+                child: Row(
+                  children: [
+                    // --- Previous / Cancel Button ---
+                    Expanded(
+                      child: CustomSuperButton(
+                        text: currentStep == 0 ? 'Cancel' : 'Previous',
+                        onTap: () {
+                          if (currentStep > 0) {
+                            setState(() => currentStep--); // Go back one step
+                          } else {
+                            Get.back(); // Close the screen
+                          }
+                        },
+                        borderColor: Appgradient.primaryGradient.colors[0],
+                        textGradient: Appgradient.primaryGradient,
+                      ),
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 10),
+
+                    // --- Next / Submit Button ---
+                    Expanded(
+                      child: Obx(() => CustomSuperButton(
+                        text: currentStep == 2 ? 'Submit' : 'Next',
+                        isLoading: controller.isLoading.value,
+                        onTap: () {
+                          if (currentStep < 2) {
+                            // Validate and move to next step
+                            if (_validateCurrentStep()) {
+                              setState(() => currentStep++);
+                            }
+                          } else {
+                            // Final Step: Submit Data
+                            controller.submitClass();
+                          }
+                        },
+                        bgGradient: Appgradient.primaryGradient,
+                      )),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -129,6 +136,7 @@ class _CreateNewclassesState extends State<CreateNewclasses> {
     );
   }
 
+  // --- Switch Content Based on Step ---
   Widget _stepContent() {
     switch (currentStep) {
       case 0:
@@ -142,104 +150,3 @@ class _CreateNewclassesState extends State<CreateNewclasses> {
     }
   }
 }
-
-
-// import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
-// import 'package:first_project/teacher_presentScreen/create_newclasses/customStepindecotor.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'step1.dart';
-// import 'step2.dart';
-// import 'step3.dart';
-//
-// class CreateClassScreen extends StatelessWidget {
-//   const CreateClassScreen({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final CreateClassController controller = Get.put(CreateClassController());
-//
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Create a New Class"),
-//         leading: IconButton(
-//           icon: Icon(Icons.arrow_back),
-//           onPressed: () {
-//             if (controller.currentStep.value > 0) {
-//               controller.previousStep();
-//             } else {
-//               Get.back();
-//             }
-//           },
-//         ),
-//       ),
-//       body: Padding(
-//         padding: EdgeInsets.symmetric(horizontal: 16.w),
-//         child: Column(
-//           children: [
-//             SizedBox(height: 10.h),
-//
-//             // --- Custom Step Indicator ---
-//             Obx(() => StepIndicator(
-//               currentStep: controller.currentStep.value,
-//               onStepTap: (step) => controller.goToStep(step),
-//               titles: const ['Step 1', 'Step 2', 'Step 3'],
-//             )),
-//
-//             SizedBox(height: 20.h),
-//
-//             // --- Dynamic Body Content ---
-//             Expanded(
-//               child: Obx(() {
-//                 switch (controller.currentStep.value) {
-//                   case 0:
-//                     return Step1();
-//                   case 1:
-//                     return Step2();
-//                   case 2:
-//                     return Step3();
-//                   default:
-//                     return Step1();
-//                 }
-//               }),
-//             ),
-//
-//             // --- Bottom Buttons ---
-//             Padding(
-//               padding: EdgeInsets.only(bottom: 20.h),
-//               child: Row(
-//                 children: [
-//                   Obx(() => controller.currentStep.value > 0
-//                       ? Expanded(
-//                     child: OutlinedButton(
-//                       onPressed: controller.previousStep,
-//                       child: Text("Previous"),
-//                     ),
-//                   )
-//                       : SizedBox.shrink()),
-//
-//                   SizedBox(width: 10.w),
-//
-//                   // Next / Submit Button
-//                   Expanded(
-//                     child: ElevatedButton(
-//                       style: ElevatedButton.styleFrom(
-//                           backgroundColor: Colors.blue,
-//                           foregroundColor: Colors.white
-//                       ),
-//                       onPressed: controller.nextStep,
-//                       child: Obx(() => Text(
-//                           controller.currentStep.value == 2 ? "Submit" : "Next"
-//                       )),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             )
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

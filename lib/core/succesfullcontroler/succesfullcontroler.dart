@@ -65,28 +65,34 @@ class Successfullmsg extends StatelessWidget {
 
           // ✅ Button 1
           if (bu_name1 != null)
-            CustomSuperButton(
-              text: bu_name1!,
-              bgGradient: Appgradient.primaryGradient,
-              onTap:
-                  ontap1 ??
-                  () {
-                    // clear!();
-                  },
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: CustomSuperButton(
+                text: bu_name1!,
+                bgGradient: Appgradient.primaryGradient,
+                onTap:
+                    ontap1 ??
+                    () {
+                      // clear!();
+                    },
+              ),
             ),
           SizedBox(height: 10.h),
 
           // ✅ Button 2
           if (bu_name2 != null)
-            CustomSuperButton(
-              text: bu_name2!,
-              borderColor: Appgradient.pramary1,
-              textGradient: Appgradient.primaryGradient,
-              onTap:
-                  ontap2 ??
-                  () {
-                    // clear!();
-                  },
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: CustomSuperButton(
+                text: bu_name2!,
+                borderColor: Appgradient.pramary1,
+                textGradient: Appgradient.primaryGradient,
+                onTap:
+                    ontap2 ??
+                    () {
+                      // clear!();
+                    },
+              ),
             ),
         ],
       ),

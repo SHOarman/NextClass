@@ -67,6 +67,6 @@ class DependencyInjection {
     Get.lazyPut(() => Teachercontroller());
 
     //===================CreateNewclass===================>>>>>>>>>>>>>>>>>>>>>
-    Get.lazyPut(() => Classcreatecontroller());
+    Get.lazyPut(() => CreateClassController());
   }
 }
