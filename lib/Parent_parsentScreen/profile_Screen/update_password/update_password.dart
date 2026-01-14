@@ -1,13 +1,9 @@
-import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
 import 'package:first_project/Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
-import 'package:get/get_navigation/src/extension_navigation.dart';
-
-import '../../../core/route/route.dart';
 import '../../../unity/appColors/appGradient.dart';
 import '../../../unity/string_static/strig_static/staticString.dart';
 import '../../widget/coustom_Textfield/coustom_Textfield.dart';
@@ -18,13 +14,9 @@ class UpdatePassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //====================Controllercall===========================================
 
-
-//====================Controllercall===========================================
-
-
-  final Profilecontroller authController = Get.put(Profilecontroller());
-
+    final Profilecontroller authController = Get.put(Profilecontroller());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -103,7 +95,6 @@ class UpdatePassword extends StatelessWidget {
               //   controller: authController.changeConfirmPassController,
               //   iconPath: 'assets/icon/Frame (1).svg',
               // ),
-
               SizedBox(height: 100.h),
 
               /// Login button

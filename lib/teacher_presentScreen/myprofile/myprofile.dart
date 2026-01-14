@@ -60,7 +60,7 @@ class Myprofile extends StatelessWidget {
                 icon: 'assets/icon/my3.svg',
                 title: 'Terms & conditions',
                 ontap: () {
-                  Get.toNamed(AppRoute.Termsconditions2);
+                  Get.toNamed(AppRoute.termsConditions2);
                 },
               ),
 
@@ -69,7 +69,7 @@ class Myprofile extends StatelessWidget {
                 icon: 'assets/icon/my4.svg',
                 title: 'Privacy policy',
                 ontap: () {
-                  Get.toNamed(AppRoute.Privacypolicy2);
+                  Get.toNamed(AppRoute.privacyPolicy2);
                 },
               ),
 

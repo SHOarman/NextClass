@@ -1,4 +1,4 @@
-import 'package:first_project/core/route/Genaral_Controler/Genaral_Controler.dart';
+import 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart';
 import 'package:first_project/teacher_presentScreen/Techechercontrler/techercotroler.dart';
 import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
 import 'package:first_project/teacher_presentScreen/create_newclasses/create_newclasses.dart';
@@ -10,9 +10,11 @@ import '../../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chatControl
 
 import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
 import '../../../teacher_presentScreen/chat2/msgController.dart';
+import '../../../teacher_presentScreen/create_newclasses/classProvider.dart';
+import '../../../teacher_presentScreen/home_ui/homeController.dart';
 import '../../succesfullcontroler/succesfullcontroler.dart';
-import '../Genaral_Controler/dateController.dart';
 import '../Genaral_Controler/imagepickurecontroller.dart';
+import '../Genaral_Controler/date_controller.dart';
 import '../Genaral_Controler/teachercontroller.dart';
 
 class DependencyInjection {
@@ -50,7 +52,6 @@ class DependencyInjection {
     //=============Datepiker============================
     Get.lazyPut(() => DateController());
 
-
     //=====================AuthController=========================================...........>>>>>>>>>>
 
     Get.lazyPut(() => Authcontroller());
@@ -68,5 +69,14 @@ class DependencyInjection {
 
     //===================CreateNewclass===================>>>>>>>>>>>>>>>>>>>>>
     Get.lazyPut(() => CreateClassController());
+
+    //=======================ClassProvider===================================
+    Get.lazyPut(() => ClassProvider());
+
+    //=========================Techer_HomeController=====================================
+    Get.lazyPut(() => HomeController());
+
+    //==================================Classescontroller=============================================
+    Get.lazyPut(() => CreateNewclasses());
   }
 }

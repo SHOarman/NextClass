@@ -1,99 +1,90 @@
 import 'package:first_project/teacher_presentScreen/cleses/activepage.dart';
 import 'package:first_project/teacher_presentScreen/cleses/inactivepage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class Classestab extends StatelessWidget {
+class Classestab extends StatefulWidget {
   final Function(int) onTabChange;
 
   const Classestab({super.key, required this.onTabChange});
 
   @override
+  State<Classestab> createState() => _ClassestabState();
+}
+
+class _ClassestabState extends State<Classestab> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    // 1. Initialize the TabController
+    _tabController = TabController(length: 2, vsync: this);
+
+    // 2. Add Listener (To notify parent when tab changes)
+    _tabController.addListener(() {
+      if (!_tabController.indexIsChanging) {
+        widget.onTabChange(_tabController.index);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    // 3. Clean up memory
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Builder(
-        builder: (context) {
-          final TabController controller = DefaultTabController.of(context);
-
-          controller.addListener(() {
-            if (!controller.indexIsChanging) {
-              onTabChange(controller.index);
-            }
-          });
-
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const TabBar(
-                labelColor: Color(0xff2563EB),
-                indicatorColor: Color(0xff2563EB),
-                dividerColor: Colors.transparent,
-                indicatorSize: TabBarIndicatorSize.tab,
-                tabs: [
-                  Tab(text: 'Active'),
-                  Tab(text: 'Inactive'),
-                ],
+    return Column(
+      children: [
+        // 🔹 Tab Bar Design (Custom Look)
+        Container(
+          height: 45.h,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade200, // Background color of the TabBar
+            borderRadius: BorderRadius.circular(25.r),
+          ),
+          child: Material(
+            // Material widget prevents "No Material widget" error
+            color: Colors.transparent,
+            child: TabBar(
+              controller: _tabController,
+              indicatorSize: TabBarIndicatorSize.tab,
+              indicator: BoxDecoration(
+                color: Colors.black, // Color for the Active/Selected Tab
+                borderRadius: BorderRadius.circular(25.r),
               ),
-              const SizedBox(height: 12),
-              const Expanded(
-                child: TabBarView(children: [Activepage(), Inactivepage()]),
-              ),
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.grey,
+              dividerColor: Colors.transparent,
+              tabs: const [
+                Tab(text: "Active"),
+                Tab(text: "Inactive"),
+              ],
+              onTap: (index) {
+                // Update immediately on tap
+                widget.onTabChange(index);
+              },
+            ),
+          ),
+        ),
+
+        SizedBox(height: 20.h),
+
+        // 🔹 Tab View Sections (The Pages)
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: const [
+              Activepage(),
+              InactivePage(),
             ],
-          );
-        },
-      ),
+          ),
+        ),
+      ],
     );
   }
 }
-
-// import 'package:first_project/teacher_presentScreen/cleses/inactivepage.dart';
-// import 'package:flutter/material.dart';
-//
-// import 'activepage.dart';
-//
-//
-// class Classestab extends StatelessWidget {
-//   const Classestab({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return DefaultTabController(
-//       length: 2,
-//       initialIndex: 0,
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           /// TAB BAR
-//           const TabBar(
-//             labelColor: Color(0xff2563EB),
-//             indicatorColor: Color(0xff2563EB),
-//             dividerColor: Colors.transparent,
-//             indicatorSize: TabBarIndicatorSize.tab,
-//
-//             tabs: [
-//               Tab(text: 'Active'),
-//               Tab(text: 'Inactive'),
-//
-//             ],
-//           ),
-//
-//           const SizedBox(height: 12),
-//
-//           /// TAB VIEW (IMPORTANT: give height)
-//
-//            Expanded(
-//              child: TabBarView(
-//                 children: [
-//
-//                   Activepage(),
-//                  Inactivepage()
-//
-//                 ],
-//               ),
-//            ),
-//
-//         ],
-//       ),
-//     );
-//   }
-// }

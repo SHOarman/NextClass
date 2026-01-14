@@ -1,24 +1,19 @@
-
-
 import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
+import '../../core/route/Genaral_Controler/genaral_controler.dart';
 import '../../core/route/route.dart';
 import '../../unity/appColors/appGradient.dart';
 import '../../unity/string_static/strig_static/staticString.dart';
 import '../widget/coustom_Textfield/coustom_Textfield.dart';
 import '../widget/coustom_button/coustom_button.dart';
 
-
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
   final Authcontroller authcontroller = Get.put(Authcontroller());
-
-
 
   final GenaralControler controller = Get.put(GenaralControler());
 
@@ -89,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                 iconPath: 'assets/icon/Frame (1).svg',
                 enableValidation: true,
                 //regex: RegExp(r'^(?=.*[a-z])(?=.*\d).{8,}$'),
-               // errorMessage: "Min 8 chars, 1 letter, 1 number",
+                // errorMessage: "Min 8 chars, 1 letter, 1 number",
               ),
 
               SizedBox(height: 12.h),
@@ -120,15 +115,14 @@ class LoginScreen extends StatelessWidget {
                                   : Colors.black,
                             ),
                           ),
-
                         ),
                       ],
                     ),
                     TextButton(
                       onPressed: () {
-                       // authcontroller.forgetPassword();
+                        // authcontroller.forgetPassword();
                         Get.toNamed(AppRoute.forgetpassword);
-                       print('jsjfjwf');
+                        print('jsjfjwf');
                       },
                       child: const Text(
                         "Forgot password?",
@@ -142,14 +136,11 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 80.h),
 
               /// Login Button
-
-
               CustomSuperButton(
                 text: Staticstring.login,
                 fontSize: 20,
                 bgGradient: Appgradient.primaryGradient,
                 onTap: () {
-
                   if (authcontroller.emailController.text.isEmpty ||
                       authcontroller.passwordController.text.isEmpty) {
                     Get.snackbar(
@@ -162,13 +153,12 @@ class LoginScreen extends StatelessWidget {
                     return;
                   }
 
-
-
-                  print("Login Clicked. Remember Me: ${controller.isCheck.value}");
+                  print(
+                    "Login Clicked. Remember Me: ${controller.isCheck.value}",
+                  );
                   authcontroller.loginaccound();
                 },
               ),
-
 
               SizedBox(height: 60.h),
 

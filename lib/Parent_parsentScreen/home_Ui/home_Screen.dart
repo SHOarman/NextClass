@@ -6,7 +6,7 @@
 // import 'package:get/get_instance/src/extension_instance.dart';
 // import 'package:get/get_navigation/src/extension_navigation.dart';
 // import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-// import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
+// import '../../core/route/Genaral_Controler/genaral_controler.dart';
 // import '../../core/route/route.dart';
 // import '../../unity/appColors/appGradient.dart';
 // import '../auth_Screen/auth_Controller/parsent_tutorReg_Controller/parsent_tutorReg_Controller.dart';
@@ -235,7 +235,7 @@ import 'package:first_project/Parent_parsentScreen/home_Ui/allow_location/allow_
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../core/route/Genaral_Controler/Genaral_Controler.dart';
+import '../../core/route/Genaral_Controler/genaral_controler.dart';
 import '../../core/route/route.dart';
 import '../../unity/appColors/appGradient.dart';
 import '../auth_Screen/auth_Controller/parsent_tutorReg_Controller/parsent_tutorReg_Controller.dart';
@@ -446,7 +446,7 @@ class HomeScreen extends StatelessWidget {
                     );
 
                     // ৫. API কল করুন
-                    await parsentTutorregController.Parentregistration();
+                    await parsentTutorregController.parentRegistration();
                   },
                 ),
 

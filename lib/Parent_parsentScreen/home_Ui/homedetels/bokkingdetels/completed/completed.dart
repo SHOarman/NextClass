@@ -21,11 +21,8 @@ class Completed extends StatelessWidget {
                 Get.toNamed(AppRoute.tusioncomplectfullreviewscreen);
               },
               child: CustomCardnew(
-
-                fullscrenonTap: (){
+                fullscrenonTap: () {
                   Get.toNamed(AppRoute.tusioncomplectfullreviewscreen);
-
-
                 },
                 title: 'Tutor name',
                 subtitle: 'Subject name',
@@ -42,9 +39,8 @@ class Completed extends StatelessWidget {
               iconName: '',
               imagePath: 'assets/backround/boking2.png',
 
-              fullscrenonTap: (){
-
-                Get.toNamed(AppRoute.tution_complectadepage1);
+              fullscrenonTap: () {
+                Get.toNamed(AppRoute.tutionComplectadePage1);
               },
             ),
 
@@ -58,10 +54,8 @@ class Completed extends StatelessWidget {
               showRating: true,
               rating: 4.5,
 
-              fullscrenonTap: (){
+              fullscrenonTap: () {
                 Get.toNamed(AppRoute.tusioncomplectfullreviewscreen);
-
-
               },
             ),
             SizedBox(height: 16),
@@ -71,42 +65,35 @@ class Completed extends StatelessWidget {
               iconName: '',
               imagePath: 'assets/backround/boking5.png',
 
-              fullscrenonTap: (){
-
-                Get.toNamed(AppRoute.tution_complectadepage1);
+              fullscrenonTap: () {
+                Get.toNamed(AppRoute.tutionComplectadePage1);
               },
             ),
 
             SizedBox(height: 16),
 
-
-               CustomCardnew(
-
-
-                title: 'Tutor name',
-                subtitle: 'Subject name',
-                iconName: '',
-                imagePath: 'assets/backround/boking4.png',
-                showRating: true,
-                rating: 4.5,
-                 fullscrenonTap: (){
-                   Get.toNamed(AppRoute.tusioncomplectfullreviewscreen);
-
-
-                 },
-              ),
+            CustomCardnew(
+              title: 'Tutor name',
+              subtitle: 'Subject name',
+              iconName: '',
+              imagePath: 'assets/backround/boking4.png',
+              showRating: true,
+              rating: 4.5,
+              fullscrenonTap: () {
+                Get.toNamed(AppRoute.tusioncomplectfullreviewscreen);
+              },
+            ),
 
             SizedBox(height: 16),
-             CustomCardnew(
-                title: 'Tutor name',
-                subtitle: 'Subject name',
-                iconName: '',
-                imagePath: 'assets/backround/boking3.png',
-               fullscrenonTap: (){
-
-                 Get.toNamed(AppRoute.tution_complectadepage1);
-               },
-              ),
+            CustomCardnew(
+              title: 'Tutor name',
+              subtitle: 'Subject name',
+              iconName: '',
+              imagePath: 'assets/backround/boking3.png',
+              fullscrenonTap: () {
+                Get.toNamed(AppRoute.tutionComplectadePage1);
+              },
+            ),
           ],
         ),
       ),

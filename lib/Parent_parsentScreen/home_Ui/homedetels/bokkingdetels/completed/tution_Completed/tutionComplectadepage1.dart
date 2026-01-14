@@ -213,8 +213,7 @@ class _Tutioncomplectadepage1 extends State<Tutioncomplectadepage1> {
             CustomSuperButton(
               text: 'Chat with tutor',
               onTap: () {
-
-                Get.toNamed(AppRoute.chatconation_teacher);
+                Get.toNamed(AppRoute.chatConationTeacher);
               },
               textGradient: Appgradient.primaryGradient,
               borderColor: Appgradient.primaryGradient.colors[0],

@@ -200,16 +200,11 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
 
             SizedBox(height: 62.h),
 
-
-
-
             CustomSuperButton(
-
               bgGradient: Appgradient.primaryGradient,
               text: 'Chat with tutor',
               onTap: () {
-
-                Get.toNamed(AppRoute.chatconation_teacher);
+                Get.toNamed(AppRoute.chatConationTeacher);
               },
               textColor: Colors.white,
               borderColor: Appgradient.primaryGradient.colors[0],

@@ -1,6 +1,6 @@
 import 'package:first_project/Parent_parsentScreen/widget/coustomcard/coustomcard.dart';
 
-import 'package:first_project/core/route/Genaral_Controler/Genaral_Controler.dart';
+import 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart';
 import 'package:first_project/core/route/route.dart';
 
 import 'package:flutter/material.dart';
@@ -19,8 +19,8 @@ class Filtermodel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final card3 Controller = Get.put(card3());
-    final card4 newController = Get.put(card4());
+    final Card3 Controller = Get.put(Card3());
+    final Card4 newController = Get.put(Card4());
     TextEditingController bagecetcontroller = TextEditingController();
     TextEditingController subjectcontroller = TextEditingController();
 

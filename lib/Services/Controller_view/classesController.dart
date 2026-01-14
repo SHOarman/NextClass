@@ -2,44 +2,41 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../teacher_presentScreen/create_newclasses/classProvider.dart';
-import '../modelClass.dart'; // Ensure this import path is correct
+import '../modelClass.dart'; // Make sure this import is correct
 
 class ClassesController extends GetxController {
-  // Initialize the API Provider
+  // 1. Initialize Provider
   final ClassProvider provider = ClassProvider();
 
-  // Observable variable for loading state
+  // Loading state
   var isLoading = false.obs;
 
-  // 1. Define Lists to store Active and Inactive classes
-  // We use RxList<ListingFeature> to specify the type of data
+  // 2. Define Lists with specific type 'ListingFeature' to avoid errors
   RxList<ListingFeature> activeList = <ListingFeature>[].obs;
   RxList<ListingFeature> inactiveList = <ListingFeature>[].obs;
 
   @override
   void onInit() {
     super.onInit();
-    // Fetch data when the controller starts
+    // Fetch data when controller starts
     fetchMySpecificClasses();
   }
 
   void fetchMySpecificClasses() async {
-    // Start the loading indicator
+    // Start loading
     isLoading.value = true;
 
+    // Get User ID from Shared Preferences (Optional: Used for verification)
     final prefs = await SharedPreferences.getInstance();
-    // You can get the User ID here if needed for further filtering
     // int? myUserId = prefs.getInt('userId');
 
     try {
-      // 2. Call the API to get the list of classes
-      // We use getMyClasses() which hits '/api/classes/my_listings/'
+      // 3. Call the correct API (my_listings)
       final response = await provider.getMyClasses();
 
       if (response.statusCode == 200) {
 
-        // 3. Decode the Response Body
-        // Handle cases where the body might be a String or a Map
+        // 4. Decode Data (Handle if body is String or Map)
         var decodedData;
         if (response.body is String) {
           decodedData = jsonDecode(response.body);
@@ -47,37 +44,35 @@ class ClassesController extends GetxController {
           decodedData = response.body;
         }
 
-        // 4. Convert JSON data to our Model Class
+        // 5. Convert JSON to Model
         final responseModel = ListingResponse.fromJson(decodedData);
 
-        // Check if the list of features (classes) is not null
+        // Check if features exist
         if (responseModel.results?.features != null) {
 
-          // Get the full list of data
+          // Get all features
           List<ListingFeature> allData = responseModel.results!.features!;
 
-          // ================= Filtering Logic =================
-
-          // 5. Filter Active Classes
-          // Condition: Status must be 'approved'
+          // 6. Filter Active Classes (Status: Approved)
           var approved = allData.where((item) {
+            // Check status safely
             return item.properties?.status?.toLowerCase() == 'approved';
           }).toList();
 
-          // 6. Filter Inactive Classes
-          // Condition: Status must be 'pending' OR 'rejected'
+          // 7. Filter Inactive Classes (Status: Pending or Rejected)
           var pendingOrRejected = allData.where((item) {
             String status = item.properties?.status?.toLowerCase() ?? '';
             return status == 'pending' || status == 'rejected';
           }).toList();
 
-          // 7. Update the UI lists with the filtered data
+          // 8. Update the UI Lists
           activeList.assignAll(approved);
           inactiveList.assignAll(pendingOrRejected);
 
-          // Print result for debugging
-          print("✅ Active Classes: ${activeList.length}");
-          print("⚠️ Inactive Classes: ${inactiveList.length}");
+          // Debug Prints
+          print("✅ Data Loaded.");
+          print("Active Count: ${activeList.length}");
+          print("Inactive Count: ${inactiveList.length}");
         }
       } else {
         print("❌ API Error: ${response.statusCode}");
@@ -85,7 +80,7 @@ class ClassesController extends GetxController {
     } catch (e) {
       print("❌ Critical Error: $e");
     } finally {
-      // 8. Stop the loading indicator
+      // Stop loading
       isLoading.value = false;
     }
   }

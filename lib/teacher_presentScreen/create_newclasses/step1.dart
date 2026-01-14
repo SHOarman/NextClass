@@ -68,7 +68,7 @@ class Step1 extends StatelessWidget {
             color: const Color(0xff2B2B2B),
           ),
         ),
-        SizedBox(height: 12.h),
+        SizedBox (height: 12.h),
 
         // Layout for Class Size selection
         Obx(() => Wrap(

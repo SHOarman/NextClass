@@ -213,8 +213,7 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
               fontSize: 20,
               fontWeight: FontWeight.bold,
               onTap: () {
-                Get.toNamed(AppRoute.cancel_model);
-
+                Get.toNamed(AppRoute.cancelModel);
               },
               bgGradient: LinearGradient(
                 colors: [Color(0xff2563EB), Color(0xff2563EB)],
@@ -228,9 +227,7 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
               fontWeight: FontWeight.bold,
               fontSize: 20,
               onTap: () {
-
-                Get.toNamed(AppRoute.chatconation_teacher);
-
+                Get.toNamed(AppRoute.chatConationTeacher);
 
                 /// Get.back();
               },

@@ -13,32 +13,35 @@ import '../../../../core/succesfullcontroler/succesfullcontroler.dart';
 import '../../../home_Ui/allow_location/allow_location.dart';
 
 class ParsentTutorregController extends GetxController {
-
   //============== ✅ Added for Profile Update ============================
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController BioeController = TextEditingController();
 
   //============================= Parent Registration Controllers ================================
   final TextEditingController WhatsubjectController = TextEditingController();
-  final TextEditingController childEducationLevelController = TextEditingController();
+  final TextEditingController childEducationLevelController =
+      TextEditingController();
   final TextEditingController classTypeController = TextEditingController();
 
   //============================= Tutor Registration Controllers ================================
   final TextEditingController fromDateController = TextEditingController();
   final TextEditingController toDateController = TextEditingController();
-  final TextEditingController educationLevelController = TextEditingController();
+  final TextEditingController educationLevelController =
+      TextEditingController();
   final TextEditingController institutionController = TextEditingController();
   // final TextEditingController bioController = TextEditingController();
   final TextEditingController yearsExpController = TextEditingController();
-  final TextEditingController teachingPhilosophyController = TextEditingController();
-  final TextEditingController personalEduLevelController = TextEditingController();
+  final TextEditingController teachingPhilosophyController =
+      TextEditingController();
+  final TextEditingController personalEduLevelController =
+      TextEditingController();
 
   // Checkbox variable
   bool currentlyTeaching = false;
 
   //============================= Parent Registration Function ================================
 
-  Future<void> Parentregistration() async {
+  Future<void> parentRegistration() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
 
@@ -47,7 +50,11 @@ class ParsentTutorregController extends GetxController {
     print("==================================================");
 
     if (token == null) {
-      Get.snackbar("Error", "User not logged in!", backgroundColor: Colors.redAccent);
+      Get.snackbar(
+        "Error",
+        "User not logged in!",
+        backgroundColor: Colors.redAccent,
+      );
       return;
     }
 
@@ -108,11 +115,20 @@ class ParsentTutorregController extends GetxController {
           errorMessage = "Registration Failed. Please try again.";
         }
 
-        Get.snackbar("Error", errorMessage, backgroundColor: Colors.redAccent, colorText: Colors.white);
+        Get.snackbar(
+          "Error",
+          errorMessage,
+          backgroundColor: Colors.redAccent,
+          colorText: Colors.white,
+        );
       }
     } catch (error) {
       print("Error: $error");
-      Get.snackbar("Error", "Check Internet Connection", backgroundColor: Colors.redAccent);
+      Get.snackbar(
+        "Error",
+        "Check Internet Connection",
+        backgroundColor: Colors.redAccent,
+      );
     }
   }
 
@@ -123,33 +139,52 @@ class ParsentTutorregController extends GetxController {
     String? token = prefs.getString('token');
 
     if (token == null) {
-      Get.snackbar("Error", "User not logged in!", backgroundColor: Colors.redAccent);
+      Get.snackbar(
+        "Error",
+        "User not logged in!",
+        backgroundColor: Colors.redAccent,
+      );
       return;
     }
 
-    final ImagePickureController imageController = Get.find<ImagePickureController>();
+    final ImagePickureController imageController =
+        Get.find<ImagePickureController>();
 
     if (imageController.selectedImagePath.value.isEmpty) {
-      Get.snackbar("Required", "Please upload your certification image", backgroundColor: Colors.redAccent);
+      Get.snackbar(
+        "Required",
+        "Please upload your certification image",
+        backgroundColor: Colors.redAccent,
+      );
       return;
     }
 
     if (fromDateController.text.isEmpty || toDateController.text.isEmpty) {
-      Get.snackbar("Required", "Please select Start and End Date", backgroundColor: Colors.redAccent);
+      Get.snackbar(
+        "Required",
+        "Please select Start and End Date",
+        backgroundColor: Colors.redAccent,
+      );
       return;
     }
 
     try {
       var headers = {'Authorization': 'Bearer $token'};
-      var request = http.MultipartRequest('POST', Uri.parse(ApiServices.Tutorreg));
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(ApiServices.Tutorreg),
+      );
       request.headers.addAll(headers);
 
       request.fields['from_date'] = fromDateController.text;
       request.fields['to_date'] = toDateController.text;
       request.fields['currently_teaching'] = currentlyTeaching.toString();
-      request.fields['personal_education_level'] = personalEduLevelController.text;
+      request.fields['personal_education_level'] =
+          personalEduLevelController.text;
 
-      debugPrint("=== Sending Registration Data ===\nFields: ${request.fields}");
+      debugPrint(
+        "=== Sending Registration Data ===\nFields: ${request.fields}",
+      );
 
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);
@@ -164,7 +199,8 @@ class ParsentTutorregController extends GetxController {
             backgroundColor: Colors.white,
             content: Reviewpopupmsg(
               name: 'Successful',
-              namedetels: 'Your account is under review. You\'ll be notified when your account is approved.',
+              namedetels:
+                  'Your account is under review. You\'ll be notified when your account is approved.',
               bu_name1: 'Close',
               ontap1: () {
                 Get.toNamed(AppRoute.home2);
@@ -178,18 +214,27 @@ class ParsentTutorregController extends GetxController {
         personalEduLevelController.clear();
         imageController.clearImage();
       } else {
-        Get.snackbar("Error", "Registration Failed: ${response.body}", backgroundColor: Colors.redAccent);
+        Get.snackbar(
+          "Error",
+          "Registration Failed: ${response.body}",
+          backgroundColor: Colors.redAccent,
+        );
       }
     } catch (e) {
       print("Error: $e");
-      Get.snackbar("Error", "Something went wrong", backgroundColor: Colors.redAccent);
+      Get.snackbar(
+        "Error",
+        "Something went wrong",
+        backgroundColor: Colors.redAccent,
+      );
     }
   }
 
   //================uploadDocumentprofile=========================================
 
   Future<void> uploadDocument(String token) async {
-    final ImagePickureController docController = Get.find<ImagePickureController>();
+    final ImagePickureController docController =
+        Get.find<ImagePickureController>();
 
     if (docController.selectedFile.value == null) {
       Get.snackbar("Error", "Please select a document");
@@ -201,7 +246,10 @@ class ParsentTutorregController extends GetxController {
     try {
       print("⏳ Uploading: ${file.path.split('/').last}...");
 
-      var request = http.MultipartRequest('POST', Uri.parse(ApiServices.uploadocument));
+      var request = http.MultipartRequest(
+        'POST',
+        Uri.parse(ApiServices.uploadocument),
+      );
       request.headers.addAll({'Authorization': 'Bearer $token'});
       request.fields['document_type'] = 'nid';
 
@@ -212,7 +260,11 @@ class ParsentTutorregController extends GetxController {
       var response = await http.Response.fromStream(streamedResponse);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        Get.snackbar("Success", "Document Uploaded Successfully!", backgroundColor: Colors.green);
+        Get.snackbar(
+          "Success",
+          "Document Uploaded Successfully!",
+          backgroundColor: Colors.green,
+        );
       } else {
         print("❌ Upload Failed: ${response.statusCode}");
       }
@@ -228,7 +280,11 @@ class ParsentTutorregController extends GetxController {
     String? token = prefs.getString('token');
 
     if (token == null) {
-      Get.snackbar("Error", "User not logged in!", backgroundColor: Colors.redAccent);
+      Get.snackbar(
+        "Error",
+        "User not logged in!",
+        backgroundColor: Colors.redAccent,
+      );
       return;
     }
 
@@ -241,10 +297,10 @@ class ParsentTutorregController extends GetxController {
       // Create Body
       Map<String, dynamic> body = {};
 
-      if(fullNameController.text.isNotEmpty){
+      if (fullNameController.text.isNotEmpty) {
         body["full_name"] = fullNameController.text;
       }
-      if(BioeController.text.isNotEmpty){
+      if (BioeController.text.isNotEmpty) {
         body["bio"] = BioeController.text;
       }
 
@@ -262,17 +318,25 @@ class ParsentTutorregController extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         Get.back(); // Close Edit Page
         Get.snackbar(
-            "Success",
-            "Profile Updated Successfully!",
-            backgroundColor: Colors.greenAccent,
-            colorText: Colors.black
+          "Success",
+          "Profile Updated Successfully!",
+          backgroundColor: Colors.greenAccent,
+          colorText: Colors.black,
         );
       } else {
-        Get.snackbar("Error", "Update Failed: ${response.body}", backgroundColor: Colors.redAccent);
+        Get.snackbar(
+          "Error",
+          "Update Failed: ${response.body}",
+          backgroundColor: Colors.redAccent,
+        );
       }
     } catch (e) {
       print("Error: $e");
-      Get.snackbar("Error", "Check Internet Connection", backgroundColor: Colors.redAccent);
+      Get.snackbar(
+        "Error",
+        "Check Internet Connection",
+        backgroundColor: Colors.redAccent,
+      );
     }
   }
 }

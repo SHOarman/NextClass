@@ -1,4 +1,4 @@
-import 'dart:math';
+
 
 import 'package:first_project/core/route/route.dart';
 import 'package:flutter/material.dart';
@@ -58,7 +58,7 @@ class TeacherHomecard extends StatelessWidget {
           left: 20,
           child: Text(
             subtitle,
-            style: TextStyle(color: Color(0xffffffff99), fontSize: 12),
+            style: TextStyle(color: Color(0xFFFFFFFF99), fontSize: 12),
           ),
         ),
 
@@ -68,7 +68,7 @@ class TeacherHomecard extends StatelessWidget {
           left: 15,
           child: GestureDetector(
             onTap: () {
-              Get.toNamed(AppRoute.create_newclasses);
+              Get.toNamed(AppRoute.createNewClasses);
               clear?.call();
             },
             child: Container(

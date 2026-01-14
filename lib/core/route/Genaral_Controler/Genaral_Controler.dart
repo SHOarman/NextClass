@@ -45,7 +45,7 @@ class Card2 extends GetxController {
 }
 
 //card 3====================================
-class card3 extends GetxController {
+class Card3 extends GetxController {
   RxString selectedCard = ''.obs;
 
   void selectCard(String title) {
@@ -54,7 +54,7 @@ class card3 extends GetxController {
 }
 
 //card 4====================================
-class card4 extends GetxController {
+class Card4 extends GetxController {
   RxString selectedCard = ''.obs;
 
   void selectCard(String title) {
@@ -62,7 +62,7 @@ class card4 extends GetxController {
   }
 }
 
-class card5 extends GetxController {
+class Card5 extends GetxController {
   RxString selectedCard = ''.obs;
 
   void selectCard(String title) {
@@ -70,7 +70,7 @@ class card5 extends GetxController {
   }
 }
 
-class card6 extends GetxController {
+class Card6 extends GetxController {
   RxString selectedCard = ''.obs;
 
   void selectCard(String title) {

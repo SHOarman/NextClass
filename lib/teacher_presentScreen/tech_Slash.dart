@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../Parent_parsentScreen/auth_Screen/auth_Controller/parsent_tutorReg_Controller/parsent_tutorReg_Controller.dart';
 import '../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
 import '../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
-import '../core/route/Genaral_Controler/dateController.dart';
+import '../core/route/Genaral_Controler/date_controller.dart';
 import '../core/route/Genaral_Controler/imagepickurecontroller.dart';
 import '../unity/appColors/appGradient.dart';
 import 'Techechercontrler/techercotroler.dart';

@@ -17,8 +17,6 @@ class Accpectd extends StatelessWidget {
             children: [
               SizedBox(height: 20),
               InkWell(
-
-
                 child: CustomCardnew(
                   title: 'Tutor name',
                   subtitle: 'Subject name',
@@ -33,26 +31,24 @@ class Accpectd extends StatelessWidget {
                 iconName: 'Accepted',
                 imagePath: 'assets/backround/boking2.png',
 
-                onTap: (){
-
-                  Get.toNamed(AppRoute.tution_accpectpage1);
+                onTap: () {
+                  Get.toNamed(AppRoute.tutionAccpectPage1);
                 },
               ),
 
               SizedBox(height: 16),
 
-                  // Get.toNamed()
-                 CustomCardnew(
-                  title: 'Tutor name',
-                  subtitle: 'Subject name',
-                  iconName: 'Accepted',
-                  imagePath: 'assets/backround/boking6.png',
+              // Get.toNamed()
+              CustomCardnew(
+                title: 'Tutor name',
+                subtitle: 'Subject name',
+                iconName: 'Accepted',
+                imagePath: 'assets/backround/boking6.png',
 
-                   onTap: (){
-
-                     Get.toNamed(AppRoute.tution_accpectpage1);
-                   },
-                ),
+                onTap: () {
+                  Get.toNamed(AppRoute.tutionAccpectPage1);
+                },
+              ),
 
               SizedBox(height: 16),
               CustomCardnew(
@@ -61,9 +57,8 @@ class Accpectd extends StatelessWidget {
                 iconName: 'Accepted',
                 imagePath: 'assets/backround/boking5.png',
 
-                onTap: (){
-
-                  Get.toNamed(AppRoute.tution_accpectpage1);
+                onTap: () {
+                  Get.toNamed(AppRoute.tutionAccpectPage1);
                 },
               ),
 
@@ -76,22 +71,18 @@ class Accpectd extends StatelessWidget {
               ),
               SizedBox(height: 16),
 
-
-
-                 CustomCardnew(
-                   onTap: (){
-
-                     Get.toNamed(AppRoute.tution_accpectpage1);
-                   },
-                  title: 'Tutor name',
-                  subtitle: 'Subject name',
-                  iconName: 'Accepted',
-                  imagePath: 'assets/backround/boking3.png',
-                ),
-
+              CustomCardnew(
+                onTap: () {
+                  Get.toNamed(AppRoute.tutionAccpectPage1);
+                },
+                title: 'Tutor name',
+                subtitle: 'Subject name',
+                iconName: 'Accepted',
+                imagePath: 'assets/backround/boking3.png',
+              ),
             ],
           ),
-        )
+        ),
       ),
     );
   }

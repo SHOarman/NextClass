@@ -107,7 +107,7 @@ class AppRoute {
 
   //===============homechat=================================================
 
-  static const String chatconation_teacher = '/chatconation_teacher';
+  static const String chatConationTeacher = '/chatconation_teacher';
 
   //===========================Recommended_page_detes_techer===================================
 
@@ -121,11 +121,11 @@ class AppRoute {
       '/recommendedPageDetesTecher3';
 
   //=====================accpectpage====================================================
-  static const String tution_accpectpage1 = '/tution_accpectpage1';
-  static const String cancel_model = '/cancel_model';
+  static const String tutionAccpectPage1 = '/tution_accpectpage1';
+  static const String cancelModel = '/cancel_model';
 
   //=====================Completad====================================================
-  static const String tution_complectadepage1 = '/tution_complectadepage1';
+  static const String tutionComplectadePage1 = '/tution_complectadepage1';
   static const String reviewpage = '/reviewpage';
   static const String tusioncomplectfullreviewscreen =
       '/tusioncomplectfullreviewscreen';
@@ -137,8 +137,8 @@ class AppRoute {
   static const String classes = '/classes';
   static const String myprofile2 = '/myprofile2';
   static const String updateprofile2 = '/updateprofile2';
-  static const String Termsconditions2 = '/Termsconditions2';
-  static const String Privacypolicy2 = '/Privacypolicy2';
+  static const String termsConditions2 = '/Termsconditions2';
+  static const String privacyPolicy2 = '/Privacypolicy2';
   static const String supporteachetteam = '/supporteachetteam';
   static const String delectteacheraccound = '/delectteacheraccound';
   static const String reviewsecation = '/reviewsecation';
@@ -164,7 +164,7 @@ class AppRoute {
   static const String logoutscreennew = '/logoutscreennew';
 
   //==============================tec-newclassscreate=================================
-  static const String create_newclasses = '/create_newclasses';
+  static const String createNewClasses = '/create_newclasses';
   static const String step1 = '/step1';
   static const String step2 = '/step2';
   static const String step3 = '/step3';
@@ -235,7 +235,7 @@ class AppRoute {
     GetPage(name: expadedpage, page: () => Expendedpage()),
     GetPage(name: requestboking, page: () => Requestboking()),
 
-    GetPage(name: chatconation_teacher, page: () => Chatconationteacher()),
+    GetPage(name: chatConationTeacher, page: () => Chatconationteacher()),
 
     //================================, page: page)
 
@@ -260,7 +260,7 @@ class AppRoute {
     ),
     GetPage(
       name: classes,
-      page: () => Cleses(),
+      page: () => const Cleses(),
       transition: Transition.noTransition,
       transitionDuration: Duration.zero,
     ),
@@ -271,8 +271,8 @@ class AppRoute {
       transitionDuration: Duration.zero,
     ),
     GetPage(name: updateprofile2, page: () => UpdatePasswordtecher()),
-    GetPage(name: Termsconditions2, page: () => TermsConditions()),
-    GetPage(name: Privacypolicy2, page: () => Privacypolicytecher()),
+    GetPage(name: termsConditions2, page: () => TermsConditions()),
+    GetPage(name: privacyPolicy2, page: () => Privacypolicytecher()),
     GetPage(name: supporteachetteam, page: () => SupportTeacherteam()),
     GetPage(name: delectteacheraccound, page: () => DeletAccoundteacher()),
     GetPage(name: reviewsecation, page: () => Reviewsecation()),
@@ -293,7 +293,7 @@ class AppRoute {
     GetPage(name: convarcation, page: () => ConversationScreen()),
 
     //==============================tec-newclassscreate=================================
-    GetPage(name: create_newclasses, page: () => CreateNewclasses()),
+    GetPage(name: createNewClasses, page: () => CreateNewclasses()),
     GetPage(name: step1, page: () => Step1()),
     GetPage(name: step2, page: () => Step2()),
     GetPage(name: step3, page: () => Step3()),
@@ -320,19 +320,16 @@ class AppRoute {
     ),
 
     //=====================accpectpage====================================================
-    GetPage(name: tution_accpectpage1, page: () => TutionAccpectpage1()),
+    GetPage(name: tutionAccpectPage1, page: () => TutionAccpectpage1()),
 
     //=====================Completad====================================================
-    GetPage(
-      name: tution_complectadepage1,
-      page: () => Tutioncomplectadepage1(),
-    ),
+    GetPage(name: tutionComplectadePage1, page: () => Tutioncomplectadepage1()),
     GetPage(name: reviewpage, page: () => Reviewadd()),
     GetPage(
       name: tusioncomplectfullreviewscreen,
       page: () => Tusioncomplectfullreviewscreen(),
     ),
-    GetPage(name: cancel_model, page: () => CancelModel()),
+    GetPage(name: cancelModel, page: () => CancelModel()),
     GetPage(name: regVerifyScreenallow, page: () => RegScreen()),
     GetPage(name: regVerifyScreen, page: () => Regverifyscreen()),
   ];
