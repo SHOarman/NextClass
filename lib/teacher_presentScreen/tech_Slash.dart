@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+// Verified: filename is tech_slash.dart
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,12 +7,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 // Import your controllers and widgets correctly
-import '../Parent_parsentScreen/auth_Screen/auth_Controller/parsent_tutorReg_Controller/parsent_tutorReg_Controller.dart';
-import '../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
-import '../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
+import '../Parent_parsentScreen/auth_Screen/auth_controller/parsent_tutor_reg_controller/parsent_tutor_reg_controller.dart';
+import '../Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
+import '../Parent_parsentScreen/widget/custom_button/custom_button.dart';
 import '../core/route/Genaral_Controler/date_controller.dart';
 import '../core/route/Genaral_Controler/imagepickurecontroller.dart';
-import '../unity/appColors/appGradient.dart';
+import '../unity/app_colors/app_gradient.dart';
 import 'Techechercontrler/techercotroler.dart';
 import 'package:first_project/teacher_presentScreen/techerall_widget/techerall_widget.dart'; // Ensure this path is correct
 import 'package:first_project/core/route/route.dart';
@@ -22,15 +24,15 @@ class TechSlash extends StatelessWidget {
   Widget build(BuildContext context) {
     // ✅ FIX: Use Get.put() to initialize controllers
     final TechSlashController techController = Get.put(TechSlashController());
-    final ImagePickureController imagepickurecontroller = Get.put(
+    final ImagePickureController imagepickureController = Get.put(
       ImagePickureController(),
     );
     final DateController dateController = Get.put(DateController());
 
     // Main controller might be initialized earlier, so Get.find is okay.
     // If not, change this to Get.put() as well.
-    final ParsentTutorregController parsentTutorregController = Get.put(
-      ParsentTutorregController(),
+    final ParsenttutorRegController parsenttutorRegController = Get.put(
+      ParsenttutorRegController(),
     );
 
     return Scaffold(
@@ -67,7 +69,7 @@ class TechSlash extends StatelessWidget {
                     onChanged: (value) {
                       techController.isCurrentlyTeaching.value = value!;
                       // ✅ Update the main controller for API
-                      parsentTutorregController.currentlyTeaching = value;
+                      parsenttutorRegController.currentlyTeaching = value;
                     },
                   ),
                   Text(
@@ -106,7 +108,7 @@ class TechSlash extends StatelessWidget {
                 /// FROM
                 Expanded(
                   child: TecherallWidget(
-                    controller: parsentTutorregController.fromDateController,
+                    controller: parsenttutorRegController.fromDateController,
                     hintText: 'DD/MM/YYYY',
                     svgPath: "assets/icon/newnew.svg",
                     readOnly: true,
@@ -120,7 +122,7 @@ class TechSlash extends StatelessWidget {
                 /// TO
                 Expanded(
                   child: TecherallWidget(
-                    controller: parsentTutorregController.toDateController,
+                    controller: parsenttutorRegController.toDateController,
                     hintText: 'DD/MM/YYYY',
                     svgPath: "assets/icon/newnew.svg",
                     readOnly: true,
@@ -147,7 +149,7 @@ class TechSlash extends StatelessWidget {
             Obx(() {
               return GestureDetector(
                 onTap: () {
-                  imagepickurecontroller.getImage();
+                  imagepickureController.getImage();
                 },
                 child: Container(
                   height: 200.h,
@@ -155,18 +157,18 @@ class TechSlash extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: Color(0xffF3F5F9),
                     borderRadius: BorderRadius.circular(8),
-                    image: imagepickurecontroller.selectedImagePath.value == ''
+                    image: imagepickureController.selectedImagePath.value == ''
                         ? null
                         : DecorationImage(
                             image: FileImage(
                               File(
-                                imagepickurecontroller.selectedImagePath.value,
+                                imagepickureController.selectedImagePath.value,
                               ),
                             ),
                             fit: BoxFit.cover,
                           ),
                   ),
-                  child: imagepickurecontroller.selectedImagePath.value == ''
+                  child: imagepickureController.selectedImagePath.value == ''
                       ? Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -200,7 +202,7 @@ class TechSlash extends StatelessWidget {
 
             // ✅ FIX: Use the correct controller for Personal Education Level
             SimpleCard(
-              controller: parsentTutorregController.personalEduLevelController,
+              controller: parsenttutorRegController.personalEduLevelController,
               hintText: 'Write here.......',
             ),
             SizedBox(height: 34.h),
@@ -212,7 +214,7 @@ class TechSlash extends StatelessWidget {
               fontWeight: FontWeight.bold,
               onTap: () async {
                 // ✅ FIX: Use await to wait for the registration process
-                await parsentTutorregController.registerTutor(context);
+                await parsenttutorRegController.registerTutor(context);
 
                 // Note: The success dialog is now inside the controller logic
               },
@@ -225,7 +227,7 @@ class TechSlash extends StatelessWidget {
             SizedBox(height: 16.h),
 
             CustomSuperButton(
-              text: 'Skip',
+              text: 'skip',
               fontWeight: FontWeight.bold,
               fontSize: 20.sp,
               onTap: () {

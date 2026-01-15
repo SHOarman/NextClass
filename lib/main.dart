@@ -1,10 +1,10 @@
+import 'package:first_project/core/route/Genaral_Controler/location_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:device_preview/device_preview.dart';
 
-import 'core/route/Genaral_Controler/locationController.dart';
 import 'core/route/defiency_injection/defiency_injection.dart';
 import 'core/route/route.dart';
 

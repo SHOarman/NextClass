@@ -1,17 +1,18 @@
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/auth_controller.dart';
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/parsent_tutor_reg_controller/parsent_tutor_reg_controller.dart';
+import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_controller_teacher.dart';
+import 'package:first_project/Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
 import 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart';
 import 'package:first_project/teacher_presentScreen/Techechercontrler/techercotroler.dart';
-import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
+import 'package:first_project/teacher_presentScreen/chat2/msg_controller.dart';
+import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/class_create_controller.dart';
+import 'package:first_project/teacher_presentScreen/create_newclasses/class_provider.dart';
 import 'package:first_project/teacher_presentScreen/create_newclasses/create_newclasses.dart';
+import 'package:first_project/teacher_presentScreen/home_ui/home_controller.dart';
 import 'package:get/get.dart';
 
-import '../../../Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
-import '../../../Parent_parsentScreen/auth_Screen/auth_Controller/parsent_tutorReg_Controller/parsent_tutorReg_Controller.dart';
-import '../../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chatControllerTeacher.dart';
 
-import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
-import '../../../teacher_presentScreen/chat2/msgController.dart';
-import '../../../teacher_presentScreen/create_newclasses/classProvider.dart';
-import '../../../teacher_presentScreen/home_ui/homeController.dart';
+
 import '../../succesfullcontroler/succesfullcontroler.dart';
 import '../Genaral_Controler/imagepickurecontroller.dart';
 import '../Genaral_Controler/date_controller.dart';
@@ -28,12 +29,12 @@ class DependencyInjection {
 
     //successful msg----------------
     Get.lazyPut(
-      () => Successfullmsg(
+          () => Successfullmsg(
         name: '',
         namedetels: '',
-        bu_name1: '',
+            buName1: '',
         ontap1: () {},
-        bu_name2: '',
+            buName2: '',
         ontap2: () {},
       ),
     );
@@ -43,9 +44,9 @@ class DependencyInjection {
     Get.lazyPut(() => BookingController());
 
     //==================Selecttype===============
-    Get.lazyPut(() => Selecttype());
-    Get.lazyPut(() => ChatController());
-    Get.lazyPut(() => Chatcontrollerteacher());
+    Get.lazyPut(() => SelectType());
+    Get.lazyPut(() =>ChatController());
+    Get.lazyPut(() => ChatControllerTeacher());
 
     //=========================imagepiker===========================
     Get.lazyPut(() => ImagePickureController());
@@ -54,18 +55,18 @@ class DependencyInjection {
 
     //=====================AuthController=========================================...........>>>>>>>>>>
 
-    Get.lazyPut(() => Authcontroller());
+    Get.lazyPut(() => AuthController());
 
     //=====================profileController=========================================...........>>>>>>>>>>
-    Get.lazyPut(() => Profilecontroller());
+    Get.lazyPut(() =>  ProfileController());
 
     //======================>>>>>>>>>>>>>>>tutoril===============Controller====================>>>>>>>>>>>>>>>>>>>>>>>>
 
-    Get.lazyPut(() => ParsentTutorregController());
+    Get.lazyPut(() => ParsenttutorRegController());
 
     //=================firsthome===========================
 
-    Get.lazyPut(() => Teachercontroller());
+    Get.lazyPut(() => TeacherController());
 
     //===================CreateNewclass===================>>>>>>>>>>>>>>>>>>>>>
     Get.lazyPut(() => CreateClassController());

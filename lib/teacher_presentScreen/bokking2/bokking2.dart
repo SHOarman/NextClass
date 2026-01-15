@@ -1,11 +1,11 @@
 import 'package:first_project/core/route/route.dart';
 import 'package:first_project/teacher_presentScreen/techerall_widget/customcard/customcard.dart';
-import 'package:first_project/unity/appColors/appGradient.dart';
+import 'package:first_project/unity/app_colors/app_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../techerall_widget/nevbutton/nevbutton.dart';
+import '../techerall_widget/nav_button/nav_button.dart';
 
 class Bokking2 extends StatelessWidget {
   const Bokking2({super.key});
@@ -13,7 +13,7 @@ class Bokking2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Nev_Button2(SelectIndex: 1),
+      bottomNavigationBar: NavButton2(selectIndex: 1),
 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -25,7 +25,7 @@ class Bokking2 extends StatelessWidget {
             Text(
               'Bookings',
               style: TextStyle(
-                color: Appgradient.TextColor,
+                color: Appgradient.textColor,
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
               ),
@@ -57,7 +57,7 @@ class Bokking2 extends StatelessWidget {
               subtitle: 'Class 6-10',
               iconName: 'Pending - 20',
               onTap: () {
-                print('pending');
+                // print('pending');
               },
             ),
             SizedBox(height: 16.h),
@@ -66,7 +66,7 @@ class Bokking2 extends StatelessWidget {
               subtitle: 'Class 6-10',
               iconName: 'Pending - 20',
               onTap: () {
-                print('pending');
+                // print('pending');
               },
             ),
             SizedBox(height: 16.h),

@@ -1,14 +1,13 @@
-import 'package:first_project/Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
-import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
-import 'package:first_project/unity/string_static/strig_static/staticString.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_button/custom_button.dart';
+import 'package:first_project/unity/string_static/strig_static/static_string.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-import '../../../Parent_parsentScreen/widget/backSleash/backSleash.dart';
-import '../../../unity/appColors/appGradient.dart';
-
+import '../../../Parent_parsentScreen/widget/back_slash/back_slash.dart';
+import '../../../unity/app_colors/app_gradient.dart';
 
 class SupportTeacherteam extends StatelessWidget {
   const SupportTeacherteam({super.key});
@@ -32,7 +31,7 @@ class SupportTeacherteam extends StatelessWidget {
               ),
               SizedBox(height: 40.h),
               Text(
-                Staticstring.Email,
+                Staticstring.email,
                 style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
               ),
               SizedBox(height: 12.h),
@@ -59,8 +58,7 @@ class SupportTeacherteam extends StatelessWidget {
                 text: 'Send',
                 fontSize: 20,
                 onTap: () {
-
-                 Get.back();
+                  Get.back();
                   // if(issueController==null||issueController.text.isNotEmpty){
                   //
                   // Get.snackbar('Success', 'Your message has been sent successfully', duration: Duration(seconds: 2),
@@ -73,16 +71,12 @@ class SupportTeacherteam extends StatelessWidget {
                   //
                   //
                   // }
-
-
-
                 },
                 bgGradient: Appgradient.primaryGradient,
                 clear: () {
                   emailController.clear();
                   issueController.clear();
                 },
-
               ),
             ],
           ),

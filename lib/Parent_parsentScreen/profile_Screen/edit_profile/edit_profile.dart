@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import '../../../unity/appColors/appGradient.dart';
-import '../../widget/backSleash/backSleash.dart';
-import '../../widget/coustom_button/coustom_button.dart';
-import '../profileController/profileController.dart';
+import '../../../unity/app_colors/app_gradient.dart';
+import '../../widget/back_slash/back_slash.dart';
+import '../../widget/custom_button/custom_button.dart';
+import '../profileController/profile_controller.dart';
 import 'package:first_project/core/route/route.dart';
-import '../../../Services/api_Services/api_Services.dart';
+import '../../../Services/api_Services/api_services.dart';
 
 class EditProfile extends StatelessWidget {
   const EditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final profilecontroller = Get.put(Profilecontroller());
+    final profileController = Get.put(ProfileController());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -41,25 +41,32 @@ class EditProfile extends StatelessWidget {
                   // 1. Main Profile Image
                   GestureDetector(
                     onTap: () {
-                      profilecontroller.pickImg();
+                      profileController.pickImg();
                     },
                     child: Obx(() {
                       ImageProvider imageProvider;
 
                       // --- Image Logic ---
-                      if (profilecontroller.hasImage) {
+                      if (profileController.hasImage) {
                         // Local File
-                        imageProvider = FileImage(File(profilecontroller.pickedImage.value!.path));
-                      } else if (profilecontroller.profileImgUrl.value.isNotEmpty) {
+                        imageProvider = FileImage(
+                          File(profileController.pickedImage.value!.path),
+                        );
+                      } else if (profileController
+                          .profileImgUrl
+                          .value
+                          .isNotEmpty) {
                         // Network Image
-                        String imgUrl = profilecontroller.profileImgUrl.value;
+                        String imgUrl = profileController.profileImgUrl.value;
                         if (!imgUrl.startsWith('http')) {
                           imgUrl = "${ApiServices.baseUrl}$imgUrl";
                         }
                         imageProvider = NetworkImage(imgUrl);
                       } else {
                         // Default Asset
-                        imageProvider = const AssetImage('assets/backround/profile.png');
+                        imageProvider = const AssetImage(
+                          'assets/backround/profile.png',
+                        );
                       }
                       // -------------------
 
@@ -70,7 +77,7 @@ class EditProfile extends StatelessWidget {
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.2),
+                              color: Colors.black.withValues(alpha: 0.2),
                               spreadRadius: 2,
                               blurRadius: 8,
                               offset: Offset(0, 4),
@@ -90,7 +97,7 @@ class EditProfile extends StatelessWidget {
                     bottom: 0,
                     right: 0,
                     child: GestureDetector(
-                      onTap: () => profilecontroller.pickImg(),
+                      onTap: () => profileController.pickImg(),
                       child: Container(
                         height: 35.h,
                         width: 35.w,
@@ -117,9 +124,9 @@ class EditProfile extends StatelessWidget {
             Text(
               'Basic info',
               style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xff2B2B2B)
+                fontSize: 20.sp,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xff2B2B2B),
               ),
             ),
             SizedBox(height: 28.h),
@@ -130,38 +137,48 @@ class EditProfile extends StatelessWidget {
               children: [
                 Text(
                   'Full name',
-                  style: TextStyle(fontSize: 16.sp, color: const Color(0xff888888)),
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: const Color(0xff888888),
+                  ),
                 ),
                 SizedBox(width: 10.w),
-                Obx(() => Text(
-                  profilecontroller.fullName.value,
-                  style: TextStyle(
+                Obx(
+                  () => Text(
+                    profileController.fullName.value,
+                    style: TextStyle(
                       color: const Color(0xff888888),
                       fontSize: 16.sp,
-                      fontWeight: FontWeight.w400
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                )),
+                ),
               ],
             ),
             SizedBox(height: 16.h),
 
-            /// ===== Email Field (Reactive) =====
+            /// ===== email Field (Reactive) =====
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Email',
-                  style: TextStyle(fontSize: 16.sp, color: const Color(0xff888888)),
+                  'email',
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: const Color(0xff888888),
+                  ),
                 ),
                 SizedBox(width: 10.w),
-                Obx(() => Text(
-                  profilecontroller.email.value,
-                  style: TextStyle(
+                Obx(
+                  () => Text(
+                    profileController.email.value,
+                    style: TextStyle(
                       color: const Color(0xff888888),
                       fontSize: 16.sp,
-                      fontWeight: FontWeight.w400
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                )),
+                ),
               ],
             ),
 
@@ -171,7 +188,7 @@ class EditProfile extends StatelessWidget {
             CustomSuperButton(
               text: 'Edit Profile',
               onTap: () {
-                profilecontroller.loadCurrentData();
+                profileController.loadCurrentData();
                 Get.toNamed(AppRoute.editmodel);
               },
               bgGradient: Appgradient.primaryGradient,

@@ -1,9 +1,9 @@
-import 'package:first_project/teacher_presentScreen/chat2/convarcation.dart';
+import 'package:first_project/teacher_presentScreen/Chat2/convarcation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../widget/naev_button/neab_Button.dart';
+import '../../../widget/nav_button/nav_button.dart';
 
 class Chartdetels extends StatelessWidget {
   const Chartdetels({super.key});
@@ -54,7 +54,7 @@ class Chartdetels extends StatelessWidget {
         title: Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            "Chat with parent",
+            "chat with parent",
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -64,11 +64,11 @@ class Chartdetels extends StatelessWidget {
         ),
       ),
 
-      // Main Body: List of Chats
+      // Main Body: List of chats
       body: ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
         itemCount: chats.length,
-        separatorBuilder: (_, __) => SizedBox(height: 10.h),
+        separatorBuilder: (context, index) => SizedBox(height: 10.h),
         itemBuilder: (context, index) {
           final chat = chats[index];
           final bool isUnread = chat['isUnread'];
@@ -114,6 +114,15 @@ class Chartdetels extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 15.sp,
                             color: Colors.black87,
+                            shadows: [
+                              Shadow(
+                                color: Color(
+                                  0xff000000,
+                                ).withValues(alpha: 0.12),
+                                blurRadius: 19,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(height: 4.h),
@@ -152,7 +161,7 @@ class Chartdetels extends StatelessWidget {
       ),
 
       // Your Navigation Button
-      bottomNavigationBar: Nev_Button(SelectIndex: 2),
+      bottomNavigationBar: NavButton(selectIndex: 2),
     );
   }
 }

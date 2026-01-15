@@ -1,4 +1,4 @@
-import 'package:first_project/Parent_parsentScreen/widget/backSleash/backSleash.dart';
+import 'package:first_project/Parent_parsentScreen/widget/back_slash/back_slash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

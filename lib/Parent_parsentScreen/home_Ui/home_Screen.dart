@@ -8,10 +8,10 @@
 // import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 // import '../../core/route/Genaral_Controler/genaral_controler.dart';
 // import '../../core/route/route.dart';
-// import '../../unity/appColors/appGradient.dart';
-// import '../auth_Screen/auth_Controller/parsent_tutorReg_Controller/parsent_tutorReg_Controller.dart';
-// import '../widget/coustom_Textfield/coustom_Textfield.dart';
-// import '../widget/coustom_button/coustom_button.dart';
+// import '../../unity/app_colors/app_gradient.dart';
+// import '../auth_Screen/auth_controller/parsent_tutorReg_controller/parsent_tutorReg_controller.dart';
+// import '../widget/custom_textfield/custom_textfield.dart';
+// import '../widget/custom_button/custom_button.dart';
 // import '../widget/coustomcard/coustomcard.dart';
 //
 // class HomeScreen extends StatelessWidget {
@@ -19,8 +19,8 @@
 //   final Card2 card2Controller = Get.put(Card2());
 //   final TextEditingController subjectController = TextEditingController();
 //
-//   final ParsentTutorregController parsentTutorregController =
-//       Get.put(ParsentTutorregController());
+//   final ParsenttutorRegController parsenttutorRegController =
+//       Get.put(ParsenttutorRegController());
 //
 //   HomeScreen({super.key});
 //
@@ -97,7 +97,7 @@
 //                 SizedBox(height: 24.h),
 //
 //                 Text(
-//                   'Select class type',
+//                   'select class type',
 //                   style: TextStyle(
 //                     color: Color(0xff2B2B2B),
 //                     fontSize: 16.sp,
@@ -153,7 +153,7 @@
 //                 SizedBox(height: 16.h),
 //
 //                 SimpleCard(
-//                   controller: parsentTutorregController.WhatsubjectController,
+//                   controller: parsenttutorRegController.whatSubjectController,
 //                   hintText: 'Write subjects name...',
 //                 ),
 //
@@ -176,27 +176,27 @@
 //                       return;
 //                     }
 //
-//                     parsentTutorregController
+//                     parsenttutorRegController
 //                         .childEducationLevelController
 //                         .text = controller.selectedCard.value
 //                         .toLowerCase();
 //
-//                     parsentTutorregController.classTypeController.text =
+//                     parsenttutorRegController.classTypeController.text =
 //                         card2Controller.selectedCard.value.toLowerCase();
 //
 //
 //
 //                     print(
-//                       "Level: ${parsentTutorregController.childEducationLevelController.text}",
+//                       "Level: ${parsenttutorRegController.childEducationLevelController.text}",
 //                     );
 //                     print(
-//                       "Type: ${parsentTutorregController.classTypeController.text}",
+//                       "Type: ${parsenttutorRegController.classTypeController.text}",
 //                     );
 //                     print(
-//                       "Subject: ${parsentTutorregController.WhatsubjectController.text}",
+//                       "Subject: ${parsenttutorRegController.whatSubjectController.text}",
 //                     );
 //
-//                     await parsentTutorregController.Parentregistration();
+//                     await parsenttutorRegController.parentRegistration();
 //                   },
 //                   bgGradient: LinearGradient(
 //                     colors: [Color(0xff2563EB), Color(0xff2563EB)],
@@ -206,7 +206,7 @@
 //                 SizedBox(height: 16.h),
 //
 //                 CustomSuperButton(
-//                   text: 'Skip',
+//                   text: 'skip',
 //                   fontWeight: FontWeight.bold,
 //                   fontSize: 20.sp,
 //                   onTap: () {
@@ -231,23 +231,25 @@
 //   }
 // }
 
+// ignore_for_file: file_names
+// Verified: filename is home_screen.dart
 import 'package:first_project/Parent_parsentScreen/home_Ui/allow_location/allow_location.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../core/route/Genaral_Controler/genaral_controler.dart';
 import '../../core/route/route.dart';
-import '../../unity/appColors/appGradient.dart';
-import '../auth_Screen/auth_Controller/parsent_tutorReg_Controller/parsent_tutorReg_Controller.dart';
-import '../widget/coustom_Textfield/coustom_Textfield.dart';
-import '../widget/coustom_button/coustom_button.dart';
+import '../../unity/app_colors/app_gradient.dart';
+import '../auth_Screen/auth_controller/parsent_tutor_reg_controller/parsent_tutor_reg_controller.dart';
+import '../widget/custom_textfield/custom_textfield.dart';
+import '../widget/custom_button/custom_button.dart';
 import '../widget/coustomcard/coustomcard.dart';
 
 class HomeScreen extends StatelessWidget {
   final GenaralControler controller = Get.put(GenaralControler());
   final Card2 card2Controller = Get.put(Card2());
-  final ParsentTutorregController parsentTutorregController = Get.put(
-    ParsentTutorregController(),
+  final ParsenttutorRegController parsenttutorRegController = Get.put(
+    ParsenttutorRegController(),
   );
 
   HomeScreen({super.key});
@@ -321,7 +323,7 @@ class HomeScreen extends StatelessWidget {
 
                 // ================== CLASS TYPE SECTION ==================
                 Text(
-                  'Select class type',
+                  'select class type',
                   style: TextStyle(
                     color: Color(0xff2B2B2B),
                     fontSize: 16.sp,
@@ -375,7 +377,7 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 16.h),
 
                 SimpleCard(
-                  controller: parsentTutorregController.WhatsubjectController,
+                  controller: parsenttutorRegController.whatSubjectController,
                   hintText: 'Write subjects name...',
                 ),
 
@@ -414,7 +416,7 @@ class HomeScreen extends StatelessWidget {
                       return;
                     }
 
-                    if (parsentTutorregController.WhatsubjectController.text
+                    if (parsenttutorRegController.whatSubjectController.text
                         .trim()
                         .isEmpty) {
                       Get.snackbar(
@@ -427,26 +429,26 @@ class HomeScreen extends StatelessWidget {
                       return;
                     }
 
-                    parsentTutorregController
+                    parsenttutorRegController
                         .childEducationLevelController
                         .text = controller.selectedCard.value
                         .toLowerCase();
 
-                    parsentTutorregController.classTypeController.text =
+                    parsenttutorRegController.classTypeController.text =
                         card2Controller.selectedCard.value.toLowerCase();
 
-                    print(
-                      "Level: ${parsentTutorregController.childEducationLevelController.text}",
-                    );
-                    print(
-                      "Type: ${parsentTutorregController.classTypeController.text}",
-                    );
-                    print(
-                      "Subject: ${parsentTutorregController.WhatsubjectController.text}",
-                    );
+                    // print(
+                    //   "Level: ${parsenttutorRegController.childEducationLevelController.text}",
+                    // );
+                    // print(
+                    //   "Type: ${parsenttutorRegController.classTypeController.text}",
+                    // );
+                    // print(
+                    //   "Subject: ${parsenttutorRegController.whatSubjectController.text}",
+                    // );
 
                     // ৫. API কল করুন
-                    await parsentTutorregController.parentRegistration();
+                    await parsenttutorRegController.parentRegistration();
                   },
                 ),
 
@@ -454,7 +456,7 @@ class HomeScreen extends StatelessWidget {
 
                 // ================== SKIP BUTTON (No Validation) ==================
                 CustomSuperButton(
-                  text: 'Skip',
+                  text: 'skip',
                   fontWeight: FontWeight.bold,
                   fontSize: 20.sp,
                   borderColor: Color(0xff2563EB),

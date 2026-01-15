@@ -1,8 +1,8 @@
-import 'package:first_project/teacher_presentScreen/cleses/classesTab.dart';
+import 'package:first_project/teacher_presentScreen/cleses/classes_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../techerall_widget/nevbutton/nevbutton.dart';
+import '../techerall_widget/nav_button/nav_button.dart';
 
 class Cleses extends StatefulWidget {
   const Cleses({super.key});
@@ -17,7 +17,7 @@ class _ClesesState extends State<Cleses> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Nev_Button2(SelectIndex: 2),
+      bottomNavigationBar: NavButton2(selectIndex: 2),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
@@ -68,8 +68,8 @@ class _ClesesState extends State<Cleses> {
   }
 }
 
-// import 'package:first_project/teacher_presentScreen/cleses/classesTab.dart';
-// import 'package:first_project/teacher_presentScreen/techerall_widget/nevbutton/nevbutton.dart';
+// import 'package:first_project/teacher_presentScreen/cleses/classes_tab.dart';
+// import 'package:first_project/teacher_presentScreen/techerall_widget/nav_button/nav_button.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 //
@@ -79,7 +79,7 @@ class _ClesesState extends State<Cleses> {
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
-//       bottomNavigationBar: Nev_Button2(SelectIndex: 2),
+//       bottomNavigationBar: NavButton2(selectIndex: 2),
 //       body: Padding(
 //         padding: const EdgeInsets.symmetric(horizontal: 20),
 //         child: Column(

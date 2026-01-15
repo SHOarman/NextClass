@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class HomeImgeView extends StatelessWidget {
   const HomeImgeView({super.key, required this.title, required this.img});
   final String title;
@@ -32,26 +31,19 @@ class HomeImgeView extends StatelessWidget {
           Positioned(
             left: 20,
             bottom: 50,
-            child: Container(
-              child: Text(
-                title,
-                style: TextStyle(color: Colors.white10),
-
-
-              ),
-            ),
+            child: Text(title, style: const TextStyle(color: Colors.white10)),
           ),
           Positioned(
             left: 20,
             bottom: 10,
             child: Row(
               children: [
-                CircleAvatar(backgroundImage: AssetImage('assets/backround/'),maxRadius: 13,),
-                SizedBox(width: 6,),
-                Text(
-                'nrwww',
-                    style: TextStyle(color: Colors.white10),
+                CircleAvatar(
+                  backgroundImage: AssetImage('assets/backround/'),
+                  maxRadius: 13,
                 ),
+                SizedBox(width: 6),
+                Text('nrwww', style: TextStyle(color: Colors.white10)),
               ],
             ),
           ),

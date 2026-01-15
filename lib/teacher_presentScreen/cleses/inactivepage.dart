@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../Services/Controller_view/CreateaClass.dart'; // Ensure this path is correct
+import 'package:first_project/Services/Controller_view/create_a_class.dart';
 import '../techerall_widget/customcard/customcard.dart'; // Import your CustomCardnew
 
 class InactivePage extends StatelessWidget {
@@ -9,12 +9,11 @@ class InactivePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 1. Initialize or find the Controller
     final ClassesController controller = Get.put(ClassesController());
 
     return Scaffold(
       body: Obx(() {
-        // 2. Show Loading Indicator while fetching data
+        //=====================IndicatorShow================================================
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
@@ -28,13 +27,11 @@ class InactivePage extends StatelessWidget {
             ),
           );
         }
-
-        // 4. Build the list using CustomCardnew
+        //===================================CustomCardnew======================================
         return ListView.builder(
           padding: EdgeInsets.only(top: 16.h, left: 16.w, right: 16.w),
           itemCount: controller.inactiveList.length,
           itemBuilder: (context, index) {
-
             // Get data for the specific item
             var item = controller.inactiveList[index];
             var props = item.properties;
@@ -45,7 +42,9 @@ class InactivePage extends StatelessWidget {
             String subject = props?.subject ?? "Untitled Subject";
 
             // Get Class Level (e.g., Class 6-10)
-            String level = props?.level != null ? "Class ${props!.level}" : "N/A";
+            String level = props?.level != null
+                ? "Class ${props!.level}"
+                : "N/A";
 
             // Determine Group vs Individual status
             bool isGroup = props?.isGroupClass ?? false;
@@ -60,7 +59,7 @@ class InactivePage extends StatelessWidget {
                 iconName: groupStatus,
                 onTap: () {
                   // ✅ Handle Tap Event
-                  print("Clicked on inactive class: $subject");
+                  // print("Clicked on inactive class: $subject");
                 },
               ),
             );

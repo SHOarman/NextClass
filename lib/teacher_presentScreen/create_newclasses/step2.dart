@@ -1,8 +1,8 @@
-import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
+import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/class_create_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
+import '../../Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
 
 class Step2 extends StatelessWidget {
   const Step2({super.key});

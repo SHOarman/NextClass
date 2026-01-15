@@ -59,9 +59,9 @@ class ImagePickureController extends GetxController {
       selectedFile.value = File(image.path);
       selectedImagePath.value = image.path;
 
-      print("Image selected: ${selectedFile.value!.path}");
+      // print("Image selected: ${selectedFile.value!.path}");
     } else {
-      print('No image selected');
+      // print('No image selected');
     }
   }
 }

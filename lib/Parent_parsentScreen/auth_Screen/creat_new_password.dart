@@ -1,21 +1,21 @@
-import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 // Check your import paths
 
-import '../../unity/appColors/appGradient.dart';
-import '../../unity/string_static/strig_static/staticString.dart';
-import '../widget/coustom_Textfield/coustom_Textfield.dart';
-import '../widget/coustom_button/coustom_button.dart';
+import '../../unity/app_colors/app_gradient.dart';
+import '../../unity/string_static/strig_static/static_string.dart';
+import '../widget/custom_textfield/custom_textfield.dart';
+import '../widget/custom_button/custom_button.dart';
 
 class CreatNewPassword extends StatelessWidget {
   const CreatNewPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Authcontroller authController = Get.put(Authcontroller());
+    final AuthController authController = Get.put(AuthController());
 
     return Scaffold(
       body: SingleChildScrollView(

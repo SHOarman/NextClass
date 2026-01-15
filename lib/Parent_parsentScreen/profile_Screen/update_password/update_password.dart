@@ -1,22 +1,22 @@
-import 'package:first_project/Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
+import 'package:first_project/Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
-import '../../../unity/appColors/appGradient.dart';
-import '../../../unity/string_static/strig_static/staticString.dart';
-import '../../widget/coustom_Textfield/coustom_Textfield.dart';
-import '../../widget/coustom_button/coustom_button.dart';
+import '../../../unity/app_colors/app_gradient.dart';
+import '../../../unity/string_static/strig_static/static_string.dart';
+import '../../widget/custom_textfield/custom_textfield.dart';
+import '../../widget/custom_button/custom_button.dart';
 
 class UpdatePassword extends StatelessWidget {
   const UpdatePassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //====================Controllercall===========================================
+    //====================controllercall===========================================
 
-    final Profilecontroller authController = Get.put(Profilecontroller());
+    final ProfileController authController = Get.put(ProfileController());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -52,14 +52,14 @@ class UpdatePassword extends StatelessWidget {
 
               SizedBox(height: 80.h),
 
-              /// ===============================Email label
+              /// ===============================email label
               Text(
                 'Current Password',
                 style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
               ),
               SizedBox(height: 12.h),
 
-              /// ====================================Email field
+              /// ====================================email field
               CustomPasswordFormField(
                 hintText: '********',
                 controller: authController.currentPassController,

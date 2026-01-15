@@ -16,7 +16,7 @@ class GenaralControler extends GetxController {
 
   final RxBool isSucces = false.obs;
 
-  ///////////////////////////Selecttype/===================================
+  ///////////////////////////SelectType/===================================
 
   RxString selectedCard = ''.obs;
   void selectCard(String title) {
@@ -87,7 +87,7 @@ class BookingController extends GetxController {
   }
 }
 
-class Selecttype extends GetxController {
+class SelectType extends GetxController {
   RxString selectedCard = ''.obs;
 
   void selectCard(String title) {

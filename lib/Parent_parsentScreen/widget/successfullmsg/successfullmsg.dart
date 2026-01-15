@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
 // Assuming these are your file paths
-import '../../../unity/appColors/appGradient.dart';
+import '../../../unity/app_colors/app_gradient.dart';
 
-import '../coustom_button/coustom_button.dart';
+import '../custom_button/custom_button.dart';
 
 class SuccessfullMsg extends StatelessWidget {
   final VoidCallback? onClose; // clearer name than "clear"

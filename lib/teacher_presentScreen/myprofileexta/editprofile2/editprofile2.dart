@@ -1,24 +1,24 @@
 import 'dart:io';
-import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_button/custom_button.dart';
 import 'package:first_project/core/route/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
-import '../../../Parent_parsentScreen/widget/backSleash/backSleash.dart';
-import '../../../unity/appColors/appGradient.dart';
-// ✅ Controller & Service Import
-import '../../../Services/api_Services/api_Services.dart';
+import '../../../Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
+import '../../../Parent_parsentScreen/widget/back_slash/back_slash.dart';
+import '../../../unity/app_colors/app_gradient.dart';
+// ✅ controller & Service Import
+import '../../../Services/api_Services/api_services.dart';
 
 class EditProfile2 extends StatelessWidget {
   const EditProfile2({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // ✅ Controller Call
-    final Profilecontroller profilecontroller = Get.put(Profilecontroller());
+    // ✅ controller Call
+    final ProfileController profileController = Get.put(ProfileController());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -45,12 +45,14 @@ class EditProfile2 extends StatelessWidget {
                     ImageProvider imageProvider;
 
                     // ১. লোকাল ফাইল (যদি পিক করা হয়)
-                    if (profilecontroller.hasImage) {
-                      imageProvider = FileImage(File(profilecontroller.pickedImage.value!.path));
+                    if (profileController.hasImage) {
+                      imageProvider = FileImage(
+                        File(profileController.pickedImage.value!.path),
+                      );
                     }
                     // ২. সার্ভার ইমেজ (যদি থাকে)
-                    else if (profilecontroller.profileImgUrl.value.isNotEmpty) {
-                      String imgUrl = profilecontroller.profileImgUrl.value;
+                    else if (profileController.profileImgUrl.value.isNotEmpty) {
+                      String imgUrl = profileController.profileImgUrl.value;
                       if (!imgUrl.startsWith('http')) {
                         imgUrl = "${ApiServices.baseUrl}$imgUrl";
                       }
@@ -58,7 +60,9 @@ class EditProfile2 extends StatelessWidget {
                     }
                     // ৩. ডিফল্ট ইমেজ
                     else {
-                      imageProvider = const AssetImage('assets/backround/profile.png');
+                      imageProvider = const AssetImage(
+                        'assets/backround/profile.png',
+                      );
                     }
 
                     return Container(
@@ -72,7 +76,7 @@ class EditProfile2 extends StatelessWidget {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.2),
+                            color: Colors.black.withValues(alpha: 0.2),
                             spreadRadius: 2,
                             blurRadius: 8,
                             offset: Offset(0, 4),
@@ -89,7 +93,7 @@ class EditProfile2 extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         // ইমেজ পিকার কল করা
-                        profilecontroller.pickImg();
+                        profileController.pickImg();
                       },
                       child: Container(
                         height: 35.h,
@@ -137,13 +141,12 @@ class EditProfile2 extends StatelessWidget {
             SizedBox(height: 8.h),
 
             /// ===== ✅ DYNAMIC BIO SHOWING HERE =====
-            Obx(() => Text(
-              profilecontroller.bio.value, // Controller থেকে Bio দেখানো হচ্ছে
-              style: const TextStyle(
-                color: Color(0xff555555),
-                height: 1.5,
+            Obx(
+              () => Text(
+                profileController.bio.value, // controller থেকে Bio দেখানো হচ্ছে
+                style: const TextStyle(color: Color(0xff555555), height: 1.5),
               ),
-            )),
+            ),
 
             SizedBox(height: 24.h),
 
@@ -171,15 +174,17 @@ class EditProfile2 extends StatelessWidget {
                 ),
                 SizedBox(width: 10.w),
 
-                // Name from Controller
-                Obx(() => Text(
-                  profilecontroller.fullName.value,
-                  style: TextStyle(
-                    color: const Color(0xff888888),
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
+                // Name from controller
+                Obx(
+                  () => Text(
+                    profileController.fullName.value,
+                    style: TextStyle(
+                      color: const Color(0xff888888),
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                )),
+                ),
               ],
             ),
             SizedBox(height: 16.h),
@@ -189,7 +194,7 @@ class EditProfile2 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Email',
+                  'email',
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w400,
@@ -198,15 +203,17 @@ class EditProfile2 extends StatelessWidget {
                 ),
                 SizedBox(width: 10.w),
 
-                // Email from Controller
-                Obx(() => Text(
-                  profilecontroller.email.value,
-                  style: TextStyle(
-                    color: const Color(0xff888888),
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
+                // email from controller
+                Obx(
+                  () => Text(
+                    profileController.email.value,
+                    style: TextStyle(
+                      color: const Color(0xff888888),
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                )),
+                ),
               ],
             ),
 

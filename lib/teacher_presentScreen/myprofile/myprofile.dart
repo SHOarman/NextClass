@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../Parent_parsentScreen/widget/myProfilecoustomCard/myProfilecoustomCard.dart';
+import '../../Parent_parsentScreen/widget/my_profile_custom_card/my_profile_custom_card.dart';
 
 class Myprofile extends StatelessWidget {
   const Myprofile({super.key});

@@ -1,17 +1,17 @@
 // import 'dart:ui';
-// import 'package:first_project/teacher_presentScreen/home_ui/homeController.dart';
-// import 'package:first_project/teacher_presentScreen/techerall_widget/nevbutton/nevbutton.dart';
-// import 'package:first_project/teacher_presentScreen/techerall_widget/teacher_homecard/teacher_homecard.dart';
-// import 'package:first_project/unity/appColors/appGradient.dart';
+// import 'package:first_project/teacher_presentScreen/home_ui/home_controller.dart';
+// import 'package:first_project/teacher_presentScreen/techerall_widget/nav_button/nav_button.dart';
+// import 'package:first_project/teacher_presentScreen/techerall_widget/teacher_home_card/teacher_home_card.dart';
+// import 'package:first_project/unity/app_colors/app_gradient.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:flutter_svg/svg.dart';
 // import 'package:get/get.dart';
 //
-// import '../../Services/Controller_view/CreateaClass.dart';
+// import '../../Services/controller_view/create_a_class.dart';
 // import '../techerall_widget/customcard/customcard.dart';
-// import '../techerall_widget/pendingCustomcard/pendingCustomcard.dart';
-// import '../techerall_widget/teacher_homecard/customProfilesecationteacher/customProfilesecationteacher.dart';
+// import '../techerall_widget/pending_custom_card/pending_custom_card.dart';
+// import '../techerall_widget/teacher_homecard/custom_profile_section_teacher/custom_profile_section_teacher.dart';
 //
 // class HomeUi extends StatelessWidget {
 //   const HomeUi({super.key});
@@ -22,7 +22,7 @@
 //     final ClassesController controller = Get.put(ClassesController());
 //
 //     return Scaffold(
-//       bottomNavigationBar: Nev_Button2(SelectIndex: 0),
+//       bottomNavigationBar: NavButton2(selectIndex: 0),
 //
 //       body: SingleChildScrollView(
 //         child: Stack(
@@ -51,7 +51,7 @@
 //               top: 20,
 //               left: 20,
 //               right: 20,
-//               child: customProfilesecationteacher(),
+//               child: CustomProfileSectionTeacher(),
 //             ),
 //
 //             Padding(
@@ -149,7 +149,7 @@
 //                       Text(
 //                         'Active Classes',
 //                         style: TextStyle(
-//                           color: Appgradient.TextColor,
+//                           color: Appgradient.textColor,
 //                           fontSize: 20,
 //                           fontWeight: FontWeight.w600,
 //                         ),
@@ -231,31 +231,31 @@
 //   }
 // }
 import 'dart:ui';
-import 'package:first_project/teacher_presentScreen/home_ui/homeController.dart';
-import 'package:first_project/teacher_presentScreen/techerall_widget/nevbutton/nevbutton.dart';
-import 'package:first_project/teacher_presentScreen/techerall_widget/teacher_homecard/teacher_homecard.dart';
-import 'package:first_project/unity/appColors/appGradient.dart';
+
+import 'package:first_project/teacher_presentScreen/techerall_widget/nav_button/nav_button.dart';
+import 'package:first_project/teacher_presentScreen/techerall_widget/teacher_home_card/teacher_home_card.dart';
+import 'package:first_project/unity/app_colors/app_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../Services/Controller_view/CreateaClass.dart';
+import 'package:first_project/Services/Controller_view/create_a_class.dart';
 import '../techerall_widget/customcard/customcard.dart';
-import '../techerall_widget/pendingCustomcard/pendingCustomcard.dart';
-import '../techerall_widget/teacher_homecard/customProfilesecationteacher/customProfilesecationteacher.dart';
+import '../techerall_widget/pending_custom_card/pending_custom_card.dart';
+import '../techerall_widget/teacher_home_card/custom_profile_section_teacher/custom_profile_section_teacher.dart';
 
 class HomeUi extends StatelessWidget {
   const HomeUi({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Initialize Controllers
-    final HomeController homeController = Get.put(HomeController());
+    // Initialize controllers
+    // final HomeController homeController = Get.put(HomeController());
     final ClassesController controller = Get.put(ClassesController());
 
     return Scaffold(
-      bottomNavigationBar: Nev_Button2(SelectIndex: 0),
+      bottomNavigationBar: NavButton2(selectIndex: 0),
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -285,7 +285,7 @@ class HomeUi extends StatelessWidget {
               top: 20,
               left: 20,
               right: 20,
-              child: customProfilesecationteacher(),
+              child: CustomProfileSectionTeacher(),
             ),
 
             Padding(
@@ -313,7 +313,7 @@ class HomeUi extends StatelessWidget {
                         ),
                         child: InkWell(
                           borderRadius: BorderRadius.circular(22.5),
-                          onTap: () => print('Notification Clicked'),
+                          onTap: () {}, // => print('Notification Clicked'),
                           child: Center(
                             child: SvgPicture.asset(
                               'assets/icon/cutomnotification.svg',
@@ -335,7 +335,8 @@ class HomeUi extends StatelessWidget {
                   // Main Feature Card (e.g., Grow as a Tutor)
                   TeacherHomecard(
                     title: 'Grow as a Tutor',
-                    subtitle: 'Create classes, manage your schedule,\n and connect with parents.',
+                    subtitle:
+                        'Create classes, manage your schedule,\n and connect with parents.',
                     imagePath: 'assets/backround/teacher.png',
                     iconname: 'Create new class',
                   ),
@@ -366,7 +367,7 @@ class HomeUi extends StatelessWidget {
                       Text(
                         'Active Classes',
                         style: TextStyle(
-                          color: Appgradient.TextColor,
+                          color: Appgradient.textColor,
                           fontSize: 20,
                           fontWeight: FontWeight.w600,
                         ),
@@ -406,20 +407,28 @@ class HomeUi extends StatelessWidget {
 
                     // 3. Render List of Approved Classes
                     return ListView.builder(
-                      padding: EdgeInsets.zero, // Removes default top padding to reduce gap
+                      padding: EdgeInsets
+                          .zero, // Removes default top padding to reduce gap
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(), // Inside SingleChildScrollView
+                      physics:
+                          const NeverScrollableScrollPhysics(), // Inside SingleChildScrollView
                       // Show only top 3 on home page
-                      itemCount: controller.activeList.length > 3 ? 3 : controller.activeList.length,
+                      itemCount: controller.activeList.length > 3
+                          ? 3
+                          : controller.activeList.length,
                       itemBuilder: (context, index) {
                         var item = controller.activeList[index];
                         var props = item.properties;
 
                         // Extract data for display
                         String subject = props?.subject ?? "N/A";
-                        String level = props?.level != null ? "Class ${props!.level}" : "N/A";
+                        String level = props?.level != null
+                            ? "Class ${props!.level}"
+                            : "N/A";
                         bool isGroup = props?.isGroupClass ?? false;
-                        String groupStatus = isGroup ? "Group Class" : "Individual Class";
+                        String groupStatus = isGroup
+                            ? "Group Class"
+                            : "Individual Class";
 
                         return Padding(
                           padding: EdgeInsets.only(bottom: 16.h),
@@ -428,7 +437,7 @@ class HomeUi extends StatelessWidget {
                             subtitle: level,
                             iconName: groupStatus,
                             onTap: () {
-                              print("Selected: $subject");
+                              // print("selected: $subject");
                               // Navigate to details if needed
                             },
                           ),

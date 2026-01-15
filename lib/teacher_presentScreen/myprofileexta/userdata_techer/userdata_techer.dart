@@ -2,34 +2,33 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:first_project/core/route/route.dart';
-// ✅ Import Controller and Services
-import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
-import '../../../Services/api_Services/api_Services.dart';
+// ✅ Import controller and Services
+import '../../../Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
+import '../../../Services/api_Services/api_services.dart';
 
 class UserdataTecher extends StatelessWidget {
   const UserdataTecher({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // ✅ 1. Controller Initialize
-    final Profilecontroller controller = Get.put(Profilecontroller());
+    // ✅ 1. controller Initialize
+    final ProfileController controller = Get.put(ProfileController());
 
     return GestureDetector(
       onTap: () {
-        print('Edit Profile Tapped');
+        // print('Edit Profile Tapped');
         controller.loadCurrentData();
-        Get.toNamed(AppRoute.editprofileteacher);
+        Get.toNamed(AppRoute.editProfileTeacher);
       },
       child: Container(
         height: 90,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-          color: const Color(0xffF3F5F9),
+          color: const Color(0xFFF3F5F9),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Stack(
           children: [
-
             /// ===== ✅ 2. Dynamic Profile Image =====
             Positioned(
               top: 20,
@@ -40,7 +39,9 @@ class UserdataTecher extends StatelessWidget {
                 ImageProvider imageProvider;
 
                 if (controller.hasImage) {
-                  imageProvider = FileImage(File(controller.pickedImage.value!.path));
+                  imageProvider = FileImage(
+                    File(controller.pickedImage.value!.path),
+                  );
                 } else if (controller.profileImgUrl.value.isNotEmpty) {
                   String imgUrl = controller.profileImgUrl.value;
                   if (!imgUrl.startsWith('http')) {
@@ -48,7 +49,9 @@ class UserdataTecher extends StatelessWidget {
                   }
                   imageProvider = NetworkImage(imgUrl);
                 } else {
-                  imageProvider = const AssetImage('assets/backround/profile.png');
+                  imageProvider = const AssetImage(
+                    'assets/backround/profile.png',
+                  );
                 }
 
                 return CircleAvatar(
@@ -63,21 +66,30 @@ class UserdataTecher extends StatelessWidget {
             Positioned(
               left: 100,
               top: 26,
-              child: Obx(() => Text(
-                controller.fullName.value, // Controller থেকে নাম
-                style: const TextStyle(color: Color(0xff2563EB), fontSize: 18),
-              )),
+              child: Obx(
+                () => Text(
+                  controller.fullName.value, // controller থেকে নাম
+                  style: const TextStyle(
+                    color: Color(0xFF2563EB),
+                    fontSize: 18,
+                  ),
+                ),
+              ),
             ),
 
-
-            /// ===== ✅ 4. Dynamic Email =====
+            /// ===== ✅ 4. Dynamic email =====
             Positioned(
               left: 100,
               top: 54,
-              child: Obx(() => Text(
-                controller.email.value, // Controller থেকে ইমেইল
-                style: const TextStyle(color: Color(0xff888888), fontSize: 14),
-              )),
+              child: Obx(
+                () => Text(
+                  controller.email.value, // controller থেকে ইমেইল
+                  style: const TextStyle(
+                    color: Color(0xFF888888),
+                    fontSize: 14,
+                  ),
+                ),
+              ),
             ),
           ],
         ),

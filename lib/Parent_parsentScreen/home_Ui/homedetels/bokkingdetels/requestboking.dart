@@ -1,12 +1,12 @@
-import 'package:first_project/Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import '../../../../core/succesfullcontroler/succesfullcontroler.dart';
-import '../../../../unity/appColors/appGradient.dart';
-import '../../../widget/coustom_button/coustom_button.dart';
+import '../../../../unity/app_colors/app_gradient.dart';
+import '../../../widget/custom_button/custom_button.dart';
 
 class Requestboking extends StatelessWidget {
   const Requestboking({super.key});
@@ -87,11 +87,11 @@ class Requestboking extends StatelessWidget {
                         name: 'Successful',
                         namedetels:
                             'Your request have been sent successfully at tutor. Please wait for tutor acceptance. ',
-                        bu_name1: 'Track booking',
+                        buName1: 'Track booking',
                         ontap1: () {
                           //====================Request====================done
                         },
-                        bu_name2: 'Back to home',
+                        buName2: 'Back to home',
                         // ontap2: () {
                         //   Get.back();
                         // },

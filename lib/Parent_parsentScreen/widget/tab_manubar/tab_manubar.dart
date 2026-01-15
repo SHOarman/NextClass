@@ -2,7 +2,7 @@ import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/bokkingdet
 import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/completed/completed.dart';
 import 'package:flutter/material.dart';
 
-import '../../home_Ui/homedetels/bokkingdetels/requested/Rejected.dart';
+import '../../home_Ui/homedetels/bokkingdetels/requested/rejected.dart';
 
 class TapBar extends StatefulWidget {
   const TapBar({super.key});
@@ -38,9 +38,9 @@ class TapBarState extends State<TapBar> {
             dividerColor: Colors.transparent,
             indicatorSize: TabBarIndicatorSize.tab,
             tabs: [
-              Tab(text: 'Accepted'),
+              Tab(text: 'accepted'),
               Tab(text: 'Completed'),
-              Tab(text: 'Rejected'),
+              Tab(text: 'rejected'),
             ],
           ),
         ),

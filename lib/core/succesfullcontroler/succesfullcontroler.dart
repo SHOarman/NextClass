@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
-import '../../unity/appColors/appGradient.dart';
+import '../../Parent_parsentScreen/widget/custom_button/custom_button.dart';
+import '../../unity/app_colors/app_gradient.dart';
 
 class Successfullmsg extends StatelessWidget {
   final Function? clear;
   final String name;
   final String namedetels;
-  final String? bu_name1;
+  final String? buName1;
   final VoidCallback? ontap1;
-  final String? bu_name2;
+  final String? buName2;
   final VoidCallback? ontap2;
 
   const Successfullmsg({
     super.key,
     required this.name,
     required this.namedetels,
-    this.bu_name1,
+    this.buName1,
     this.ontap1,
-    this.bu_name2,
+    this.buName2,
     this.ontap2,
     this.clear,
   });
@@ -64,11 +64,11 @@ class Successfullmsg extends StatelessWidget {
           SizedBox(height: 10.h),
 
           // ✅ Button 1
-          if (bu_name1 != null)
+          if (buName1 != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: CustomSuperButton(
-                text: bu_name1!,
+                text: buName1!,
                 bgGradient: Appgradient.primaryGradient,
                 onTap:
                     ontap1 ??
@@ -80,11 +80,11 @@ class Successfullmsg extends StatelessWidget {
           SizedBox(height: 10.h),
 
           // ✅ Button 2
-          if (bu_name2 != null)
+          if (buName2 != null)
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: CustomSuperButton(
-                text: bu_name2!,
+                text: buName2!,
                 borderColor: Appgradient.pramary1,
                 textGradient: Appgradient.primaryGradient,
                 onTap:
@@ -106,14 +106,14 @@ class Reviewpopupmsg extends StatelessWidget {
   // ... (properties) ...
   final String name;
   final String namedetels;
-  final String bu_name1;
+  final String buName1;
   final Function ontap1;
 
   const Reviewpopupmsg({
     super.key,
     required this.name,
     required this.namedetels,
-    required this.bu_name1,
+    required this.buName1,
     required this.ontap1,
   });
 
@@ -156,7 +156,7 @@ class Reviewpopupmsg extends StatelessWidget {
           SizedBox(height: 20.h),
 
           CustomSuperButton(
-            text: bu_name1,
+            text: buName1,
             borderColor: Appgradient.pramary1,
             textGradient: Appgradient.primaryGradient,
             onTap: () {

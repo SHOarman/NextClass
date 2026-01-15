@@ -18,7 +18,7 @@ class Custom3TabButton extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: List.generate(tabs.length, (index) {
-        final isSelected = selectedIndex.value == index;
+        final isselected = selectedIndex.value == index;
 
         return Obx(() => GestureDetector(
           onTap: () {
@@ -28,13 +28,13 @@ class Custom3TabButton extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             decoration: BoxDecoration(
-              color: isSelected ? const Color(0xff2563EB) : Colors.grey[300],
+              color: isselected ? const Color(0xff2563EB) : Colors.grey[300],
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
               tabs[index],
               style: TextStyle(
-                color: isSelected ? Colors.white : Colors.black54,
+                color: isselected ? Colors.white : Colors.black54,
                 fontWeight: FontWeight.bold,
               ),
             ),

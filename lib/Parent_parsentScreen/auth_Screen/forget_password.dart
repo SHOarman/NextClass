@@ -1,21 +1,21 @@
-import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
-import 'package:first_project/Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
-import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/auth_controller.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_button/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-import '../../unity/appColors/appGradient.dart';
-import '../../unity/string_static/strig_static/staticString.dart';
+import '../../unity/app_colors/app_gradient.dart';
+import '../../unity/string_static/strig_static/static_string.dart';
 
 class ForgetPassword extends StatelessWidget {
   const ForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Authcontroller authcontroller = Get.put(Authcontroller());
+    final AuthController authController = Get.put(AuthController());
 
     return Scaffold(
       body: SafeArea(
@@ -42,14 +42,14 @@ class ForgetPassword extends StatelessWidget {
 
                 SizedBox(height: 40.h),
                 Text(
-                  "Email",
+                  "email",
                   style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
                 ),
                 SizedBox(height: 12.h),
 
                 CustomTextField(
                   hintText: 'Enter your email...',
-                  controller: authcontroller.forgetPasswordController,
+                  controller: authController.forgetPasswordController,
                   iconPath: "assets/icon/Frame.svg",
                   enableValidation: true,
                   keyboardType: TextInputType.emailAddress,
@@ -62,7 +62,7 @@ class ForgetPassword extends StatelessWidget {
                   fontSize: 20,
                   textColor: Colors.white,
                   onTap: () {
-                    authcontroller.forgetPassword();
+                    authController.forgetPassword();
                   },
                   bgGradient: Appgradient.primaryGradient,
                 ),

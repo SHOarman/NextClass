@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../Acceptedvalue.dart';
-import '../Pendingvalue.dart';
-import '../Rejectedvalue.dart';
+import '../accepted_value.dart';
+import '../pending_value.dart';
+import '../rejected_value.dart';
 
 class Bokingtabbar extends StatelessWidget {
   const Bokingtabbar({super.key});
@@ -23,8 +23,8 @@ class Bokingtabbar extends StatelessWidget {
             indicatorSize: TabBarIndicatorSize.tab,
             tabs: [
               Tab(text: 'Pending 20'),
-              Tab(text: 'Accepted 30'),
-              Tab(text: 'Rejected 5'),
+              Tab(text: 'accepted 30'),
+              Tab(text: 'rejected 5'),
             ],
           ),
 
@@ -36,8 +36,8 @@ class Bokingtabbar extends StatelessWidget {
             child: const TabBarView(
               children: [
                 Pendingvalue(),
-                Acceptedvalue(),
-                Rejectedvalue(),
+                AcceptedValue(),
+                RejectedValue(),
               ],
             ),
           ),

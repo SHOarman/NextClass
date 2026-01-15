@@ -10,19 +10,19 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-import '../../../unity/appColors/appGradient.dart';
-import '../../widget/coustom_Textfield/coustom_Textfield.dart';
-import '../../widget/coustom_button/coustom_button.dart';
+import '../../../unity/app_colors/app_gradient.dart';
+import '../../widget/custom_textfield/custom_textfield.dart';
+import '../../widget/custom_button/custom_button.dart';
 
-class Filtermodel extends StatelessWidget {
-  const Filtermodel({super.key});
+class FilterModel extends StatelessWidget {
+  const FilterModel({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Card3 Controller = Get.put(Card3());
+    final Card3 controller = Get.put(Card3());
     final Card4 newController = Get.put(Card4());
-    TextEditingController bagecetcontroller = TextEditingController();
-    TextEditingController subjectcontroller = TextEditingController();
+    TextEditingController bagecetController = TextEditingController();
+    TextEditingController subjectController = TextEditingController();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -60,9 +60,9 @@ class Filtermodel extends StatelessWidget {
                     child: Obx(
                       () => CustomCard(
                         title: "Preschool",
-                        selected: Controller.selectedCard.value == "Preschool",
+                        selected: controller.selectedCard.value == "Preschool",
                         onTap: () {
-                          Controller.selectCard("Preschool");
+                          controller.selectCard("Preschool");
                         },
                       ),
                     ),
@@ -72,9 +72,9 @@ class Filtermodel extends StatelessWidget {
                     child: Obx(
                       () => CustomCard(
                         title: "Primary",
-                        selected: Controller.selectedCard.value == "Primary",
+                        selected: controller.selectedCard.value == "Primary",
                         onTap: () {
-                          Controller.selectCard("Primary");
+                          controller.selectCard("Primary");
                         },
                       ),
                     ),
@@ -84,9 +84,9 @@ class Filtermodel extends StatelessWidget {
                     child: Obx(
                       () => CustomCard(
                         title: "Secondary",
-                        selected: Controller.selectedCard.value == "Secondary",
+                        selected: controller.selectedCard.value == "Secondary",
                         onTap: () {
-                          Controller.selectCard("Secondary");
+                          controller.selectCard("Secondary");
                         },
                       ),
                     ),
@@ -97,7 +97,7 @@ class Filtermodel extends StatelessWidget {
               SizedBox(height: 24.h),
 
               Text(
-                'Select class type',
+                'select class type',
                 style: TextStyle(
                   color: Color(0xff2B2B2B),
                   fontSize: 16.sp,
@@ -151,7 +151,7 @@ class Filtermodel extends StatelessWidget {
               SizedBox(height: 16.h),
 
               SimpleCard(
-                controller: subjectcontroller,
+                controller: subjectController,
                 hintText: 'Write subjects name...',
               ),
 
@@ -168,7 +168,7 @@ class Filtermodel extends StatelessWidget {
               SizedBox(height: 16.h),
 
               SimpleCard(
-                controller: bagecetcontroller,
+                controller: bagecetController,
                 hintText: 'Enter your budget...',
               ),
 
@@ -179,7 +179,7 @@ class Filtermodel extends StatelessWidget {
                 fontSize: 20.sp,
                 fontWeight: FontWeight.bold,
                 onTap: () {
-                  if (Controller.selectedCard.value.isEmpty) {
+                  if (controller.selectedCard.value.isEmpty) {
                     Get.snackbar("Error", "Please select kid level!");
                     return;
                   }

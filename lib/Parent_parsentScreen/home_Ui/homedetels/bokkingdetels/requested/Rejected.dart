@@ -1,10 +1,11 @@
+// ignore_for_file: file_names
+// Verified: filename is rejected.dart
 import 'package:first_project/core/route/route.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../teacher_presentScreen/techerall_widget/customcard/customcard.dart';
-
-
 
 class Rejected extends StatelessWidget {
   const Rejected({super.key});
@@ -21,22 +22,19 @@ class Rejected extends StatelessWidget {
               CustomCardnew(
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Reject by you',
+                iconName: 'reject by you',
                 imagePath: 'assets/backround/boking1.png',
-                onTap: (){
-
+                onTap: () {
                   Get.toNamed(AppRoute.rejectiondetels);
                 },
-
               ),
               SizedBox(height: 16),
               CustomCardnew(
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Reject by you',
+                iconName: 'reject by you',
                 imagePath: 'assets/backround/boking2.png',
-                onTap: (){
-
+                onTap: () {
                   Get.toNamed(AppRoute.rejectiondetels);
                 },
               ),
@@ -45,23 +43,20 @@ class Rejected extends StatelessWidget {
               CustomCardnew(
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Reject by you',
+                iconName: 'reject by you',
 
                 imagePath: 'assets/backround/boking6.png',
-                onTap: (){
-
+                onTap: () {
                   Get.toNamed(AppRoute.rejectiondetels);
                 },
-
               ),
               SizedBox(height: 16),
               CustomCardnew(
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Reject by you',
+                iconName: 'reject by you',
                 imagePath: 'assets/backround/boking5.png',
-                onTap: (){
-
+                onTap: () {
                   Get.toNamed(AppRoute.rejectiondetels);
                 },
               ),
@@ -70,26 +65,22 @@ class Rejected extends StatelessWidget {
               CustomCardnew(
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Reject by you',
+                iconName: 'reject by you',
                 imagePath: 'assets/backround/boking4.png',
 
-                onTap: (){
-
+                onTap: () {
                   Get.toNamed(AppRoute.rejectiondetels);
                 },
-
               ),
               SizedBox(height: 16),
               CustomCardnew(
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Reject by you',
+                iconName: 'reject by you',
                 imagePath: 'assets/backround/boking3.png',
-              onTap: (){
-
-                Get.toNamed(AppRoute.rejectiondetels);
-              },
-
+                onTap: () {
+                  Get.toNamed(AppRoute.rejectiondetels);
+                },
               ),
             ],
           ),

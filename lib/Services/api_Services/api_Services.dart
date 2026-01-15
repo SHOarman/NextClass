@@ -11,18 +11,18 @@ class ApiServices {
   static const String passwordResetRequest = '$baseUrl/api/accounts/auth/password_reset_request/';
   static const String passwordResetConfirm = '$baseUrl/api/accounts/auth/password_reset_confirm/';
 
-  static const String Parentreg = '$baseUrl/api/auth/register/parent/';
-  static const String Tutorreg = '$baseUrl/api/auth/register/tutor/';
+  static const String parentReg = '$baseUrl/api/auth/register/parent/';
+  static const String tutorReg = '$baseUrl/api/auth/register/tutor/';
   static const String changepassword = '$baseUrl/api/accounts/users/change_password/';
   static const String uploadocument = "$baseUrl/api/tutors/profiles/upload_document/";
   static const String updateAcound = "$baseUrl/api/accounts/users/me/";
 
-  static const String Createavailability = "$baseUrl/api/tutors/availability/bulk_create/";
-  static const String top_rated = "$baseUrl/api/tutors/profiles/top_rated/";
+  static const String createAvailability = "$baseUrl/api/tutors/availability/bulk_create/";
+  static const String topRated = "$baseUrl/api/tutors/profiles/topRated/";
   static const String featuredtutors = "$baseUrl/api/tutors/profiles/featured/";
 
   // Create Class URL
-  static const String CreateClass = '$baseUrl/api/classes/';
+  static const String createClass = '$baseUrl/api/classes/';
 
   // Bookings
   static const String bookings = "$baseUrl/api/bookings/";
@@ -30,4 +30,9 @@ class ApiServices {
   static const String techerallclasses = "$baseUrl/api/classes/my_listings/";
 
   static const String classSummary = "$baseUrl/api/classes/summary/";
+
+  //==========================location ways Parents=================================
+
+ static const String teachersListLocationsWise="$baseUrl//api/tutors/profiles/?lat=1.3521&lng=103.8198&radius=10";
+
 }

@@ -1,8 +1,8 @@
-import 'package:first_project/teacher_presentScreen/chat2/convarcation.dart';
+import 'package:first_project/teacher_presentScreen/Chat2/convarcation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../techerall_widget/nevbutton/nevbutton.dart';
+import '../techerall_widget/nav_button/nav_button.dart';
 
 class Chat2 extends StatelessWidget {
   const Chat2({super.key});
@@ -16,28 +16,28 @@ class Chat2 extends StatelessWidget {
         "msg": "Hi, How are you?",
         "time": "02:40 am",
         "isUnread": true, // Highlight this chat
-        "img": "assets/backround/explor4.png"
+        "img": "assets/backround/explor4.png",
       },
       {
         "name": "Tutor name",
         "msg": "You do not give me the amount...",
         "time": "March 16",
         "isUnread": false,
-        "img": "assets/backround/Frame 91.png"
+        "img": "assets/backround/Frame 91.png",
       },
       {
         "name": "Tutor name",
         "msg": "It's going nice. What about you...",
         "time": "March 12",
         "isUnread": false,
-        "img": "assets/backround/explor5.png"
+        "img": "assets/backround/explor5.png",
       },
       {
         "name": "Tutor name",
         "msg": "thanks for your help!",
         "time": "11:20 pm",
         "isUnread": false,
-        "img": "assets/backround/explor6.png"
+        "img": "assets/backround/explor6.png",
       },
     ];
 
@@ -48,44 +48,48 @@ class Chat2 extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        automaticallyImplyLeading: false, // Removes back button since it's a main tab
+        automaticallyImplyLeading:
+            false, // Removes back button since it's a main tab
         title: Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            "Chat with tutor",
+            "chat with tutor",
             style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 22.sp
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 22.sp,
             ),
           ),
         ),
       ),
 
-      // Main Body: List of Chats
+      // Main Body: List of chats
       body: ListView.separated(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
         itemCount: chats.length,
-        separatorBuilder: (_, __) => SizedBox(height: 10.h),
+        separatorBuilder: (context, index) => SizedBox(height: 10.h),
         itemBuilder: (context, index) {
           final chat = chats[index];
           final bool isUnread = chat['isUnread'];
 
           return GestureDetector(
             // ... inside ListView builder ...
-              onTap: () {
-                // Use Get.to() instead of Get.toNamed()
-                Get.to(
-                      () => ConversationScreen(),
-                  transition: Transition.rightToLeft, // Optional: Makes it look like a chat app
-                  duration: const Duration(milliseconds: 300),
-                );
-              },
+            onTap: () {
+              // Use Get.to() instead of Get.toNamed()
+              Get.to(
+                () => ConversationScreen(),
+                transition: Transition
+                    .rightToLeft, // Optional: Makes it look like a chat app
+                duration: const Duration(milliseconds: 300),
+              );
+            },
             child: Container(
               padding: EdgeInsets.all(12.w),
               decoration: BoxDecoration(
                 // Greenish background if unread, Light Grey/White if read
-                color: isUnread ? const Color(0xFFF0FDF4) : const Color(0xFFF9FAFB),
+                color: isUnread
+                    ? const Color(0xFFF0FDF4)
+                    : const Color(0xFFF9FAFB),
                 borderRadius: BorderRadius.circular(12.r),
               ),
               child: Row(
@@ -106,9 +110,18 @@ class Chat2 extends StatelessWidget {
                         Text(
                           chat['name'],
                           style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15.sp,
-                              color: Colors.black87
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.sp,
+                            color: Colors.black87,
+                            shadows: [
+                              BoxShadow(
+                                color: Color(
+                                  0xff000000,
+                                ).withValues(alpha: 0.12),
+                                blurRadius: 19,
+                                offset: Offset(0, 4),
+                              ),
+                            ],
                           ),
                         ),
                         SizedBox(height: 4.h),
@@ -117,9 +130,11 @@ class Chat2 extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              color: isUnread ? Colors.black87 : Colors.grey,
-                              fontWeight: isUnread ? FontWeight.w500 : FontWeight.normal,
-                              fontSize: 13.sp
+                            color: isUnread ? Colors.black87 : Colors.grey,
+                            fontWeight: isUnread
+                                ? FontWeight.w500
+                                : FontWeight.normal,
+                            fontSize: 13.sp,
                           ),
                         ),
                       ],
@@ -130,9 +145,11 @@ class Chat2 extends StatelessWidget {
                   Text(
                     chat['time'],
                     style: TextStyle(
-                        color: isUnread ? Colors.green : Colors.grey,
-                        fontSize: 11.sp,
-                        fontWeight: isUnread ? FontWeight.bold : FontWeight.normal
+                      color: isUnread ? Colors.green : Colors.grey,
+                      fontSize: 11.sp,
+                      fontWeight: isUnread
+                          ? FontWeight.bold
+                          : FontWeight.normal,
                     ),
                   ),
                 ],
@@ -143,7 +160,7 @@ class Chat2 extends StatelessWidget {
       ),
 
       // Your Navigation Button
-      bottomNavigationBar: Nev_Button2(SelectIndex: 3),
+      bottomNavigationBar: NavButton2(selectIndex: 3),
     );
   }
 }

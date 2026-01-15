@@ -1,19 +1,21 @@
-import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
+// ignore_for_file: file_names
+// Verified: filename is login_screen.dart
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../core/route/Genaral_Controler/genaral_controler.dart';
-import '../../core/route/route.dart';
-import '../../unity/appColors/appGradient.dart';
-import '../../unity/string_static/strig_static/staticString.dart';
-import '../widget/coustom_Textfield/coustom_Textfield.dart';
-import '../widget/coustom_button/coustom_button.dart';
+import 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart';
+import 'package:first_project/core/route/route.dart';
+import 'package:first_project/unity/app_colors/app_gradient.dart';
+import 'package:first_project/unity/string_static/strig_static/static_string.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_button/custom_button.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
 
-  final Authcontroller authcontroller = Get.put(Authcontroller());
+  final AuthController authController = Get.put(AuthController());
 
   final GenaralControler controller = Get.put(GenaralControler());
 
@@ -57,13 +59,13 @@ class LoginScreen extends StatelessWidget {
 
               SizedBox(height: 44.h),
 
-              /// Email
-              Text(Staticstring.Email, style: const TextStyle(fontSize: 16)),
+              /// email
+              Text(Staticstring.email, style: const TextStyle(fontSize: 16)),
               SizedBox(height: 12.h),
 
               CustomTextField(
                 hintText: 'Enter your email...',
-                controller: authcontroller.emailController,
+                controller: authController.emailController,
                 iconPath: "assets/icon/Frame.svg",
                 enableValidation: true,
                 keyboardType: TextInputType.emailAddress,
@@ -80,7 +82,7 @@ class LoginScreen extends StatelessWidget {
 
               CustomPasswordFormField(
                 hintText: '********',
-                controller: authcontroller.passwordController,
+                controller: authController.passwordController,
                 iconPath: 'assets/icon/Frame (1).svg',
                 enableValidation: true,
                 //regex: RegExp(r'^(?=.*[a-z])(?=.*\d).{8,}$'),
@@ -120,9 +122,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        // authcontroller.forgetPassword();
+                        // authController.forgetPassword();
                         Get.toNamed(AppRoute.forgetpassword);
-                        print('jsjfjwf');
+                        // print('jsjfjwf');
                       },
                       child: const Text(
                         "Forgot password?",
@@ -141,11 +143,11 @@ class LoginScreen extends StatelessWidget {
                 fontSize: 20,
                 bgGradient: Appgradient.primaryGradient,
                 onTap: () {
-                  if (authcontroller.emailController.text.isEmpty ||
-                      authcontroller.passwordController.text.isEmpty) {
+                  if (authController.emailController.text.isEmpty ||
+                      authController.passwordController.text.isEmpty) {
                     Get.snackbar(
                       "Error",
-                      "Email and password required",
+                      "email and password required",
                       snackPosition: SnackPosition.BOTTOM,
                       backgroundColor: Colors.redAccent,
                       colorText: Colors.white,
@@ -153,10 +155,10 @@ class LoginScreen extends StatelessWidget {
                     return;
                   }
 
-                  print(
-                    "Login Clicked. Remember Me: ${controller.isCheck.value}",
-                  );
-                  authcontroller.loginaccound();
+                  // print(
+                  //   "Login Clicked. Remember Me: ${controller.isCheck.value}",
+                  // );
+                  authController.loginaccound();
                 },
               ),
 

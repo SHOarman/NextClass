@@ -1,22 +1,21 @@
-import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../core/route/Genaral_Controler/genaral_controler.dart';
 import '../../core/route/route.dart';
-import '../../unity/appColors/appGradient.dart';
-import '../../unity/string_static/strig_static/staticString.dart';
-import '../widget/coustom_Textfield/coustom_Textfield.dart';
-import '../widget/coustom_button/coustom_button.dart';
+import '../../unity/app_colors/app_gradient.dart';
+import '../../unity/string_static/strig_static/static_string.dart';
+import '../widget/custom_textfield/custom_textfield.dart';
+import '../widget/custom_button/custom_button.dart';
 
 class RegScreen extends StatelessWidget {
   const RegScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    //final Authcontroller authController=Get.put(Authcontroller());
-    final Authcontroller authcontroller = Get.put(Authcontroller());
+    final AuthController authController = Get.put(AuthController());
 
     final GenaralControler genController = Get.put(GenaralControler());
 
@@ -65,15 +64,15 @@ class RegScreen extends StatelessWidget {
               SizedBox(height: 12.h),
               CustomTextField(
                 hintText: 'Enter your full name...',
-                controller: authcontroller.nameController,
+                controller: authController.nameController,
                 iconPath: 'assets/icon/Frame (2).svg',
                 enableValidation: false,
               ),
 
               SizedBox(height: 24.h),
-              // Email
+              // email
               Text(
-                Staticstring.Email,
+                Staticstring.email,
                 style: TextStyle(
                   color: const Color(0xff2B2B2B),
                   fontSize: 16.sp,
@@ -82,7 +81,7 @@ class RegScreen extends StatelessWidget {
               SizedBox(height: 12.h),
               CustomTextField(
                 hintText: 'Enter your email...',
-                controller: authcontroller.createemailController,
+                controller: authController.createemailController,
                 iconPath: "assets/icon/Frame.svg",
                 enableValidation: true,
                 regex: RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'),
@@ -101,7 +100,7 @@ class RegScreen extends StatelessWidget {
               SizedBox(height: 12.h),
               CustomPasswordFormField(
                 hintText: '********',
-                controller: authcontroller.createpasswordController,
+                controller: authController.createpasswordController,
                 iconPath: 'assets/icon/Frame (1).svg',
               ),
 
@@ -117,7 +116,7 @@ class RegScreen extends StatelessWidget {
               SizedBox(height: 12.h),
               CustomPasswordFormField(
                 hintText: '********',
-                controller: authcontroller.confirmPasswordController,
+                controller: authController.confirmPasswordController,
                 iconPath: 'assets/icon/Frame (1).svg',
               ),
 
@@ -125,7 +124,7 @@ class RegScreen extends StatelessWidget {
               // CONTENT TYPE SELECTION (Solved Logic)
               // ============================================
               Text(
-                'Select your role',
+                'select your role',
                 style: TextStyle(
                   color: const Color(0xff2B2B2B),
                   fontSize: 16.sp,
@@ -136,16 +135,16 @@ class RegScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   // Opens the bottom sheet menu
-                  _showRoleSelectionBottomSheet(
+                  _showRoleselectionBottomSheet(
                     context,
-                    authcontroller.contenTypeController,
+                    authController.contenTypeController,
                   );
                 },
                 child: AbsorbPointer(
                   // Prevents keyboard from opening
                   child: SimpleCard(
-                    controller: authcontroller.contenTypeController,
-                    hintText: 'Select your role',
+                    controller: authController.contenTypeController,
+                    hintText: 'select your role',
                   ),
                 ),
               ),
@@ -202,14 +201,14 @@ class RegScreen extends StatelessWidget {
                             backgroundColor: Colors.redAccent,
                             colorText: Colors.white,
                           );
-                        } else if (authcontroller
+                        } else if (authController
                             .contenTypeController
                             .text
                             .isEmpty) {
                           // Error if Content Type is empty
                           Get.snackbar(
                             "Required",
-                            "Select your role",
+                            "select your role",
                             backgroundColor: Colors.orange,
                             colorText: Colors.white,
                           );
@@ -217,10 +216,10 @@ class RegScreen extends StatelessWidget {
                           // Success Logic
                           // Convert "Teacher" to "teacher" for database if needed
                           // Convert "Teacher" to "teacher" for database if needed
-                          // String dbRole = authcontroller.contenTypeController.text.toLowerCase();
-                          // print("Select your role: $dbRole");
+                          // String dbRole = authController.contenTypeController.text.toLowerCase();
+                          // print("select your role: $dbRole");
 
-                          authcontroller.register();
+                          authController.register();
                         }
                       },
                       bgGradient: Appgradient.primaryGradient,
@@ -259,9 +258,9 @@ class RegScreen extends StatelessWidget {
   }
 
   // ==========================================
-  // Bottom Sheet Logic for Selection
+  // Bottom Sheet Logic for selection
   // ==========================================
-  void _showRoleSelectionBottomSheet(
+  void _showRoleselectionBottomSheet(
     BuildContext context,
     TextEditingController controller,
   ) {
@@ -288,7 +287,7 @@ class RegScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             const Text(
-              "Select Role",
+              "select Role",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20),

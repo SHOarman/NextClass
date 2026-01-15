@@ -1,5 +1,4 @@
-
-import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_Controller/authController.dart';
+import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,10 +16,13 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   final Color primaryBlue = const Color(0xFF2563EB);
 
   // 1. Find the AuthController
-  final Authcontroller authController = Get.put(Authcontroller());
+  final AuthController authController = Get.put(AuthController());
 
   // 2. Create a list of 6 controllers for the 6 boxes
-  final List<TextEditingController> otpControllers = List.generate(6, (index) => TextEditingController());
+  final List<TextEditingController> otpControllers = List.generate(
+    6,
+    (index) => TextEditingController(),
+  );
 
   @override
   void dispose() {
@@ -46,7 +48,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
                 Text(
                   'Verify OTP',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: primaryBlue),
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: primaryBlue,
+                  ),
                 ),
                 const SizedBox(height: 16),
 
@@ -56,7 +62,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   style: const TextStyle(fontSize: 14, color: Colors.grey),
                 ),
                 const SizedBox(height: 40),
-
 
                 // 3. Generate 6 OTP boxes dynamically
                 Form(
@@ -102,31 +107,35 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       String otpCode = otpControllers.map((e) => e.text).join();
 
                       if (otpCode.length == 6) {
-
                         // 5. Save OTP in controller for the next screen
                         authController.resetOtpController.text = otpCode;
 
                         // 6. Navigate to Create New Password Screen
                         Get.toNamed(AppRoute.createnewpassword);
-
                       } else {
                         Get.snackbar(
-                            "Required",
-                            "Please enter full 6 digit OTP",
-                            backgroundColor: Colors.orange,
-                            colorText: Colors.white,
-                            snackPosition: SnackPosition.BOTTOM
+                          "Required",
+                          "Please enter full 6 digit OTP",
+                          backgroundColor: Colors.orange,
+                          colorText: Colors.white,
+                          snackPosition: SnackPosition.BOTTOM,
                         );
                       }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: primaryBlue,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                       elevation: 0,
                     ),
                     child: const Text(
                       'Submit',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -143,11 +152,17 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     },
                     style: OutlinedButton.styleFrom(
                       side: BorderSide(color: primaryBlue),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
                     child: Text(
                       'Back',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: primaryBlue),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                        color: primaryBlue,
+                      ),
                     ),
                   ),
                 ),

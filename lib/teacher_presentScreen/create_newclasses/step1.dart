@@ -1,4 +1,4 @@
-import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/classCreateController.dart';
+import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/class_create_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -107,7 +107,7 @@ class Step1 extends StatelessWidget {
     required String groupValue,
     required Function(String) onTap,
   }) {
-    bool isSelected = value == groupValue;
+    bool isselected = value == groupValue;
 
     return GestureDetector(
       onTap: () => onTap(value),
@@ -117,15 +117,15 @@ class Step1 extends StatelessWidget {
           color: const Color(0xFFF5F6F8), // Light grey background
           borderRadius: BorderRadius.circular(8.r),
           // Show blue border only if selected
-          border: isSelected ? Border.all(color: Colors.blue, width: 1) : null,
+          border: isselected ? Border.all(color: Colors.blue, width: 1) : null,
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min, // Takes only as much space as needed
           children: [
             // Radio Circle Icon
             Icon(
-              isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
-              color: isSelected ? Colors.blue : Colors.grey, // Changes color based on selection
+              isselected ? Icons.radio_button_checked : Icons.radio_button_off,
+              color: isselected ? Colors.blue : Colors.grey, // Changes color based on selection
               size: 20.sp,
             ),
             SizedBox(width: 8.w),
@@ -135,7 +135,7 @@ class Step1 extends StatelessWidget {
               title,
               style: TextStyle(
                 fontSize: 14.sp,
-                color: isSelected ? Colors.black : const Color(0xff7C7C7C),
+                color: isselected ? Colors.black : const Color(0xff7C7C7C),
                 fontWeight: FontWeight.w500,
               ),
             ),

@@ -2,9 +2,10 @@ import 'package:first_project/core/route/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../../unity/appColors/appGradient.dart';
-import '../../../widget/backSleash/backSleash.dart';
-import '../../../widget/coustom_button/coustom_button.dart';
+
+import '../../../../unity/app_colors/app_gradient.dart';
+import '../../../widget/back_slash/back_slash.dart';
+import '../../../widget/custom_button/custom_button.dart';
 
 class RecommendedPageDetesTecher3 extends StatefulWidget {
   const RecommendedPageDetesTecher3({super.key});
@@ -217,7 +218,7 @@ class _RecommendedPageDetesTecher0State
             SizedBox(height: 16.h),
 
             CustomSuperButton(
-              text: 'Chat with tutor',
+              text: 'chat with tutor',
               fontWeight: FontWeight.bold,
               fontSize: 20,
               onTap: () {

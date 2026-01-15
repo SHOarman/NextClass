@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
+import '../../Parent_parsentScreen/widget/custom_button/custom_button.dart';
 import '../../teacher_presentScreen/create_newclasses/step1.dart';
 import '../../teacher_presentScreen/create_newclasses/step2.dart';
 import '../../teacher_presentScreen/create_newclasses/step3.dart';
-import '../../unity/appColors/appGradient.dart';
+import '../../unity/app_colors/app_gradient.dart';
 
-import 'classCreateController/classCreateController.dart';
-import 'customStepindecotor.dart';
+import 'classCreateController/class_create_controller.dart';
+import 'custom_step_indicator.dart';
 
 class CreateNewclasses extends StatefulWidget {
   const CreateNewclasses({super.key});
@@ -19,7 +19,7 @@ class CreateNewclasses extends StatefulWidget {
 }
 
 class _CreateNewclassesState extends State<CreateNewclasses> {
-  // --- Initialize Controller ---
+  // --- Initialize controller ---
   final CreateClassController controller = Get.put(CreateClassController());
 
   // --- Track Current Step Index ---

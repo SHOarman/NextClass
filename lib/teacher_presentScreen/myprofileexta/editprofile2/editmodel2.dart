@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../Parent_parsentScreen/profile_Screen/profileController/profileController.dart';
-import '../../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
-import '../../../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
-import '../../../unity/appColors/appGradient.dart';
+import '../../../Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
+import '../../../Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
+import '../../../Parent_parsentScreen/widget/custom_button/custom_button.dart';
+import '../../../unity/app_colors/app_gradient.dart';
 
 class EditModel2 extends StatelessWidget {
   const EditModel2({super.key});
@@ -13,7 +13,7 @@ class EditModel2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // কন্ট্রোলার ইনিশিলাইজ করা
-    final Profilecontroller controller = Get.put(Profilecontroller());
+    final ProfileController controller = Get.put(ProfileController());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -37,9 +37,10 @@ class EditModel2 extends StatelessWidget {
             Text(
               'Full name',
               style: TextStyle(
-                  color: const Color(0xff2B2B2B),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16.sp),
+                color: const Color(0xff2B2B2B),
+                fontWeight: FontWeight.w500,
+                fontSize: 16.sp,
+              ),
             ),
             SizedBox(height: 16.h),
 
@@ -55,9 +56,10 @@ class EditModel2 extends StatelessWidget {
             Text(
               'Bio',
               style: TextStyle(
-                  color: const Color(0xff2B2B2B),
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16.sp),
+                color: const Color(0xff2B2B2B),
+                fontWeight: FontWeight.w500,
+                fontSize: 16.sp,
+              ),
             ),
             SizedBox(height: 16.h),
 
@@ -74,11 +76,8 @@ class EditModel2 extends StatelessWidget {
               text: 'Save Changes',
               bgGradient: Appgradient.primaryGradient,
               onTap: () {
-
                 if (controller.editProfileController.text.isNotEmpty) {
-
-                  controller.Editprofile();
-
+                  controller.updateProfile();
                 } else {
                   Get.snackbar(
                     "Error",

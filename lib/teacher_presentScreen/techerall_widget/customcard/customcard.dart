@@ -25,11 +25,11 @@ class CustomCardnew extends StatelessWidget {
 
   Color getStatusColor(String? iconName) {
     switch (iconName) {
-      case 'Accepted':
+      case 'accepted':
         return const Color(0xff1fc56a);
       case 'Pending':
         return const Color(0xffd1a30e);
-      case 'Reject by you':
+      case 'reject by you':
         return const Color(0xff991B1B);
       case 'Group Class':
         return const Color(0xff1fc56a);

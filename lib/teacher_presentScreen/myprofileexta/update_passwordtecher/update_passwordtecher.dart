@@ -3,12 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import '../../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
-import '../../../Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
+import '../../../Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
+import '../../../Parent_parsentScreen/widget/custom_button/custom_button.dart';
 
 import '../../../core/route/route.dart';
-import '../../../unity/appColors/appGradient.dart';
-import '../../../unity/string_static/strig_static/staticString.dart';
+import '../../../unity/app_colors/app_gradient.dart';
+import '../../../unity/string_static/strig_static/static_string.dart';
 
 class UpdatePasswordtecher extends StatelessWidget {
   const UpdatePasswordtecher({super.key});
@@ -57,14 +57,14 @@ class UpdatePasswordtecher extends StatelessWidget {
 
               SizedBox(height: 80.h),
 
-              /// ===============================Email label
+              /// ===============================email label
               Text(
                 'Current Password',
                 style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
               ),
               SizedBox(height: 12.h),
 
-              /// ====================================Email field
+              /// ====================================email field
               CustomPasswordFormField(
                 hintText: '********',
                 controller: currentPasswordController,

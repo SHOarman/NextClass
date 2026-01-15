@@ -6,9 +6,9 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 
 import '../../../../../../../core/succesfullcontroler/succesfullcontroler.dart';
-import '../../../../../../../unity/appColors/appGradient.dart';
-import '../../../../../../widget/coustom_Textfield/coustom_Textfield.dart';
-import '../../../../../../widget/coustom_button/coustom_button.dart';
+import '../../../../../../../unity/app_colors/app_gradient.dart';
+import '../../../../../../widget/custom_textfield/custom_textfield.dart';
+import '../../../../../../widget/custom_button/custom_button.dart';
 
 class Reviewadd extends StatefulWidget {
   const Reviewadd({super.key});
@@ -176,7 +176,7 @@ class _ReviewaddState extends State<Reviewadd> {
                         name: 'Thank you!',
                         namedetels:
                             'Your rating & review submitted successfully.',
-                        bu_name1: 'Back to booking',
+                        buName1: 'Back to booking',
                         ontap1: () {
 
                           Get.showSnackbar(

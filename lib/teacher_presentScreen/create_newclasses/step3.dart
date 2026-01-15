@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../Parent_parsentScreen/widget/coustom_Textfield/coustom_Textfield.dart';
-import '../MapPickerScreen/mapPickerScreen.dart';
-import 'classCreateController/classCreateController.dart';
+import '../../Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
+import '../map_picker_screen/map_picker_screen.dart';
+import 'classCreateController/class_create_controller.dart';
 
 class Step3 extends StatelessWidget {
   const Step3({super.key});

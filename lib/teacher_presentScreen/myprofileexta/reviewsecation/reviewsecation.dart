@@ -3,7 +3,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import '../../../../../teacher_presentScreen/techerall_widget/customcard/customcard.dart';
-import '../../../Parent_parsentScreen/widget/backSleash/backSleash.dart';
+import '../../../Parent_parsentScreen/widget/back_slash/back_slash.dart';
 
 class Reviewsecation extends StatelessWidget {
   const Reviewsecation({super.key});

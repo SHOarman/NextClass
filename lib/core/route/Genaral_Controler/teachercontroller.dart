@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class Teachercontroller extends GetxController{
+class TeacherController extends GetxController{
 
 
   RxString selectedRole = ''.obs;
@@ -16,7 +16,7 @@ class Teachercontroller extends GetxController{
 
   final RxBool isSucces = false.obs;
 
-  ///////////////////////////Selecttype/===================================
+  ///////////////////////////SelectType/===================================
 
   RxString selectedCard = ''.obs;
   void selectCard(String title) {

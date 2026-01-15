@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../../unity/appColors/appGradient.dart';
-import '../../widget/coustom_Textfield/coustom_Textfield.dart';
-import '../../widget/coustom_button/coustom_button.dart';
-import '../profileController/profileController.dart';
+import '../../../unity/app_colors/app_gradient.dart';
+import '../../widget/custom_textfield/custom_textfield.dart';
+import '../../widget/custom_button/custom_button.dart';
+import '../profileController/profile_controller.dart';
 
 class EditModel extends StatelessWidget {
   const EditModel({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final Profilecontroller profilecontroller = Get.find<Profilecontroller>();
+    final ProfileController profileController = Get.find<ProfileController>();
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -33,13 +33,25 @@ class EditModel extends StatelessWidget {
 
             Text(
               'Full name',
-              style: TextStyle(color: const Color(0xff2B2B2B), fontWeight: FontWeight.w500, fontSize: 16.sp),
+              style: TextStyle(
+                color: const Color(0xff2B2B2B),
+                fontWeight: FontWeight.w500,
+                fontSize: 16.sp,
+              ),
             ),
             SizedBox(height: 16.h),
 
-            /// ===== TextField (Controller connected)
+            /// ===== TextField (controller connected)
             Simpletextfield(
-              controller: profilecontroller.editProfileController,
+              controller: profileController.editProfileController,
+              hintText: 'Write here..',
+            ),
+
+            SizedBox(height: 16.h),
+
+            /// ===== Bio TextField =====
+            Customdetesl(
+              controller: profileController.bioController,
               hintText: 'Write here..',
             ),
 
@@ -50,9 +62,9 @@ class EditModel extends StatelessWidget {
               text: 'Save Changes',
               bgGradient: Appgradient.primaryGradient,
               onTap: () {
-                if (profilecontroller.editProfileController.text.isNotEmpty) {
+                if (profileController.editProfileController.text.isNotEmpty) {
                   // ✅✅✅ API Call Here ✅✅✅
-                  profilecontroller.Editprofile();
+                  profileController.updateProfile();
                 } else {
                   Get.snackbar(
                     "Required",

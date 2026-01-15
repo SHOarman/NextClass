@@ -1,11 +1,11 @@
-import 'package:first_project/Parent_parsentScreen/widget/coustom_button/coustom_button.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_button/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../../../../core/route/route.dart';
-import '../../../../../../unity/appColors/appGradient.dart';
-import '../../../../../widget/coustom_Textfield/coustom_Textfield.dart';
+import '../../../../../../unity/app_colors/app_gradient.dart';
+import '../../../../../widget/custom_textfield/custom_textfield.dart';
 import '../../../../../../core/succesfullcontroler/succesfullcontroler.dart';
 
 class CancelModel extends StatefulWidget {
@@ -16,8 +16,8 @@ class CancelModel extends StatefulWidget {
 }
 
 class _CancelModelState extends State<CancelModel> {
-  bool isYesSelected = false;
-  bool isNoSelected = false;
+  bool isYesselected = false;
+  bool isNoselected = false;
 
   final TextEditingController reasonController = TextEditingController();
 
@@ -63,14 +63,14 @@ class _CancelModelState extends State<CancelModel> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          isYesSelected = true;
-                          isNoSelected = false;
+                          isYesselected = true;
+                          isNoselected = false;
                         });
                       },
                       child: Container(
                         height: 40.h,
                         decoration: BoxDecoration(
-                          color: isYesSelected
+                          color: isYesselected
                               ? const Color(0xff2563EB)
                               : const Color(0xffDBDBDB),
                           borderRadius: BorderRadius.circular(6),
@@ -79,7 +79,7 @@ class _CancelModelState extends State<CancelModel> {
                           child: Text(
                             'Yes',
                             style: TextStyle(
-                              color: isYesSelected
+                              color: isYesselected
                                   ? Colors.white
                                   : const Color(0xff2B2B2B),
                               fontSize: 16,
@@ -97,15 +97,15 @@ class _CancelModelState extends State<CancelModel> {
                     child: GestureDetector(
                       onTap: () {
                         setState(() {
-                          isNoSelected = true;
-                          isYesSelected = false;
+                          isNoselected = true;
+                          isYesselected = false;
                         });
                         Get.back();
                       },
                       child: Container(
                         height: 40.h,
                         decoration: BoxDecoration(
-                          color: isNoSelected
+                          color: isNoselected
                               ? const Color(0xff2563EB)
                               : const Color(0xffDBDBDB),
                           borderRadius: BorderRadius.circular(6),
@@ -114,7 +114,7 @@ class _CancelModelState extends State<CancelModel> {
                           child: Text(
                             'No',
                             style: TextStyle(
-                              color: isNoSelected
+                              color: isNoselected
                                   ? Colors.white
                                   : const Color(0xff2B2B2B),
                               fontSize: 16,
@@ -166,7 +166,7 @@ class _CancelModelState extends State<CancelModel> {
                         name: 'Successful',
                         namedetels:
                         'You have successfully cancelled the booking.',
-                        bu_name1: 'Back to booking',
+                        buName1: 'Back to booking',
                         ontap1: () {
                           Get.toNamed(AppRoute.homedetels);
                         },

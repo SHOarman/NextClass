@@ -28,7 +28,7 @@ class Accpectd extends StatelessWidget {
               CustomCardnew(
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Accepted',
+                iconName: 'accepted',
                 imagePath: 'assets/backround/boking2.png',
 
                 onTap: () {
@@ -42,7 +42,7 @@ class Accpectd extends StatelessWidget {
               CustomCardnew(
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Accepted',
+                iconName: 'accepted',
                 imagePath: 'assets/backround/boking6.png',
 
                 onTap: () {
@@ -54,7 +54,7 @@ class Accpectd extends StatelessWidget {
               CustomCardnew(
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Accepted',
+                iconName: 'accepted',
                 imagePath: 'assets/backround/boking5.png',
 
                 onTap: () {
@@ -77,7 +77,7 @@ class Accpectd extends StatelessWidget {
                 },
                 title: 'Tutor name',
                 subtitle: 'Subject name',
-                iconName: 'Accepted',
+                iconName: 'accepted',
                 imagePath: 'assets/backround/boking3.png',
               ),
             ],

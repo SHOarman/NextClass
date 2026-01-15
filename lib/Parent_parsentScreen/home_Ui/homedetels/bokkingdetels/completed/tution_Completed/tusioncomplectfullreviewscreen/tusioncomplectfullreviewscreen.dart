@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../../../../widget/backSleash/backSleash.dart';
+import '../../../../../../widget/back_slash/back_slash.dart';
 
 class Tusioncomplectfullreviewscreen extends StatefulWidget {
   const Tusioncomplectfullreviewscreen({super.key});

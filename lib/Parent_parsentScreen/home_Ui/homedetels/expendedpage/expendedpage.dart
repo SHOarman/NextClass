@@ -5,10 +5,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import '../../../../core/route/route.dart';
-import '../../../../unity/string_static/strig_static/staticString.dart';
-import '../../../widget/backSleash/backSleash.dart';
-import '../../../widget/coustom_Textfield/coustom_Textfield.dart';
-import '../../homewigdet/recommended Classes/recommended Classes.dart';
+import '../../../../unity/string_static/strig_static/static_string.dart';
+import '../../../widget/back_slash/back_slash.dart';
+import '../../../widget/custom_textfield/custom_textfield.dart';
+import '../../homewigdet/recommended Classes/recommended_classes.dart';
 
 class Expendedpage extends StatelessWidget {
   const Expendedpage({super.key});
@@ -78,8 +78,8 @@ class Expendedpage extends StatelessWidget {
                     imagepath: Staticstring.explperdetels[index]['imagepath'],
                     tutorielname:
                         Staticstring.explperdetels[index]['tutorielname'],
-                    Subjectname:
-                        Staticstring.explperdetels[index]['Subjectname'],
+                    subjectName:
+                        Staticstring.explperdetels[index]['subjectName'],
                     classname: Staticstring.explperdetels[index]['classname'],
                     amount: Staticstring.explperdetels[index]['amount'],
                   );
