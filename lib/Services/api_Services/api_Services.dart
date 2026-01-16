@@ -33,6 +33,16 @@ class ApiServices {
 
   //==========================location ways Parents=================================
 
- static const String teachersListLocationsWise="$baseUrl//api/tutors/profiles/?lat=1.3521&lng=103.8198&radius=10";
+  static const String teachersListLocationsWise = "$baseUrl/api/tutors/profiles/nearby/";
 
-}
+  //=====================Booking Secation=========================================================
+  static const String createbookings="$baseUrl/api/bookings/";
+//   static const String all_listofboking="$baseUrl/api/bookings/";
+//   static const String n="$baseUrl"
+//   static const String n="$baseUrl"
+//   static const String n="$baseUrl"
+
+
+//======================================Classes Nearb============================
+  static const String parentApprovedClasses = "$baseUrl/api/classes/parent-approved-by-admin/";
+ }

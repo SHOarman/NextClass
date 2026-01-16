@@ -1,4 +1,4 @@
-import 'package:first_project/core/route/Genaral_Controler/location_controller.dart';
+import 'package:first_project/core/route/general_controller/location_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

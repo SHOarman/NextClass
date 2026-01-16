@@ -6,7 +6,7 @@
 // import 'package:get/get_instance/src/extension_instance.dart';
 // import 'package:get/get_navigation/src/extension_navigation.dart';
 // import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-// import '../../core/route/Genaral_Controler/genaral_controler.dart';
+// import '../../core/route/general_controller/general_controller.dart';
 // import '../../core/route/route.dart';
 // import '../../unity/app_colors/app_gradient.dart';
 // import '../auth_Screen/auth_controller/parsent_tutorReg_controller/parsent_tutorReg_controller.dart';
@@ -237,7 +237,7 @@ import 'package:first_project/Parent_parsentScreen/home_Ui/allow_location/allow_
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../core/route/Genaral_Controler/genaral_controler.dart';
+import '../../core/route/general_controller/general_controller.dart';
 import '../../core/route/route.dart';
 import '../../unity/app_colors/app_gradient.dart';
 import '../auth_Screen/auth_controller/parsent_tutor_reg_controller/parsent_tutor_reg_controller.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../core/route/Genaral_Controler/genaral_controler.dart';
+import '../../core/route/general_controller/general_controller.dart';
 import '../../core/route/route.dart';
 import '../../unity/app_colors/app_gradient.dart';
 import '../../unity/string_static/strig_static/static_string.dart';

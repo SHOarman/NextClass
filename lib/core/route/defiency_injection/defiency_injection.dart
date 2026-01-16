@@ -2,7 +2,8 @@ import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/a
 import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/parsent_tutor_reg_controller/parsent_tutor_reg_controller.dart';
 import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_controller_teacher.dart';
 import 'package:first_project/Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
-import 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart';
+import 'package:first_project/Services/Controller_view/home_par_controller.dart';
+import 'package:first_project/core/route/general_controller/general_controller.dart';
 import 'package:first_project/teacher_presentScreen/Techechercontrler/techercotroler.dart';
 import 'package:first_project/teacher_presentScreen/chat2/msg_controller.dart';
 import 'package:first_project/teacher_presentScreen/create_newclasses/classCreateController/class_create_controller.dart';
@@ -11,12 +12,10 @@ import 'package:first_project/teacher_presentScreen/create_newclasses/create_new
 import 'package:first_project/teacher_presentScreen/home_ui/home_controller.dart';
 import 'package:get/get.dart';
 
-
-
 import '../../succesfullcontroler/succesfullcontroler.dart';
-import '../Genaral_Controler/imagepickurecontroller.dart';
-import '../Genaral_Controler/date_controller.dart';
-import '../Genaral_Controler/teachercontroller.dart';
+import '../general_controller/imagepickurecontroller.dart';
+import '../general_controller/date_controller.dart';
+import '../general_controller/teachercontroller.dart';
 
 class DependencyInjection {
   static void bindings() {
@@ -29,12 +28,12 @@ class DependencyInjection {
 
     //successful msg----------------
     Get.lazyPut(
-          () => Successfullmsg(
+      () => Successfullmsg(
         name: '',
         namedetels: '',
-            buName1: '',
+        buName1: '',
         ontap1: () {},
-            buName2: '',
+        buName2: '',
         ontap2: () {},
       ),
     );
@@ -45,7 +44,7 @@ class DependencyInjection {
 
     //==================Selecttype===============
     Get.lazyPut(() => SelectType());
-    Get.lazyPut(() =>ChatController());
+    Get.lazyPut(() => ChatController());
     Get.lazyPut(() => ChatControllerTeacher());
 
     //=========================imagepiker===========================
@@ -58,7 +57,7 @@ class DependencyInjection {
     Get.lazyPut(() => AuthController());
 
     //=====================profileController=========================================...........>>>>>>>>>>
-    Get.lazyPut(() =>  ProfileController());
+    Get.lazyPut(() => ProfileController());
 
     //======================>>>>>>>>>>>>>>>tutoril===============Controller====================>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -79,5 +78,8 @@ class DependencyInjection {
 
     //==================================Classescontroller=============================================
     Get.lazyPut(() => CreateNewclasses());
+
+    //======================================ParentHomeController====================================
+    Get.lazyPut(()=>ParentHomeController());
   }
 }

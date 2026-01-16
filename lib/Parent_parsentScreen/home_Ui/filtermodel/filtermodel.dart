@@ -1,6 +1,6 @@
 import 'package:first_project/Parent_parsentScreen/widget/coustomcard/coustomcard.dart';
 
-import 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart';
+import 'package:first_project/core/route/general_controller/general_controller.dart';
 import 'package:first_project/core/route/route.dart';
 
 import 'package:flutter/material.dart';

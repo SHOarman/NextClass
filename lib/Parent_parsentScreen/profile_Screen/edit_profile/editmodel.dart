@@ -47,13 +47,13 @@ class EditModel extends StatelessWidget {
               hintText: 'Write here..',
             ),
 
-            SizedBox(height: 16.h),
+          //  SizedBox(height: 16.h),
 
             /// ===== Bio TextField =====
-            Customdetesl(
-              controller: profileController.bioController,
-              hintText: 'Write here..',
-            ),
+            // Customdetesl(
+            //   controller: profileController.bioController,
+            //   hintText: 'Write here..',
+            // ),
 
             SizedBox(height: 48.h),
 
@@ -63,7 +63,7 @@ class EditModel extends StatelessWidget {
               bgGradient: Appgradient.primaryGradient,
               onTap: () {
                 if (profileController.editProfileController.text.isNotEmpty) {
-                  // ✅✅✅ API Call Here ✅✅✅
+
                   profileController.updateProfile();
                 } else {
                   Get.snackbar(

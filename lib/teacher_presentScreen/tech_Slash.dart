@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 import '../Parent_parsentScreen/auth_Screen/auth_controller/parsent_tutor_reg_controller/parsent_tutor_reg_controller.dart';
 import '../Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
 import '../Parent_parsentScreen/widget/custom_button/custom_button.dart';
-import '../core/route/Genaral_Controler/date_controller.dart';
-import '../core/route/Genaral_Controler/imagepickurecontroller.dart';
+import '../core/route/general_controller/date_controller.dart';
+import '../core/route/general_controller/imagepickurecontroller.dart';
 import '../unity/app_colors/app_gradient.dart';
 import 'Techechercontrler/techercotroler.dart';
 import 'package:first_project/teacher_presentScreen/techerall_widget/techerall_widget.dart'; // Ensure this path is correct

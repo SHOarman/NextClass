@@ -98,7 +98,7 @@ class Chartdetels extends StatelessWidget {
                   // Profile Picture
                   CircleAvatar(
                     radius: 30.r,
-                    backgroundImage: NetworkImage(chat['img']),
+                    backgroundImage: AssetImage(chat['img']),
                     backgroundColor: Colors.grey.shade200,
                   ),
                   SizedBox(width: 12.w),

@@ -2,7 +2,7 @@
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:get/get.dart';
 //
-// import 'package:first_project/core/route/Genaral_Controler/location_controller.dart';
+// import 'package:first_project/core/route/general_controller/location_controller.dart';
 //
 // class AllowLocationDialog extends StatelessWidget {
 //   const AllowLocationDialog({super.key});
@@ -135,7 +135,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:first_project/core/route/Genaral_Controler/location_controller.dart';
+import 'package:first_project/core/route/general_controller/location_controller.dart';
 
 class AllowLocationDialog extends StatelessWidget {
   AllowLocationDialog({super.key});
