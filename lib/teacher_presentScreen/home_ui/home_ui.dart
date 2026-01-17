@@ -232,6 +232,7 @@
 // }
 import 'dart:ui';
 
+import 'package:first_project/core/route/route.dart';
 import 'package:first_project/teacher_presentScreen/techerall_widget/nav_button/nav_button.dart';
 import 'package:first_project/teacher_presentScreen/techerall_widget/teacher_home_card/teacher_home_card.dart';
 import 'package:first_project/unity/app_colors/app_gradient.dart';
@@ -374,7 +375,13 @@ class HomeUi extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          // Navigate to Classes Tab or full list
+
+                          Get.toNamed(AppRoute.sealactive);
+
+
+
+
+
                         },
                         child: Text(
                           'See all',
@@ -411,7 +418,7 @@ class HomeUi extends StatelessWidget {
                           .zero, // Removes default top padding to reduce gap
                       shrinkWrap: true,
                       physics:
-                          const NeverScrollableScrollPhysics(), // Inside SingleChildScrollView
+                          const NeverScrollableScrollPhysics(),
                       // Show only top 3 on home page
                       itemCount: controller.activeList.length > 3
                           ? 3

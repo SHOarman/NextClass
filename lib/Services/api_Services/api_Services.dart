@@ -14,6 +14,7 @@ class ApiServices {
   static const String parentReg = '$baseUrl/api/auth/register/parent/';
   static const String tutorReg = '$baseUrl/api/auth/register/tutor/';
   static const String changepassword = '$baseUrl/api/accounts/users/change_password/';
+
   static const String uploadocument = "$baseUrl/api/tutors/profiles/upload_document/";
   static const String updateAcound = "$baseUrl/api/accounts/users/me/";
 
@@ -35,14 +36,18 @@ class ApiServices {
 
   static const String teachersListLocationsWise = "$baseUrl/api/tutors/profiles/nearby/";
 
-  //=====================Booking Secation=========================================================
+  //=====================Booking Secation=========================================
   static const String createbookings="$baseUrl/api/bookings/";
-//   static const String all_listofboking="$baseUrl/api/bookings/";
-//   static const String n="$baseUrl"
-//   static const String n="$baseUrl"
-//   static const String n="$baseUrl"
 
 
-//======================================Classes Nearb============================
+  //======================================Classes Nearb============================
   static const String parentApprovedClasses = "$baseUrl/api/classes/parent-approved-by-admin/";
- }
+
+  //=============== Socket Web () ==========================
+  static String get socketBaseUrl {
+    return baseUrl.replaceAll('http', 'ws');
+  }
+
+  static const String chatMessages = "$baseUrl/api/chat/messages/";
+  static const String conversationsBase = "$baseUrl/api/chat/conversations/";
+}

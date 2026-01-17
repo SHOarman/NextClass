@@ -2,6 +2,7 @@ import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/a
 import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/parsent_tutor_reg_controller/parsent_tutor_reg_controller.dart';
 import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_controller_teacher.dart';
 import 'package:first_project/Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
+import 'package:first_project/Services/Controller_view/chartmsg.dart';
 import 'package:first_project/Services/Controller_view/home_par_controller.dart';
 import 'package:first_project/core/route/general_controller/general_controller.dart';
 import 'package:first_project/teacher_presentScreen/Techechercontrler/techercotroler.dart';
@@ -44,8 +45,8 @@ class DependencyInjection {
 
     //==================Selecttype===============
     Get.lazyPut(() => SelectType());
-    Get.lazyPut(() => ChatController());
-    Get.lazyPut(() => ChatControllerTeacher());
+   // Get.lazyPut(() => ChatController());
+     // Get.lazyPut(() => ChatControllerTeacher());
 
     //=========================imagepiker===========================
     Get.lazyPut(() => ImagePickureController());
@@ -80,6 +81,9 @@ class DependencyInjection {
     Get.lazyPut(() => CreateNewclasses());
 
     //======================================ParentHomeController====================================
-    Get.lazyPut(()=>ParentHomeController());
+   // Get.lazyPut(()=>ParentHomeController());
+
+    //========================chatadata==================================
+    Get.lazyPut(()=>Chartmsg());
   }
 }
