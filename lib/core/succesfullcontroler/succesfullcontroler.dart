@@ -28,7 +28,6 @@ class Successfullmsg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 440,
       width: 360,
       constraints: BoxConstraints(maxWidth: 392.w),
       decoration: BoxDecoration(
@@ -120,7 +119,6 @@ class Reviewpopupmsg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 420,
       width: 360,
       //
       constraints: BoxConstraints(maxWidth: 392.w),

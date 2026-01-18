@@ -165,7 +165,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -250,7 +249,8 @@ class _Chat2State extends State<Chat2> {
 
               // === Data Parsing ===
               var otherUser = chat['other_user'] ?? chat['participant'] ?? {};
-              String name = otherUser['full_name'] ?? otherUser['username'] ?? "Unknown";
+              String name =
+                  otherUser['full_name'] ?? otherUser['username'] ?? "Unknown";
               String? image = otherUser['profile_picture'];
 
               String lastMsg = "Start conversation";
@@ -266,7 +266,7 @@ class _Chat2State extends State<Chat2> {
                 onTap: () {
                   // Navigate to Details with Data
                   Get.to(
-                        () => ConversationScreen(
+                    () => ConversationScreen(
                       conversationId: convId,
                       name: name,
                       image: image ?? "",
@@ -308,7 +308,9 @@ class _Chat2State extends State<Chat2> {
                                 color: Colors.black87,
                                 shadows: [
                                   BoxShadow(
-                                    color: const Color(0xff000000).withOpacity(0.12),
+                                    color: const Color(
+                                      0xff000000,
+                                    ).withValues(alpha: 0.12),
                                     blurRadius: 19,
                                     offset: const Offset(0, 4),
                                   ),
@@ -321,8 +323,12 @@ class _Chat2State extends State<Chat2> {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                color: unreadCount > 0 ? Colors.black87 : Colors.grey,
-                                fontWeight: unreadCount > 0 ? FontWeight.w500 : FontWeight.normal,
+                                color: unreadCount > 0
+                                    ? Colors.black87
+                                    : Colors.grey,
+                                fontWeight: unreadCount > 0
+                                    ? FontWeight.w500
+                                    : FontWeight.normal,
                                 fontSize: 13.sp,
                               ),
                             ),
@@ -336,7 +342,9 @@ class _Chat2State extends State<Chat2> {
                         style: TextStyle(
                           color: unreadCount > 0 ? Colors.green : Colors.grey,
                           fontSize: 11.sp,
-                          fontWeight: unreadCount > 0 ? FontWeight.bold : FontWeight.normal,
+                          fontWeight: unreadCount > 0
+                              ? FontWeight.bold
+                              : FontWeight.normal,
                         ),
                       ),
                     ],
@@ -362,6 +370,8 @@ class _Chat2State extends State<Chat2> {
         return DateFormat('hh:mm a').format(dt);
       }
       return DateFormat('MMM d').format(dt);
-    } catch (e) { return ""; }
+    } catch (e) {
+      return "";
+    }
   }
 }

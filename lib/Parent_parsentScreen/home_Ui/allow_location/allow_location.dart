@@ -276,7 +276,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -287,10 +286,8 @@ class AllowLocationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
     final UserLocationController locationController =
-    Get.isRegistered<UserLocationController>()
+        Get.isRegistered<UserLocationController>()
         ? Get.find<UserLocationController>()
         : Get.put(UserLocationController());
 
@@ -310,7 +307,7 @@ class AllowLocationDialog extends StatelessWidget {
               height: 60.h,
               width: 60.w,
               decoration: BoxDecoration(
-                color: Colors.blue.withOpacity(0.1), // withValues(alpha) এর বদলে withOpacity সহজ
+                color: Colors.blue.withValues(alpha: 0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(Icons.location_on, color: Colors.blue, size: 30.sp),
@@ -344,8 +341,9 @@ class AllowLocationDialog extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.grey[100],
                   image: const DecorationImage(
-
-                    image: AssetImage('assets/background/map_maker_standard.png'),
+                    image: AssetImage(
+                      'assets/backround/map_maker_standard.png',
+                    ),
                     fit: BoxFit.cover,
                   ),
                 ),

@@ -42,6 +42,8 @@ class ApiServices {
 
   //======================================Classes Nearb============================
   static const String parentApprovedClasses = "$baseUrl/api/classes/parent-approved-by-admin/";
+  static const String listoffclass="$baseUrl/api/classes/";
+
 
   //=============== Socket Web () ==========================
   static String get socketBaseUrl {

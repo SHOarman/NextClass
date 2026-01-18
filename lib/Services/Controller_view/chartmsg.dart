@@ -189,7 +189,6 @@
 //   }
 // }
 
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -245,7 +244,7 @@ class Chartmsg extends GetxController {
       try {
         channel!.sink.close();
       } catch (e) {
-        print("Channel close error: $e");
+        debugPrint("Channel close error: $e");
       }
     }
   }
@@ -258,7 +257,7 @@ class Chartmsg extends GetxController {
     token = prefs.getString('token');
     myUserId = prefs.getInt('user_id');
 
-    print("User Loaded -> ID: $myUserId, Token: ${token != null}");
+    debugPrint("User Loaded -> ID: $myUserId, Token: ${token != null}");
   }
 
   // ==================== 1. FETCH CONVERSATION LIST ====================
@@ -270,7 +269,7 @@ class Chartmsg extends GetxController {
       await loadUserData(); // Ensure token exists
 
       if (token == null) {
-        print("Token is null");
+        debugPrint("Token is null");
         return;
       }
 
@@ -289,10 +288,10 @@ class Chartmsg extends GetxController {
           conversationList.value = data['results'];
         }
       } else {
-        print("Conversation fetch failed: ${response.statusCode}");
+        debugPrint("Conversation fetch failed: ${response.statusCode}");
       }
     } catch (e) {
-      print("Conversation error: $e");
+      debugPrint("Conversation error: $e");
     } finally {
       isLoading.value = false;
     }
@@ -312,9 +311,9 @@ class Chartmsg extends GetxController {
     await loadUserData();
 
     if (token != null && myUserId != null) {
-      fetchHistory();   // Load old messages
-      connectSocket();  // Start WebSocket
-      markAsRead();     // Mark messages as read
+      fetchHistory(); // Load old messages
+      connectSocket(); // Start WebSocket
+      markAsRead(); // Mark messages as read
     } else {
       Get.snackbar("Error", "Please login first!");
     }
@@ -326,7 +325,9 @@ class Chartmsg extends GetxController {
 
     try {
       final response = await http.get(
-        Uri.parse('${ApiServices.chatMessages}?conversation_id=$conversationId'),
+        Uri.parse(
+          '${ApiServices.chatMessages}?conversation_id=$conversationId',
+        ),
         headers: {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/json',
@@ -344,12 +345,11 @@ class Chartmsg extends GetxController {
             .toList()
             .reversed
             .toList();
-
       } else {
-        print("History fetch failed: ${response.statusCode}");
+        debugPrint("History fetch failed: ${response.statusCode}");
       }
     } catch (e) {
-      print("History exception: $e");
+      debugPrint("History exception: $e");
     } finally {
       isLoading.value = false;
     }
@@ -359,28 +359,32 @@ class Chartmsg extends GetxController {
   void connectSocket() {
     try {
       // 🔥 FIX: টোকেন headers এর বদলে URL এ পাঠানো হচ্ছে (Web সাপোর্ট এর জন্য)
-      final wsUrl = '${ApiServices.socketBaseUrl}/ws/chat/$conversationId/?token=$token';
-      print("Connecting to: $wsUrl");
+      final wsUrl =
+          '${ApiServices.socketBaseUrl}/ws/chat/$conversationId/?token=$token';
+      debugPrint("Connecting to: $wsUrl");
 
       // 🔥 FIX: Universal WebSocketChannel ব্যবহার করা হয়েছে
       channel = WebSocketChannel.connect(Uri.parse(wsUrl));
 
-      channel!.stream.listen((message) {
-        try {
-          print("New Socket Message: $message"); // Debug log
-          var json = jsonDecode(message);
+      channel!.stream.listen(
+        (message) {
+          try {
+            debugPrint("New Socket Message: $message"); // Debug log
+            var json = jsonDecode(message);
 
-          // Add new message to top of list (যা UI তে নিচে দেখাবে)
-          messageList.insert(0, ChatMessage.fromJson(json));
-          messageList.refresh();
-        } catch (e) {
-          print("Message parse error: $e");
-        }
-      }, onError: (error) {
-        print("Socket error: $error");
-      });
+            // Add new message to top of list (যা UI তে নিচে দেখাবে)
+            messageList.insert(0, ChatMessage.fromJson(json));
+            messageList.refresh();
+          } catch (e) {
+            debugPrint("Message parse error: $e");
+          }
+        },
+        onError: (error) {
+          debugPrint("Socket error: $error");
+        },
+      );
     } catch (e) {
-      print("Socket connection failed: $e");
+      debugPrint("Socket connection failed: $e");
     }
   }
 
@@ -407,10 +411,10 @@ class Chartmsg extends GetxController {
       );
 
       if (response.statusCode != 200 && response.statusCode != 201) {
-        print("Message send failed: ${response.body}");
+        debugPrint("Message send failed: ${response.body}");
       }
     } catch (e) {
-      print("Send message error: $e");
+      debugPrint("Send message error: $e");
     }
   }
 
@@ -422,7 +426,7 @@ class Chartmsg extends GetxController {
         headers: {'Authorization': 'Bearer $token'},
       );
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
   }
 }

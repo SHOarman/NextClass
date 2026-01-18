@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:first_project/Services/api_Services/api_Services.dart';
 
@@ -17,12 +18,11 @@ class NearbyClassProvider extends GetConnect {
       request.headers['Content-Type'] = 'application/json';
       request.headers['accept'] = 'application/json';
 
-      // টোকেন থাকলে হেডারে যুক্ত করা
       if (token != null && token.isNotEmpty) {
         request.headers['Authorization'] = 'Bearer $token';
       }
 
-      print("🚀 Calling API: ${request.url}");
+      debugPrint("🚀 Calling API: ${request.url}");
       return request;
     });
   }
@@ -30,11 +30,11 @@ class NearbyClassProvider extends GetConnect {
   //====================== Get Nearby Classes ========================
   Future<Response> getNearbyClasses(double lat, double lng, double radius) {
     Map<String, dynamic> query = {
-      "lat": lat.toString(),
-      "lng": lng.toString(),
+      "latitude": lat.toString(),
+      "longitude": lng.toString(),
       "radius": radius.toString(),
     };
 
-    return get(ApiServices.parentApprovedClasses, query: query);
+    return get(ApiServices.listoffclass, query: query);
   }
 }

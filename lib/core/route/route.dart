@@ -360,7 +360,6 @@
 //   ];
 // }
 
-
 import 'package:get/get.dart';
 // আপনার প্রজেক্টের সব ইমপোর্ট এখানে থাকবে...
 import 'package:first_project/Parent_parsentScreen/auth_Screen/reg_screen.dart';
@@ -371,10 +370,10 @@ import 'package:first_project/Parent_parsentScreen/auth_Screen/otp_verification.
 import 'package:first_project/Parent_parsentScreen/auth_Screen/reg_verify_screen.dart';
 import '../../Parent_parsentScreen/home_Ui/filtermodel/filtermodel.dart';
 import '../../Parent_parsentScreen/home_Ui/home_screen.dart';
-import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_techer/recommended_page_detes_techer0.dart';
-import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_techer/recommended_page_detes_techer1.dart';
-import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_techer/recommended_page_detes_techer2.dart';
-import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_techer/recommended_page_detes_techer3.dart';
+import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_teacher/recommended_page_detes_teacher0.dart';
+import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_teacher/recommended_page_detes_teacher1.dart';
+import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_teacher/recommended_page_detes_teacher2.dart';
+import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_teacher/recommended_page_detes_teacher3.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/accpect/tution_accpectpage/tution_accpectpage1.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/completed/tution_Completed/reviewadd/reviewadd.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/completed/tution_Completed/tusioncomplectfullreviewscreen/tusioncomplectfullreviewscreen.dart';
@@ -384,6 +383,8 @@ import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/requested/tu
 import '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chartdetels.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_connection_teacher.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/expendedpage/expendedpage.dart';
+import '../../Parent_parsentScreen/home_Ui/homewigdet/tutor_profile_screen.dart';
+import '../../Parent_parsentScreen/home_Ui/homewigdet/homeclassdetels.dart';
 import '../../Parent_parsentScreen/home_Ui/qutionaries_screen.dart';
 import '../../Parent_parsentScreen/profile_Screen/delete_account/delete_account.dart';
 import '../../Parent_parsentScreen/profile_Screen/edit_profile/editmodel.dart';
@@ -473,10 +474,14 @@ class AppRoute {
   static const String chatConationTeacher = '/chatconation_teacher';
 
   //===========================Recommended_page_detes_techer===================================
-  static const String recommendedPageDetesTecher0 = '/recommendedPageDetesTecher0';
-  static const String recommendedPageDetesTecher1 = '/recommendedPageDetesTecher1';
-  static const String recommendedPageDetesTecher2 = '/recommendedPageDetesTecher2';
-  static const String recommendedPageDetesTecher3 = '/recommendedPageDetesTecher3';
+  static const String recommendedPageDetesTecher0 =
+      '/recommendedPageDetesTecher0';
+  static const String recommendedPageDetesTecher1 =
+      '/recommendedPageDetesTecher1';
+  static const String recommendedPageDetesTecher2 =
+      '/recommendedPageDetesTecher2';
+  static const String recommendedPageDetesTecher3 =
+      '/recommendedPageDetesTecher3';
 
   //=====================accpectpage====================================================
   static const String tutionAccpectPage1 = '/tution_accpectpage1';
@@ -485,7 +490,8 @@ class AppRoute {
   //=====================Completad====================================================
   static const String tutionComplectadePage1 = '/tution_complectadepage1';
   static const String reviewpage = '/reviewpage';
-  static const String tusioncomplectfullreviewscreen = '/tusioncomplectfullreviewscreen';
+  static const String tusioncomplectfullreviewscreen =
+      '/tusioncomplectfullreviewscreen';
 
   //=====================tacherpage =====================================================
   static const String home2 = '/home2';
@@ -502,7 +508,8 @@ class AppRoute {
   static const String editProfileTeacher = '/EditProfileteacher';
   static const String editmodel2 = '/editmodel2';
   static const String onlodingdetelsscreen = '/onlodingdetelsscreen';
-  static const String inacriveongoingdetelsscreen = '/inacriveongoingdetelsscreen';
+  static const String inacriveongoingdetelsscreen =
+      '/inacriveongoingdetelsscreen';
   static const String activepage = '/activepage';
   static const String rejectiondetels = '/rejectiondetels';
 
@@ -530,6 +537,9 @@ class AppRoute {
   //=============Boking detelsScareen==============================
   static const String bokkingdetels2 = '/bokkingdetels2';
   static const String sealactive = '/sealactive';
+
+  static const String recommendedTeacherDetails = '/recommendedTeacherDetails';
+  static const String viewtotureprofile = '/viewtotureprofile';
 
   static List<GetPage> mypage = [
     GetPage(name: slashscreen, page: () => const SlashScreen()),
@@ -675,19 +685,19 @@ class AppRoute {
     //===========================Recommended_page_detes_techer===================================
     GetPage(
       name: recommendedPageDetesTecher0,
-      page: () => RecommendedPageDetesTecher0(),
+      page: () => RecommendedPageDetesTeacher0(),
     ),
     GetPage(
       name: recommendedPageDetesTecher1,
-      page: () => RecommendedPageDetesTecher1(),
+      page: () => RecommendedPageDetesTeacher1(),
     ),
     GetPage(
       name: recommendedPageDetesTecher2,
-      page: () => RecommendedPageDetesTecher2(),
+      page: () => RecommendedPageDetesTeacher2(),
     ),
     GetPage(
       name: recommendedPageDetesTecher3,
-      page: () => RecommendedPageDetesTecher3(),
+      page: () => RecommendedPageDetesTeacher3(),
     ),
 
     //=====================accpectpage====================================================
@@ -706,5 +716,8 @@ class AppRoute {
 
     //===========sealltecheractive==================================
     GetPage(name: sealactive, page: () => SeeAll()),
+
+    GetPage(name: recommendedTeacherDetails, page: () => Homeclassdetels()),
+    GetPage(name: viewtotureprofile, page: () => TutorProfileScreen()),
   ];
 }
