@@ -1,299 +1,209 @@
-// import 'package:first_project/teacher_presentScreen/Chat2/convarcation.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_screenutil/flutter_screenutil.dart';
 // import 'package:get/get.dart';
+// import 'package:intl/intl.dart';
 //
-// import '../../../widget/nav_button/nav_button.dart';
+// // ✅ ইমপোর্টগুলো আপনার প্রোজেক্ট স্ট্রাকচার অনুযায়ী চেক করে নিন
+// import 'package:first_project/Services/Controller_view/chartmsg.dart';
+// import 'package:first_project/Services/model_class/usershow_model.dart';
+// import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_connection_teacher.dart';
+// import 'package:first_project/Parent_parsentScreen/widget/nav_button/nav_button.dart';
 //
 // class Chartdetels extends StatelessWidget {
 //   const Chartdetels({super.key});
 //
 //   @override
 //   Widget build(BuildContext context) {
-//     // Dummy data for the chat list (Matches your design)
-//     final List<Map<String, dynamic>> chats = [
-//       {
-//         "name": "Tutor name",
-//         "msg": "Hi, How are you?",
-//         "time": "02:40 am",
-//         "isUnread": true, // Highlight this chat
-//         "img": "assets/backround/class4.png",
-//       },
-//       {
-//         "name": "Tutor name",
-//         "msg": "You do not give me the amount...",
-//         "time": "March 16",
-//         "isUnread": false,
-//         "img": "assets/backround/explor2.png",
-//       },
-//       {
-//         "name": "Tutor name",
-//         "msg": "It's going nice. What about you...",
-//         "time": "March 12",
-//         "isUnread": false,
-//         "img": "assets/backround/teacher.png",
-//       },
-//       {
-//         "name": "Tutor name",
-//         "msg": "thanks for your help!",
-//         "time": "11:20 pm",
-//         "isUnread": false,
-//         "img": "assets/backround/Rectangle 5040.png",
-//       },
-//     ];
+//     // কন্ট্রোলার ইনজেকশন এবং ইনিশিয়াল ডাটা লোড
+//     final Chartmsg controller = Get.put(Chartmsg());
+//
+//     // স্ক্রিন বিল্ড হওয়ার পর ডাটা ফেচ করার জন্য WidgetsBinding ব্যবহার করা ভালো
+//     WidgetsBinding.instance.addPostFrameCallback((_) {
+//       controller.fetchConversationList();
+//     });
 //
 //     return Scaffold(
 //       backgroundColor: Colors.white,
-//
-//       // Top App Bar
 //       appBar: AppBar(
 //         backgroundColor: Colors.white,
 //         elevation: 0,
-//         automaticallyImplyLeading:
-//             false, // Removes back button since it's a main tab
-//         title: Align(
-//           alignment: Alignment.centerLeft,
-//           child: Text(
-//             "chat with parent",
-//             style: TextStyle(
-//               color: Colors.black,
-//               fontWeight: FontWeight.bold,
-//               fontSize: 22.sp,
-//             ),
+//         automaticallyImplyLeading: false,
+//         title: Text(
+//           "Chat with tutor",
+//           style: TextStyle(
+//             color: Colors.black,
+//             fontWeight: FontWeight.bold,
+//             fontSize: 22.sp,
 //           ),
 //         ),
 //       ),
+//       body: Obx(() {
+//         // ডাটা লোড হওয়ার সময় ইন্ডিকেটর দেখানো
+//         if (controller.isLoading.value && controller.conversationList.isEmpty) {
+//           return const Center(child: CircularProgressIndicator());
+//         }
 //
-//       // Main Body: List of chats
-//       body: ListView.separated(
-//         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-//         itemCount: chats.length,
-//         separatorBuilder: (context, index) => SizedBox(height: 10.h),
-//         itemBuilder: (context, index) {
-//           final chat = chats[index];
-//           final bool isUnread = chat['isUnread'];
-//
-//           return GestureDetector(
-//             // ... inside ListView builder ...
-//             onTap: () {
-//               // Use Get.to() instead of Get.toNamed()
-//               Get.to(
-//                 () => ConversationScreen(),
-//                 transition: Transition
-//                     .rightToLeft, // Optional: Makes it look like a chat app
-//                 duration: const Duration(milliseconds: 300),
-//               );
-//             },
-//             child: Container(
-//               padding: EdgeInsets.all(12.w),
-//               decoration: BoxDecoration(
-//                 // Greenish background if unread, Light Grey/White if read
-//                 color: isUnread
-//                     ? const Color(0xFFF0FDF4)
-//                     : const Color(0xFFF9FAFB),
-//                 borderRadius: BorderRadius.circular(12.r),
-//               ),
-//               child: Row(
-//                 children: [
-//                   // Profile Picture
-//                   CircleAvatar(
-//                     radius: 30.r,
-//                     backgroundImage: AssetImage(chat['img']),
-//                     backgroundColor: Colors.grey.shade200,
+//         // লিস্ট খালি থাকলে মেসেজ দেখানো
+//         if (controller.conversationList.isEmpty) {
+//           return RefreshIndicator(
+//             onRefresh: () => controller.fetchConversationList(),
+//             child: ListView(
+//               children: [
+//                 SizedBox(height: 200.h),
+//                 Center(
+//                   child: Text(
+//                     "No conversations found",
+//                     style: TextStyle(color: Colors.grey, fontSize: 16.sp),
 //                   ),
-//                   SizedBox(width: 12.w),
+//                 ),
+//               ],
+//             ),
+//           );
+//         }
 //
-//                   // Name and Message
-//                   Expanded(
-//                     child: Column(
-//                       crossAxisAlignment: CrossAxisAlignment.start,
+//         return RefreshIndicator(
+//           onRefresh: () => controller.fetchConversationList(),
+//           child: ListView.builder(
+//             physics: const AlwaysScrollableScrollPhysics(),
+//             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+//             itemCount: controller.conversationList.length,
+//             itemBuilder: (context, index) {
+//               var chat = controller.conversationList[index];
+//
+//               // ডাটা সেফটি চেক
+//               var otherUserRaw = chat['other_user'] ?? chat['participant'];
+//               if (otherUserRaw == null) return const SizedBox.shrink();
+//
+//               TutorDetails otherUser = TutorDetails.fromJson(otherUserRaw);
+//               String lastMsg = chat['last_message']?['content'] ?? "Start conversation...";
+//               String time = _formatDateTime(chat['last_message']?['created_at']);
+//               int unread = chat['unread_count'] ?? 0;
+//
+//               return Padding(
+//                 padding: EdgeInsets.only(bottom: 12.h),
+//                 child: GestureDetector(
+//                   onTap: () => Get.to(() => ChatConnectionTeacher(
+//                     conversationId: chat['id'] ?? 0,
+//                     name: otherUser.fullName,
+//                     image: otherUser.profilePicture ?? "",
+//                   ))?.then((_) => controller.fetchConversationList()),
+//                   child: Container(
+//                     padding: EdgeInsets.all(12.w),
+//                     decoration: BoxDecoration(
+//                       // আনরিড মেসেজ থাকলে হালকা সবুজ ব্যাকগ্রাউন্ড (আপনার আগের লজিক অনুযায়ী)
+//                       color: unread > 0 ? const Color(0xFFF0FDF4) : const Color(0xFFF9FAFB),
+//                       borderRadius: BorderRadius.circular(16.r),
+//                       border: Border.all(color: Colors.grey.withOpacity(0.1)),
+//                     ),
+//                     child: Row(
 //                       children: [
-//                         Text(
-//                           chat['name'],
-//                           style: TextStyle(
-//                             fontWeight: FontWeight.bold,
-//                             fontSize: 15.sp,
-//                             color: Colors.black87,
-//                             shadows: [
-//                               Shadow(
-//                                 color: Color(
-//                                   0xff000000,
-//                                 ).withValues(alpha: 0.12),
-//                                 blurRadius: 19,
-//                                 offset: Offset(0, 4),
+//                         // প্রোফাইল পিকচার (Rounded Square style)
+//                         ClipRRect(
+//                           borderRadius: BorderRadius.circular(12.r),
+//                           child: (otherUser.profilePicture != null && otherUser.profilePicture!.isNotEmpty)
+//                               ? Image.network(
+//                             otherUser.profilePicture!,
+//                             width: 50.w,
+//                             height: 50.h,
+//                             fit: BoxFit.cover,
+//                             errorBuilder: (context, error, stackTrace) => Image.asset(
+//                               "assets/backround/teacher.png",
+//                               width: 50.w, height: 50.h, fit: BoxFit.cover,
+//                             ),
+//                           )
+//                               : Image.asset(
+//                             "assets/backround/teacher.png",
+//                             width: 50.w, height: 50.h, fit: BoxFit.cover,
+//                           ),
+//                         ),
+//                         SizedBox(width: 12.w),
+//
+//                         // নাম এবং লাস্ট মেসেজ
+//                         Expanded(
+//                           child: Column(
+//                             crossAxisAlignment: CrossAxisAlignment.start,
+//                             children: [
+//                               Text(
+//                                 otherUser.fullName,
+//                                 style: TextStyle(
+//                                   fontWeight: FontWeight.bold,
+//                                   fontSize: 16.sp,
+//                                   color: Colors.black,
+//                                 ),
+//                               ),
+//                               SizedBox(height: 4.h),
+//                               Text(
+//                                 lastMsg,
+//                                 maxLines: 1,
+//                                 overflow: TextOverflow.ellipsis,
+//                                 style: TextStyle(
+//                                   color: unread > 0 ? Colors.black87 : Colors.grey,
+//                                   fontSize: 13.sp,
+//                                   fontWeight: unread > 0 ? FontWeight.w500 : FontWeight.normal,
+//                                 ),
 //                               ),
 //                             ],
 //                           ),
 //                         ),
-//                         SizedBox(height: 4.h),
-//                         Text(
-//                           chat['msg'],
-//                           maxLines: 1,
-//                           overflow: TextOverflow.ellipsis,
-//                           style: TextStyle(
-//                             color: isUnread ? Colors.black87 : Colors.grey,
-//                             fontWeight: isUnread
-//                                 ? FontWeight.w500
-//                                 : FontWeight.normal,
-//                             fontSize: 13.sp,
-//                           ),
+//
+//                         // টাইম এবং আনরিড ডট
+//                         Column(
+//                           crossAxisAlignment: CrossAxisAlignment.end,
+//                           children: [
+//                             Text(
+//                               time,
+//                               style: TextStyle(
+//                                 color: const Color(0xFF22C55E),
+//                                 fontSize: 11.sp,
+//                                 fontWeight: unread > 0 ? FontWeight.bold : FontWeight.normal,
+//                               ),
+//                             ),
+//                             if (unread > 0) ...[
+//                               SizedBox(height: 5.h),
+//                               Container(
+//                                 padding: EdgeInsets.all(6.r),
+//                                 decoration: const BoxDecoration(
+//                                   color: Color(0xFF22C55E),
+//                                   shape: BoxShape.circle,
+//                                 ),
+//                                 child: Text(
+//                                   unread.toString(),
+//                                   style: TextStyle(color: Colors.white, fontSize: 8.sp),
+//                                 ),
+//                               ),
+//                             ]
+//                           ],
 //                         ),
 //                       ],
 //                     ),
 //                   ),
-//
-//                   // Time
-//                   Text(
-//                     chat['time'],
-//                     style: TextStyle(
-//                       color: isUnread ? Colors.green : Colors.grey,
-//                       fontSize: 11.sp,
-//                       fontWeight: isUnread
-//                           ? FontWeight.bold
-//                           : FontWeight.normal,
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           );
-//         },
-//       ),
-//
-//       // Your Navigation Button
+//                 ),
+//               );
+//             },
+//           ),
+//         );
+//       }),
+//       // বটম নেভিগেশন বাটন যোগ করা হয়েছে
 //       bottomNavigationBar: NavButton(selectIndex: 2),
 //     );
 //   }
-// }
 //
-// Make sure to import the file where ChatConnectionTeacher is located
-// import 'package:first_project/path/to/ChatConnectionTeacher.dart';
-
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
-// ✅ Fixed Import Path
-import 'package:first_project/Services/Controller_view/chartmsg.dart';
-import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_connection_teacher.dart'; // Adjust path if needed
-import 'package:first_project/Parent_parsentScreen/widget/nav_button/nav_button.dart'; // Adjust path
-
-class Chartdetels extends StatefulWidget {
-  const Chartdetels({super.key});
-
-  @override
-  State<Chartdetels> createState() => _ChartdetelsState();
-}
-
-class _ChartdetelsState extends State<Chartdetels> {
-  // ✅ Initialize Controller
-  final Chartmsg controller = Get.put(Chartmsg());
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      controller.fetchConversationList();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        title: Padding(
-          padding: EdgeInsets.only(right: 140),
-          child: Text(
-            "Chat with tutor",
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22.sp),
-          ),
-        ),
-      ),
-
-      body: RefreshIndicator(
-        onRefresh: () async {
-          await controller.fetchConversationList();
-        },
-        child: Obx(() {
-          if (controller.isLoading.value) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (controller.conversationList.isEmpty) {
-            return const Center(child: Text("No conversations found"));
-          }
-
-          return ListView.separated(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
-            itemCount: controller.conversationList.length,
-            separatorBuilder: (context, index) => SizedBox(height: 10.h),
-            itemBuilder: (context, index) {
-              var chat = controller.conversationList[index];
-
-              // Data Parsing
-              var otherUser = chat['other_user'] ?? chat['participant'] ?? {};
-              String name = otherUser['full_name'] ?? otherUser['username'] ?? "Unknown";
-              String? image = otherUser['profile_picture'];
-              String lastMsg = chat['last_message']?['content'] ?? "Start conversation";
-              int unread = chat['unread_count'] ?? 0;
-              int convId = chat['id'];
-
-              return GestureDetector(
-                onTap: () {
-                  Get.to(
-                        () => ChatConnectionTeacher(
-                      conversationId: convId,
-                      name: name,
-                      image: image ?? "",
-                    ),
-                  )?.then((_) => controller.fetchConversationList());
-                },
-                child: Container(
-                  padding: EdgeInsets.all(12.w),
-                  decoration: BoxDecoration(
-                    color: unread > 0 ? const Color(0xFFF0FDF4) : const Color(0xFFF9FAFB),
-                    borderRadius: BorderRadius.circular(12.r),
-                  ),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 30.r,
-                        backgroundColor: Colors.grey.shade200,
-                        backgroundImage: (image != null)
-                            ? NetworkImage(image)
-                            : const AssetImage("assets/backround/teacher.png") as ImageProvider,
-                      ),
-                      SizedBox(width: 12.w),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.sp)),
-                            SizedBox(height: 4.h),
-                            Text(lastMsg,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    color: unread > 0 ? Colors.black87 : Colors.grey,
-                                    fontWeight: unread > 0 ? FontWeight.w500 : FontWeight.normal
-                                )
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          );
-        }),
-      ),
-      bottomNavigationBar: NavButton(selectIndex: 2),
-    );
-  }
-}
+//   // টাইম ফরম্যাটিং ফাংশন
+//   String _formatDateTime(String? dateStr) {
+//     if (dateStr == null) return "";
+//     try {
+//       final date = DateTime.parse(dateStr).toLocal();
+//       final now = DateTime.now();
+//
+//       if (date.day == now.day && date.month == now.month && date.year == now.year) {
+//         return DateFormat('hh:mm a').format(date);
+//       } else if (now.difference(date).inDays < 7) {
+//         return DateFormat('EEE').format(date); // সপ্তাহের দিন
+//       } else {
+//         return DateFormat('MMM dd').format(date);
+//       }
+//     } catch (e) {
+//       return "";
+//     }
+//   }
+// }

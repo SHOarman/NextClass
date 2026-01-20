@@ -3,6 +3,8 @@ import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/bokkingdet
 import 'package:flutter/material.dart';
 
 import '../../home_Ui/homedetels/bokkingdetels/requested/rejected.dart';
+import 'package:get/get.dart';
+import '../../../Services/Controller_view/bokinglistcontroller.dart';
 
 class TapBar extends StatefulWidget {
   const TapBar({super.key});
@@ -14,6 +16,9 @@ class TapBar extends StatefulWidget {
 class TapBarState extends State<TapBar> {
   @override
   Widget build(BuildContext context) {
+    // Inject the controller here to ensure it's available for the tabs
+    Get.put(BookingListController());
+
     return DefaultTabController(
       length: 3,
       initialIndex: 0,

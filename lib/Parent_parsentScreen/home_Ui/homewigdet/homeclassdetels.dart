@@ -165,10 +165,13 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
               // ======================= Request Booking Button =======================
               CustomSuperButton(
                 text: 'Request Booking',
-                onTap: () => Get.toNamed(
-                  AppRoute.requestboking,
-                  arguments: controller.classData,
-                ),
+                onTap: () {
+
+                  Get.toNamed(
+                    AppRoute.requestboking,
+                    arguments: controller.classData,
+                  );
+                },
                 bgGradient: const LinearGradient(
                   colors: [Color(0xff2563EB), Color(0xff2563EB)],
                 ),

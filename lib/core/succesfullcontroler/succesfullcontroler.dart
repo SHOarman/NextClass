@@ -120,7 +120,7 @@ class Reviewpopupmsg extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 360,
-      //
+      height: 400,
       constraints: BoxConstraints(maxWidth: 392.w),
       decoration: BoxDecoration(
         color: const Color(0xffFFFFFF),

@@ -1,126 +1,124 @@
-import 'package:first_project/Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
+//======================== Request Booking Screen ========================
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 
-import '../../../../core/succesfullcontroler/succesfullcontroler.dart';
+import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/bokkingcontroller.dart';
+import 'package:first_project/Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
 import '../../../../unity/app_colors/app_gradient.dart';
 import '../../../widget/custom_button/custom_button.dart';
+import '../../../../Services/model_class/usershow_model.dart';
 
 class Requestboking extends StatelessWidget {
   const Requestboking({super.key});
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController namcontroler = TextEditingController();
-    TextEditingController agecontroler = TextEditingController();
-    TextEditingController classcontroler = TextEditingController();
+    // কন্ট্রোলার ইনিশিয়ালাইজ
+    final Bokkingcontroller bokkingcontroller = Get.put(Bokkingcontroller());
+
+    // ১. আর্গুমেন্ট ডাটা রিসিভ (Null safety সহ)
+    final dynamic data = Get.arguments;
+
+    // ২. আইডি বের করার নিরাপদ পদ্ধতি (এরর ফিক্স করা হয়েছে)
+    int? classListingId;
+    if (data != null) {
+      if (data is ClassFeature) {
+        classListingId = data.id;
+      } else if (data is int) {
+        classListingId = data;
+      }
+    }
+
+    // ৩. যদি আইডি না পাওয়া যায় তবে ইউজারকে মেসেজ দেখানো
+    if (classListingId == null) {
+      return const Scaffold(
+        body: Center(child: Text("Error: Booking info missing!")),
+      );
+    }
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: .start,
-            crossAxisAlignment: .start,
-            children: [
-              SizedBox(height: 30),
-              Center(
-                child: Text(
-                  'Request for booking',
-                  style: TextStyle(
-                    color: Color(0xff2B2B2B),
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              SizedBox(height: 10.h),
-              Center(
-                child: Text(
-                  'We need some basic information from your side.',
-                  style: TextStyle(color: Color(0xff888888), fontSize: 12),
-                ),
-              ),
-
-              SizedBox(height: 40),
-              Text(
-                'What is the student name?',
-                style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
-              ),
-
-              SizedBox(height: 12.h),
-              SimpleCard(controller: namcontroler, hintText: 'Write here..'),
-
-              SizedBox(height: 16),
-              Text(
-                'What is the student age?',
-                style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
-              ),
-              SizedBox(height: 12),
-              SimpleCard(controller: agecontroler, hintText: 'Write here..'),
-
-              SizedBox(height: 16),
-              Text(
-                'Which class the student read in?',
-                style: TextStyle(color: Color(0xff2B2B2B), fontSize: 16),
-              ),
-              SizedBox(height: 12),
-              SimpleCard(controller: classcontroler, hintText: 'Write here..'),
-
-              SizedBox(height: 40),
-
-              CustomSuperButton(
-                text: 'Submit',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                onTap: () {
-                  /////=============showdialog=====================
-
-                  showDialog(
-                    context: context,
-                    builder: (ctx) => AlertDialog(
-                      backgroundColor: Colors.white,
-
-                      content: Successfullmsg(
-                        name: 'Successful',
-                        namedetels:
-                            'Your request have been sent successfully at tutor. Please wait for tutor acceptance. ',
-                        buName1: 'Track booking',
-                        ontap1: () {
-                          //====================Request====================done
-                        },
-                        buName2: 'Back to home',
-                        // ontap2: () {
-                        //   Get.back();
-                        // },
+      backgroundColor: Colors.white,
+      body: Obx(
+            () => Stack(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 60.h),
+                    Center(
+                      child: Text(
+                        'Request for booking',
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  );
-                },
+                    SizedBox(height: 40.h),
 
-                /////=============showdialog=====================
-                bgGradient: LinearGradient(
-                  colors: [Color(0xff2563EB), Color(0xff2563EB)],
+                    // স্টুডেন্ট নাম
+                    Text('What is the student name?'),
+                    SizedBox(height: 12.h),
+                    SimpleCard(
+                      controller: bokkingcontroller.namcontroler,
+                      hintText: 'Write here..',
+                    ),
+
+                    SizedBox(height: 16.h),
+
+                    // স্টুডেন্ট বয়স (সংখ্যা ইনপুট দিতে কিবোর্ড টাইপ যুক্ত করা উচিত)
+                    Text('What is the student age?'),
+                    SizedBox(height: 12.h),
+                    SimpleCard(
+                      controller: bokkingcontroller.agecontroler,
+                      hintText: 'Write here..',
+                    ),
+
+                    SizedBox(height: 40.h),
+
+                    // সাবমিট বাটন
+                    CustomSuperButton(
+                      text: bokkingcontroller.isLoading.value
+                          ? 'Processing...'
+                          : 'Submit',
+                      onTap: () {
+                        // কন্ট্রোলার কল (আইডি পাস করা হচ্ছে)
+                        bokkingcontroller.createBooking(
+                          classListingId!, // এখানে নিশ্চিত আইডি পাওয়া গেছে
+                          context,
+                        );
+                      },
+                      bgGradient: const LinearGradient(
+                        colors: [Color(0xff2563EB), Color(0xff2563EB)],
+                      ),
+                    ),
+
+                    SizedBox(height: 16.h),
+
+                    CustomSuperButton(
+                      text: 'Close',
+                      onTap: () => Get.back(),
+                      borderColor: const Color(0xff2563EB),
+                      textGradient: Appgradient.primaryGradient,
+                    ),
+                  ],
                 ),
               ),
+            ),
 
-              SizedBox(height: 16.h),
-
-              CustomSuperButton(
-                text: 'Close',
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-                onTap: () {
-                  Get.back();
-                },
-                borderColor: Color(0xff2563EB),
-                textGradient: Appgradient.primaryGradient,
+            // লোডিং ইন্ডিকেটর
+            if (bokkingcontroller.isLoading.value)
+              Container(
+                color: Colors.black26,
+                child: const Center(
+                  child: CircularProgressIndicator(color: Color(0xff2563EB)),
+                ),
               ),
-              SizedBox(height: 20.h),
-            ],
-          ),
+          ],
         ),
       ),
     );

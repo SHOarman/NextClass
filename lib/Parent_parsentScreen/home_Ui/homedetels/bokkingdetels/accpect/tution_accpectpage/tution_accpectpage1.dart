@@ -1,7 +1,8 @@
-import 'package:first_project/core/route/route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../../../../Services/Controller_view/bokkingdetels_controller.dart';
+import '../../../../../../core/route/route.dart';
 import '../../../../../../unity/app_colors/app_gradient.dart';
 import '../../../../../widget/back_slash/back_slash.dart';
 import '../../../../../widget/custom_button/custom_button.dart';
@@ -18,31 +19,46 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
 
   @override
   Widget build(BuildContext context) {
+    // Get controller and fetch booking data
+    final controller = Get.put(BookingDetailsController());
+    final data = controller.bookingData;
+
+    // Show loading if data not yet available
+    if (data == null) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// ===== Top Row: Back + Favorite
-            SizedBox(height: 100.h),
+            SizedBox(height: 60.h),
+
+            /// ===== Top Bar: Back + Favorite Button
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BackSlashButton(
-                  onTap: () {
-                    Get.back();
-                  },
-                ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.favorite,
-                    color: isFavorite ? Colors.red : const Color(0xff2B2B2B),
+                BackSlashButton(onTap: () => Get.back()),
+
+                // Favorite toggle
+                GestureDetector(
+                  onTap: () => setState(() => isFavorite = !isFavorite),
+                  child: Container(
+                    padding: EdgeInsets.all(8.w),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey.withOpacity(0.1),
+                    ),
+                    child: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      color: isFavorite ? Colors.red : const Color(0xff2B2B2B),
+                      size: 24.sp,
+                    ),
                   ),
                 ),
               ],
@@ -54,188 +70,130 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  'assets/backround/Frame 91.png',
+                child: Image.network(
+                  data.tutorDetails?.profilePicture ?? "",
                   width: 200.w,
                   height: 200.h,
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) =>
+                      Image.asset(
+                        'assets/backround/Frame 91.png',
+                        width: 200.w,
+                        height: 200.h,
+                      ),
                 ),
               ),
             ),
 
-            SizedBox(height: 12.h),
+            SizedBox(height: 16.h),
 
             /// ===== View Tutor Profile Button
             Center(
-              child: Container(
-                height: 32.h,
-                width: 160.w,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xffDBDBDB),
-                    width: 1.5,
+              child: OutlinedButton(
+                onPressed: () {
+                  if (data.tutorDetails != null) {
+                    Get.toNamed(
+                      AppRoute.viewtotureprofile,
+                      arguments: data.tutorDetails,
+                    );
+                  }
+                },
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(color: Color(0xff2563EB)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.r),
                   ),
-                  borderRadius: BorderRadius.circular(8),
                 ),
-                child: TextButton(
-                  onPressed: () {
-                    // Button action
-                  },
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: Size.zero,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'View Tutor Profile',
-                      style: TextStyle(
-                        color: const Color(0xff2563EB),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
+                child: Text(
+                  "View Tutor Profile",
+                  style: TextStyle(color: const Color(0xff2563EB), fontSize: 14.sp),
                 ),
               ),
             ),
 
             SizedBox(height: 24.h),
 
-            /// ===== Tutor Name + Rating Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Tutor Name',
-                  style: TextStyle(
-                    color: const Color(0xff2B2B2B),
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.star,
-                      color: const Color(0xffFFC107),
-                      size: 20.sp,
-                    ),
-                    SizedBox(width: 4.w),
-                    Text(
-                      '4.5',
-                      style: TextStyle(
-                        color: const Color(0xff2B2B2B),
-                        fontSize: 18.sp,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-
-            SizedBox(height: 16.h),
+            /// ===== Tutor Name
             Text(
-              'Lorem ipsum dolor sit amet consectetur. Urna massa mi tellus in sed ullamcorper tortor. Sit sed lorem in dictum. Maecenas elit est metus amet magna. Pretium sed vitae sit posuere. ',
-              style: TextStyle(color: Color(0xff888888), fontSize: 16),
-            ),
-
-            SizedBox(height: 16.h),
-
-            Text(
-              'Mathematics',
+              data.tutorDetails?.fullName ?? 'Unknown Tutor',
               style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              'Class 1-4',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              'Group class',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              'Start from 02 January, 2026',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              '21/2 St road, Los Angles, USA',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-
-            SizedBox(height: 24.h),
-
-            Text(
-              '\$560.00/monthly',
-              style: TextStyle(
-                color: Color(0xff2563EB),
-                fontSize: 24,
+                color: const Color(0xff2B2B2B),
+                fontSize: 22.sp,
                 fontWeight: FontWeight.bold,
               ),
             ),
 
-            SizedBox(height: 62.h),
+            SizedBox(height: 20.h),
 
+            /// ===== Booking & Student Details
+            _buildDetailText("Subject: ${data.classDetails?.properties?.subject ?? 'N/A'}"),
+            _buildDetailText("Level: ${data.classDetails?.properties?.level ?? 'N/A'}"),
+            _buildDetailText("Student Name: ${data.studentName ?? 'N/A'}"),
+            _buildDetailText("Student Age: ${data.studentAge != null ? "${data.studentAge} Yrs" : 'N/A'}"),
+            _buildDetailText('Booking Date: ${data.bookingDate ?? 'N/A'}'),
+            _buildDetailText('Address: ${data.classDetails?.properties?.address ?? 'No Address'}'),
+
+            SizedBox(height: 24.h),
+
+            /// ===== Price Section
+            Text(
+              '\$${data.totalPrice ?? '0.00'}/monthly',
+              style: TextStyle(
+                color: const Color(0xff2563EB),
+                fontSize: 26.sp,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            SizedBox(height: 40.h),
+
+            /// ===== Start Date
             Center(
               child: Text(
-                'Starts on Saturday',
-                style: TextStyle(color: Color(0xff1A73E8), fontSize: 12),
+                'Starts on ${data.startTime ?? 'TBA'}',
+                style: TextStyle(color: const Color(0xff1A73E8), fontSize: 13.sp),
               ),
             ),
+
             SizedBox(height: 16.h),
 
+            /// ===== Action Buttons
             CustomSuperButton(
               text: 'Cancel booking',
-              fontSize: 20,
+              fontSize: 18.sp,
               fontWeight: FontWeight.bold,
-              onTap: () {
-                Get.toNamed(AppRoute.cancelModel);
-              },
-              bgGradient: LinearGradient(
-                colors: [Color(0xff2563EB), Color(0xff2563EB)],
-              ),
+              onTap: () => Get.toNamed(AppRoute.cancelModel, arguments: data.id),
+              bgGradient: const LinearGradient(colors: [Color(0xff2563EB), Color(0xff2563EB)]),
             ),
 
             SizedBox(height: 16.h),
 
             CustomSuperButton(
-              text: 'chat with tutor',
+              text: 'Chat with tutor',
               fontWeight: FontWeight.bold,
-              fontSize: 20,
-              onTap: () {
-                Get.toNamed(AppRoute.chatConationTeacher);
-
-                /// Get.back();
-              },
-              borderColor: Color(0xff2563EB),
+              fontSize: 18.sp,
+              onTap: () => Get.toNamed(AppRoute.chatConationTeacher, arguments: data.tutorDetails),
+              borderColor: const Color(0xff2563EB),
               textGradient: Appgradient.primaryGradient,
             ),
-            SizedBox(height: 100.h),
+
+            SizedBox(height: 50.h),
           ],
+        ),
+      ),
+    );
+  }
+
+  /// Helper method for consistent detail text styling
+  Widget _buildDetailText(String text) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 6.h),
+      child: Text(
+        text,
+        style: TextStyle(
+          color: const Color(0xff2B2B2B),
+          fontSize: 16.sp,
+          fontWeight: FontWeight.w600,
         ),
       ),
     );

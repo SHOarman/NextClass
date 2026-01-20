@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:first_project/Services/api_Services/api_Services.dart';
+import 'package:first_project/Services/api_Services/api_services.dart';
 
 class NearbyClassProvider extends GetConnect {
   @override
@@ -10,7 +10,7 @@ class NearbyClassProvider extends GetConnect {
     httpClient.baseUrl = ApiServices.baseUrl;
     httpClient.timeout = const Duration(seconds: 30);
 
-    // 2. Request Modifier (Token অটোমেটিক সব রিকোয়েস্টে অ্যাড হবে)
+    // 2. Request Modifier
     httpClient.addRequestModifier<dynamic>((request) async {
       final prefs = await SharedPreferences.getInstance();
       String? token = prefs.getString('token');

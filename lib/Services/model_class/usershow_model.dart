@@ -38,7 +38,7 @@ class ClassFeature {
 
   factory ClassFeature.fromJson(Map<String, dynamic> json) {
     return ClassFeature(
-      id: json['id'],
+      id: json['id'] ?? 0,
       type: json['type'] ?? '',
       geometry: json['geometry'] ?? '',
       properties: ClassProperties.fromJson(json['properties']),
@@ -79,7 +79,7 @@ class ClassProperties {
 
   factory ClassProperties.fromJson(Map<String, dynamic> json) {
     return ClassProperties(
-      tutor: json['tutor'],
+      tutor: json['tutor'] ?? 0,
       tutorDetails: TutorDetails.fromJson(json['tutor_details']),
       title: json['title'] ?? '',
       description: json['description'] ?? '',
@@ -116,10 +116,9 @@ class TutorDetails {
     required this.fullName,
     this.profile,
   });
-
   factory TutorDetails.fromJson(Map<String, dynamic> json) {
     return TutorDetails(
-      id: json['id'],
+      id: json['id'] ?? 0,
       username: json['username'] ?? '',
       email: json['email'] ?? '',
       profilePicture: json['profile_picture'],
@@ -130,6 +129,16 @@ class TutorDetails {
           : null,
     );
   }
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "username": username,
+    "email": email,
+    "full_name": fullName,
+    "profile_picture": profilePicture,
+    "is_verified": isVerified,
+    "profile": profile?.toJson(),
+  };
 }
 
 class TutorProfile {
@@ -156,6 +165,14 @@ class TutorProfile {
       verificationStatus: json['verification_status'] ?? '',
     );
   }
+
+  Map<String, dynamic> toJson() => {
+    "bio": bio,
+    "years_of_experience": yearsOfExperience,
+    "average_rating": averageRating,
+    "total_reviews": totalReviews,
+    "verification_status": verificationStatus,
+  };
 }
 
 class Schedule {
