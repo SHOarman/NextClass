@@ -1,0 +1,55 @@
+Analyzing first_project...                                      
+
+   info - The variable name 'BioeController' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:18:31 - non_constant_identifier_names
+   info - The variable name 'WhatsubjectController' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:21:31 - non_constant_identifier_names
+   info - The variable name 'Controller' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:22:17 - non_constant_identifier_names
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chartdetels.dart:71:31 - unnecessary_underscores
+   info - The prefix 'IO' isn't a lower_case_with_underscores identifier - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:3:60 - library_prefixes
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:12:19 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:20:16 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:129:19 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:137:16 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:220:19 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:228:16 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:306:19 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:314:16 - non_constant_identifier_names
+   info - The variable name 'Editprofile' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:343:16 - non_constant_identifier_names
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\profile_Screen\userdata\userdata.dart:59:49 - unnecessary_underscores
+   info - The type name 'Nev_Button' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\widget\nav_button\nav_button.dart:6:7 - camel_case_types
+   info - The variable name 'SelectIndex' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\widget\nav_button\nav_button.dart:7:37 - non_constant_identifier_names
+   info - The variable name 'SelectIndex' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\widget\nav_button\nav_button.dart:8:14 - non_constant_identifier_names
+   info - The type name '_Nev_ButtonState' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\widget\nav_button\nav_button.dart:14:7 - camel_case_types
+   info - An uninitialized variable should have an explicit type annotation - lib\Services\Controller_view\create_a_class.dart:42:13 - prefer_typing_uninitialized_variables
+   info - The constant name 'Parentreg' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:14:23 - constant_identifier_names
+   info - The constant name 'Tutorreg' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:15:23 - constant_identifier_names
+   info - The constant name 'Createavailability' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:20:23 - constant_identifier_names
+   info - The constant name 'top_rated' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:21:23 - constant_identifier_names
+   info - The constant name 'CreateClass' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:25:23 - constant_identifier_names
+   info - The constant name 'Teacherslistlocationswise' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:36:22 - constant_identifier_names
+   info - The variable name 'bu_name1' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:12:17 - non_constant_identifier_names
+   info - The variable name 'bu_name2' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:14:17 - non_constant_identifier_names
+   info - The variable name 'bu_name1' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:21:10 - non_constant_identifier_names
+   info - The variable name 'bu_name2' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:23:10 - non_constant_identifier_names
+   info - The variable name 'bu_name1' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:109:16 - non_constant_identifier_names
+   info - The variable name 'bu_name1' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:116:19 - non_constant_identifier_names
+   info - Unnecessary use of multiple underscores - lib\teacher_presentScreen\chat2\chat2.dart:69:31 - unnecessary_underscores
+   info - The prefix 'IO' isn't a lower_case_with_underscores identifier - lib\teacher_presentScreen\chat2\msg_controller.dart:3:60 - library_prefixes
+   info - Don't invoke 'print' in production code - lib\teacher_presentScreen\create_newclasses\class_provider.dart:18:5 - avoid_print
+   info - The type name 'Nev_Button2' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\techerall_widget\nav_button\nav_button.dart:6:7 - camel_case_types
+   info - The variable name 'SelectIndex' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\nav_button\nav_button.dart:7:38 - non_constant_identifier_names
+   info - The variable name 'SelectIndex' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\nav_button\nav_button.dart:8:14 - non_constant_identifier_names
+   info - The type name '_Nev_ButtonState' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\techerall_widget\nav_button\nav_button.dart:14:7 - camel_case_types
+   info - The variable name 'Reject' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\padding_information_model\padding_information_model.dart:7:22 - non_constant_identifier_names
+   info - The variable name 'Chat' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\padding_information_model\padding_information_model.dart:8:22 - non_constant_identifier_names
+   info - The variable name 'Accept' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\padding_information_model\padding_information_model.dart:9:22 - non_constant_identifier_names
+   info - The variable name 'Reject' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\padding_information_model\padding_information_model.dart:13:19 - non_constant_identifier_names
+   info - The variable name 'Chat' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\padding_information_model\padding_information_model.dart:14:19 - non_constant_identifier_names
+   info - The variable name 'Accept' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\padding_information_model\padding_information_model.dart:15:19 - non_constant_identifier_names
+   info - The type name 'customProfilesecationteacher' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\techerall_widget\teacher_home_card\custom_profile_section_teacher\custom_profile_section_teacher.dart:8:7 - camel_case_types
+   info - The constant name 'TextColor' isn't a lowerCamelCase identifier - lib\unity\app_colors\app_gradient.dart:10:22 - constant_identifier_names
+   info - The constant name 'Select' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:11:23 - constant_identifier_names
+   info - The constant name 'Email' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:16:23 - constant_identifier_names
+   info - The constant name 'Skip' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:52:23 - constant_identifier_names
+   info - The variable name 'LoveRecated' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:223:37 - non_constant_identifier_names
+   info - The variable name 'Mathmatic' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:299:37 - non_constant_identifier_names
+

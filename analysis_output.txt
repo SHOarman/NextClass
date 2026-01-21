@@ -1,0 +1,22 @@
+Analyzing first_project...                                      
+
+  error - Target of URI doesn't exist: 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\auth_Screen\login_screen.dart:8:8 - uri_does_not_exist
+  error - Undefined class 'GenaralControler' - lib\Parent_parsentScreen\auth_Screen\login_screen.dart:20:9 - undefined_class
+  error - The method 'GenaralControler' isn't defined for the type 'LoginScreen' - lib\Parent_parsentScreen\auth_Screen\login_screen.dart:20:47 - undefined_method
+  error - Target of URI doesn't exist: '../../core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:6:8 - uri_does_not_exist
+  error - Undefined class 'GenaralControler' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:20:11 - undefined_class
+  error - The method 'GenaralControler' isn't defined for the type 'RegScreen' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:20:52 - undefined_method
+  error - Target of URI doesn't exist: 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:3:8 - uri_does_not_exist
+  error - Undefined class 'Card3' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:22:11 - undefined_class
+  error - The method 'Card3' isn't defined for the type 'FilterModel' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:22:38 - undefined_method
+  error - Undefined class 'Card4' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:23:11 - undefined_class
+  error - The method 'Card4' isn't defined for the type 'FilterModel' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:23:41 - undefined_method
+  error - Target of URI doesn't exist: '../../core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:240:8 - uri_does_not_exist
+  error - Undefined class 'GenaralControler' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:249:9 - undefined_class
+  error - The method 'GenaralControler' isn't defined for the type 'HomeScreen' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:249:47 - undefined_method
+  error - Undefined class 'Card2' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:250:9 - undefined_class
+  error - The method 'Card2' isn't defined for the type 'HomeScreen' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:250:41 - undefined_method
+  error - Target of URI doesn't exist: '../../core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\slash_onloding\onboarding_screen.dart:10:8 - uri_does_not_exist
+  error - Undefined class 'GenaralControler' - lib\Parent_parsentScreen\slash_onloding\onboarding_screen.dart:24:9 - undefined_class
+  error - The method 'GenaralControler' isn't defined for the type '_OnlodaingScreenState' - lib\Parent_parsentScreen\slash_onloding\onboarding_screen.dart:24:51 - undefined_method
+

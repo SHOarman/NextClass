@@ -1,0 +1,19 @@
+Analyzing first_project...                                      
+
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chartdetels.dart:71:31 - unnecessary_underscores
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chartdetels.dart:119:58 - deprecated_member_use
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\homedetels\see_details.dart:80:48 - undefined_getter
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\homedetels\see_details.dart:82:41 - undefined_getter
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\homedetels\see_details.dart:84:41 - undefined_getter
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\homedetels\see_details.dart:85:48 - undefined_getter
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\homedetels\see_details.dart:86:45 - undefined_getter
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\qutionaries_screen.dart:80:48 - undefined_getter
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\qutionaries_screen.dart:82:41 - undefined_getter
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\qutionaries_screen.dart:84:41 - undefined_getter
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\qutionaries_screen.dart:85:48 - undefined_getter
+  error - The getter 'Mathematic' isn't defined for the type 'Staticstringnew' - lib\Parent_parsentScreen\home_Ui\qutionaries_screen.dart:86:45 - undefined_getter
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\profile_Screen\userdata\userdata.dart:59:49 - unnecessary_underscores
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\Parent_parsentScreen\profile_Screen\userdata\userdata.dart:86:50 - deprecated_member_use
+   info - Unnecessary use of multiple underscores - lib\teacher_presentScreen\chat2\chat2.dart:70:31 - unnecessary_underscores
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\teacher_presentScreen\chat2\chat2.dart:118:58 - deprecated_member_use
+

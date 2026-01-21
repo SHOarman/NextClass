@@ -1,0 +1,30 @@
+Analyzing first_project...                                      
+
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chartdetels.dart:71:31 - unnecessary_underscores
+warning - Unused import: 'dart:io' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:1:8 - unused_import
+   info - The variable name 'EditProfileController' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:266:31 - non_constant_identifier_names
+   info - The variable name 'EditProfile' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:343:16 - non_constant_identifier_names
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\profile_Screen\userdata\userdata.dart:59:49 - unnecessary_underscores
+   info - An uninitialized variable should have an explicit type annotation - lib\Services\Controller_view\create_a_class.dart:42:13 - prefer_typing_uninitialized_variables
+warning - Unused import: 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/bokkingdetels.dart' - lib\core\route\route.dart:2:8 - unused_import
+warning - Unused import: 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/my_profile_details/my_profile_details.dart' - lib\core\route\route.dart:4:8 - unused_import
+warning - Unused import: 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/see_details.dart' - lib\core\route\route.dart:5:8 - unused_import
+warning - Unused import: 'package:first_project/Parent_parsentScreen/profile_Screen/logout_screen/logout_screen.dart' - lib\core\route\route.dart:8:8 - unused_import
+warning - Unused import: 'package:first_project/teacher_presentScreen/home_ui/home_ui.dart' - lib\core\route\route.dart:12:8 - unused_import
+warning - Unused import: '../../Parent_parsentScreen/home_Ui/filtermodel/filtermodel.dart' - lib\core\route\route.dart:24:8 - unused_import
+warning - Unused import: '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/requestboking.dart' - lib\core\route\route.dart:34:8 - unused_import
+warning - Unused import: '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chartdetels.dart' - lib\core\route\route.dart:36:8 - unused_import
+warning - Unused import: '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_connection_teacher.dart' - lib\core\route\route.dart:37:8 - unused_import
+warning - Unused import: '../../Parent_parsentScreen/home_Ui/homedetels/expendedpage/expendedpage.dart' - lib\core\route\route.dart:38:8 - unused_import
+warning - Unused import: '../../Parent_parsentScreen/home_Ui/qutionaries_screen.dart' - lib\core\route\route.dart:39:8 - unused_import
+warning - Unused import: '../../Parent_parsentScreen/profile_Screen/edit_profile/editmodel.dart' - lib\core\route\route.dart:41:8 - unused_import
+warning - Unused import: '../../teacher_presentScreen/bokking2/bokking2.dart' - lib\core\route\route.dart:45:8 - unused_import
+warning - Duplicate import - lib\core\route\route.dart:58:8 - duplicate_import
+   info - Unnecessary use of multiple underscores - lib\teacher_presentScreen\chat2\chat2.dart:69:31 - unnecessary_underscores
+warning - Unused import: 'dart:io' - lib\teacher_presentScreen\chat2\msg_controller.dart:1:8 - unused_import
+   info - Don't invoke 'print' in production code - lib\teacher_presentScreen\create_newclasses\class_provider.dart:18:5 - avoid_print
+   info - Statements in an if should be enclosed in a block - lib\teacher_presentScreen\techerall_widget\nav_button\nav_button.dart:28:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\teacher_presentScreen\techerall_widget\nav_button\nav_button.dart:30:7 - curly_braces_in_flow_control_structures
+   info - The constant name 'Mathematics' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:71:23 - constant_identifier_names
+   info - The variable name 'Mathematic' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:299:37 - non_constant_identifier_names
+

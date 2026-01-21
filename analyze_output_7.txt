@@ -1,0 +1,213 @@
+Analyzing first_project...                                      
+
+  error - Classes can only extend other classes - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:9:30 - extends_non_class
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:12:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:12:49 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:13:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:13:52 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:16:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:17:7 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:18:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:19:7 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:20:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:21:7 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:22:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:23:7 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:26:3 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:26:42 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:27:3 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:27:49 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:28:3 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:28:52 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:29:3 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:29:53 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:30:3 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Authcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\auth_controller.dart:30:48 - undefined_method
+  error - Classes can only extend other classes - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:15:41 - extends_non_class
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:17:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:17:52 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:18:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:18:47 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:21:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:21:55 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:22:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:23:7 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:24:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:24:53 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:27:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:27:52 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:28:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:28:50 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:29:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:30:7 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:31:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:31:55 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:33:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:33:52 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:34:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:35:7 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:36:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'ParsenttutorRegcontroller' - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:37:7 - undefined_method
+  error - The name 'TextEditingcontroller' isn't a type, so it can't be used as a type argument - lib\Parent_parsentScreen\auth_Screen\otp_verification.dart:22:14 - non_type_as_type_argument
+  error - The method 'TextEditingcontroller' isn't defined for the type '_VerifyOtpScreenState' - lib\Parent_parsentScreen\auth_Screen\otp_verification.dart:24:16 - undefined_method
+  error - The property 'text' can't be unconditionally accessed because the receiver can be 'null' - lib\Parent_parsentScreen\auth_Screen\otp_verification.dart:107:68 - unchecked_use_of_nullable_value
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:266:5 - undefined_class
+  error - The name 'TextEditingcontroller' isn't a type, so it can't be used as a type argument - lib\Parent_parsentScreen\auth_Screen\reg_verify_screen.dart:20:14 - non_type_as_type_argument
+  error - The method 'TextEditingcontroller' isn't defined for the type '_RegverifyscreenState' - lib\Parent_parsentScreen\auth_Screen\reg_verify_screen.dart:22:16 - undefined_method
+  error - The property 'text' can't be unconditionally accessed because the receiver can be 'null' - lib\Parent_parsentScreen\auth_Screen\reg_verify_screen.dart:109:68 - unchecked_use_of_nullable_value
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:24:5 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Filtermodel' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:24:47 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:25:5 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Filtermodel' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:25:47 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\bokking_widget\cancal,delect\cancelmodel.dart:22:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type '_CancelModelState' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\bokking_widget\cancal,delect\cancelmodel.dart:22:50 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\completed\tution_Completed\reviewadd\reviewadd.dart:21:3 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type '_ReviewaddState' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\completed\tution_Completed\reviewadd\reviewadd.dart:21:44 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requestboking.dart:16:5 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Requestboking' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requestboking.dart:16:42 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requestboking.dart:17:5 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Requestboking' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requestboking.dart:17:42 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requestboking.dart:18:5 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Requestboking' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requestboking.dart:18:44 - undefined_method
+   info - The type name 'rejected' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requested\rejected.dart:9:7 - camel_case_types
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chartdetels.dart:71:31 - unnecessary_underscores
+   info - The type name 'chatconationteacher' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_connection_teacher.dart:7:7 - camel_case_types
+  error - chatcontroller isn't a type - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_connection_teacher.dart:11:9 - not_a_type
+  error - The instance member 'chatcontroller' can't be accessed in an initializer - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_connection_teacher.dart:11:49 - implicit_this_reference_in_initializer
+   info - The type name 'chatcontrollerteacher' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:8:7 - camel_case_types
+  error - Classes can only extend other classes - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:8:37 - extends_non_class
+  error - Undefined class 'Socket' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:9:8 - undefined_class
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:10:3 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'chatcontrollerteacher' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:10:41 - undefined_method
+warning - The method doesn't override an inherited method - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:19:8 - override_on_non_overriding_member
+  error - The method 'onInit' isn't defined in a superclass of 'chatcontrollerteacher' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:20:11 - undefined_super_member
+  error - Undefined name 'IO' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:36:14 - undefined_identifier
+  error - Undefined name 'IO' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:38:7 - undefined_identifier
+warning - The method doesn't override an inherited method - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:95:8 - override_on_non_overriding_member
+  error - The method 'onClose' isn't defined in a superclass of 'chatcontrollerteacher' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:98:11 - undefined_super_member
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Expendedpage' - lib\Parent_parsentScreen\home_Ui\homedetels\expendedpage\expendedpage.dart:38:35 - undefined_method
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Homedetels' - lib\Parent_parsentScreen\home_Ui\homedetels\homedetels.dart:109:39 - undefined_method
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Seedetels' - lib\Parent_parsentScreen\home_Ui\homedetels\see_details.dart:36:35 - undefined_method
+   info - The type name 'loveReactedclasseds' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:214:7 - camel_case_types
+   info - The type name '_loveReactedclassedsState' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:236:7 - camel_case_types
+   info - The type name 'mathematiclass' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:300:7 - camel_case_types
+   info - The type name '_mathematiclass' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:324:7 - camel_case_types
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Qutionaries' - lib\Parent_parsentScreen\home_Ui\qutionaries_screen.dart:36:35 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\profile_Screen\delete_account\delete_account.dart:22:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type '_CancelModelState' - lib\Parent_parsentScreen\profile_Screen\delete_account\delete_account.dart:22:50 - undefined_method
+   info - The type name 'editProfile' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\profile_Screen\edit_profile\edit_profile.dart:13:7 - camel_case_types
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\profile_Screen\logout_screen\logout_screen.dart:22:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type '_LogoutscreennewState' - lib\Parent_parsentScreen\profile_Screen\logout_screen\logout_screen.dart:22:50 - undefined_method
+  error - Classes can only extend other classes - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:250:33 - extends_non_class
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:266:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Profilecontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:266:55 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:268:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Profilecontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:268:47 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:270:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Profilecontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:270:55 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:271:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Profilecontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:271:57 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:272:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Profilecontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:273:7 - undefined_method
+warning - The method doesn't override an inherited method - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:278:8 - override_on_non_overriding_member
+  error - The method 'onInit' isn't defined in a superclass of 'Profilecontroller' - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:279:11 - undefined_super_member
+  error - The method 'TextEditingcontroller' isn't defined for the type 'SupportTeam' - lib\Parent_parsentScreen\profile_Screen\support_team\support_team.dart:37:29 - undefined_method
+  error - The method 'TextEditingcontroller' isn't defined for the type 'SupportTeam' - lib\Parent_parsentScreen\profile_Screen\support_team\support_team.dart:50:29 - undefined_method
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\profile_Screen\userdata\userdata.dart:59:49 - unnecessary_underscores
+   info - The type name 'loveReacteds' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\widget\back_slash\back_slash.dart:38:7 - camel_case_types
+   info - The type name 'mathematic' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\widget\back_slash\back_slash.dart:73:7 - camel_case_types
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:8:9 - undefined_class
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:150:9 - undefined_class
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:324:9 - undefined_class
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:360:9 - undefined_class
+  error - Undefined class 'TextEditingcontroller' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:390:9 - undefined_class
+  error - The method 'DefaultTabcontroller' isn't defined for the type 'TapBarState' - lib\Parent_parsentScreen\widget\tab_manubar\tab_manubar.dart:17:12 - undefined_method
+  error - Classes can only extend other classes - lib\Services\Controller_view\classes_controller.dart:7:33 - extends_non_class
+warning - The method doesn't override an inherited method - lib\Services\Controller_view\classes_controller.dart:19:8 - override_on_non_overriding_member
+  error - The method 'onInit' isn't defined in a superclass of 'Classescontroller' - lib\Services\Controller_view\classes_controller.dart:20:11 - undefined_super_member
+  error - Classes can only extend other classes - lib\Services\Controller_view\create_a_class.dart:7:33 - extends_non_class
+warning - The method doesn't override an inherited method - lib\Services\Controller_view\create_a_class.dart:20:8 - override_on_non_overriding_member
+  error - The method 'onInit' isn't defined in a superclass of 'Classescontroller' - lib\Services\Controller_view\create_a_class.dart:21:11 - undefined_super_member
+   info - An uninitialized variable should have an explicit type annotation - lib\Services\Controller_view\create_a_class.dart:42:13 - prefer_typing_uninitialized_variables
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\date_controller.dart:6:30 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\genaral_controler.dart:3:32 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\genaral_controler.dart:29:33 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\genaral_controler.dart:39:21 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\genaral_controler.dart:48:21 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\genaral_controler.dart:57:21 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\genaral_controler.dart:65:21 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\genaral_controler.dart:73:21 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\genaral_controler.dart:81:33 - extends_non_class
+   info - The type name 'selecttype' isn't an UpperCamelCase identifier - lib\core\route\Genaral_Controler\genaral_controler.dart:90:7 - camel_case_types
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\genaral_controler.dart:90:26 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\imagepickurecontroller.dart:44:38 - extends_non_class
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\location_controller.dart:5:38 - extends_non_class
+warning - The method doesn't override an inherited method - lib\core\route\Genaral_Controler\location_controller.dart:13:8 - override_on_non_overriding_member
+  error - The method 'onInit' isn't defined in a superclass of 'UserLocationcontroller' - lib\core\route\Genaral_Controler\location_controller.dart:14:11 - undefined_super_member
+  error - Classes can only extend other classes - lib\core\route\Genaral_Controler\teachercontroller.dart:3:33 - extends_non_class
+warning - Unused import: '../../Parent_parsentScreen/profile_Screen/edit_profile/edit_profile.dart' - lib\core\route\route.dart:41:8 - unused_import
+warning - Unused import: '../../teacher_presentScreen/chat2/chat2.dart' - lib\core\route\route.dart:47:8 - unused_import
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\core\route\route.dart:206:44 - invocation_of_non_function_expression
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\core\route\route.dart:257:19 - invocation_of_non_function_expression
+  error - Classes can only extend other classes - lib\teacher_presentScreen\Techechercontrler\techercotroler.dart:4:35 - extends_non_class
+   info - The type name 'acceptedvalue' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\bokking2\accepted_value.dart:9:7 - camel_case_types
+  error - The method 'DefaultTabcontroller' isn't defined for the type 'Bokingtabbar' - lib\teacher_presentScreen\bokking2\bokkingWidget\bokingtabbar.dart:12:12 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\bokking2\booking_details_screen.dart:21:14 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type '_BokingDetelsscreenState' - lib\teacher_presentScreen\bokking2\booking_details_screen.dart:26:22 - undefined_method
+   info - The type name 'rejectedvalue' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\bokking2\rejected_value.dart:10:7 - camel_case_types
+   info - The type name 'chat2' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\chat2\chat2.dart:7:7 - camel_case_types
+   info - Unnecessary use of multiple underscores - lib\teacher_presentScreen\chat2\chat2.dart:69:31 - unnecessary_underscores
+  error - chatcontroller isn't a type - lib\teacher_presentScreen\chat2\convarcation.dart:11:9 - not_a_type
+  error - The instance member 'chatcontroller' can't be accessed in an initializer - lib\teacher_presentScreen\chat2\convarcation.dart:11:49 - implicit_this_reference_in_initializer
+   info - The type name 'chatcontroller' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\chat2\msg_controller.dart:8:7 - camel_case_types
+  error - Classes can only extend other classes - lib\teacher_presentScreen\chat2\msg_controller.dart:8:30 - extends_non_class
+  error - Undefined class 'Socket' - lib\teacher_presentScreen\chat2\msg_controller.dart:9:8 - undefined_class
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\chat2\msg_controller.dart:10:3 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'chatcontroller' - lib\teacher_presentScreen\chat2\msg_controller.dart:10:41 - undefined_method
+warning - The method doesn't override an inherited method - lib\teacher_presentScreen\chat2\msg_controller.dart:19:8 - override_on_non_overriding_member
+  error - The method 'onInit' isn't defined in a superclass of 'chatcontroller' - lib\teacher_presentScreen\chat2\msg_controller.dart:20:11 - undefined_super_member
+  error - Undefined name 'IO' - lib\teacher_presentScreen\chat2\msg_controller.dart:36:14 - undefined_identifier
+  error - Undefined name 'IO' - lib\teacher_presentScreen\chat2\msg_controller.dart:38:7 - undefined_identifier
+warning - The method doesn't override an inherited method - lib\teacher_presentScreen\chat2\msg_controller.dart:95:8 - override_on_non_overriding_member
+  error - The method 'onClose' isn't defined in a superclass of 'chatcontroller' - lib\teacher_presentScreen\chat2\msg_controller.dart:98:11 - undefined_super_member
+  error - Undefined class 'Tabcontroller' - lib\teacher_presentScreen\cleses\classes_tab.dart:16:8 - undefined_class
+  error - The method 'Tabcontroller' isn't defined for the type '_ClassestabState' - lib\teacher_presentScreen\cleses\classes_tab.dart:22:22 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\cleses\onboarding_details_screen.dart:19:5 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'Onlodingdetelsscareen' - lib\teacher_presentScreen\cleses\onboarding_details_screen.dart:19:44 - undefined_method
+   info - The type name 'createClasscontroller' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:12:7 - camel_case_types
+  error - Classes can only extend other classes - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:12:37 - extends_non_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'createClasscontroller' - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:23:37 - undefined_method
+  error - The method 'TextEditingcontroller' isn't defined for the type 'createClasscontroller' - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:24:27 - undefined_method
+  error - The method 'TextEditingcontroller' isn't defined for the type 'createClasscontroller' - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:25:29 - undefined_method
+  error - The method 'TextEditingcontroller' isn't defined for the type 'createClasscontroller' - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:26:34 - undefined_method
+  error - The method 'TextEditingcontroller' isn't defined for the type 'createClasscontroller' - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:27:27 - undefined_method
+  error - The method 'TextEditingcontroller' isn't defined for the type 'createClasscontroller' - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:28:25 - undefined_method
+  error - The method 'update' isn't defined for the type 'createClasscontroller' - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:35:5 - undefined_method
+  error - The method 'update' isn't defined for the type 'createClasscontroller' - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:49:5 - undefined_method
+warning - The method doesn't override an inherited method - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:175:8 - override_on_non_overriding_member
+  error - The method 'onClose' isn't defined in a superclass of 'createClasscontroller' - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:177:11 - undefined_super_member
+   info - Don't invoke 'print' in production code - lib\teacher_presentScreen\create_newclasses\class_provider.dart:18:5 - avoid_print
+  error - Classes can only extend other classes - lib\teacher_presentScreen\geolocator\geolocator.dart:4:38 - extends_non_class
+warning - The method doesn't override an inherited method - lib\teacher_presentScreen\geolocator\geolocator.dart:10:8 - override_on_non_overriding_member
+  error - The method 'onInit' isn't defined in a superclass of 'UserLocationcontroller' - lib\teacher_presentScreen\geolocator\geolocator.dart:11:11 - undefined_super_member
+  error - Classes can only extend other classes - lib\teacher_presentScreen\home_ui\home_controller.dart:4:30 - extends_non_class
+warning - The method doesn't override an inherited method - lib\teacher_presentScreen\home_ui\home_controller.dart:13:8 - override_on_non_overriding_member
+  error - The method 'onInit' isn't defined in a superclass of 'Homecontroller' - lib\teacher_presentScreen\home_ui\home_controller.dart:14:11 - undefined_super_member
+  error - Undefined class 'GoogleMapcontroller' - lib\teacher_presentScreen\map_picker_screen\map_picker_screen.dart:19:3 - undefined_class
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\map_picker_screen\map_picker_screen.dart:20:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type '_MapPickerScreenState' - lib\teacher_presentScreen\map_picker_screen\map_picker_screen.dart:20:51 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\myprofileexta\delet_accound\delet_accoundteacher.dart:22:9 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type '_CancelModelState' - lib\teacher_presentScreen\myprofileexta\delet_accound\delet_accoundteacher.dart:22:50 - undefined_method
+   info - The type name 'editProfile2' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\myprofileexta\editprofile2\editprofile2.dart:15:7 - camel_case_types
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\myprofileexta\support_teacherteam\support_teacherteam.dart:17:5 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'SupportTeacherteam' - lib\teacher_presentScreen\myprofileexta\support_teacherteam\support_teacherteam.dart:17:45 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\myprofileexta\support_teacherteam\support_teacherteam.dart:18:5 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'SupportTeacherteam' - lib\teacher_presentScreen\myprofileexta\support_teacherteam\support_teacherteam.dart:18:45 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\myprofileexta\update_passwordtecher\update_passwordtecher.dart:18:11 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'UpdatePasswordtecher' - lib\teacher_presentScreen\myprofileexta\update_passwordtecher\update_passwordtecher.dart:19:9 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\myprofileexta\update_passwordtecher\update_passwordtecher.dart:20:11 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'UpdatePasswordtecher' - lib\teacher_presentScreen\myprofileexta\update_passwordtecher\update_passwordtecher.dart:20:57 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\myprofileexta\update_passwordtecher\update_passwordtecher.dart:21:11 - undefined_class
+  error - The method 'TextEditingcontroller' isn't defined for the type 'UpdatePasswordtecher' - lib\teacher_presentScreen\myprofileexta\update_passwordtecher\update_passwordtecher.dart:22:9 - undefined_method
+  error - Undefined class 'TextEditingcontroller' - lib\teacher_presentScreen\techerall_widget\techerall_widget.dart:5:9 - undefined_class
+

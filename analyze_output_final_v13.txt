@@ -1,0 +1,9 @@
+Analyzing first_project...                                      
+
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chartdetels.dart:71:31 - unnecessary_underscores
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\profile_Screen\userdata\userdata.dart:59:49 - unnecessary_underscores
+   info - An uninitialized variable should have an explicit type annotation - lib\Services\Controller_view\create_a_class.dart:42:13 - prefer_typing_uninitialized_variables
+   info - Unnecessary use of multiple underscores - lib\teacher_presentScreen\chat2\chat2.dart:69:31 - unnecessary_underscores
+   info - The constant name 'Mathematics' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:71:23 - constant_identifier_names
+   info - The variable name 'Mathematic' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:299:37 - non_constant_identifier_names
+

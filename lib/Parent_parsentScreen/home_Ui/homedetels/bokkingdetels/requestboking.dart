@@ -1,26 +1,33 @@
-//======================== Request Booking Screen ========================
+// ======================== Request Booking Screen ========================
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+// ======================== Imports ========================
 import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/bokkingcontroller.dart';
 import 'package:first_project/Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
 import '../../../../unity/app_colors/app_gradient.dart';
 import '../../../widget/custom_button/custom_button.dart';
 import '../../../../Services/model_class/usershow_model.dart';
 
+// ======================== REQUEST BOOKING PAGE ========================
 class Requestboking extends StatelessWidget {
   const Requestboking({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // কন্ট্রোলার ইনিশিয়ালাইজ
-    final Bokkingcontroller bokkingcontroller = Get.put(Bokkingcontroller());
 
-    // ১. আর্গুমেন্ট ডাটা রিসিভ (Null safety সহ)
+    // ======================== CONTROLLER INITIALIZATION ========================
+    // Initialize booking controller using GetX
+    final Bokkingcontroller bokkingcontroller =
+    Get.put(Bokkingcontroller());
+
+    // ======================== RECEIVE ARGUMENT DATA ========================
+    // Receive arguments safely from previous screen
     final dynamic data = Get.arguments;
 
-    // ২. আইডি বের করার নিরাপদ পদ্ধতি (এরর ফিক্স করা হয়েছে)
+    // ======================== CLASS LISTING ID HANDLING ========================
+    // Extract classListingId safely (fixes possible runtime error)
     int? classListingId;
     if (data != null) {
       if (data is ClassFeature) {
@@ -30,18 +37,26 @@ class Requestboking extends StatelessWidget {
       }
     }
 
-    // ৩. যদি আইডি না পাওয়া যায় তবে ইউজারকে মেসেজ দেখানো
+    // ======================== ERROR STATE ========================
+    // Show error message if booking id is missing
     if (classListingId == null) {
       return const Scaffold(
-        body: Center(child: Text("Error: Booking info missing!")),
+        body: Center(
+          child: Text("Error: Booking info missing!"),
+        ),
       );
     }
 
     return Scaffold(
       backgroundColor: Colors.white,
+
+      // ======================== REACTIVE UI ========================
+      // Obx rebuilds UI when loading state changes
       body: Obx(
             () => Stack(
           children: [
+
+            // ======================== MAIN CONTENT ========================
             SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -49,6 +64,8 @@ class Requestboking extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 60.h),
+
+                    // ======================== TITLE ========================
                     Center(
                       child: Text(
                         'Request for booking',
@@ -58,9 +75,10 @@ class Requestboking extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     SizedBox(height: 40.h),
 
-                    // স্টুডেন্ট নাম
+                    // ======================== STUDENT NAME INPUT ========================
                     Text('What is the student name?'),
                     SizedBox(height: 12.h),
                     SimpleCard(
@@ -70,7 +88,7 @@ class Requestboking extends StatelessWidget {
 
                     SizedBox(height: 16.h),
 
-                    // স্টুডেন্ট বয়স (সংখ্যা ইনপুট দিতে কিবোর্ড টাইপ যুক্ত করা উচিত)
+                    // ======================== STUDENT AGE INPUT ========================
                     Text('What is the student age?'),
                     SizedBox(height: 12.h),
                     SimpleCard(
@@ -80,25 +98,29 @@ class Requestboking extends StatelessWidget {
 
                     SizedBox(height: 40.h),
 
-                    // সাবমিট বাটন
+                    // ======================== SUBMIT BUTTON ========================
                     CustomSuperButton(
                       text: bokkingcontroller.isLoading.value
                           ? 'Processing...'
                           : 'Submit',
                       onTap: () {
-                        // কন্ট্রোলার কল (আইডি পাস করা হচ্ছে)
+                        // Call create booking API with class ID
                         bokkingcontroller.createBooking(
-                          classListingId!, // এখানে নিশ্চিত আইডি পাওয়া গেছে
+                          classListingId!, // ID is guaranteed here
                           context,
                         );
                       },
                       bgGradient: const LinearGradient(
-                        colors: [Color(0xff2563EB), Color(0xff2563EB)],
+                        colors: [
+                          Color(0xff2563EB),
+                          Color(0xff2563EB),
+                        ],
                       ),
                     ),
 
                     SizedBox(height: 16.h),
 
+                    // ======================== CLOSE BUTTON ========================
                     CustomSuperButton(
                       text: 'Close',
                       onTap: () => Get.back(),
@@ -110,12 +132,15 @@ class Requestboking extends StatelessWidget {
               ),
             ),
 
-            // লোডিং ইন্ডিকেটর
+            // ======================== LOADING OVERLAY ========================
+            // Show loading indicator while API call is running
             if (bokkingcontroller.isLoading.value)
               Container(
                 color: Colors.black26,
                 child: const Center(
-                  child: CircularProgressIndicator(color: Color(0xff2563EB)),
+                  child: CircularProgressIndicator(
+                    color: Color(0xff2563EB),
+                  ),
                 ),
               ),
           ],

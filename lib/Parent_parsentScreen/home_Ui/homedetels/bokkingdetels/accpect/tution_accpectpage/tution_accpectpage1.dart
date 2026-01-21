@@ -148,12 +148,12 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
             SizedBox(height: 40.h),
 
             /// ===== Start Date
-            Center(
-              child: Text(
-                'Starts on ${data.startTime ?? 'TBA'}',
-                style: TextStyle(color: const Color(0xff1A73E8), fontSize: 13.sp),
-              ),
-            ),
+            // Center(
+            //   child: Text(
+            //     'Starts on ${data.startTime ?? 'TBA'}',
+            //     style: TextStyle(color: const Color(0xff1A73E8), fontSize: 13.sp),
+            //   ),
+            // ),
 
             SizedBox(height: 16.h),
 
