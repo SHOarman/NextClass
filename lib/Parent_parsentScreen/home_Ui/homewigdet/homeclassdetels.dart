@@ -1,14 +1,17 @@
+// ======================= IMPORTS =======================
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-// ======================= Imports =======================
+// Controller & Routes
 import '../../../Services/Controller_view/teacher_details_controller.dart';
 import '../../../core/route/route.dart';
 
+// Custom Widgets
 import '../../widget/back_slash/back_slash.dart';
 import '../../widget/custom_button/custom_button.dart';
 
+// ======================= HOME CLASS DETAILS SCREEN =======================
 class Homeclassdetels extends StatefulWidget {
   const Homeclassdetels({super.key});
 
@@ -17,12 +20,12 @@ class Homeclassdetels extends StatefulWidget {
 }
 
 class _HomeclassdetelsState extends State<Homeclassdetels> {
-  // ======================= Controller =======================
+  // ======================= CONTROLLER =======================
   // Inject TeacherDetailsController using GetX
-  final TeacherDetailsController controller = Get.put(
-    TeacherDetailsController(),
-  );
+  final TeacherDetailsController controller =
+  Get.put(TeacherDetailsController());
 
+  // ======================= STATE VARIABLES =======================
   // Favorite icon state
   bool isFavorite = false;
 
@@ -31,7 +34,7 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
     return Scaffold(
       backgroundColor: Colors.white,
 
-      // ======================= Reactive UI =======================
+      // ======================= REACTIVE UI =======================
       // Obx rebuilds UI when observable data changes
       body: Obx(() {
         // Show loader while data is loading
@@ -39,9 +42,10 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
           return const Center(child: CircularProgressIndicator());
         }
 
-        // Get class and tutor data
+        // ======================= DATA EXTRACTION =======================
         final properties = controller.classData!.properties;
         final tutor = properties.tutorDetails;
+        final schedules = properties.schedules;
 
         return SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -51,17 +55,22 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
             children: [
               SizedBox(height: 40.h),
 
-              // ======================= Top Bar =======================
+              // ======================= TOP BAR =======================
               // Back button and favorite icon
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   BackSlashButton(onTap: () => Get.back()),
                   IconButton(
-                    onPressed: () => setState(() => isFavorite = !isFavorite),
+                    onPressed: () =>
+                        setState(() => isFavorite = !isFavorite),
                     icon: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: isFavorite ? Colors.red : const Color(0xff2B2B2B),
+                      isFavorite
+                          ? Icons.favorite
+                          : Icons.favorite_border,
+                      color: isFavorite
+                          ? Colors.red
+                          : const Color(0xff2B2B2B),
                       size: 28.sp,
                     ),
                   ),
@@ -70,8 +79,8 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
 
               SizedBox(height: 20.h),
 
-              // ======================= Tutor Image =======================
-              // Show tutor profile image
+              // ======================= TUTOR IMAGE =======================
+              // Display tutor profile picture
               Center(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12.r),
@@ -80,7 +89,7 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
                     width: 200.w,
                     height: 200.h,
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Image.asset(
+                    errorBuilder: (_, __, ___) => Image.asset(
                       'assets/backround/placeholder.png',
                       fit: BoxFit.cover,
                     ),
@@ -90,14 +99,14 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
 
               SizedBox(height: 12.h),
 
-              // ======================= View Profile Button =======================
+              // ======================= VIEW PROFILE BUTTON =======================
               // Navigate to tutor profile screen
               Center(
                 child: OutlinedButton(
                   onPressed: () {
                     Get.toNamed(
                       AppRoute.viewtotureprofile,
-                      arguments: tutor, // Pass tutor data
+                      arguments: tutor,
                     );
                   },
                   style: OutlinedButton.styleFrom(
@@ -118,7 +127,7 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
 
               SizedBox(height: 20.h),
 
-              // ======================= Tutor Name =======================
+              // ======================= TUTOR NAME =======================
               Text(
                 tutor.fullName,
                 style: TextStyle(
@@ -130,7 +139,7 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
 
               SizedBox(height: 10.h),
 
-              // ======================= Class Description =======================
+              // ======================= CLASS DESCRIPTION =======================
               Text(
                 properties.description,
                 style: TextStyle(
@@ -142,17 +151,61 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
 
               SizedBox(height: 15.h),
 
-              // ======================= Class Information =======================
-              _buildSimpleInfoText(properties.subject),
-              _buildSimpleInfoText("Class ${properties.level}"),
-              _buildSimpleInfoText(properties.title),
-              _buildSimpleInfoText(properties.address),
+              // ======================= CLASS INFORMATION =======================
+              _buildSimpleInfoText("Subject: ${properties.subject}"),
+              _buildSimpleInfoText("Level: Class ${properties.level}"),
+              _buildSimpleInfoText("Title: ${properties.title}"),
+              _buildSimpleInfoText("Address: ${properties.address}"),
 
               SizedBox(height: 20.h),
 
-              // ======================= Price =======================
+              // ======================= CLASS SCHEDULE =======================
+              // Show class days list
+              if (schedules.isNotEmpty) ...[
+                Text(
+                  "Class Days:",
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                Wrap(
+                  spacing: 8.w,
+                  runSpacing: 8.h,
+                  children: schedules.map((schedule) {
+                    return Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 14.w, vertical: 8.h),
+                      decoration: BoxDecoration(
+                        color:
+                        const Color(0xff2563EB).withOpacity(0.08),
+                        borderRadius: BorderRadius.circular(30.r),
+                        border: Border.all(
+                          color: const Color(0xff2563EB)
+                              .withOpacity(0.5),
+                        ),
+                      ),
+                      child: Text(
+                        schedule.dayOfWeek
+                            .toString()
+                            .capitalizeFirst ??
+                            "N/A",
+                        style: TextStyle(
+                          color: const Color(0xff2563EB),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
+                SizedBox(height: 20.h),
+              ],
+
+              // ======================= PRICE =======================
               Text(
-                "\$${properties.pricePerHour}/hr",
+                "\$${properties.pricePerHour}/monthly",
                 style: TextStyle(
                   fontSize: 24.sp,
                   fontWeight: FontWeight.bold,
@@ -162,11 +215,10 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
 
               SizedBox(height: 40.h),
 
-              // ======================= Request Booking Button =======================
+              // ======================= REQUEST BOOKING BUTTON =======================
               CustomSuperButton(
                 text: 'Request Booking',
                 onTap: () {
-
                   Get.toNamed(
                     AppRoute.requestboking,
                     arguments: controller.classData,
@@ -179,11 +231,13 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
 
               SizedBox(height: 15.h),
 
-              // ======================= Chat Button =======================
+              // ======================= CHAT BUTTON =======================
               CustomSuperButton(
                 text: 'Chat with tutor',
-                onTap: () =>
-                    Get.toNamed(AppRoute.chatConationTeacher, arguments: tutor),
+                onTap: () => Get.toNamed(
+                  AppRoute.chatConationTeacher,
+                  arguments: tutor,
+                ),
                 borderColor: const Color(0xff2563EB),
                 textColor: const Color(0xff2563EB),
               ),
@@ -196,17 +250,17 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
     );
   }
 
-  // ======================= Helper Widget =======================
-  // Simple text row for class info
+  // ======================= HELPER WIDGET =======================
+  // Simple reusable text widget for class info
   Widget _buildSimpleInfoText(String text) {
     return Padding(
-      padding: EdgeInsets.only(bottom: 4.h),
+      padding: EdgeInsets.only(bottom: 6.h),
       child: Text(
         text,
         style: TextStyle(
-          fontSize: 16.sp,
-          fontWeight: FontWeight.w600,
-          color: Colors.black,
+          fontSize: 15.sp,
+          fontWeight: FontWeight.w500,
+          color: Colors.black87,
         ),
       ),
     );

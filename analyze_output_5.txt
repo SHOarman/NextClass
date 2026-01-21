@@ -1,0 +1,180 @@
+Analyzing first_project...                                      
+
+   info - The variable name 'BioeController' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:18:31 - non_constant_identifier_names
+   info - The variable name 'WhatsubjectController' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\auth_Screen\auth_Controller\parsent_tutorReg_Controller\parsent_tutor_reg_controller.dart:21:31 - non_constant_identifier_names
+  error - Target of URI doesn't exist: '../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\auth_Screen\creat_new_password.dart:8:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\auth_Screen\creat_new_password.dart:36:34 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\auth_Screen\creat_new_password.dart:99:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\auth_Screen\forget_password.dart:10:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\auth_Screen\forget_password.dart:67:31 - undefined_identifier
+  error - Target of URI doesn't exist: '../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\auth_Screen\login_screen.dart:8:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\auth_Screen\login_screen.dart:39:34 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\auth_Screen\login_screen.dart:142:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:8:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:38:34 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:226:35 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:13:8 - uri_does_not_exist
+   info - The variable name 'Controller' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:22:17 - non_constant_identifier_names
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:209:31 - undefined_identifier
+  error - Target of URI doesn't exist: '../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:240:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:461:33 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\Recommended_page_detes_techer\recommended_page_detes_techer0.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\Recommended_page_detes_techer\recommended_page_detes_techer0.dart:227:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\Recommended_page_detes_techer\recommended_page_detes_techer1.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\Recommended_page_detes_techer\recommended_page_detes_techer1.dart:227:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\Recommended_page_detes_techer\recommended_page_detes_techer2.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\Recommended_page_detes_techer\recommended_page_detes_techer2.dart:227:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\Recommended_page_detes_techer\recommended_page_detes_techer3.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\Recommended_page_detes_techer\recommended_page_detes_techer3.dart:227:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\accpect\tution_accpectpage\tution_accpectpage1.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\accpect\tution_accpectpage\tution_accpectpage1.dart:235:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\bokking_widget\cancal,delect\cancelmodel.dart:7:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\bokking_widget\cancal,delect\cancelmodel.dart:159:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\completed\tution_Completed\reviewadd\reviewadd.dart:9:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\completed\tution_Completed\reviewadd\reviewadd.dart:209:29 - undefined_identifier
+   info - The file name 'tutionComplectadepage1.dart' isn't a lower_case_with_underscores identifier - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\completed\tution_Completed\tutionComplectadepage1.dart:1:1 - file_names
+  error - Target of URI doesn't exist: '../../../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\completed\tution_Completed\tutionComplectadepage1.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\completed\tution_Completed\tutionComplectadepage1.dart:208:27 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\completed\tution_Completed\tutionComplectadepage1.dart:218:29 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\completed\tution_Completed\tutionComplectadepage1.dart:219:28 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requestboking.dart:8:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requestboking.dart:119:31 - undefined_identifier
+   info - The file name 'tusionRejestiondetels.dart' isn't a lower_case_with_underscores identifier - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requested\tusionRejestiondetels.dart:1:1 - file_names
+  error - Target of URI doesn't exist: '../../../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requested\tusionRejestiondetels.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requested\tusionRejestiondetels.dart:204:27 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requested\tusionRejestiondetels.dart:210:28 - undefined_identifier
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chartdetels.dart:71:31 - unnecessary_underscores
+   info - The prefix 'IO' isn't a lower_case_with_underscores identifier - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:3:60 - library_prefixes
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:12:19 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:20:16 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:129:19 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:137:16 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:220:19 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:228:16 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:306:19 - non_constant_identifier_names
+   info - The variable name 'Subjectname' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:314:16 - non_constant_identifier_names
+  error - Target of URI doesn't exist: '../../../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\profile_Screen\delete_account\delete_account.dart:7:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\profile_Screen\delete_account\delete_account.dart:156:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\profile_Screen\edit_profile\edit_profile.dart:6:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\profile_Screen\edit_profile\edit_profile.dart:194:27 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\profile_Screen\edit_profile\editmodel.dart:4:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\profile_Screen\edit_profile\editmodel.dart:55:27 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\profile_Screen\edit_profile\editmodel.dart:76:29 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\profile_Screen\edit_profile\editmodel.dart:77:28 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\profile_Screen\logout_screen\logout_screen.dart:7:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\profile_Screen\logout_screen\logout_screen.dart:156:29 - undefined_identifier
+   info - The variable name 'Editprofile' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\profile_Screen\profileController\profile_controller.dart:343:16 - non_constant_identifier_names
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\profile_Screen\support_team\support_team.dart:9:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\profile_Screen\support_team\support_team.dart:61:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\profile_Screen\update_password\update_password.dart:7:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\profile_Screen\update_password\update_password.dart:37:34 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\profile_Screen\update_password\update_password.dart:107:29 - undefined_identifier
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\profile_Screen\userdata\userdata.dart:59:49 - unnecessary_underscores
+  error - Target of URI doesn't exist: '../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\slash_onloding\onboarding_screen.dart:11:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\slash_onloding\onboarding_screen.dart:97:21 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\slash_onloding\onboarding_screen.dart:98:21 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:86:30 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:115:33 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:248:30 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:282:27 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\custom_textfield\custom_textfield.dart:295:26 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\widget\home_card\home_card.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\home_card\home_card.dart:84:34 - undefined_identifier
+   info - The type name 'Nev_Button' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\widget\nav_button\nav_button.dart:6:7 - camel_case_types
+   info - The variable name 'SelectIndex' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\widget\nav_button\nav_button.dart:7:37 - non_constant_identifier_names
+   info - The variable name 'SelectIndex' isn't a lowerCamelCase identifier - lib\Parent_parsentScreen\widget\nav_button\nav_button.dart:8:14 - non_constant_identifier_names
+   info - The type name '_Nev_ButtonState' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\widget\nav_button\nav_button.dart:14:7 - camel_case_types
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\Parent_parsentScreen\widget\successfullmsg\successfullmsg.dart:6:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\successfullmsg\successfullmsg.dart:87:29 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\successfullmsg\successfullmsg.dart:99:30 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\successfullmsg\successfullmsg.dart:100:31 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\successfullmsg\successfullmsg.dart:175:26 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\Parent_parsentScreen\widget\successfullmsg\successfullmsg.dart:176:27 - undefined_identifier
+   info - An uninitialized variable should have an explicit type annotation - lib\Services\Controller_view\create_a_class.dart:42:13 - prefer_typing_uninitialized_variables
+   info - The constant name 'Parentreg' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:14:23 - constant_identifier_names
+   info - The constant name 'Tutorreg' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:15:23 - constant_identifier_names
+   info - The constant name 'Createavailability' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:20:23 - constant_identifier_names
+   info - The constant name 'top_rated' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:21:23 - constant_identifier_names
+   info - The constant name 'CreateClass' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:25:23 - constant_identifier_names
+   info - The constant name 'Teacherslistlocationswise' isn't a lowerCamelCase identifier - lib\Services\api_Services\api_services.dart:36:22 - constant_identifier_names
+  error - Target of URI doesn't exist: 'modelClass.dart' - lib\Services\model_class\nearbymodelclass.dart:3:8 - uri_does_not_exist
+  error - The name 'ListingFeature' isn't a type, so it can't be used as a type argument - lib\Services\model_class\nearbymodelclass.dart:13:8 - non_type_as_type_argument
+  error - The name 'ListingFeature' isn't a type, so it can't be used as a type argument - lib\Services\model_class\nearbymodelclass.dart:34:18 - non_type_as_type_argument
+  error - Undefined name 'ListingFeature' - lib\Services\model_class\nearbymodelclass.dart:34:66 - undefined_identifier
+  error - The method 'toJson' can't be unconditionally invoked because the receiver can be 'null' - lib\Services\model_class\nearbymodelclass.dart:44:52 - unchecked_use_of_nullable_value
+  error - Target of URI doesn't exist: '../../unity/appColors/app_gradient.dart' - lib\core\succesfullcontroler\succesfullcontroler.dart:6:8 - uri_does_not_exist
+   info - The variable name 'bu_name1' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:12:17 - non_constant_identifier_names
+   info - The variable name 'bu_name2' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:14:17 - non_constant_identifier_names
+   info - The variable name 'bu_name1' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:21:10 - non_constant_identifier_names
+   info - The variable name 'bu_name2' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:23:10 - non_constant_identifier_names
+  error - Undefined name 'Appgradient' - lib\core\succesfullcontroler\succesfullcontroler.dart:72:29 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\core\succesfullcontroler\succesfullcontroler.dart:88:30 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\core\succesfullcontroler\succesfullcontroler.dart:89:31 - undefined_identifier
+   info - The variable name 'bu_name1' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:109:16 - non_constant_identifier_names
+   info - The variable name 'bu_name1' isn't a lowerCamelCase identifier - lib\core\succesfullcontroler\succesfullcontroler.dart:116:19 - non_constant_identifier_names
+  error - Undefined name 'Appgradient' - lib\core\succesfullcontroler\succesfullcontroler.dart:160:26 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\core\succesfullcontroler\succesfullcontroler.dart:161:27 - undefined_identifier
+  error - Target of URI doesn't exist: 'package:first_project/unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\bokking2\bokking2.dart:3:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\bokking2\bokking2.dart:28:24 - undefined_identifier
+   info - Unnecessary use of multiple underscores - lib\teacher_presentScreen\chat2\chat2.dart:69:31 - unnecessary_underscores
+   info - The prefix 'IO' isn't a lower_case_with_underscores identifier - lib\teacher_presentScreen\chat2\msg_controller.dart:3:60 - library_prefixes
+  error - Target of URI doesn't exist: 'package:first_project/unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\cleses\inactive_ongoing_details_screen.dart:4:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\cleses\inactive_ongoing_details_screen.dart:63:29 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\cleses\inactive_ongoing_details_screen.dart:71:30 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\cleses\inactive_ongoing_details_screen.dart:72:31 - undefined_identifier
+  error - Target of URI doesn't exist: 'package:first_project/unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\cleses\onboarding_details_screen.dart:3:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\cleses\onboarding_details_screen.dart:88:30 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\cleses\onboarding_details_screen.dart:97:30 - undefined_identifier
+   info - Don't invoke 'print' in production code - lib\teacher_presentScreen\create_newclasses\class_provider.dart:18:5 - avoid_print
+  error - Target of URI doesn't exist: '../../unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\create_newclasses\create_newclasses.dart:9:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\create_newclasses\create_newclasses.dart:104:38 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\create_newclasses\create_newclasses.dart:105:39 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\create_newclasses\create_newclasses.dart:126:37 - undefined_identifier
+   info - The file name 'customStepindecotor.dart' isn't a lower_case_with_underscores identifier - lib\teacher_presentScreen\create_newclasses\customStepindecotor.dart:1:1 - file_names
+  error - Target of URI doesn't exist: 'package:first_project/unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\home_ui\home_ui.dart:237:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\home_ui\home_ui.dart:370:34 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\home_ui\home_ui.dart:382:36 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../../../../unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\myprofileexta\delet_accound\delet_accoundteacher.dart:7:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\myprofileexta\delet_accound\delet_accoundteacher.dart:156:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\myprofileexta\editprofile2\editmodel2.dart:8:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\myprofileexta\editprofile2\editmodel2.dart:77:27 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\myprofileexta\editprofile2\editprofile2.dart:11:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\myprofileexta\editprofile2\editprofile2.dart:229:27 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\myprofileexta\support_teacherteam\support_teacherteam.dart:10:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\myprofileexta\support_teacherteam\support_teacherteam.dart:75:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\myprofileexta\update_passwordtecher\update_passwordtecher.dart:10:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\myprofileexta\update_passwordtecher\update_passwordtecher.dart:42:34 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\myprofileexta\update_passwordtecher\update_passwordtecher.dart:113:29 - undefined_identifier
+  error - Target of URI doesn't exist: '../unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\tech_slash.dart:13:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\tech_slash.dart:235:29 - undefined_identifier
+   info - The type name 'Nev_Button2' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\techerall_widget\nevbutton\nevbutton.dart:6:7 - camel_case_types
+   info - The variable name 'SelectIndex' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\nevbutton\nevbutton.dart:7:38 - non_constant_identifier_names
+   info - The variable name 'SelectIndex' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\nevbutton\nevbutton.dart:8:14 - non_constant_identifier_names
+   info - The type name '_Nev_ButtonState' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\techerall_widget\nevbutton\nevbutton.dart:14:7 - camel_case_types
+  error - Target of URI doesn't exist: 'package:first_project/unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:2:8 - uri_does_not_exist
+   info - The variable name 'Reject' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:7:22 - non_constant_identifier_names
+   info - The variable name 'Chat' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:8:22 - non_constant_identifier_names
+   info - The variable name 'Accept' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:9:22 - non_constant_identifier_names
+   info - The variable name 'Reject' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:13:19 - non_constant_identifier_names
+   info - The variable name 'Chat' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:14:19 - non_constant_identifier_names
+   info - The variable name 'Accept' isn't a lowerCamelCase identifier - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:15:19 - non_constant_identifier_names
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:39:24 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:59:22 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:77:22 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:171:24 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:191:22 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:209:22 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:290:24 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:310:22 - undefined_identifier
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\paddinginpormationmodel\paddinginpormationmodel.dart:328:22 - undefined_identifier
+   info - The type name 'customProfilesecationteacher' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\techerall_widget\teacher_home_card\custom_profile_section_teacher\custom_profile_section_teacher.dart:8:7 - camel_case_types
+  error - Target of URI doesn't exist: '../../../unity/appColors/app_gradient.dart' - lib\teacher_presentScreen\techerall_widget\teacher_home_card\teacher_home_card.dart:5:8 - uri_does_not_exist
+  error - Undefined name 'Appgradient' - lib\teacher_presentScreen\techerall_widget\teacher_home_card\teacher_home_card.dart:87:34 - undefined_identifier
+   info - The constant name 'TextColor' isn't a lowerCamelCase identifier - lib\unity\app_colors\app_gradient.dart:10:22 - constant_identifier_names
+   info - The constant name 'Select' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:11:23 - constant_identifier_names
+   info - The constant name 'Email' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:16:23 - constant_identifier_names
+   info - The constant name 'Skip' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:52:23 - constant_identifier_names
+   info - The variable name 'LoveRecated' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:223:37 - non_constant_identifier_names
+   info - The variable name 'Mathmatic' isn't a lowerCamelCase identifier - lib\unity\string_static\strig_static\static_string.dart:299:37 - non_constant_identifier_names
+

@@ -14,6 +14,7 @@ import 'package:first_project/teacher_presentScreen/home_ui/home_controller.dart
 import 'package:get/get.dart';
 
 import '../../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/bokkingcontroller.dart';
+import '../../../Services/Controller_view/BookingtecherListController.dart';
 import '../../../Services/Controller_view/CancelBookingController.dart';
 import '../../../Services/Controller_view/bokinglistcontroller.dart';
 import '../../../Services/Controller_view/teacher_details_controller.dart';
@@ -103,6 +104,8 @@ class DependencyInjection {
     Get.lazyPut(()=>Bokkingcontroller());
     Get.lazyPut(()=>BookingListController());
     Get.lazyPut(()=>CancelBookingController());
+
+    Get.lazyPut(()=>Bookingtecherlistcontroller());
 
   }
 }

@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-//======================== Imports ========================
+// ======================== Imports ========================
 import '../../../../../../Services/Controller_view/CancelBookingController.dart';
 import '../../../../../../core/route/route.dart';
 import '../../../../../../unity/app_colors/app_gradient.dart';
 import '../../../../../widget/custom_button/custom_button.dart';
 import '../../../../../widget/custom_textfield/custom_textfield.dart';
-import '../../../../../../core/succesfullcontroler/succesfullcontroler.dart';
 
+// ======================== Cancel Booking Modal ========================
 class CancelModel extends StatefulWidget {
   const CancelModel({super.key});
 
@@ -18,16 +18,30 @@ class CancelModel extends StatefulWidget {
 }
 
 class _CancelModelState extends State<CancelModel> {
+  // ======================== Local UI States ========================
   bool isYesselected = false;
   bool isNoselected = false;
 
-  // ১. কন্ট্রোলার ইনিশিয়ালাইজ (Get.find ব্যবহার করা নিরাপদ যদি আর্গুমেন্ট থেকে আইডি নিতে হয়)
+  // ======================== Controller Initialization ========================
   final CancelBookingController cancelBookingController = Get.put(CancelBookingController());
 
   @override
   Widget build(BuildContext context) {
-    // ২. আর্গুমেন্ট থেকে বুকিং আইডি রিসিভ করা
-    final int? bookingId = Get.arguments as int?;
+    // ======================== ✅ Type Casting Error Fix ========================
+    // arguments সরাসরি int? না হয়ে পুরো BookingModel অবজেক্ট হতে পারে।
+    // তাই dynamic হিসেবে রিসিভ করে আইডি বের করা হয়েছে।
+    final dynamic args = Get.arguments;
+    int? bookingId;
+
+    if (args is int) {
+      bookingId = args; // সরাসরি আইডি পাঠালে
+    } else if (args != null) {
+      try {
+        bookingId = args.id; // পূর্ণ মডেল অবজেক্ট পাঠালে আইডি বের করবে
+      } catch (e) {
+        debugPrint("Error extracting ID: $e");
+      }
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -39,7 +53,6 @@ class _CancelModelState extends State<CancelModel> {
             children: [
               SizedBox(height: 20.h),
 
-              /// ===== Title
               Text(
                 'Are you sure?',
                 style: TextStyle(
@@ -51,7 +64,6 @@ class _CancelModelState extends State<CancelModel> {
 
               SizedBox(height: 8.h),
 
-              /// ===== Subtitle
               Text(
                 'Once you cancel, you won’t be able to join this class.',
                 textAlign: TextAlign.center,
@@ -63,9 +75,10 @@ class _CancelModelState extends State<CancelModel> {
 
               SizedBox(height: 24.h),
 
-              /// ===== Yes / No Buttons
+              /// ======================== Yes / No Selection ========================
               Row(
                 children: [
+                  // ======================== YES Button ========================
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -95,7 +108,10 @@ class _CancelModelState extends State<CancelModel> {
                       ),
                     ),
                   ),
+
                   SizedBox(width: 12.w),
+
+                  // ======================== NO Button (Update) ========================
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -103,7 +119,8 @@ class _CancelModelState extends State<CancelModel> {
                           isNoselected = true;
                           isYesselected = false;
                         });
-                        Get.back(); // 'No' বললে সরাসরি ব্যাক করবে
+                        // ✅ "No" ক্লিক করলে সরাসরি হোম ডিটেইলস স্ক্রিনে নিয়ে যাবে
+                        Get.offAllNamed(AppRoute.homedetels);
                       },
                       child: Container(
                         height: 40.h,
@@ -131,7 +148,6 @@ class _CancelModelState extends State<CancelModel> {
 
               SizedBox(height: 40.h),
 
-              /// ===== Reason Title
               const Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -146,7 +162,6 @@ class _CancelModelState extends State<CancelModel> {
 
               SizedBox(height: 12.h),
 
-              /// ===== Reason Input
               Customdetesl(
                 controller: cancelBookingController.reasonController,
                 hintText: 'Write here..',
@@ -154,25 +169,26 @@ class _CancelModelState extends State<CancelModel> {
 
               SizedBox(height: 40.h),
 
-              /// ===== Submit Button (Controller এর সাথে যুক্ত)
-              Obx(() => CustomSuperButton(
-                text: cancelBookingController.isLoading.value ? 'Loading...' : 'Submit',
-                bgGradient: Appgradient.primaryGradient,
-                onTap: () {
-                  // ৩. ভ্যালিডেশন চেক এবং এপিআই কল
-                  if (!isYesselected) {
-                    Get.snackbar("Notice", "Please select 'Yes' to confirm cancellation");
-                    return;
-                  }
+              /// ======================== Submit Button ========================
+              Obx(
+                    () => CustomSuperButton(
+                  text: cancelBookingController.isLoading.value ? 'Loading...' : 'Submit',
+                  bgGradient: Appgradient.primaryGradient,
+                  onTap: () {
+                    if (!isYesselected) {
+                      Get.snackbar("Notice", "Please select 'Yes' to confirm cancellation");
+                      return;
+                    }
 
-                  if (bookingId != null) {
-                    // কন্ট্রোলারের ক্যানসেল ফাংশন কল করা হচ্ছে
-                    cancelBookingController.cancelBooking(bookingId, context);
-                  } else {
-                    Get.snackbar("Error", "Booking ID not found!");
-                  }
-                },
-              )),
+                    if (bookingId != null) {
+                      // কন্ট্রোলার থেকে API কল করে হোমে ফিরিয়ে নিয়ে যাবে
+                      cancelBookingController.cancelBooking(bookingId, context);
+                    } else {
+                      Get.snackbar("Error", "Booking ID not found!");
+                    }
+                  },
+                ),
+              ),
             ],
           ),
         ),

@@ -1,0 +1,6 @@
+Analyzing first_project...                                      
+
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chartdetels.dart:71:31 - unnecessary_underscores
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\profile_Screen\userdata\userdata.dart:59:49 - unnecessary_underscores
+   info - Unnecessary use of multiple underscores - lib\teacher_presentScreen\chat2\chat2.dart:70:31 - unnecessary_underscores
+

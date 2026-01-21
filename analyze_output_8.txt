@@ -1,0 +1,39 @@
+Analyzing first_project...                                      
+
+   info - The type name 'rejected' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homedetels\bokkingdetels\requested\rejected.dart:9:7 - camel_case_types
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chartdetels.dart:71:31 - unnecessary_underscores
+   info - The type name 'chatconationteacher' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_connection_teacher.dart:7:7 - camel_case_types
+  error - chatController isn't a type - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_connection_teacher.dart:11:9 - not_a_type
+  error - The instance member 'chatController' can't be accessed in an initializer - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_connection_teacher.dart:11:49 - implicit_this_reference_in_initializer
+   info - The type name 'chatControllerteacher' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:8:7 - camel_case_types
+  error - Undefined class 'Socket' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:9:8 - undefined_class
+  error - Undefined name 'IO' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:36:14 - undefined_identifier
+  error - Undefined name 'IO' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_controller_teacher.dart:38:7 - undefined_identifier
+   info - The type name 'loveReactedclasseds' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:214:7 - camel_case_types
+   info - The type name '_loveReactedclassedsState' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:236:7 - camel_case_types
+   info - The type name 'mathematiclass' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:300:7 - camel_case_types
+   info - The type name '_mathematiclass' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\home_Ui\homewigdet\recommended Classes\recommended_classes.dart:324:7 - camel_case_types
+   info - The type name 'editProfile' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\profile_Screen\edit_profile\edit_profile.dart:13:7 - camel_case_types
+   info - Unnecessary use of multiple underscores - lib\Parent_parsentScreen\profile_Screen\userdata\userdata.dart:59:49 - unnecessary_underscores
+   info - The type name 'loveReacteds' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\widget\back_slash\back_slash.dart:38:7 - camel_case_types
+   info - The type name 'mathematic' isn't an UpperCamelCase identifier - lib\Parent_parsentScreen\widget\back_slash\back_slash.dart:73:7 - camel_case_types
+   info - An uninitialized variable should have an explicit type annotation - lib\Services\Controller_view\create_a_class.dart:42:13 - prefer_typing_uninitialized_variables
+   info - The type name 'selecttype' isn't an UpperCamelCase identifier - lib\core\route\Genaral_Controler\genaral_controler.dart:90:7 - camel_case_types
+warning - Unused import: '../../Parent_parsentScreen/profile_Screen/edit_profile/edit_profile.dart' - lib\core\route\route.dart:41:8 - unused_import
+warning - Unused import: '../../teacher_presentScreen/chat2/chat2.dart' - lib\core\route\route.dart:47:8 - unused_import
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\core\route\route.dart:206:44 - invocation_of_non_function_expression
+  error - The expression doesn't evaluate to a function, so it can't be invoked - lib\core\route\route.dart:257:19 - invocation_of_non_function_expression
+   info - The type name 'acceptedvalue' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\bokking2\accepted_value.dart:9:7 - camel_case_types
+   info - The type name 'rejectedvalue' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\bokking2\rejected_value.dart:10:7 - camel_case_types
+   info - The type name 'chat2' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\chat2\chat2.dart:7:7 - camel_case_types
+   info - Unnecessary use of multiple underscores - lib\teacher_presentScreen\chat2\chat2.dart:69:31 - unnecessary_underscores
+  error - chatController isn't a type - lib\teacher_presentScreen\chat2\convarcation.dart:11:9 - not_a_type
+  error - The instance member 'chatController' can't be accessed in an initializer - lib\teacher_presentScreen\chat2\convarcation.dart:11:49 - implicit_this_reference_in_initializer
+   info - The type name 'chatController' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\chat2\msg_controller.dart:8:7 - camel_case_types
+  error - Undefined class 'Socket' - lib\teacher_presentScreen\chat2\msg_controller.dart:9:8 - undefined_class
+  error - Undefined name 'IO' - lib\teacher_presentScreen\chat2\msg_controller.dart:36:14 - undefined_identifier
+  error - Undefined name 'IO' - lib\teacher_presentScreen\chat2\msg_controller.dart:38:7 - undefined_identifier
+   info - The type name 'createClassController' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\create_newclasses\classCreateController\class_create_controller.dart:12:7 - camel_case_types
+   info - Don't invoke 'print' in production code - lib\teacher_presentScreen\create_newclasses\class_provider.dart:18:5 - avoid_print
+   info - The type name 'editProfile2' isn't an UpperCamelCase identifier - lib\teacher_presentScreen\myprofileexta\editprofile2\editprofile2.dart:15:7 - camel_case_types
+

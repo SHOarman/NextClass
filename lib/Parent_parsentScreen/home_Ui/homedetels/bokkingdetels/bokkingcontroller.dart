@@ -4,18 +4,26 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ======================== Imports ========================
 import '../../../../Services/api_Services/api_Services.dart';
 import '../../../../core/succesfullcontroler/succesfullcontroler.dart';
 import '../../../../core/route/route.dart';
 
 class Bokkingcontroller extends GetxController {
+
+  // ======================== Text Controllers ========================
   TextEditingController namcontroler = TextEditingController();
   TextEditingController agecontroler = TextEditingController();
 
+  // ======================== Loading State ========================
   var isLoading = false.obs;
 
+  // ======================== Create Booking API ========================
   Future<void> createBooking(int classId, BuildContext context) async {
-    if (namcontroler.text.isEmpty || agecontroler.text.isEmpty) {
+
+    // ======================== Form Validation ========================
+    if (namcontroler.text.trim().isEmpty ||
+        agecontroler.text.trim().isEmpty) {
       Get.snackbar(
         "Error",
         "Please fill all fields",
@@ -25,11 +33,23 @@ class Bokkingcontroller extends GetxController {
       return;
     }
 
+    final int? age = int.tryParse(agecontroler.text.trim());
+    if (age == null || age <= 0) {
+      Get.snackbar(
+        "Invalid Age",
+        "Please enter a valid age",
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+      return;
+    }
+
     isLoading.value = true;
 
     try {
+      // ======================== Token ========================
       final prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('token');
+      final String? token = prefs.getString('token');
 
       if (token == null || token.isEmpty) {
         isLoading.value = false;
@@ -37,17 +57,17 @@ class Bokkingcontroller extends GetxController {
         return;
       }
 
-      // ======================== Request Body Fix ========================
+      // ======================== Request Body ========================
       final bodyData = {
         "class_listing": classId,
         "booking_date": DateTime.now().toIso8601String().split('T')[0],
         "student_name": namcontroler.text.trim(),
-        // বয়সকে অবশ্যই Integer এ কনভার্ট করতে হবে
-        "student_age": int.tryParse(agecontroler.text.trim()) ?? 0,
-        "parent_notes": "Booking from mobile app",
-        "number_of_students": 1, // অনেক সময় এটি রিকোয়ার্ড থাকে
+        "student_age": age,
+        "parent_notes": "Booking request from parent app",
+        "number_of_students": 1,
       };
 
+      // ======================== API Call ========================
       final response = await http.post(
         Uri.parse(ApiServices.listbokking),
         headers: {
@@ -60,27 +80,29 @@ class Bokkingcontroller extends GetxController {
 
       isLoading.value = false;
 
-      if (response.statusCode == 201 || response.statusCode == 200) {
+      // ======================== Success ========================
+      if (response.statusCode == 200 || response.statusCode == 201) {
+
         namcontroler.clear();
         agecontroler.clear();
         FocusScope.of(context).unfocus();
 
-        // ফর্ম স্ক্রিন বন্ধ করা
         Get.back();
 
-        // Success Dialog
         showDialog(
           context: context,
           barrierDismissible: false,
-          builder: (ctx) => AlertDialog(
+          builder: (_) => AlertDialog(
             backgroundColor: Colors.white,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
             content: Successfullmsg(
               name: 'Successful',
               namedetels: 'Your request has been sent successfully to the tutor.',
               buName1: 'Track booking',
               ontap1: () {
-                Get.back(); // Close dialog
+                Get.back();
                 Get.offNamed(AppRoute.homedetels);
               },
               buName2: 'Back to home',
@@ -88,13 +110,18 @@ class Bokkingcontroller extends GetxController {
             ),
           ),
         );
-      } else {
-        // সার্ভার থেকে আসা আসল এরর মেসেজ চেক করা
+      }
+      // ======================== Error ========================
+      else {
         final errorData = jsonDecode(response.body);
-        debugPrint("Server Error Detail: ${response.body}"); // ডিবাগিং এর জন্য
+        final errorMessage =
+            errorData['message'] ?? 'Booking failed';
+
+        debugPrint("Server Error: ${response.body}");
+
         Get.snackbar(
           "Booking Failed",
-          errorData.toString(), // পুরো এরর দেখালে বুঝতে সুবিধা হবে কি ভুল হচ্ছে
+          errorMessage,
           backgroundColor: Colors.red.withOpacity(0.7),
           colorText: Colors.white,
         );
@@ -104,5 +131,12 @@ class Bokkingcontroller extends GetxController {
       debugPrint("Exception: $e");
       Get.snackbar("Error", "Something went wrong. Please try again.");
     }
+  }
+
+  @override
+  void onClose() {
+    namcontroler.dispose();
+    agecontroler.dispose();
+    super.onClose();
   }
 }

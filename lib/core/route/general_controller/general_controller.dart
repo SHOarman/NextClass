@@ -1,0 +1,104 @@
+import 'package:get/get.dart';
+
+class GenaralControler extends GetxController {
+  //==================onloding=========================
+
+  RxString selectedRole = ''.obs;
+
+  void selectRole(String role) {
+    selectedRole.value = role;
+  }
+
+  //===================other==================================
+
+  final RxBool isCheck = false.obs;
+  final RxBool isheck = false.obs;
+
+  final RxBool isSucces = false.obs;
+
+  ///////////////////////////SelectType/===================================
+
+  RxString selectedCard = ''.obs;
+  void selectCard(String title) {
+    selectedCard.value = title;
+  }
+}
+
+//card 1====================================
+
+class GenaralController extends GetxController {
+  RxString selectedCard = ''.obs;
+
+  void selectCard(String title) {
+    selectedCard.value = title;
+  }
+}
+
+//card 2====================================
+
+class Card2 extends GetxController {
+  RxString selectedCard = ''.obs;
+
+  void selectCard2(String title) {
+    selectedCard.value = title;
+  }
+}
+
+//card 3====================================
+class Card3 extends GetxController {
+  RxString selectedCard = ''.obs;
+
+  void selectCard(String title) {
+    selectedCard.value = title;
+  }
+}
+
+//card 4====================================
+class Card4 extends GetxController {
+  RxString selectedCard = ''.obs;
+
+  void selectCard(String title) {
+    selectedCard.value = title;
+  }
+}
+
+class Card5 extends GetxController {
+  RxString selectedCard = ''.obs;
+
+  void selectCard(String title) {
+    selectedCard.value = title;
+  }
+}
+
+class Card6 extends GetxController {
+  RxString selectedCard = ''.obs;
+
+  void selectCard(String title) {
+    selectedCard.value = title;
+  }
+}
+
+class BookingController extends GetxController {
+  // কোন ট্যাব select হয়েছে
+  var selectedTab = 0.obs;
+
+  void changeTab(int index) {
+    selectedTab.value = index;
+  }
+}
+
+class SelectType extends GetxController {
+  RxString selectedCard = ''.obs;
+
+  void selectCard(String title) {
+    selectedCard.value = title;
+  }
+}
+
+// class Classescreat2 extends GetxController {
+//   RxString selectedCard = ''.obs;
+//
+//   void selectCard(String title) {
+//     selectedCard.value = title;
+//   }
+// }
