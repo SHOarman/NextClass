@@ -20,6 +20,8 @@ class _NavButtonState extends State<NavButton> {
     super.initState();
   }
 
+
+  // testing
   // --- Change made here: Replaced Get.toNamed with Get.offNamed ---
   void _navigateToScreen(int index) {
     // Get.offNamed replaces the current screen on the stack with the new one.
