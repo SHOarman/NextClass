@@ -1,143 +1,3 @@
-// import 'package:first_project/teacher_presentScreen/techerall_widget/nav_button/nav_button.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:get/get.dart';
-//
-// // ======================== Imports ========================
-// import 'package:first_project/core/route/route.dart';
-// import 'package:first_project/teacher_presentScreen/techerall_widget/customcard/customcard.dart';
-// import 'package:first_project/unity/app_colors/app_gradient.dart';
-//
-// import '../../Parent_parsentScreen/widget/nav_button/nav_button.dart';
-// import '../../Services/Controller_view/BookingtecherListController.dart';
-// import '../../Services/model_class/bokkingmodelclass.dart';
-//
-// class Bokking2 extends StatelessWidget {
-//   const Bokking2({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//
-//     // ======================== Controller Injection ========================
-//     final Bookingtecherlistcontroller controller =
-//     Get.put(Bookingtecherlistcontroller());
-//
-//
-//
-//     return Scaffold(
-//       //======================== Bottom Navigation ========================
-//
-//         bottomNavigationBar: const NavButton2(selectIndex: 1),
-//
-//         body: Padding(
-//         padding: EdgeInsets.symmetric(horizontal: 20.w),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//
-//             SizedBox(height: 60.h),
-//
-//             /// ======================== Screen Title ========================
-//             Text(
-//               'Bookings',
-//               style: TextStyle(
-//                 color: Appgradient.textColor,
-//                 fontWeight: FontWeight.w600,
-//                 fontSize: 22.sp,
-//               ),
-//             ),
-//
-//             SizedBox(height: 8.h),
-//
-//             /// ======================== Screen Subtitle ========================
-//             Text(
-//               'You can manage your booking requests here',
-//               style: TextStyle(
-//                 color: const Color(0xff888888),
-//                 fontSize: 13.sp,
-//               ),
-//             ),
-//
-//             SizedBox(height: 30.h),
-//
-//             /// ======================== Booking List Section ========================
-//             Expanded(
-//               child: Obx(() {
-//
-//                 // ---------- Loading State ----------
-//                 if (controller.isLoading.value) {
-//                   return const Center(
-//                     child: CircularProgressIndicator(),
-//                   );
-//                 }
-//
-//                 // ---------- Grouped Booking Data by Class ----------
-//                 final groupedMap = controller.groupedBookings;
-//                 final classKeys = groupedMap.keys.toList();
-//
-//                 // ---------- Empty State ----------
-//                 if (classKeys.isEmpty) {
-//                   return const Center(
-//                     child: Text("No bookings found"),
-//                   );
-//                 }
-//
-//                 return RefreshIndicator(
-//                   onRefresh: () => controller.fetchMyBookings(),
-//                   child: ListView.builder(
-//                     padding: EdgeInsets.zero,
-//                     itemCount: classKeys.length,
-//                     itemBuilder: (context, index) {
-//
-//                       // ======================== Class-wise Booking List ========================
-//                       final int classId = classKeys[index];
-//                       final List<BookingModel> bookingsInClass =
-//                       groupedMap[classId]!;
-//
-//                       // Retrieve common class information from the first booking
-//                       final BookingModel firstBooking =
-//                           bookingsInClass.first;
-//
-//                       final properties =
-//                           firstBooking.classDetails?.properties;
-//
-//                       // ======================== Pending Booking Count ========================
-//                       final int pendingCount = bookingsInClass
-//                           .where((b) => b.status == "pending")
-//                           .length;
-//
-//                       return Padding(
-//                         padding: EdgeInsets.only(bottom: 16.h),
-//                         child: CustomCardnew(
-//                           title: properties?.subject ?? 'Subject',
-//                           subtitle:
-//                           'Class ${properties?.level ?? 'N/A'}',
-//                           iconName: 'Pending - $pendingCount',
-//                           onTap: () {
-//                             // Navigate to booking details screen
-//                             // Passing all bookings of the selected class
-//                             Get.toNamed(
-//                               AppRoute.bokkingdetels2,
-//                               arguments: bookingsInClass,
-//                             );
-//                           },
-//                         ),
-//                       );
-//                     },
-//                   ),
-//                 );
-//               }),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -147,7 +7,7 @@ import 'package:first_project/core/route/route.dart';
 import 'package:first_project/teacher_presentScreen/techerall_widget/customcard/customcard.dart';
 import 'package:first_project/unity/app_colors/app_gradient.dart';
 
-import '../../Services/Controller_view/BookingtecherListController.dart';
+import '../../Services/Controller_view/booking_teacher_list_controller.dart';
 import '../../Services/model_class/bokkingmodelclass.dart';
 import '../techerall_widget/nav_button/nav_button.dart';
 
@@ -157,7 +17,9 @@ class Bokking2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // ======================== Controller Injection ========================
-    final Bookingtecherlistcontroller controller = Get.put(Bookingtecherlistcontroller());
+    final Bookingtecherlistcontroller controller = Get.put(
+      Bookingtecherlistcontroller(),
+    );
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -182,10 +44,7 @@ class Bokking2 extends StatelessWidget {
 
             Text(
               'You can manage your booking requests here',
-              style: TextStyle(
-                color: const Color(0xff888888),
-                fontSize: 13.sp,
-              ),
+              style: TextStyle(color: const Color(0xff888888), fontSize: 13.sp),
             ),
 
             SizedBox(height: 30.h),
@@ -198,7 +57,9 @@ class Bokking2 extends StatelessWidget {
 
                 // ---------- গ্রুপ করা বুকিং ডাটা (Class ID অনুযায়ী) ----------
                 final groupedMap = controller.groupedBookings;
-                final classKeys = groupedMap.keys.toList();
+                final classKeys = groupedMap.keys.where((classId) {
+                  return groupedMap[classId]!.any((b) => b.status == "pending");
+                }).toList();
 
                 if (classKeys.isEmpty) {
                   return RefreshIndicator(
@@ -222,7 +83,8 @@ class Bokking2 extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final int classId = classKeys[index];
                       // ✅ ওই নির্দিষ্ট ক্লাসের সব বুকিংয়ের লিস্ট (যেমন: ৫টি পেন্ডিং)
-                      final List<BookingModel> bookingsInClass = groupedMap[classId]!;
+                      final List<BookingModel> bookingsInClass =
+                          groupedMap[classId]!;
 
                       // প্রথম বুকিং থেকে ক্লাসের তথ্য (Subject, Level) নেওয়া হচ্ছে
                       final BookingModel firstBooking = bookingsInClass.first;

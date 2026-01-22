@@ -376,7 +376,6 @@ import 'package:first_project/Parent_parsentScreen/auth_Screen/forget_password.d
 import 'package:first_project/Parent_parsentScreen/auth_Screen/login_screen.dart';
 import 'package:first_project/Parent_parsentScreen/auth_Screen/otp_verification.dart';
 import 'package:first_project/Parent_parsentScreen/auth_Screen/reg_verify_screen.dart';
-import '../../Parent_parsentScreen/home_Ui/filtermodel/filtermodel.dart';
 import '../../Parent_parsentScreen/home_Ui/home_screen.dart';
 import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_teacher/recommended_page_detes_teacher0.dart';
 import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/recommended_page_detes_teacher/recommended_page_detes_teacher1.dart';
@@ -391,7 +390,6 @@ import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/requested/tu
 import '../../Parent_parsentScreen/home_Ui/homedetels/expendedpage/expendedpage.dart';
 import '../../Parent_parsentScreen/home_Ui/homewigdet/tutor_profile_screen.dart';
 import '../../Parent_parsentScreen/home_Ui/homewigdet/homeclassdetels.dart';
-import '../../Parent_parsentScreen/home_Ui/qutionaries_screen.dart';
 import '../../Parent_parsentScreen/profile_Screen/delete_account/delete_account.dart';
 import '../../Parent_parsentScreen/profile_Screen/edit_profile/editmodel.dart';
 import '../../Parent_parsentScreen/slash_onloding/onboarding_screen.dart';
@@ -548,7 +546,7 @@ class AppRoute {
     GetPage(name: delectaccound, page: () => Delectaccound()),
     GetPage(name: editProfile, page: () => EditProfile()),
     GetPage(name: editmodel, page: () => EditModel()),
-    GetPage(name: qutionaries, page: () => Qutionaries()),
+    // GetPage(name: qutionaries, page: () => Qutionaries()),
     GetPage(name: seDetels, page: () => Seedetels()),
     GetPage(name: logoutscreennew, page: () => Logoutscreennew()),
     GetPage(
@@ -569,7 +567,7 @@ class AppRoute {
       page: () => Myprofiledetels(),
       transition: Transition.noTransition,
     ),
-    GetPage(name: filtermodel, page: () => FilterModel()),
+    // GetPage(name: filtermodel, page: () => FilterModel()),
     GetPage(name: expadedpage, page: () => Expendedpage()),
     GetPage(name: requestboking, page: () => Requestboking()),
 

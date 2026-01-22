@@ -24,11 +24,8 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
     final data = controller.bookingData;
 
     // Show loading if data not yet available
-    if (data == null) {
-      return const Scaffold(
-        body: Center(child: CircularProgressIndicator()),
-      );
-    }
+    // Data is guaranteed to be non-null by the time this widget builds
+    // if (data == null) { return ... } check removed as it was dead code
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -52,7 +49,7 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
                     padding: EdgeInsets.all(8.w),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.grey.withOpacity(0.1),
+                      color: Colors.grey.withValues(alpha: 0.1),
                     ),
                     child: Icon(
                       isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -75,12 +72,11 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
                   width: 200.w,
                   height: 200.h,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) =>
-                      Image.asset(
-                        'assets/backround/Frame 91.png',
-                        width: 200.w,
-                        height: 200.h,
-                      ),
+                  errorBuilder: (context, error, stackTrace) => Image.asset(
+                    'assets/backround/Frame 91.png',
+                    width: 200.w,
+                    height: 200.h,
+                  ),
                 ),
               ),
             ),
@@ -106,7 +102,10 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
                 ),
                 child: Text(
                   "View Tutor Profile",
-                  style: TextStyle(color: const Color(0xff2563EB), fontSize: 14.sp),
+                  style: TextStyle(
+                    color: const Color(0xff2563EB),
+                    fontSize: 14.sp,
+                  ),
                 ),
               ),
             ),
@@ -126,12 +125,20 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
             SizedBox(height: 20.h),
 
             /// ===== Booking & Student Details
-            _buildDetailText("Subject: ${data.classDetails?.properties?.subject ?? 'N/A'}"),
-            _buildDetailText("Level: ${data.classDetails?.properties?.level ?? 'N/A'}"),
+            _buildDetailText(
+              "Subject: ${data.classDetails?.properties?.subject ?? 'N/A'}",
+            ),
+            _buildDetailText(
+              "Level: ${data.classDetails?.properties?.level ?? 'N/A'}",
+            ),
             _buildDetailText("Student Name: ${data.studentName ?? 'N/A'}"),
-            _buildDetailText("Student Age: ${data.studentAge != null ? "${data.studentAge} Yrs" : 'N/A'}"),
+            _buildDetailText(
+              "Student Age: ${data.studentAge != null ? "${data.studentAge} Yrs" : 'N/A'}",
+            ),
             _buildDetailText('Booking Date: ${data.bookingDate ?? 'N/A'}'),
-            _buildDetailText('Address: ${data.classDetails?.properties?.address ?? 'No Address'}'),
+            _buildDetailText(
+              'Address: ${data.classDetails?.properties?.address ?? 'No Address'}',
+            ),
 
             SizedBox(height: 24.h),
 
@@ -154,7 +161,6 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
             //     style: TextStyle(color: const Color(0xff1A73E8), fontSize: 13.sp),
             //   ),
             // ),
-
             SizedBox(height: 16.h),
 
             /// ===== Action Buttons
@@ -162,8 +168,11 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
               text: 'Cancel booking',
               fontSize: 18.sp,
               fontWeight: FontWeight.bold,
-              onTap: () => Get.toNamed(AppRoute.cancelModel, arguments: data.id),
-              bgGradient: const LinearGradient(colors: [Color(0xff2563EB), Color(0xff2563EB)]),
+              onTap: () =>
+                  Get.toNamed(AppRoute.cancelModel, arguments: data.id),
+              bgGradient: const LinearGradient(
+                colors: [Color(0xff2563EB), Color(0xff2563EB)],
+              ),
             ),
 
             SizedBox(height: 16.h),
@@ -172,7 +181,10 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
               text: 'Chat with tutor',
               fontWeight: FontWeight.bold,
               fontSize: 18.sp,
-              onTap: () => Get.toNamed(AppRoute.chatConationTeacher, arguments: data.tutorDetails),
+              onTap: () => Get.toNamed(
+                AppRoute.chatConationTeacher,
+                arguments: data.tutorDetails,
+              ),
               borderColor: const Color(0xff2563EB),
               textGradient: Appgradient.primaryGradient,
             ),

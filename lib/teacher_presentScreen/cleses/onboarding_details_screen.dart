@@ -6,13 +6,11 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import '../../Parent_parsentScreen/widget/back_slash/back_slash.dart';
 import '../../Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
-import '../../Services/Controller_view/ongoingDetailsController.dart';
-import '../../core/route/route.dart';
+import '../../Services/Controller_view/ongoing_details_controller.dart';
 import '../../unity/app_colors/app_gradient.dart';
 import '../bokking2/bokkingWidget/tuition_details.dart';
 import '../techerall_widget/customcard/customcard.dart';
 import '../techerall_widget/markasinactive/markasinactive.dart';
-import '../techerall_widget/padding_information_model/padding_information_model.dart';
 
 class Onlodingdetelsscareen extends StatelessWidget {
   const Onlodingdetelsscareen({super.key});
@@ -28,7 +26,9 @@ class Onlodingdetelsscareen extends StatelessWidget {
     // ------------------------------
     // 2. Initialize controller
     // ------------------------------
-    final OngoingDetailsController detailsController = Get.put(OngoingDetailsController());
+    final OngoingDetailsController detailsController = Get.put(
+      OngoingDetailsController(),
+    );
 
     // Filter students for this class once screen is built
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -83,7 +83,9 @@ class Onlodingdetelsscareen extends StatelessWidget {
                 title: 'Tuition details',
                 title2: props?.subject ?? "N/A",
                 title3: "\$${props?.pricePerHour ?? '0.00'}",
-                title4: (props?.isGroupClass ?? false) ? "Group class" : "Individual",
+                title4: (props?.isGroupClass ?? false)
+                    ? "Group class"
+                    : "Individual",
                 title1: "Class ${props?.level ?? 'N/A'}",
               ),
 
@@ -103,14 +105,16 @@ class Onlodingdetelsscareen extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  Obx(() => Text(
-                    '${detailsController.bookingCount.value}',
-                    style: TextStyle(
-                      color: Appgradient.textColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600,
+                  Obx(
+                    () => Text(
+                      '${detailsController.bookingCount.value}',
+                      style: TextStyle(
+                        color: Appgradient.textColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  )),
+                  ),
                 ],
               ),
 
@@ -153,9 +157,9 @@ class Onlodingdetelsscareen extends StatelessWidget {
                         title: booking.parentDetails?.fullName ?? "Parent name",
                         subtitle: "Class ${props?.level ?? ''}",
                         iconName: booking.studentName ?? "Student name",
-                        fullscrenonTap: () {
-                        },
-                        imagePath: booking.parentDetails?.profilePicture ??
+                        fullscrenonTap: () {},
+                        imagePath:
+                            booking.parentDetails?.profilePicture ??
                             'assets/backround/Rectangle 5050 (6).png',
                       ),
                     );

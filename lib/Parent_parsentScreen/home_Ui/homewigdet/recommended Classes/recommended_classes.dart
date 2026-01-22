@@ -30,22 +30,25 @@ class _RecommendedclassesState extends State<Recommendedclasses> {
         );
       },
       child: Container(
-        width: 1.sw,
-        height: 360.h, // হাইট কিছুটা অ্যাডজাস্ট করা হয়েছে
+       // width: 1.sw,
+       // height: 360.h, // হাইট কিছুটা অ্যাডজাস্ট করা হয়েছে
         margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(16.r), // বর্ডার রেডিয়াস ১৬ স্ট্যান্ডার্ড
+          borderRadius: BorderRadius.circular(
+            16.r,
+          ), // বর্ডার রেডিয়াস ১৬ স্ট্যান্ডার্ড
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
           ],
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // কন্টেন্ট বাম দিক থেকে শুরু হবে
+          crossAxisAlignment:
+              CrossAxisAlignment.start, // কন্টেন্ট বাম দিক থেকে শুরু হবে
           children: [
             // ======================= ১. ইমেজ সেকশন =======================
             Expanded(
@@ -56,7 +59,9 @@ class _RecommendedclassesState extends State<Recommendedclasses> {
                   Hero(
                     tag: "tutor_${widget.classData.id}",
                     child: ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(16.r),
+                      ),
                       child: _buildImage(tutorDetails.profilePicture),
                     ),
                   ),
@@ -66,7 +71,7 @@ class _RecommendedclassesState extends State<Recommendedclasses> {
                     child: GestureDetector(
                       onTap: () => setState(() => isFavorite = !isFavorite),
                       child: CircleAvatar(
-                        backgroundColor: Colors.white.withOpacity(0.9),
+                        backgroundColor: Colors.white.withValues(alpha: 0.9),
                         radius: 15.r,
                         child: Icon(
                           isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -75,14 +80,14 @@ class _RecommendedclassesState extends State<Recommendedclasses> {
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
 
             // ======================= ২. ডিটেইলস সেকশন =======================
             Expanded(
-              flex: 4, // টেক্সট সেকশনের জন্য ফ্ল্যাক্স অ্যাডজাস্টমেন্ট
+              flex: 8, // টেক্সট সেকশনের জন্য ফ্ল্যাক্স অ্যাডজাস্টমেন্ট
               child: Padding(
                 padding: EdgeInsets.fromLTRB(12.w, 12.h, 12.w, 12.h),
                 child: Column(
@@ -101,7 +106,6 @@ class _RecommendedclassesState extends State<Recommendedclasses> {
                     ),
 
                     SizedBox(height: 6.h), // নামের নিচে গ্যাপ
-
                     // সাবজেক্টের নাম
                     Text(
                       properties.subject,
@@ -113,7 +117,6 @@ class _RecommendedclassesState extends State<Recommendedclasses> {
                     ),
 
                     SizedBox(height: 4.h), // সাবজেক্টের নিচে ছোট গ্যাপ
-
                     // ক্লাসের নাম (Level)
                     Text(
                       "Class: ${properties.level}",
@@ -123,21 +126,19 @@ class _RecommendedclassesState extends State<Recommendedclasses> {
                       ),
                     ),
 
-                    const Spacer(), // প্রাইসটিকে নিচে ঠেলে দেওয়ার জন্য
-
-                    // প্রাইস সেকশন
+                SizedBox(height: 8.h,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           "\$${properties.pricePerHour}/monthly",
                           style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.bold,
                             color: const Color(0xff2563EB),
                           ),
                         ),
-                        Icon(Icons.arrow_forward, size: 16.sp, color: const Color(0xff2563EB)),
+
                       ],
                     ),
                   ],
@@ -355,6 +356,7 @@ class MathematicClass extends StatefulWidget {
     required this.subjectName,
     required this.classname,
     required this.amount,
+    this.fullData, // অপশনাল: পুরো মডেল ডাটা পাস করার জন্য
   });
 
   final int selectindex;
@@ -363,69 +365,105 @@ class MathematicClass extends StatefulWidget {
   final String subjectName;
   final String classname;
   final String amount;
+  final dynamic fullData;
 
   @override
-  // ভুল ছিল: State<LoveReactedClasses>
-  // সঠিক: State<MathematicClass>
-  State<MathematicClass> createState() => _MathematicClass();
+  State<MathematicClass> createState() => _MathematicClassState();
 }
 
-class _MathematicClass extends State<MathematicClass> {
-  bool isFavorite = true;
+class _MathematicClassState extends State<MathematicClass> {
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    // print("Index clicked: ${widget.selectindex}");
-                  },
-                  child: AspectRatio(
-                    aspectRatio: 16 / 10,
+    return InkWell(
+      borderRadius: BorderRadius.circular(12),
+      onTap: () {
+        // ✅ ক্লিক করলে ডিটেইলস স্ক্রিনে যাবে এবং ডাটা পাস করবে
+        Get.toNamed(
+          AppRoute.homedetels,
+          arguments: {
+            "index": widget.selectindex,
+            "name": widget.tutorielname,
+            "subject": widget.subjectName,
+            "image": widget.imagepath,
+            "price": widget.amount,
+          },
+        );
+      },
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  AspectRatio(
+                    aspectRatio: 16 / 11,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(widget.imagepath, fit: BoxFit.cover),
+                      child: widget.imagepath.startsWith('http')
+                          ? Image.network(
+                              widget.imagepath,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  const Icon(Icons.person, size: 50),
+                            )
+                          : Image.asset(
+                              widget.imagepath.isEmpty
+                                  ? 'assets/image/default.png'
+                                  : widget.imagepath,
+                              fit: BoxFit.cover,
+                            ),
                     ),
                   ),
-                ),
-                Positioned(
-                  top: 4,
-                  right: 4,
-                  child: IconButton(
-                    icon: Icon(
-                      isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.red,
+                  Positioned(
+                    top: -8,
+                    right: -8,
+                    child: IconButton(
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: Colors.red,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                      },
                     ),
-                    onPressed: () {
-                      // বাটন কাজ করার জন্য setState যোগ করা হলো
-                      setState(() {
-                        isFavorite = !isFavorite;
-                      });
-                    },
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(widget.tutorielname),
-            Text(widget.subjectName),
-            Text(widget.classname),
-            Text(
-              widget.amount,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Color(0xff2563EB),
+                ],
               ),
-            ),
-          ],
+              const SizedBox(height: 6),
+              Text(
+                widget.tutorielname,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+              ),
+              Text(
+                widget.subjectName,
+                maxLines: 1,
+                style: const TextStyle(color: Colors.grey, fontSize: 12),
+              ),
+              Text(widget.classname, style: const TextStyle(fontSize: 12)),
+              const Spacer(),
+              Text(
+                widget.amount,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: Color(0xff2563EB),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

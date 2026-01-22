@@ -141,10 +141,10 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
 
               // ======================= CLASS DESCRIPTION =======================
               Text(
-                properties.description,
+                ("CLASS DESCRIPTION: ${properties.description}"),
                 style: TextStyle(
                   fontSize: 14.sp,
-                  color: Colors.grey[500],
+                 color: Colors.black,
                   height: 1.4,
                 ),
               ),
@@ -154,7 +154,7 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
               // ======================= CLASS INFORMATION =======================
               _buildSimpleInfoText("Subject: ${properties.subject}"),
               _buildSimpleInfoText("Level: Class ${properties.level}"),
-              _buildSimpleInfoText("Title: ${properties.title}"),
+             // _buildSimpleInfoText("Title: ${properties.title}"),
               _buildSimpleInfoText("Address: ${properties.address}"),
 
               SizedBox(height: 20.h),

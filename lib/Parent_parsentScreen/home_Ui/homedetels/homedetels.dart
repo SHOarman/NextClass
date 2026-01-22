@@ -192,31 +192,7 @@ class Homedetels extends StatelessWidget {
             prefixicon: true,
           ),
         ),
-        SizedBox(width: 12.w),
-        InkWell(
-          onTap: () => Get.toNamed(AppRoute.filtermodel),
-          child: Container(
-            height: 52.h,
-            width: 48.w,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12.r),
-              boxShadow: const [
-                BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 4,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(12.w),
-              child: SvgPicture.asset(
-                'assets/icon/instant_mix.svg',
-              ),
-            ),
-          ),
-        ),
+
       ],
     );
   }

@@ -50,6 +50,8 @@ class ApiServices {
       "$baseUrl/api/classes/parent-approved-by-admin/";
   static const String listoffclass = "$baseUrl/api/classes/";
 
+  static const String recommendedClasses = "/api/accounts/parent-profile/active_classes/";
+
   //=============== Socket Web () ==========================
   static String get socketBaseUrl {
     return baseUrl.replaceAll('http', 'ws');
@@ -61,4 +63,5 @@ class ApiServices {
   static const String bookingRequest = "$baseUrl/api/bookings/";
   static const String listbokking = "$baseUrl/api/bookings/";
   static const String cencelbokking="$baseUrl/api/bookings/{id}/cancel/";
+  static String confirmBooking(int id) => "/api/bookings/$id/confirm/";
 }

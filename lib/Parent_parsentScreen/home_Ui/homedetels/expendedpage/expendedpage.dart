@@ -40,25 +40,8 @@ class Expendedpage extends StatelessWidget {
                       prefixicon: true,
                     ),
                   ),
-                  const SizedBox(width: 10),
-                  InkWell(
-                    borderRadius: BorderRadius.circular(8),
-                    onTap: () {
-                      Get.toNamed(AppRoute.filtermodel);
-                    },
-                    child: Container(
-                      height: 45,
-                      width: 45,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: SvgPicture.asset(
-                        'assets/icon/instant_mix.svg',
-                        fit: BoxFit.scaleDown,
-                      ),
-                    ),
-                  ),
+
+
                 ],
               ),
 

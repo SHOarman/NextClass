@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:first_project/core/route/general_controller/location_controller.dart';
-import 'package:first_project/core/route/route.dart'; // ✅ AppRoute ব্যবহারের জন্য
 
 import '../../../Services/api_Services/api_services.dart';
 
@@ -13,34 +12,42 @@ class Profilesecation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 1. Initialize Profile controller
+    // 1. Initialize Profile Controller
     final ProfileController profileController = Get.put(ProfileController());
-    // 2. Initialize Location controller
+
+    // 2. Initialize User Location Controller
     final UserLocationController locationController = Get.put(
       UserLocationController(),
     );
 
     return Container(
-      // Padding সামান্য কমানো হয়েছে যাতে উপরের স্পেস ঠিক থাকে
+      // Reduced padding slightly to maintain proper top spacing
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // --- ✅ DYNAMIC IMAGE CODE START ---
+          // --- ✅ DYNAMIC PROFILE IMAGE START ---
           Obx(() {
             ImageProvider imageProvider;
 
+            // If user has selected a new image from device
             if (profileController.hasImage) {
               imageProvider = FileImage(
                 File(profileController.pickedImage.value!.path),
               );
-            } else if (profileController.profileImgUrl.value.isNotEmpty) {
+            }
+            // If profile image URL exists from server
+            else if (profileController.profileImgUrl.value.isNotEmpty) {
               String imgUrl = profileController.profileImgUrl.value;
+
+              // Ensure full URL format
               if (!imgUrl.startsWith('http')) {
                 imgUrl = "${ApiServices.baseUrl}$imgUrl";
               }
               imageProvider = NetworkImage(imgUrl);
-            } else {
+            }
+            // Default placeholder image
+            else {
               imageProvider = const AssetImage(
                 'assets/backround/Rectangle 5040.png',
               );
@@ -52,25 +59,23 @@ class Profilesecation extends StatelessWidget {
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.grey[200],
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: imageProvider,
-                ),
+                image: DecorationImage(fit: BoxFit.cover, image: imageProvider),
               ),
             );
           }),
-          // --- ✅ DYNAMIC IMAGE CODE END ---
 
+          // --- ✅ DYNAMIC PROFILE IMAGE END ---
           SizedBox(width: 12.w),
 
-          // Name and Location Column
+          // User name and location section
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
+                // Display user's name
                 Obx(
-                      () => Text(
+                  () => Text(
                     "Hi, ${profileController.fullName.value}",
                     style: TextStyle(
                       fontSize: 18.sp,
@@ -81,8 +86,10 @@ class Profilesecation extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 4.h),
+
+                // Display current location
                 Obx(
-                      () => Text(
+                  () => Text(
                     locationController.isLoading.value
                         ? "Locating..."
                         : locationController.currentAddress.value.isEmpty
@@ -100,7 +107,7 @@ class Profilesecation extends StatelessWidget {
           // --- ✅ NOTIFICATION BUTTON START ---
           GestureDetector(
             onTap: () {
-              // আপনার নোটিফিকেশন পেজের রুট এখানে দিন
+              // Navigate to notification screen
               // Get.toNamed(AppRoute.notifications);
             },
             child: Container(
@@ -111,7 +118,7 @@ class Profilesecation extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12.r),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withValues(alpha: 0.05),
                     blurRadius: 10,
                     offset: const Offset(0, 5),
                   ),
@@ -125,7 +132,7 @@ class Profilesecation extends StatelessWidget {
                     color: const Color(0xff121212),
                     size: 26.sp,
                   ),
-                  // লাল ডট (নতুন নোটিফিকেশন বোঝাতে)
+                  // Red dot to indicate new notifications
                   Positioned(
                     right: 12.w,
                     top: 12.h,
