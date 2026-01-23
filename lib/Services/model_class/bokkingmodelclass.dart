@@ -15,8 +15,8 @@ class BookingResponseModel {
       previous: json['previous']?.toString(),
       results: json['results'] != null
           ? (json['results'] as List)
-                .map((x) => BookingModel.fromJson(x))
-                .toList()
+          .map((x) => BookingModel.fromJson(x))
+          .toList()
           : [],
     );
   }
@@ -103,12 +103,12 @@ class BookingModel {
       // 2. If not found, try inside parent_details
       // 3. If still not found, set default values
       studentName:
-          json['student_name']?.toString() ??
+      json['student_name']?.toString() ??
           json['parent_details']?['student_name']?.toString() ??
           "Student",
 
       studentAge:
-          (json['student_age'] as num?)?.toInt() ??
+      (json['student_age'] as num?)?.toInt() ??
           (json['parent_details']?['student_age'] as num?)?.toInt() ??
           0,
 

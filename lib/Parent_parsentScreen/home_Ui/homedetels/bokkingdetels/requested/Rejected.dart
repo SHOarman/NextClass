@@ -1,72 +1,102 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+//======================== Controller ========================
 import '../../../../../Services/Controller_view/bokinglistcontroller.dart';
+
+//======================== Routes ========================
 import '../../../../../core/route/route.dart';
+
+//======================== Custom Widget ========================
 import '../../../../../teacher_presentScreen/techerall_widget/customcard/customcard.dart';
 
+//======================== Rejected Booking Screen ========================
 class Rejected extends StatelessWidget {
   const Rejected({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // ১. কন্ট্রোলার খুঁজে নেওয়া
-    final BookingListController controller = Get.find<BookingListController>();
+    // Controller is already initialized in parent screen
+    final BookingListController controller =
+    Get.find<BookingListController>();
 
     return Scaffold(
       backgroundColor: Colors.white,
+
+      //======================== Reactive UI ========================
       body: Obx(() {
-        // ২. ডাটা লোড হওয়ার সময় লোডার দেখানো
+
+        //======================== Loading State ========================
         if (controller.isLoading.value) {
           return const Center(
-            child: CircularProgressIndicator(color: Color(0xff2563EB)),
+            child: CircularProgressIndicator(
+              color: Color(0xff2563EB),
+            ),
           );
         }
 
-        // ৩. রিজেক্টেড লিস্ট খালি থাকলে এম্পটি স্টেট দেখানো
+        //======================== Empty State ========================
         if (controller.rejectedBookings.isEmpty) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+          return RefreshIndicator(
+            onRefresh: () => controller.fetchBookings(),
+            child: ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
               children: [
-                Icon(
-                  Icons.cancel_presentation_outlined,
-                  size: 80.sp,
-                  color: Colors.grey[300],
-                ),
-                SizedBox(height: 16.h),
-                Text(
-                  "No rejected bookings found",
-                  style: TextStyle(
-                    color: Colors.grey[600],
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
+                SizedBox(height: 200.h),
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.cancel_presentation_outlined,
+                        size: 80.sp,
+                        color: Colors.grey[300],
+                      ),
+                      SizedBox(height: 16.h),
+                      Text(
+                        "No rejected bookings found",
+                        style: TextStyle(
+                          color: Colors.grey[600],
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      TextButton(
+                        onPressed: () => controller.fetchBookings(),
+                        child: const Text("Try Refreshing"),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: 8.h),
-                TextButton(
-                  onPressed: () => controller.fetchBookings(),
-                  child: const Text("Try Refreshing"),
-                )
               ],
             ),
           );
         }
 
-        // ৪. ডাইনামিক লিস্ট (RefreshIndicator সহ)
+        //======================== Rejected Booking List ========================
         return RefreshIndicator(
           color: const Color(0xff2563EB),
-          onRefresh: () async => await controller.fetchBookings(),
+          onRefresh: () => controller.fetchBookings(),
           child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.w,
+              vertical: 20.h,
+            ),
             physics: const AlwaysScrollableScrollPhysics(),
             itemCount: controller.rejectedBookings.length,
             itemBuilder: (context, index) {
-              final data = controller.rejectedBookings[index];
-              final String status = (data.status ?? "").toLowerCase().trim();
+              final data =
+              controller.rejectedBookings[index];
 
-              // ৫. প্রোফাইল ইমেজ লজিক (নতুন মডেল অনুযায়ী)
-              final String profileImg = (data.tutorDetails?.profilePicture != null &&
+              //======================== Status Logic ========================
+              final String status =
+              (data.status ?? "").toLowerCase();
+
+              //======================== Profile Image Logic ========================
+              final String profileImage =
+              (data.tutorDetails?.profilePicture != null &&
                   data.tutorDetails!.profilePicture!.isNotEmpty)
                   ? data.tutorDetails!.profilePicture!
                   : 'assets/backround/boking1.png';
@@ -74,23 +104,26 @@ class Rejected extends StatelessWidget {
               return Padding(
                 padding: EdgeInsets.only(bottom: 16.h),
                 child: CustomCardnew(
-                  // টিউটর নাম: tutorDetails থেকে নেওয়া
-                  title: data.tutorDetails?.fullName ?? 'Unknown Tutor',
+                  // Tutor name
+                  title:
+                  data.tutorDetails?.fullName ?? 'Unknown Tutor',
 
-                  // বিষয়ের নাম: classDetails -> properties থেকে নেওয়া
-                  subtitle: data.classDetails?.properties?.subject ?? 'Subject not specified',
+                  // Subject name
+                  subtitle: data.classDetails?.properties?.subject ??
+                      'Subject not specified',
 
-                  // স্ট্যাটাস অনুযায়ী ব্যাজ টেক্সট
-                  iconName: status == "rejected" ? 'Rejected' : 'Cancelled',
+                  // Status badge
+                  iconName:
+                  status == "rejected" ? 'Rejected' : 'Cancelled',
 
-                  // ইমেজ পাথ
-                  imagePath: profileImg,
+                  // Profile image
+                  imagePath: profileImage,
 
-                  // কার্ডে ক্লিক করলে ডিটেইলস পেজে ডাটা পাঠানো
+                  // Navigate to rejection details screen
                   onTap: () {
                     Get.toNamed(
                       AppRoute.rejectiondetels,
-                      arguments: data, // পুরো 'BookingModel' অবজেক্ট পাঠানো হলো
+                      arguments: data,
                     );
                   },
                 ),

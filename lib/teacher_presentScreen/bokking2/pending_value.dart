@@ -4,9 +4,11 @@ import 'package:get/get.dart';
 
 import '../../../Services/model_class/bokkingmodelclass.dart';
 import '../../../core/route/route.dart';
+import '../../Services/Controller_view/ConfirmBookingController.dart';
 import '../techerall_widget/customcard/customcard.dart';
 import '../techerall_widget/padding_information_model/padding_information_model.dart';
 
+//========================= Pending Requests Widget =========================
 class Pendingvalue extends StatelessWidget {
   final List<BookingModel> list;
 
@@ -14,6 +16,10 @@ class Pendingvalue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 1. Inject or get the confirm booking controller
+    final ConfirmBookingController confirmController = Get.put(ConfirmBookingController());
+
+    // 2. Show message if no pending requests
     if (list.isEmpty) {
       return const Center(
         child: Text(
@@ -27,6 +33,7 @@ class Pendingvalue extends StatelessWidget {
       );
     }
 
+    // 3. List of pending requests
     return Scaffold(
       backgroundColor: Colors.white,
       body: ListView.builder(
@@ -35,13 +42,9 @@ class Pendingvalue extends StatelessWidget {
         itemBuilder: (context, index) {
           final booking = list[index];
 
-          // --- Data Mapping ---
+          //========================= Data Mapping =========================
           String parentName = booking.parentDetails?.fullName ?? 'Parent Name';
-
-          // Displaying only the Class Level
           String classLevel = booking.classDetails?.properties?.level ?? "N/A";
-
-          // Profile Image Logic
           String profileImg = (booking.parentDetails?.profilePicture != null &&
               booking.parentDetails!.profilePicture!.isNotEmpty)
               ? booking.parentDetails!.profilePicture!
@@ -51,10 +54,10 @@ class Pendingvalue extends StatelessWidget {
             padding: EdgeInsets.only(bottom: 12.h),
             child: CustomCardnew(
               title: parentName,
-              // Student Name and Subject removed from here
               subtitle: 'Class $classLevel',
               imagePath: profileImg,
               fullscrenonTap: () {
+                //========================= Open Details Dialog =========================
                 showDialog(
                   context: context,
                   barrierDismissible: true,
@@ -67,18 +70,23 @@ class Pendingvalue extends StatelessWidget {
                     ),
                     content: Paddinginpormationmodel(
                       booking: booking,
+
+                      // Reject booking: navigate to reason input screen
                       reject: () {
-                        Get.back();
-
-
-                         Get.toNamed(AppRoute.cancelModel, arguments: booking.id);
+                        Get.back(); // close dialog
+                        Get.toNamed(AppRoute.resonwigets, arguments: booking.id);
                       },
+
+                      // Chat with parent
                       chat: () {
                         Get.toNamed(AppRoute.convarcation, arguments: booking);
                       },
+
+                      // Accept booking via controller
                       accept: () {
-                        _handleAcceptRequest(booking.id);
-                        Get.back();
+                        if (booking.id != null) {
+                          confirmController.confirmBooking(booking.id!, context);
+                        }
                       },
                     ),
                   ),
@@ -87,20 +95,6 @@ class Pendingvalue extends StatelessWidget {
             ),
           );
         },
-      ),
-    );
-  }
-
-  void _handleAcceptRequest(int? id) {
-    if (id == null) return;
-
-    Get.showSnackbar(
-      GetSnackBar(
-        title: 'Processing Request',
-        message: 'Accepting request for ID: $id',
-        backgroundColor: Colors.blueAccent,
-        snackPosition: SnackPosition.BOTTOM,
-        duration: const Duration(seconds: 2),
       ),
     );
   }

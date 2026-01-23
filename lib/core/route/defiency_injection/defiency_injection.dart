@@ -14,9 +14,13 @@ import 'package:first_project/teacher_presentScreen/home_ui/home_controller.dart
 import 'package:get/get.dart';
 
 import '../../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/bokkingcontroller.dart';
+import '../../../Services/Controller_view/ConfirmBookingController.dart';
+import '../../../Services/Controller_view/DeleteClassController.dart';
+import '../../../Services/Controller_view/MarkAsCompleteController.dart';
 import '../../../Services/Controller_view/booking_teacher_list_controller.dart';
 import '../../../Services/Controller_view/cancel_booking_controller.dart';
 import '../../../Services/Controller_view/bokinglistcontroller.dart';
+import '../../../Services/Controller_view/rejectbokking2.dart';
 import '../../../Services/Controller_view/teacher_details_controller.dart';
 import '../../../Services/Controller_view/tutorprofile.dart';
 import '../../succesfullcontroler/succesfullcontroler.dart';
@@ -96,6 +100,7 @@ class DependencyInjection {
     Get.lazyPut(() => TeacherDetailsController());
     Get.lazyPut(() => TutorPublicProfileController());
     // Get.lazyPut(()=>TutorFilterController());
+    Get.lazyPut(()=>DeleteClassController());
 
     //================bokking=====================
 
@@ -103,6 +108,9 @@ class DependencyInjection {
     Get.lazyPut(() => BookingListController());
     Get.lazyPut(() => CancelBookingController());
 
-    Get.lazyPut(() => Bookingtecherlistcontroller());
+    Get.lazyPut(() => Bookingtecherlistcontroller(), fenix: true);
+    Get.lazyPut(() => Rejectbokking2());
+    Get.lazyPut(() => ConfirmBookingController());
+    Get.lazyPut(()=>MarkAsCompleteController());
   }
 }

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../Parent_parsentScreen/widget/back_slash/back_slash.dart';
 import '../../Services/Controller_view/create_a_class.dart';
+import '../../core/route/route.dart';
 import '../techerall_widget/customcard/customcard.dart';
 
 class SeeAll extends StatelessWidget {
@@ -73,8 +74,12 @@ class SeeAll extends StatelessWidget {
                 subtitle: level,
                 iconName: groupStatus,
                 onTap: () {
-
-
+                  // Navigation to Ongoing Details Screen
+                  // Passing the specific class 'item' to filter bookings in the next screen
+                  Get.toNamed(
+                    AppRoute.onlodingdetelsscreen, // Ensure this route is defined
+                    arguments: item,
+                  );
                 },
               ),
             );

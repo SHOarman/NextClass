@@ -18,8 +18,7 @@ class Accpectd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    //======================== Get Controller ========================
-    // Using Get.find because controller is already put in parent page
+    // Controller is already initialized in parent screen
     final BookingListController controller =
     Get.find<BookingListController>();
 
@@ -40,22 +39,30 @@ class Accpectd extends StatelessWidget {
 
         //======================== Empty State ========================
         if (controller.acceptedAndPendingBookings.isEmpty) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+          return RefreshIndicator(
+            onRefresh: () => controller.fetchBookings(),
+            child: ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
               children: [
-                Icon(
-                  Icons.event_available_outlined,
-                  size: 70.sp,
-                  color: Colors.grey[300],
-                ),
-                SizedBox(height: 10.h),
-                Text(
-                  "No pending or accepted bookings",
-                  style: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w500,
+                SizedBox(height: 200.h),
+                Center(
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.event_available_outlined,
+                        size: 70.sp,
+                        color: Colors.grey[300],
+                      ),
+                      SizedBox(height: 10.h),
+                      Text(
+                        "No pending or accepted bookings",
+                        style: TextStyle(
+                          color: Colors.grey[400],
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -66,10 +73,7 @@ class Accpectd extends StatelessWidget {
         //======================== Booking List ========================
         return RefreshIndicator(
           color: const Color(0xff2563EB),
-
-          // Pull to refresh bookings
           onRefresh: () => controller.fetchBookings(),
-
           child: ListView.builder(
             padding: EdgeInsets.symmetric(
               horizontal: 16.w,
@@ -78,47 +82,41 @@ class Accpectd extends StatelessWidget {
             physics: const AlwaysScrollableScrollPhysics(),
             itemCount: controller.acceptedAndPendingBookings.length,
             itemBuilder: (context, index) {
-
-              // Current booking data
               final data =
               controller.acceptedAndPendingBookings[index];
 
-              //======================== Status Logic ========================
-              // pending  -> Pending
-              // confirmed -> Accepted
+              //======================== Status Badge Logic ========================
               final String status =
-              (data.status ?? "").toLowerCase().trim();
-
-              String displayLabel =
+              (data.status ?? "").toLowerCase();
+              final String displayLabel =
               status == "pending" ? "Pending" : "Accepted";
+
+              //======================== Profile Image Logic ========================
+              final String profileImage =
+              (data.tutorDetails?.profilePicture != null &&
+                  data.tutorDetails!.profilePicture!.isNotEmpty)
+                  ? data.tutorDetails!.profilePicture!
+                  : 'assets/backround/boking1.png';
 
               return Padding(
                 padding: EdgeInsets.only(bottom: 16.h),
                 child: CustomCardnew(
+                  // Tutor name
+                  title:
+                  data.tutorDetails?.fullName ?? 'No Name Found',
 
-                  //======================== Tutor Name ========================
-                  title: data.tutorDetails?.fullName ??
-                      'No Name Found',
-
-                  //======================== Subject ========================
+                  // Subject name
                   subtitle: data.classDetails?.properties?.subject ??
                       'Subject Not Specified',
 
-                  //======================== Status Badge ========================
+                  // Status badge
                   iconName: displayLabel,
 
-                  //======================== Profile Image ========================
-                  imagePath:
-                  (data.tutorDetails?.profilePicture != null &&
-                      data.tutorDetails!.profilePicture!
-                          .isNotEmpty)
-                      ? data.tutorDetails!.profilePicture!
-                      : 'assets/backround/boking1.png',
+                  // Profile image
+                  imagePath: profileImage,
 
-                  //======================== Card Tap Action ========================
+                  // Navigate to booking details
                   onTap: () {
-                    // Navigate to booking details page
-                    // Full booking object is passed as argument
                     Get.toNamed(
                       AppRoute.tutionAccpectPage1,
                       arguments: data,

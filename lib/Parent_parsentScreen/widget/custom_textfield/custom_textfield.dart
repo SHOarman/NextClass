@@ -340,26 +340,29 @@ class SimpleCard extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool prefixicon;
+  // ✅ onChanged ফাংশনটি যোগ করা হয়েছে
+  final Function(String)? onChanged;
 
   const SimpleCard({
     super.key,
     required this.controller,
     required this.hintText,
     this.prefixicon = false,
+    this.onChanged, // ✅ কনস্ট্রাক্টরে যুক্ত করুন
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      // ✅ onChanged কল করা হয়েছে যাতে টাইপ করার সাথে সাথে সার্চ কাজ করে
+      onChanged: onChanged,
       decoration: InputDecoration(
         prefixIcon: prefixicon
             ? const Icon(Icons.search, color: Colors.grey)
             : null,
-
         filled: true,
-
-        fillColor: Color.fromRGBO(243, 245, 249, 1),
+        fillColor: const Color.fromRGBO(243, 245, 249, 1),
         hintText: hintText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
@@ -369,7 +372,6 @@ class SimpleCard extends StatelessWidget {
     );
   }
 }
-
 //=============coustom descripon=========================
 
 class Customdetesl extends StatelessWidget {

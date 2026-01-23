@@ -394,6 +394,7 @@ import '../../Parent_parsentScreen/profile_Screen/delete_account/delete_account.
 import '../../Parent_parsentScreen/profile_Screen/edit_profile/editmodel.dart';
 import '../../Parent_parsentScreen/slash_onloding/onboarding_screen.dart';
 import '../../Parent_parsentScreen/slash_onloding/slash_screen.dart';
+import '../../teacher_presentScreen/bokking2/bokkingWidget/resonwiget.dart';
 import '../../teacher_presentScreen/bokking2/booking_details_screen.dart';
 import '../../teacher_presentScreen/bokking2/bokking2.dart';
 
@@ -522,6 +523,8 @@ class AppRoute {
 
   static const String recommendedTeacherDetails = '/recommendedTeacherDetails';
   static const String viewtotureprofile = '/viewtotureprofile';
+  static const String resonwigets ="/resonwigets";
+  static const String resonwigets2 ="/resonwigets2";
 
   static List<GetPage> mypage = [
     GetPage(name: slashscreen, page: () => const SlashScreen()),
@@ -652,5 +655,6 @@ class AppRoute {
     GetPage(name: sealactive, page: () => SeeAll()),
     GetPage(name: recommendedTeacherDetails, page: () => Homeclassdetels()),
     GetPage(name: viewtotureprofile, page: () => TutorProfileScreen()),
+    GetPage(name: resonwigets, page: ()=>resonwiget())
   ];
 }

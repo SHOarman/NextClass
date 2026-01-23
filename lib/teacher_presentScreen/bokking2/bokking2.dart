@@ -11,15 +11,14 @@ import '../../Services/Controller_view/booking_teacher_list_controller.dart';
 import '../../Services/model_class/bokkingmodelclass.dart';
 import '../techerall_widget/nav_button/nav_button.dart';
 
+//========================= Main Booking Screen =========================
 class Bokking2 extends StatelessWidget {
   const Bokking2({super.key});
 
   @override
   Widget build(BuildContext context) {
     // ======================== Controller Injection ========================
-    final Bookingtecherlistcontroller controller = Get.put(
-      Bookingtecherlistcontroller(),
-    );
+    final Bookingtecherlistcontroller controller = Get.put(Bookingtecherlistcontroller());
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -31,6 +30,7 @@ class Bokking2 extends StatelessWidget {
           children: [
             SizedBox(height: 60.h),
 
+            //========================= Page Title =========================
             Text(
               'Bookings',
               style: TextStyle(
@@ -42,6 +42,7 @@ class Bokking2 extends StatelessWidget {
 
             SizedBox(height: 8.h),
 
+            //========================= Page Subtitle =========================
             Text(
               'You can manage your booking requests here',
               style: TextStyle(color: const Color(0xff888888), fontSize: 13.sp),
@@ -49,18 +50,22 @@ class Bokking2 extends StatelessWidget {
 
             SizedBox(height: 30.h),
 
+            //========================= Booking List =========================
             Expanded(
               child: Obx(() {
                 if (controller.isLoading.value) {
                   return const Center(child: CircularProgressIndicator());
                 }
 
-                // ---------- গ্রুপ করা বুকিং ডাটা (Class ID অনুযায়ী) ----------
+                //---------- Group bookings by Class ID ----------
                 final groupedMap = controller.groupedBookings;
+
+                // Filter only classes that have pending bookings
                 final classKeys = groupedMap.keys.where((classId) {
                   return groupedMap[classId]!.any((b) => b.status == "pending");
                 }).toList();
 
+                //========================= No Bookings Found =========================
                 if (classKeys.isEmpty) {
                   return RefreshIndicator(
                     onRefresh: () => controller.fetchMyBookings(),
@@ -75,6 +80,7 @@ class Bokking2 extends StatelessWidget {
                   );
                 }
 
+                //========================= List of Classes with Bookings =========================
                 return RefreshIndicator(
                   onRefresh: () => controller.fetchMyBookings(),
                   child: ListView.builder(
@@ -82,29 +88,27 @@ class Bokking2 extends StatelessWidget {
                     itemCount: classKeys.length,
                     itemBuilder: (context, index) {
                       final int classId = classKeys[index];
-                      // ✅ ওই নির্দিষ্ট ক্লাসের সব বুকিংয়ের লিস্ট (যেমন: ৫টি পেন্ডিং)
-                      final List<BookingModel> bookingsInClass =
-                          groupedMap[classId]!;
 
-                      // প্রথম বুকিং থেকে ক্লাসের তথ্য (Subject, Level) নেওয়া হচ্ছে
+                      // List of bookings in this class
+                      final List<BookingModel> bookingsInClass = groupedMap[classId]!;
+
+                      // Take the first booking to display class info (subject, level)
                       final BookingModel firstBooking = bookingsInClass.first;
                       final properties = firstBooking.classDetails?.properties;
 
-                      // ✅ শুধুমাত্র পেন্ডিং বুকিংয়ের সংখ্যা বের করা
-                      final int pendingCount = bookingsInClass
-                          .where((b) => b.status == "pending")
-                          .length;
+                      // Count pending bookings
+                      final int pendingCount =
+                          bookingsInClass.where((b) => b.status == "pending").length;
 
                       return Padding(
                         padding: EdgeInsets.only(bottom: 16.h),
                         child: CustomCardnew(
                           title: properties?.subject ?? 'Subject',
                           subtitle: 'Class ${properties?.level ?? 'N/A'}',
-                          // ডানপাশে পেন্ডিং সংখ্যা দেখাবে
+                          // Show pending count on the card
                           iconName: 'Pending - $pendingCount',
                           onTap: () {
-                            // ✅ লজিক: পরের স্ক্রিনে (BokkingDetels2) এই ৫টি বুকিংয়ের লিস্ট পাঠানো হচ্ছে।
-                            // এর ফলে পরের স্ক্রিনে ৫টি আলাদা কার্ড জেনারেট হবে।
+                            // Navigate to details screen with the list of bookings for this class
                             Get.toNamed(
                               AppRoute.bokkingdetels2,
                               arguments: bookingsInClass,

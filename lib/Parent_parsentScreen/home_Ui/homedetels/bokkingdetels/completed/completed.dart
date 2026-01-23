@@ -1,88 +1,124 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+//======================== Controller ========================
 import '../../../../../Services/Controller_view/bokinglistcontroller.dart';
+
+//======================== Routes ========================
 import '../../../../../core/route/route.dart';
+
+//======================== Custom Widget ========================
 import '../../../../../teacher_presentScreen/techerall_widget/customcard/customcard.dart';
 
+//======================== Completed Booking Screen ========================
 class Completed extends StatelessWidget {
   const Completed({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // ১. কন্ট্রোলার খুঁজে নেওয়া
-    final BookingListController controller = Get.find<BookingListController>();
+    // Controller is already initialized in parent screen
+    final BookingListController controller =
+    Get.find<BookingListController>();
 
     return Scaffold(
       backgroundColor: Colors.white,
+
+      //======================== Reactive UI ========================
       body: Obx(() {
-        // ২. ডাটা লোড হওয়ার সময় লোডার দেখানো
+
+        //======================== Loading State ========================
         if (controller.isLoading.value) {
           return const Center(
-            child: CircularProgressIndicator(color: Color(0xff2563EB)),
+            child: CircularProgressIndicator(
+              color: Color(0xff2563EB),
+            ),
           );
         }
 
-        // ৩. যদি কমপ্লিটেড লিস্ট খালি থাকে
+        //======================== Empty State ========================
         if (controller.completedBookings.isEmpty) {
-          return Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+          return RefreshIndicator(
+            onRefresh: () => controller.fetchBookings(),
+            child: ListView(
+              physics: const AlwaysScrollableScrollPhysics(),
               children: [
-                Icon(Icons.assignment_turned_in_outlined, size: 80.sp, color: Colors.grey[200]),
-                SizedBox(height: 16.h),
-                Text(
-                  "No completed lessons found",
-                  style: TextStyle(
-                      color: Colors.grey[500],
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w500
+                SizedBox(height: 200.h),
+                Center(
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.assignment_turned_in_outlined,
+                        size: 80.sp,
+                        color: Colors.grey[200],
+                      ),
+                      SizedBox(height: 16.h),
+                      Text(
+                        "No completed lessons found",
+                        style: TextStyle(
+                          color: Colors.grey[500],
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      TextButton(
+                        onPressed: () => controller.fetchBookings(),
+                        child: const Text("Refresh Now"),
+                      ),
+                    ],
                   ),
                 ),
-                SizedBox(height: 8.h),
-                TextButton(
-                  onPressed: () => controller.fetchBookings(),
-                  child: const Text("Refresh Now"),
-                )
               ],
             ),
           );
         }
 
-        // ৪. ডাইনামিক লিস্ট বিল্ডার
+        //======================== Completed Booking List ========================
         return RefreshIndicator(
           color: const Color(0xff2563EB),
-          onRefresh: () async => await controller.fetchBookings(),
+          onRefresh: () => controller.fetchBookings(),
           child: ListView.builder(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20.w,
+              vertical: 20.h,
+            ),
             physics: const AlwaysScrollableScrollPhysics(),
             itemCount: controller.completedBookings.length,
             itemBuilder: (context, index) {
-              final data = controller.completedBookings[index];
+              final data =
+              controller.completedBookings[index];
 
-              // ৫. নেটওয়ার্ক ইমেজ হ্যান্ডলিং (Null-safe)
-              final String profileImg = (data.tutorDetails?.profilePicture != null &&
+              //======================== Data Mapping ========================
+              final String tutorName =
+                  data.tutorDetails?.fullName ?? 'Unknown Tutor';
+
+              final String subject =
+                  data.classDetails?.properties?.subject ??
+                      'Subject not specified';
+
+              //======================== Profile Image Logic ========================
+              final String profileImage =
+              (data.tutorDetails?.profilePicture != null &&
                   data.tutorDetails!.profilePicture!.isNotEmpty)
                   ? data.tutorDetails!.profilePicture!
                   : 'assets/backround/boking1.png';
 
+              //======================== Rating Logic ========================
+              final double rating =
+                  data.tutorDetails?.profile?.averageRating ?? 0.0;
+
               return Padding(
                 padding: EdgeInsets.only(bottom: 16.h),
                 child: CustomCardnew(
-                  // টিউটর নাম: tutorDetails থেকে নেওয়া
-                  title: data.tutorDetails?.fullName ?? 'Unknown Tutor',
-
-                  // সাবজেক্ট: classDetails -> properties থেকে নেওয়া
-                  subtitle: data.classDetails?.properties?.subject ?? 'Subject not specified',
-
+                  title: tutorName,
+                  subtitle: subject,
                   iconName: 'Completed',
-                  imagePath: profileImg,
+                  imagePath: profileImage,
+                  rating: rating,
 
-                  // রেটিং যদি প্রোফাইলে থাকে তবে সেটি দেখানো (ডিফল্ট ৪.৫ রাখা হয়েছে)
-                  rating: data.tutorDetails?.profile?.averageRating ?? 4.5,
-
+                  // Navigate to full review screen
                   onTap: () {
-                    // রিভিউ স্ক্রিনে যাওয়ার সময় পুরো 'data' অবজেক্ট পাঠানো হচ্ছে
                     Get.toNamed(
                       AppRoute.tusioncomplectfullreviewscreen,
                       arguments: data,

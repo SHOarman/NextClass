@@ -2,22 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../../Services/model_class/bokkingmodelclass.dart';
+import '../../Services/Controller_view/DeleteBookingController.dart';
+import '../../Services/model_class/bokkingmodelclass.dart';
 import '../../core/route/route.dart';
 import '../techerall_widget/customcard/customcard.dart';
 import '../techerall_widget/padding_information_model/padding_information_model.dart';
 
-//======================= Rejected Booking List ==========================
 class RejectedValue extends StatelessWidget {
-  // 1. List of rejected booking data received from the controller
   final List<BookingModel> list;
-
-  // 2. Required constructor for the list
   const RejectedValue({super.key, required this.list});
 
   @override
   Widget build(BuildContext context) {
-    // Empty state logic
+    // ✅ ডিলিট কন্ট্রোলার ইনজেক্ট করা (যাতে একই ইনস্ট্যান্স সব কার্ডে কাজ করে)
+    final DeleteBookingController deleteController = Get.put(DeleteBookingController());
+
     if (list.isEmpty) {
       return const Center(
         child: Text(
@@ -33,14 +32,12 @@ class RejectedValue extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
         itemCount: list.length,
         itemBuilder: (context, index) {
-          // Get unique booking object for this specific list item
           final booking = list[index];
 
-          // Data Protection (Null Safety)
+          // ডাটা ম্যাপিং
           String parentName = booking.parentDetails?.fullName ?? 'Parent Name';
           String classLevel = booking.classDetails?.properties?.level ?? "N/A";
 
-          // Image Logic: Check server URL, fallback to asset
           String profileImg = (booking.parentDetails?.profilePicture != null &&
               booking.parentDetails!.profilePicture!.isNotEmpty)
               ? booking.parentDetails!.profilePicture!
@@ -53,8 +50,6 @@ class RejectedValue extends StatelessWidget {
               subtitle: 'Class $classLevel',
               imagePath: profileImg,
               iconName: 'Rejected by you',
-
-              // Action when clicking the card
               fullscrenonTap: () {
                 showDialog(
                   context: context,
@@ -66,23 +61,28 @@ class RejectedValue extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16.r),
                     ),
-                    // Using the Information Dialog for Rejections
                     content: Rejecationpaddinginpormationmodel(
-                      // Pass unique booking data so the dialog shows the right info
                       bookingData: booking,
-
                       ontap1: () {
-                        // Navigate to chat with the specific booking data
-                        Get.toNamed(AppRoute.convarcation, arguments: booking);
+
+
+                        if (booking.id != null) {
+                          deleteController.deleteOrRejectBooking(booking.id!);
+                        }
+
+                        print('lkakd');
+                       // Get.toNamed(AppRoute.convarcation, arguments: booking);
                       },
                       ontap2: () {
-                        // Logic to close or handle "Delete from list"
-                        Get.back();
+                        print('asjf');
+                        debugPrint("Delete button clicked for ID: ${booking.id}"); // এটি দিয়ে টেস্ট করুন
+                        if (booking.id != null) {
+                          deleteController.deleteOrRejectBooking(booking.id!);
+                        }
                       },
                       buttonname1: 'Chat with parent',
                       buttonname2: 'Delete from list',
-                    ),
-                  ),
+                    ),                  ),
                 );
               },
             ),

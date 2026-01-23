@@ -4,48 +4,42 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-//======================== API & Models ========================
+//========================= API & Models =========================
 import '../../../../Services/api_Services/api_services.dart';
 import '../model_class/bokkingmodelclass.dart';
 
-//======================== Booking List Controller ========================
+//========================= Booking List Controller =========================
 class BookingListController extends GetxController {
 
-  //======================== Loading State ========================
-  var isLoading = false.obs;
+  //========================= Observable State =========================
+  final isLoading = false.obs;
 
-  //======================== Booking Lists ========================
-  // All bookings from API
-  var allBookings = <BookingModel>[].obs;
+  // All bookings returned from API
+  final allBookings = <BookingModel>[].obs;
 
-  // Pending + Accepted bookings
-  var acceptedAndPendingBookings = <BookingModel>[].obs;
+  // Filtered lists by status
+  final acceptedAndPendingBookings = <BookingModel>[].obs;
+  final rejectedBookings = <BookingModel>[].obs;
+  final completedBookings = <BookingModel>[].obs;
 
-  // Rejected or Cancelled bookings
-  var rejectedBookings = <BookingModel>[].obs;
-
-  // Completed bookings
-  var completedBookings = <BookingModel>[].obs;
-
+  //========================= Lifecycle =========================
   @override
   void onInit() {
-    // Fetch booking list when controller is initialized
-    fetchBookings();
     super.onInit();
+    fetchBookings();
   }
 
-  //======================== Fetch Bookings API ========================
+  //========================= Fetch Bookings =========================
   Future<void> fetchBookings() async {
-    isLoading.value = true;
-
     try {
-      // Get saved token
-      final prefs = await SharedPreferences.getInstance();
-      String? token = prefs.getString('token');
+      isLoading.value = true;
 
-      // Token validation
+      // Read saved auth token
+      final prefs = await SharedPreferences.getInstance();
+      final String? token = prefs.getString('token');
+
       if (token == null) {
-        debugPrint("Error: Token not found");
+        debugPrint('Token not found');
         return;
       }
 
@@ -59,96 +53,71 @@ class BookingListController extends GetxController {
         },
       );
 
-      //======================== Success Response ========================
       if (response.statusCode == 200) {
-        var jsonData = jsonDecode(response.body);
+        final jsonData = jsonDecode(response.body);
+        final bookingResponse = BookingResponseModel.fromJson(jsonData);
 
-        // Map API data using BookingResponseModel
-        var bookingResponse =
-        BookingResponseModel.fromJson(jsonData);
-
-        if (bookingResponse.results != null) {
-          allBookings.assignAll(
-              bookingResponse.results!);
-
-          // Separate bookings by status
-          _filterData();
-        }
+        // Sync data and apply filters
+        allBookings.assignAll(bookingResponse.results ?? []);
+        _filterData();
+      } else {
+        debugPrint('API Error: ${response.statusCode} - ${response.body}');
       }
-
-      //======================== API Error ========================
-      else {
-        debugPrint(
-            "API Error: ${response.statusCode} - ${response.body}");
-      }
-    }
-
-    //======================== Exception Handling ========================
-    catch (e) {
-      debugPrint("Fatal Error in Fetching: $e");
-    }
-
-    //======================== Stop Loading ========================
-    finally {
+    } catch (e) {
+      debugPrint('Fetch Error: $e');
+    } finally {
       isLoading.value = false;
     }
   }
 
-  //======================== Booking Status Filter ========================
+  //========================= Filter Logic (Real-time) =========================
   void _filterData() {
-
-    // Clear lists before filtering
     acceptedAndPendingBookings.clear();
-    rejectedBookings.clear();
     completedBookings.clear();
+    rejectedBookings.clear();
 
-    for (var booking in allBookings) {
-      final status =
-      (booking.status ?? "").toLowerCase().trim();
+    for (final booking in allBookings) {
+      // Status is already normalized in the model
+      final String status = booking.status ?? '';
 
-      // Pending / Accepted bookings
-      if (status == "pending" ||
-          status == "accepted" ||
-          status == "approved" ||
-          status == "confirmed") {
-        acceptedAndPendingBookings.add(booking);
-      }
-
-      // Rejected bookings
-      else if (status == "rejected" ||
-          status == "cancelled") {
-        rejectedBookings.add(booking);
-      }
-
-      // Completed bookings
-      else if (status == "completed") {
+      if (status == 'completed' || status == 'finish') {
         completedBookings.add(booking);
+      } else if (status == 'rejected' || status == 'cancelled') {
+        rejectedBookings.add(booking);
+      } else {
+        // pending / accepted / approved / confirmed
+        acceptedAndPendingBookings.add(booking);
       }
     }
 
-    debugPrint(
-        "Filtering done. Accepted/Pending: ${acceptedAndPendingBookings.length}");
+    // Ensure UI updates
+    acceptedAndPendingBookings.refresh();
+    completedBookings.refresh();
+    rejectedBookings.refresh();
+
+    // Debug summary
+    debugPrint('--- Filter Summary ---');
+    debugPrint('Total: ${allBookings.length}');
+    debugPrint('Pending/Accepted: ${acceptedAndPendingBookings.length}');
+    debugPrint('Completed: ${completedBookings.length}');
+    debugPrint('Rejected: ${rejectedBookings.length}');
   }
 
-  //======================== Status Color Helper ========================
-  // Use this method to show status colors in UI
+  //========================= UI Helper: Status Color =========================
   Color getStatusColor(String? status) {
-    final s = (status ?? "").toLowerCase().trim();
-
+    final s = (status ?? '').toLowerCase().trim();
     switch (s) {
-      case "pending":
-        return Colors.amber; // Yellow
-
-      case "accepted":
-      case "approved":
-      case "confirmed":
-      case "completed":
-        return Colors.green; // Green
-
-      case "rejected":
-      case "cancelled":
-        return Colors.red; // Red
-
+      case 'pending':
+        return Colors.amber;
+      case 'accepted':
+      case 'approved':
+      case 'confirmed':
+        return Colors.blue;
+      case 'completed':
+        return Colors.green;
+      case 'rejected':
+      case 'cancelled':
+        return Colors.red;
       default:
         return Colors.grey;
     }
