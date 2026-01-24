@@ -2,23 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:first_project/Services/Controller_view/create_a_class.dart';
-import '../techerall_widget/customcard/customcard.dart'; // Import your CustomCardnew
+import '../../core/route/route.dart';
+
+// Custom card widget
+import '../techerall_widget/customcard/customcard.dart';
 
 class InactivePage extends StatelessWidget {
   const InactivePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    // Initialize controller
     final ClassesController controller = Get.put(ClassesController());
 
     return Scaffold(
       body: Obx(() {
-        //=====================IndicatorShow================================================
+        //===================== Loading State =====================
         if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+            child: CircularProgressIndicator(color: Color(0xff2563EB)),
+          );
         }
 
-        // 3. Show message if the inactive list is empty
+        //===================== Empty State =======================
         if (controller.inactiveList.isEmpty) {
           return Center(
             child: Text(
@@ -27,39 +33,36 @@ class InactivePage extends StatelessWidget {
             ),
           );
         }
-        //===================================CustomCardnew======================================
+
+        //===================== Inactive Classes List =============
         return ListView.builder(
           padding: EdgeInsets.only(top: 16.h, left: 16.w, right: 16.w),
           itemCount: controller.inactiveList.length,
           itemBuilder: (context, index) {
-            // Get data for the specific item
-            var item = controller.inactiveList[index];
-            var props = item.properties;
+            final item = controller.inactiveList[index];
+            final props = item.properties;
 
-            // ================= Extract Data =================
+            // Extract class data
+            final String subject = props?.subject ?? "Untitled Subject";
+            final String level = props?.level != null ? "Class ${props!.level}" : "N/A";
+            final bool isGroup = props?.isGroupClass ?? false;
+            final String groupStatus = isGroup ? "Group Class" : "Individual Class";
 
-            // Get Subject Name (e.g., Mathematics)
-            String subject = props?.subject ?? "Untitled Subject";
-
-            // Get Class Level (e.g., Class 6-10)
-            String level = props?.level != null
-                ? "Class ${props!.level}"
-                : "N/A";
-
-            // Determine Group vs Individual status
-            bool isGroup = props?.isGroupClass ?? false;
-            String groupStatus = isGroup ? "Group Class" : "Individual Class";
-
-            // ================= Card UI Design =================
             return Padding(
               padding: EdgeInsets.only(bottom: 12.h),
               child: CustomCardnew(
                 title: subject,
                 subtitle: level,
                 iconName: groupStatus,
-                onTap: () {
-                  // ✅ Handle Tap Event
-                  // print("Clicked on inactive class: $subject");
+                imagePath: 'assets/backround/boking1.png',
+
+                // Navigate to details screen on tap
+                fullscrenonTap: () {
+                  debugPrint("Navigating to Inactive Details with ID: ${item.id}");
+                  Get.toNamed(
+                    AppRoute.inacriveongoingdetelsscreen,
+                    arguments: item, // Pass the full object
+                  );
                 },
               ),
             );

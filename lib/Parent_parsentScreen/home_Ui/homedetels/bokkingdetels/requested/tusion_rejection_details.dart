@@ -6,6 +6,10 @@ import '../../../../../../unity/app_colors/app_gradient.dart';
 import '../../../../widget/back_slash/back_slash.dart';
 import '../../../../widget/custom_button/custom_button.dart';
 
+//==================== TUITION REJECTION DETAILS PAGE ==================
+
+//=====================================================================
+
 class Tusionrejestiondetels extends StatefulWidget {
   const Tusionrejestiondetels({super.key});
 
@@ -14,100 +18,139 @@ class Tusionrejestiondetels extends StatefulWidget {
 }
 
 class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
+
+  //==================== STATE VARIABLES ===============================
+  // Controls favorite (heart) icon state
   bool isFavorite = false;
+  //===================================================================
 
   @override
   Widget build(BuildContext context) {
+
+    //==================== RECEIVE ARGUMENTS ===========================
+    // Receiving booking model data from previous screen
+    final dynamic data = Get.arguments;
+    //==================================================================
+
+    //==================== DATA MAPPING ================================
+    // Safely extracting data from API response
+    final String tutorName =
+        data?.tutorDetails?.fullName ?? 'Unknown Tutor';
+    final String subject =
+        data?.classDetails?.properties?.subject ?? 'Subject';
+    final String classLevel =
+        data?.classDetails?.properties?.level ?? 'N/A';
+    final String address =
+        data?.classDetails?.properties?.address ??
+            'Location not specified';
+    final String price =
+        data?.totalPrice?.toString() ?? '0.00';
+    final String bio =
+        data?.tutorDetails?.profile?.bio ??
+            "No description available.";
+    final double rating =
+        data?.tutorDetails?.profile?.averageRating ?? 0.0;
+    //==================================================================
+
+    //==================== PROFILE IMAGE LOGIC =========================
+    // Use network image if available, otherwise fallback to asset
+    final String profileImage =
+    (data?.tutorDetails?.profilePicture != null &&
+        data!.tutorDetails!.profilePicture!.isNotEmpty)
+        ? data.tutorDetails!.profilePicture!
+        : 'assets/backround/Frame 91.png';
+    //==================================================================
+
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// ===== Top Row: Back + Favorite
-            SizedBox(height: 100.h),
+
+            //==================== TOP BAR ===============================
+            // Back button and favorite icon
+            SizedBox(height: 60.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BackSlashButton(
-                  onTap: () {
-                    Get.back();
-                  },
-                ),
+                BackSlashButton(onTap: () => Get.back()),
                 IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                  },
+                  onPressed: () =>
+                      setState(() => isFavorite = !isFavorite),
                   icon: Icon(
                     Icons.favorite,
-                    color: isFavorite ? Colors.red : const Color(0xff2B2B2B),
+                    color: isFavorite
+                        ? Colors.red
+                        : const Color(0xff2B2B2B),
                   ),
                 ),
               ],
             ),
+            //============================================================
 
             const SizedBox(height: 20),
 
-            /// ===== Tutor Image
+            //==================== TUTOR IMAGE ===========================
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  'assets/backround/Frame 91.png',
+                child: profileImage.startsWith('http')
+                    ? Image.network(
+                  profileImage,
+                  width: 200.w,
+                  height: 200.h,
+                  fit: BoxFit.cover,
+                  errorBuilder: (_, __, ___) =>
+                      Image.asset(
+                        'assets/backround/boking1.png',
+                        width: 200.w,
+                        height: 200.h,
+                      ),
+                )
+                    : Image.asset(
+                  profileImage,
                   width: 200.w,
                   height: 200.h,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
+            //============================================================
 
             SizedBox(height: 12.h),
 
-            /// ===== View Tutor Profile Button
+            //==================== VIEW PROFILE BUTTON ===================
             Center(
-              child: Container(
-                height: 32.h,
-                width: 160.w,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xffDBDBDB),
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
+              child: OutlinedButton(
+                onPressed: () => Get.toNamed(
+                  AppRoute.viewtotureprofile,
+                  arguments: data?.tutorDetails,
                 ),
-                child: TextButton(
-                  onPressed: () {
-                    // Button action
-                  },
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: Size.zero,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                style: OutlinedButton.styleFrom(
+                  side: const BorderSide(
+                      color: Color(0xffDBDBDB), width: 1.5),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Center(
-                    child: Text(
-                      'View Tutor Profile',
-                      style: TextStyle(
-                        color: const Color(0xff2563EB),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
+                ),
+                child: const Text(
+                  'View Tutor Profile',
+                  style: TextStyle(color: Color(0xff2563EB)),
                 ),
               ),
             ),
+            //============================================================
 
             SizedBox(height: 24.h),
 
-            /// ===== Tutor Name + Rating Row
+            //==================== NAME & RATING =========================
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Tutor Name',
+                  tutorName,
                   style: TextStyle(
                     color: const Color(0xff2B2B2B),
                     fontSize: 20.sp,
@@ -116,14 +159,12 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
                 ),
                 Row(
                   children: [
-                    Icon(
-                      Icons.star,
-                      color: const Color(0xffFFC107),
-                      size: 20.sp,
-                    ),
+                    Icon(Icons.star,
+                        color: const Color(0xffFFC107),
+                        size: 20.sp),
                     SizedBox(width: 4.w),
                     Text(
-                      '4.5',
+                      rating.toString(),
                       style: TextStyle(
                         color: const Color(0xff2B2B2B),
                         fontSize: 18.sp,
@@ -133,82 +174,60 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
                 ),
               ],
             ),
-
-            SizedBox(height: 16.h),
-            Text(
-              'Lorem ipsum dolor sit amet consectetur. Urna massa mi tellus in sed ullamcorper tortor. Sit sed lorem in dictum. Maecenas elit est metus amet magna. Pretium sed vitae sit posuere. ',
-              style: TextStyle(color: Color(0xff888888), fontSize: 16),
-            ),
+            //============================================================
 
             SizedBox(height: 16.h),
 
+            //==================== TUTOR BIO =============================
             Text(
-              'Mathematics',
+              bio,
               style: TextStyle(
-                color: Color(0xff2B2B2B),
+                color: const Color(0xff888888),
                 fontSize: 16,
-                fontWeight: FontWeight.w700,
               ),
             ),
-            SizedBox(height: 4.h),
-            Text(
-              'Class 1-4',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              'Group class',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              'Start from 02 January, 2026',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              '21/2 St road, Los Angles, USA',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            //============================================================
+
+            SizedBox(height: 16.h),
+
+            //==================== CLASS DETAILS =========================
+            _buildDetailText(subject),
+            _buildDetailText('Class $classLevel'),
+            _buildDetailText('Group class'),
+            _buildDetailText(address),
+            //============================================================
 
             SizedBox(height: 24.h),
 
+            //==================== PRICE ================================
             Text(
-              '\$560.00/monthly',
+              '\$$price/monthly',
               style: TextStyle(
-                color: Color(0xff2563EB),
+                color: const Color(0xff2563EB),
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            //============================================================
 
             SizedBox(height: 62.h),
 
+            //==================== CHAT BUTTON ===========================
             CustomSuperButton(
               bgGradient: Appgradient.primaryGradient,
               text: 'chat with tutor',
               onTap: () {
-                Get.toNamed(AppRoute.chatConationTeacher);
+                // Navigate to chat screen with tutor data
+                Get.toNamed(
+                  AppRoute.chatConationTeacher,
+                  arguments: data?.tutorDetails,
+                );
               },
               textColor: Colors.white,
-              borderColor: Appgradient.primaryGradient.colors[0],
+              borderColor:
+              Appgradient.primaryGradient.colors[0],
             ),
+            //============================================================
 
             SizedBox(height: 20.h),
           ],
@@ -216,4 +235,21 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
       ),
     );
   }
+
+  //==================== DETAIL TEXT BUILDER ===========================
+  // Reusable widget for displaying class details
+  Widget _buildDetailText(String text) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 4.h),
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: Color(0xff2B2B2B),
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+//===================================================================
 }

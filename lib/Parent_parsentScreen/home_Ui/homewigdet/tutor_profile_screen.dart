@@ -22,7 +22,6 @@ class TutorProfileScreen extends StatelessWidget {
       // GetBuilder rebuilds UI when controller updates
       body: GetBuilder<TutorPublicProfileController>(
         builder: (ctrl) {
-
           // ======================= LOADING STATE =======================
           // Show loader if both tutor and booking data are null
           if (ctrl.tutor == null && ctrl.bokking == null) {
@@ -75,7 +74,7 @@ class TutorProfileScreen extends StatelessWidget {
                       width: 200.w,
                       height: 180.h,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => Image.asset(
+                      errorBuilder: (context, error, stackTrace) => Image.asset(
                         'assets/backround/placeholder.png',
                         width: 200.w,
                         height: 180.h,
@@ -93,7 +92,6 @@ class TutorProfileScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       // ======================= NAME & RATING =======================
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -158,10 +156,7 @@ class TutorProfileScreen extends StatelessWidget {
                       // ======================= VERIFICATION STATUS =======================
                       Row(
                         children: [
-                          const Icon(
-                            Icons.verified,
-                            color: Colors.blue,
-                          ),
+                          const Icon(Icons.verified, color: Colors.blue),
                           SizedBox(width: 8.w),
                           Text(
                             "Verified",

@@ -14,12 +14,14 @@ import 'package:first_project/teacher_presentScreen/home_ui/home_controller.dart
 import 'package:get/get.dart';
 
 import '../../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/bokkingcontroller.dart';
-import '../../../Services/Controller_view/ConfirmBookingController.dart';
-import '../../../Services/Controller_view/DeleteClassController.dart';
-import '../../../Services/Controller_view/MarkAsCompleteController.dart';
+import '../../../Services/Controller_view/confirm_booking_controller.dart';
+import '../../../Services/Controller_view/delete_class_controller.dart';
+import '../../../Services/Controller_view/mark_as_complete_controller.dart';
+import '../../../Services/Controller_view/review_controller.dart';
 import '../../../Services/Controller_view/booking_teacher_list_controller.dart';
 import '../../../Services/Controller_view/cancel_booking_controller.dart';
 import '../../../Services/Controller_view/bokinglistcontroller.dart';
+import '../../../Services/Controller_view/my_review_controller.dart';
 import '../../../Services/Controller_view/rejectbokking2.dart';
 import '../../../Services/Controller_view/teacher_details_controller.dart';
 import '../../../Services/Controller_view/tutorprofile.dart';
@@ -100,7 +102,7 @@ class DependencyInjection {
     Get.lazyPut(() => TeacherDetailsController());
     Get.lazyPut(() => TutorPublicProfileController());
     // Get.lazyPut(()=>TutorFilterController());
-    Get.lazyPut(()=>DeleteClassController());
+    Get.lazyPut(() => DeleteClassController());
 
     //================bokking=====================
 
@@ -111,6 +113,10 @@ class DependencyInjection {
     Get.lazyPut(() => Bookingtecherlistcontroller(), fenix: true);
     Get.lazyPut(() => Rejectbokking2());
     Get.lazyPut(() => ConfirmBookingController());
-    Get.lazyPut(()=>MarkAsCompleteController());
+    Get.lazyPut(() => MarkAsCompleteController());
+
+    //===========review====================
+    Get.lazyPut(() => ReviewController());
+    Get.lazyPut(() => MyReviewController());
   }
 }

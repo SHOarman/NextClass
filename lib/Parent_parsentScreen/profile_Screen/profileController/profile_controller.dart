@@ -1,19 +1,18 @@
 // import 'dart:convert';
-// import 'dart:io';
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:http/http.dart' as http;
 // import 'package:image_picker/image_picker.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
-// import '../../../Services/api_Services/api_Services.dart'; // Check your path
+// import '../../../Services/api_Services/api_services.dart'; // পাথটি চেক করে নিন
 //
 // class ProfileController extends GetxController {
-//
 //   // ================= ✅ REACTIVE VARIABLES ✅ =================
+//   var address = "Loading location...".obs; // ✅ লোকেশন ভেরিয়েবল
 //   var fullName = "Loading...".obs;
 //   var email = "Loading...".obs;
 //   var profileImgUrl = "".obs;
-//   var bio = "No bio available".obs;// Stores the server image URL
+//   var bio = "No bio available".obs;
 //
 //   // Image Picker Variables
 //   Rx<XFile?> pickedImage = Rx<XFile?>(null);
@@ -23,23 +22,18 @@
 //   bool get hasImage => pickedImage.value != null;
 //
 //   // ================= ✅ CONTROLLERS ✅ =================
+//   final TextEditingController editProfileController = TextEditingController();
+//   final TextEditingController bioController = TextEditingController();
 //   final TextEditingController currentPassController = TextEditingController();
 //   final TextEditingController changeNewPassController = TextEditingController();
 //   final TextEditingController changeConfirmPassController = TextEditingController();
-//   final TextEditingController EditProfileController = TextEditingController();
-//
-//   //===========bio================================
-//   final TextEditingController bioController = TextEditingController();
-//   final TextEditingController fullNameController = TextEditingController();
-//
-//
 //
 //   final ImagePicker _picker = ImagePicker();
 //
 //   @override
 //   void onInit() {
 //     super.onInit();
-//     getUserData(); // Load initial data
+//     getUserData(); // প্রথমবার ডাটা লোড করার জন্য
 //   }
 //
 //   // ================= ✅ GET USER DATA API ✅ =================
@@ -50,7 +44,6 @@
 //     if (token == null) return;
 //
 //     try {
-//       // URL to fetch user profile
 //       var url = Uri.parse("${ApiServices.baseUrl}/api/accounts/users/me/");
 //
 //       var response = await http.get(
@@ -64,23 +57,41 @@
 //       if (response.statusCode == 200) {
 //         var data = jsonDecode(response.body);
 //
-//         // Update reactive variables
+//         // ১. বেসিক ইনফো আপডেট
 //         fullName.value = data['full_name'] ?? "No Name";
 //         email.value = data['email'] ?? "No email";
-//         bio.value = data['bio'] ?? "No bio added yet.";
 //
+//         // ২. ✅ লোকেশন/অ্যাড্রেস আপডেট (সার্ভার ডাটা অনুযায়ী)
+//         // আপনার সার্ভার থেকে যদি 'address' বা প্রোফাইলের ভেতরে 'address' আসে সেটি এখানে সেট করুন
+//         if (data['address'] != null) {
+//           address.value = data['address'];
+//         } else if (data['profile'] != null && data['profile']['address'] != null) {
+//           address.value = data['profile']['address'];
+//         } else {
+//           address.value = "Location not set";
+//         }
+//
+//         // ৩. ইমেজ আপডেট
 //         if (data['profile_picture'] != null) {
 //           profileImgUrl.value = data['profile_picture'];
 //         }
 //
-//         // Set text for edit controller
-//         EditProfileController.text = fullName.value;
+//         // ৪. বায়ো আপডেট (Nested Profile object থেকে)
+//         if (data['profile'] != null && data['profile']['bio'] != null) {
+//           bio.value = data['profile']['bio'];
+//         } else {
+//           bio.value = "No bio added yet.";
+//         }
+//
+//         // টেক্সট কন্ট্রোলারে ডাটা সেট করা
+//         editProfileController.text = fullName.value;
+//         bioController.text = bio.value;
 //
 //       } else {
-//         print("Failed to load user data: ${response.statusCode}");
+//         address.value = "Location not available";
 //       }
 //     } catch (e) {
-//       print("Error fetching user data: $e");
+//       address.value = "Error loading location";
 //     }
 //   }
 //
@@ -93,106 +104,82 @@
 //     }
 //   }
 //
-//   // ================= ✅ UPDATE PROFILE API (FIXED) ✅ =================
-// // ================= ✅ UPDATE PROFILE API (UPDATED) ✅ =================
-//   Future<void> EditProfile() async {
+//   // ================= ✅ UPDATE PROFILE API ✅ =================
+//   Future<void> updateProfile() async {
 //     final SharedPreferences prefs = await SharedPreferences.getInstance();
 //     String? token = prefs.getString('token');
 //
+//     if (token == null) return;
+//
+//     bool isSuccess = false;
+//
 //     try {
-//       var request = http.MultipartRequest(
-//         'PATCH',
+//       var headers = {
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Bearer $token',
+//       };
+//
+//       // নাম এবং বায়ো আপডেট করার বডি
+//       Map<String, dynamic> body = {
+//         "full_name": editProfileController.text,
+//         "profile": {
+//           "bio": bioController.text,
+//         },
+//       };
+//
+//       var response = await http.patch(
 //         Uri.parse(ApiServices.updateAcound),
+//         headers: headers,
+//         body: jsonEncode(body),
 //       );
 //
-//       request.headers.addAll({'Authorization': 'Bearer $token'});
-//
-//       print("🔵 Start Updating Profile...");
-//
-//       // 1. Add Name (আপনার আগের লজিক)
-//       if (EditProfileController.text.isNotEmpty) {
-//         request.fields['full_name'] = EditProfileController.text;
-//       }
-//
-//
-//       if (bioController.text.isNotEmpty) {
-//         request.fields['bio'] = bioController.text;
-//         request.fields['profile.bio'] = bioController.text;
-//         request.fields['profile[bio]'] = bioController.text;
-//         print("📝 Bio added to request: ${bioController.text}");
-//       }
-//
-//       // 3. ✅ Add Image File (সেফটি চেক সহ)
-//       if (selectedImagePath.value.isNotEmpty) {
-//         File imgFile = File(selectedImagePath.value);
-//
-//         // ফাইলটি আসলে ফোনে আছে কিনা চেক করে নেওয়া
-//         if (await imgFile.exists()) {
-//           var file = await http.MultipartFile.fromPath(
-//             'profile_picture',
-//             selectedImagePath.value,
-//           );
-//           request.files.add(file);
-//           print("📸 Image attached: ${selectedImagePath.value}");
-//         } else {
-//           print("❌ Error: Image file not found at path!");
-//         }
-//       }
-//
-//       print("🔵 Sending Request...");
-//
-//       var streamedResponse = await request.send();
-//       var response = await http.Response.fromStream(streamedResponse);
-//
-//       print("🟢 Status Code: ${response.statusCode}");
-//       print("🟢 Response Body: ${response.body}");
-//
 //       if (response.statusCode == 200 || response.statusCode == 201) {
-//
-//         // 1. Decode response
-//         var data = jsonDecode(response.body);
-//
-//         // 2. Update Name Locally (UI তে সাথে সাথে চেঞ্জ হবে)
-//         if (EditProfileController.text.isNotEmpty) {
-//           fullName.value = EditProfileController.text;
-//         }
-//
-//         // 3. ✅ Update Bio Locally (UI তে সাথে সাথে চেঞ্জ হবে)
-//         if (bioController.text.isNotEmpty) {
-//           bio.value = bioController.text;
-//         }
-//
-//         // 4. ✅ Update Image URL from Server Response
-//         // নেস্টেড ডাটা বা রুট ডাটা চেক করা হচ্ছে
-//         if (data['profile_picture'] != null) {
-//           profileImgUrl.value = data['profile_picture'];
-//         } else if (data['user'] != null && data['user']['profile_picture'] != null) {
-//           profileImgUrl.value = data['user']['profile_picture'];
-//         }
-//
-//         // 5. Clear Local Data
-//         pickedImage.value = null;
-//         selectedImagePath.value = '';
-//
-//
-//
-//         Get.back();
-//         Get.snackbar("Success", "Profile Updated Successfully!", backgroundColor: Colors.greenAccent);
-//
-//         // 6. Ensure data is synced completely
-//         getUserData();
-//
-//       } else {
-//         Get.snackbar("Error", "Update Failed: ${response.body}", backgroundColor: Colors.redAccent);
+//         isSuccess = true;
+//         fullName.value = editProfileController.text;
+//         bio.value = bioController.text;
 //       }
-//     } catch (profileerror) {
-//       print("Error: $profileerror");
-//       Get.snackbar("Error", "Something went wrong", backgroundColor: Colors.redAccent);
+//     } catch (e) {
+//       debugPrint("Update Error: $e");
+//     }
+//
+//     // ইমেজ আপডেট করার লজিক (Multipart)
+//     if (selectedImagePath.value.isNotEmpty) {
+//       try {
+//         var request = http.MultipartRequest('PATCH', Uri.parse(ApiServices.updateAcound));
+//         request.headers.addAll({'Authorization': 'Bearer $token'});
+//         var file = await http.MultipartFile.fromPath('profile_picture', selectedImagePath.value);
+//         request.files.add(file);
+//
+//         var streamedResponse = await request.send();
+//         var response = await http.Response.fromStream(streamedResponse);
+//
+//         if (response.statusCode == 200 || response.statusCode == 201) {
+//           isSuccess = true;
+//           var data = jsonDecode(response.body);
+//           if (data['profile_picture'] != null) {
+//             profileImgUrl.value = data['profile_picture'];
+//           }
+//           pickedImage.value = null;
+//           selectedImagePath.value = '';
+//         }
+//       } catch (e) {
+//         debugPrint("Image Upload Error: $e");
+//       }
+//     }
+//
+//     if (isSuccess) {
+//       Get.back();
+//       Get.snackbar("Success", "Profile Updated Successfully!", backgroundColor: Colors.greenAccent);
+//       getUserData(); // ডাটা পুনরায় সিঙ্ক করার জন্য
+//     } else {
+//       Get.snackbar("Error", "Update Failed. Please try again.", backgroundColor: Colors.redAccent);
 //     }
 //   }
+//
 //   // ================= LOAD DATA HELPER =================
 //   void loadCurrentData() {
-//     EditProfileController.text = fullName.value;
+//     editProfileController.text = fullName.value;
+//     bioController.text = bio.value;
 //   }
 //
 //   // ================= CHANGE PASSWORD =================
@@ -200,10 +187,7 @@
 //     final SharedPreferences prefs = await SharedPreferences.getInstance();
 //     String? token = prefs.getString('token');
 //
-//     if (token == null) {
-//       Get.snackbar("Error", "Not logged in", backgroundColor: Colors.redAccent);
-//       return;
-//     }
+//     if (token == null) return;
 //
 //     if (currentPassController.text.isEmpty || changeNewPassController.text.isEmpty) {
 //       Get.snackbar("Required", "Fill all fields", backgroundColor: Colors.redAccent);
@@ -231,7 +215,7 @@
 //         Get.back();
 //         Get.snackbar("Success", "Password Changed", backgroundColor: Colors.greenAccent);
 //       } else {
-//         Get.snackbar("Error", "Failed", backgroundColor: Colors.redAccent);
+//         Get.snackbar("Error", "Failed to change password", backgroundColor: Colors.redAccent);
 //       }
 //     } catch (e) {
 //       Get.snackbar("Error", "Network Error", backgroundColor: Colors.redAccent);
@@ -239,45 +223,89 @@
 //   }
 // }
 
+
+
+
+
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../Services/api_Services/api_services.dart'; // Check your path
+import 'package:geolocator/geolocator.dart'; // ✅ ফোনের লোকেশনের জন্য
+import 'package:geocoding/geocoding.dart';   // ✅ অক্ষাংশ থেকে ঠিকানা বের করার জন্য
+import '../../../Services/api_Services/api_services.dart';
 
 class ProfileController extends GetxController {
   // ================= ✅ REACTIVE VARIABLES ✅ =================
+  var address = "Fetching location...".obs; // ✅ রিয়েল-টাইম লোকেশন
   var fullName = "Loading...".obs;
   var email = "Loading...".obs;
   var profileImgUrl = "".obs;
   var bio = "No bio available".obs;
 
-  // Image Picker Variables
+  // ইমেজ পিকার ভেরিয়েবল
   Rx<XFile?> pickedImage = Rx<XFile?>(null);
   var selectedImagePath = ''.obs;
 
-  // Getter to check if a local file is picked
   bool get hasImage => pickedImage.value != null;
 
   // ================= ✅ CONTROLLERS ✅ =================
-  // controller for Name (You used EditProfileController in your UI)
   final TextEditingController editProfileController = TextEditingController();
-  // controller for Bio
   final TextEditingController bioController = TextEditingController();
-
   final TextEditingController currentPassController = TextEditingController();
   final TextEditingController changeNewPassController = TextEditingController();
-  final TextEditingController changeConfirmPassController =
-      TextEditingController();
+  final TextEditingController changeConfirmPassController = TextEditingController();
 
   final ImagePicker _picker = ImagePicker();
 
   @override
   void onInit() {
     super.onInit();
-    getUserData(); // Load initial data
+    getUserData();       // সার্ভার থেকে ইউজার ডাটা আনা
+    getCurrentLocation(); // ✅ ফোনের জিপিএস লোকেশন নেওয়া
+  }
+
+  // ================= ✅ ফোনের রিয়েল-টাইম লোকেশন লজিক ✅ =================
+  Future<void> getCurrentLocation() async {
+    try {
+      // ১. পারমিশন চেক ও রিকোয়েস্ট
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          address.value = "Permission denied";
+          return;
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        address.value = "Location permissions are permanently denied";
+        return;
+      }
+
+      // ২. বর্তমান জিপিএস পজিশন নেওয়া
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high
+      );
+
+      // ৩. অক্ষাংশ/দ্রাঘিমাংশকে মানুষের পড়ার যোগ্য ঠিকানায় রূপান্তর
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          position.latitude,
+          position.longitude
+      );
+
+      if (placemarks.isNotEmpty) {
+        Placemark place = placemarks[0];
+        // সিটি এবং কান্ট্রি ফরম্যাটে সেট করা (উদা: Dhaka, Bangladesh)
+        address.value = "${place.locality}, ${place.country}";
+      }
+    } catch (e) {
+      address.value = "Location error";
+      debugPrint("Location Error: $e");
+    }
   }
 
   // ================= ✅ GET USER DATA API ✅ =================
@@ -289,7 +317,6 @@ class ProfileController extends GetxController {
 
     try {
       var url = Uri.parse("${ApiServices.baseUrl}/api/accounts/users/me/");
-
       var response = await http.get(
         url,
         headers: {
@@ -300,36 +327,33 @@ class ProfileController extends GetxController {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
-        // print("📥 User Data: $data");
 
-        // 1. Basic Info
         fullName.value = data['full_name'] ?? "No Name";
         email.value = data['email'] ?? "No email";
 
-        // 2. Image
+        // প্রোফাইল পিকচার আপডেট
         if (data['profile_picture'] != null) {
           profileImgUrl.value = data['profile_picture'];
         }
 
-        // 3. ✅ Bio Fix (Reading from nested profile object)
+        // বায়ো আপডেট (Nested Profile object চেক করা হচ্ছে)
         if (data['profile'] != null && data['profile']['bio'] != null) {
           bio.value = data['profile']['bio'];
         } else {
           bio.value = "No bio added yet.";
         }
 
-        // 4. Set text for edit controllers
+        // এডিট কন্ট্রোলারে ভ্যালু সেট করা
         editProfileController.text = fullName.value;
-        bioController.text = bio.value; // ✅ Set bio text
-      } else {
-        // print("Failed to load user data: ${response.statusCode}");
+        bioController.text = bio.value;
+
       }
     } catch (e) {
-      // print("Error fetching user data: $e");
+      debugPrint("Error fetching user data: $e");
     }
   }
 
-  // ================= IMAGE PICKER =================
+  // ================= ✅ IMAGE PICKER ✅ =================
   Future<void> pickImg() async {
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -338,147 +362,86 @@ class ProfileController extends GetxController {
     }
   }
 
-  // ================= ✅ UPDATE PROFILE API (FINAL FIXED LOGIC) ✅ =================
-  // ================= ✅ ULTIMATE FIX FOR BIO UPDATE ✅ =================
+  // ================= ✅ UPDATE PROFILE API ✅ =================
   Future<void> updateProfile() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    if (token == null) return;
+
+    bool isSuccess = false;
+
+    // ১. টেক্সট ডাটা আপডেট (নাম ও বায়ো)
+    try {
+      var body = {
+        "full_name": editProfileController.text,
+        "profile": {
+          "bio": bioController.text,
+        },
+      };
+
+      var response = await http.patch(
+        Uri.parse(ApiServices.updateAcound),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+        body: jsonEncode(body),
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        isSuccess = true;
+        fullName.value = editProfileController.text;
+        bio.value = bioController.text;
+      }
+    } catch (e) {
+      debugPrint("Update Text Error: $e");
+    }
+
+    // ২. ইমেজ আপডেট (Multipart Request)
+    if (selectedImagePath.value.isNotEmpty) {
+      try {
+        var request = http.MultipartRequest('PATCH', Uri.parse(ApiServices.updateAcound));
+        request.headers.addAll({'Authorization': 'Bearer $token'});
+
+        var file = await http.MultipartFile.fromPath('profile_picture', selectedImagePath.value);
+        request.files.add(file);
+
+        var streamedResponse = await request.send();
+        var response = await http.Response.fromStream(streamedResponse);
+
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          isSuccess = true;
+          var data = jsonDecode(response.body);
+          if (data['profile_picture'] != null) {
+            profileImgUrl.value = data['profile_picture'];
+          }
+          // ক্লিয়ার লোকাল সিলেকশন
+          pickedImage.value = null;
+          selectedImagePath.value = '';
+        }
+      } catch (e) {
+        debugPrint("Image Upload Error: $e");
+      }
+    }
+
+    if (isSuccess) {
+      Get.back();
+      Get.snackbar("Success", "Profile Updated Successfully!", backgroundColor: Colors.greenAccent);
+      getUserData(); // পুনরায় ডাটা সিঙ্ক করা
+    } else {
+      Get.snackbar("Error", "Update Failed. Please try again.", backgroundColor: Colors.redAccent);
+    }
+  }
+
+  // ================= ✅ CHANGE PASSWORD API ✅ =================
+  void changePassword() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
 
     if (token == null) return;
 
-    // print("🔵 Updating Profile Started...");
-    bool isSuccess = false;
-
-    // ---------------------------------------------------------
-    // 1️⃣ STEP 1: নাম এবং বায়ো আপডেট (JSON দিয়ে)
-    // এটি Bio ফিক্স করবে কারণ আমরা Nested Structure পাঠাব
-    // ---------------------------------------------------------
-    try {
-      var headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token',
-      };
-
-      // ✅ সার্ভার ঠিক যেমন চায়, তেমন JSON বানানো হচ্ছে
-      Map<String, dynamic> body = {
-        "full_name": editProfileController.text, // Name (Root level)
-        "profile": {
-          "bio": bioController.text, // ✅ Bio (Nested inside profile)
-        },
-      };
-
-      // print("📤 Sending JSON Data: ${jsonEncode(body)}");
-
-      // HTTP PATCH Request (Text Data)
-      var response = await http.patch(
-        Uri.parse(ApiServices.updateAcound),
-        headers: headers,
-        body: jsonEncode(body),
-      );
-
-      // print("🟢 Text Update Status: ${response.statusCode}");
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        isSuccess = true;
-
-        // ✅ UI আপডেট (লোকালি) - যাতে সাথে সাথে চেঞ্জ দেখা যায়
-        fullName.value = editProfileController.text;
-        bio.value = bioController.text;
-
-        // print("✅ Bio updated locally to: ${bio.value}");
-      } else {
-        // print("❌ Text Update Failed: ${response.body}");
-      }
-    } catch (e) {
-      // print("❌ Error Updating Text: $e");
-    }
-
-    // ---------------------------------------------------------
-    // 2️⃣ STEP 2: ছবি আপডেট (Multipart দিয়ে) - যদি ছবি সিলেক্ট করা থাকে
-    // ---------------------------------------------------------
-    if (selectedImagePath.value.isNotEmpty) {
-      try {
-        var request = http.MultipartRequest(
-          'PATCH',
-          Uri.parse(ApiServices.updateAcound),
-        );
-        request.headers.addAll({'Authorization': 'Bearer $token'});
-
-        var file = await http.MultipartFile.fromPath(
-          'profile_picture',
-          selectedImagePath.value,
-        );
-        request.files.add(file);
-
-        // print("📤 Uploading Image...");
-        var streamedResponse = await request.send();
-        var response = await http.Response.fromStream(streamedResponse);
-
-        // print("🟢 Image Update Status: ${response.statusCode}");
-
-        if (response.statusCode == 200 || response.statusCode == 201) {
-          isSuccess = true;
-
-          // সার্ভার থেকে নতুন ইমেজের লিংক নেওয়া
-          var data = jsonDecode(response.body);
-          if (data['profile_picture'] != null) {
-            profileImgUrl.value = data['profile_picture'];
-          } else if (data['user'] != null &&
-              data['user']['profile_picture'] != null) {
-            profileImgUrl.value = data['user']['profile_picture'];
-          }
-
-          // লোকাল সিলেকশন ক্লিয়ার
-          pickedImage.value = null;
-          selectedImagePath.value = '';
-        }
-      } catch (e) {
-        // print("❌ Error Updating Image: $e");
-      }
-    }
-
-    // ---------------------------------------------------------
-    // 3️⃣ FINALIZE
-    // ---------------------------------------------------------
-    if (isSuccess) {
-      Get.back();
-      Get.snackbar(
-        "Success",
-        "Profile Updated Successfully!",
-        backgroundColor: Colors.greenAccent,
-      );
-    } else {
-      Get.snackbar(
-        "Error",
-        "Update Failed. Please try again.",
-        backgroundColor: Colors.redAccent,
-      );
-    }
-  }
-
-  // ================= LOAD DATA HELPER =================
-  void loadCurrentData() {
-    editProfileController.text = fullName.value;
-    bioController.text = bio.value; // ✅ Also load bio
-  }
-
-  // ================= CHANGE PASSWORD =================
-  void changePassword() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString('token');
-
-    if (token == null) {
-      Get.snackbar("Error", "Not logged in", backgroundColor: Colors.redAccent);
-      return;
-    }
-
-    if (currentPassController.text.isEmpty ||
-        changeNewPassController.text.isEmpty) {
-      Get.snackbar(
-        "Required",
-        "Fill all fields",
-        backgroundColor: Colors.redAccent,
-      );
+    if (currentPassController.text.isEmpty || changeNewPassController.text.isEmpty) {
+      Get.snackbar("Required", "Fill all fields", backgroundColor: Colors.redAccent);
       return;
     }
 
@@ -501,16 +464,17 @@ class ProfileController extends GetxController {
         currentPassController.clear();
         changeNewPassController.clear();
         Get.back();
-        Get.snackbar(
-          "Success",
-          "Password Changed",
-          backgroundColor: Colors.greenAccent,
-        );
+        Get.snackbar("Success", "Password Changed", backgroundColor: Colors.greenAccent);
       } else {
-        Get.snackbar("Error", "Failed", backgroundColor: Colors.redAccent);
+        Get.snackbar("Error", "Failed to change password", backgroundColor: Colors.redAccent);
       }
     } catch (e) {
       Get.snackbar("Error", "Network Error", backgroundColor: Colors.redAccent);
     }
+  }
+
+  void loadCurrentData() {
+    editProfileController.text = fullName.value;
+    bioController.text = bio.value;
   }
 }

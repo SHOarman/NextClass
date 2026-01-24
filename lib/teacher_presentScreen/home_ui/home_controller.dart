@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../Services/model_class/bokkingmodelclass.dart';
@@ -8,7 +8,8 @@ class HomeController extends GetxController {
   // --------------------------
   // State variables
   // --------------------------
-  var allBookingData = BookingResponseModel().obs; // Stores all bookings (API response)
+  var allBookingData =
+      BookingResponseModel().obs; // Stores all bookings (API response)
   final ClassProvider provider = ClassProvider(); // API provider
 
   var classList = [].obs; // List of active classes for the tutor
@@ -43,13 +44,13 @@ class HomeController extends GetxController {
           classList.value = responseData['results'];
         } else {
           // If 'results' key is missing, log an error
-          print("Expected 'results' key but not found in response.");
+          debugPrint("Expected 'results' key but not found in response.");
         }
       } else {
-        print("Failed to load classes: ${response.statusCode}");
+        debugPrint("Failed to load classes: ${response.statusCode}");
       }
     } catch (e) {
-      print("Error fetching active classes: $e");
+      debugPrint("Error fetching active classes: $e");
     } finally {
       isLoading.value = false;
     }
@@ -78,7 +79,8 @@ class HomeController extends GetxController {
         // 1. Status is "pending"
         // 2. Tutor ID matches current tutor
         final myPendingList = allBookings.where((booking) {
-          bool isPending = booking['status'].toString().toLowerCase() == "pending";
+          bool isPending =
+              booking['status'].toString().toLowerCase() == "pending";
           bool isMyTutor = booking['tutor'] == currentTutorId;
 
           return isPending && isMyTutor;

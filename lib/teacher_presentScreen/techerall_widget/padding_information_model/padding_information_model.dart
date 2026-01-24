@@ -1,46 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get.dart';
 import '../../../Parent_parsentScreen/widget/custom_button/custom_button.dart';
-import '../../../Services/Controller_view/ConfirmBookingController.dart';
+import '../../../Services/Controller_view/confirm_booking_controller.dart';
 import '../../../Services/model_class/bokkingmodelclass.dart';
 import '../../../unity/app_colors/app_gradient.dart';
 
-//======================= Student Info Dialog (Main) ==========================
-
-
-
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-
-//======================== Models & Controllers ========================
-
-
+//======================== Main Padding Information Dialog ========================
 class Paddinginpormationmodel extends StatelessWidget {
   final VoidCallback reject;
   final VoidCallback chat;
-  final VoidCallback? accept; // এটি যুক্ত করা হয়েছে এরর এড়াতে
+  final VoidCallback? accept; // optional
   final BookingModel booking;
 
   const Paddinginpormationmodel({
     super.key,
     required this.reject,
     required this.chat,
-    this.accept, // অপশনাল রাখা হয়েছে
+    this.accept,
     required this.booking,
   });
 
   @override
   Widget build(BuildContext context) {
-    // ১. কনফার্ম কন্ট্রোলার ইনজেক্ট করা
-    // এখানে put করা হয়েছে যাতে এটি মেমোরিতে থাকে
     final ConfirmBookingController confirmController = Get.put(ConfirmBookingController());
 
-    // ২. স্টুডেন্ট ইনফরমেশন ডাটা ম্যাপিং
     String studentName = booking.studentName ?? "N/A";
     String studentAge = (booking.studentAge != null && booking.studentAge! > 0)
         ? "${booking.studentAge} years old"
@@ -73,7 +57,7 @@ class Paddinginpormationmodel extends StatelessWidget {
           _buildInfoTile('What is the student age?', studentAge),
           SizedBox(height: 40.h),
 
-          // ৩. অ্যাকশন বাটনস (Reject & Accept Request)
+          // Reject & Accept buttons
           Row(
             children: [
               Expanded(
@@ -86,27 +70,29 @@ class Paddinginpormationmodel extends StatelessWidget {
               ),
               SizedBox(width: 8.w),
               Expanded(
-                // ✅ Obx ব্যবহার করা হয়েছে যাতে লোডিং স্টেট রিয়েল-টাইমে আপডেট হয়
-                child: Obx(() => CustomSuperButton(
-                  text: confirmController.isLoading.value ? 'Wait...' : 'Accept Request',
-                  onTap: confirmController.isLoading.value
-                      ? () {}
-                      : () {
-                    // আইডি নাল কি না চেক করে এপিআই কল করা হচ্ছে
-                    if (booking.id != null) {
-                      confirmController.confirmBooking(booking.id!, context);
-                    }
-                  },
-                  bgGradient: const LinearGradient(
-                    colors: [Color(0xff2563EB), Color(0xff2563EB)],
+                child: Obx(
+                      () => CustomSuperButton(
+                    text: confirmController.isLoading.value
+                        ? 'Wait...'
+                        : 'Accept Request',
+                    onTap: confirmController.isLoading.value
+                        ? () {}
+                        : () {
+                      if (booking.id != null) {
+                        confirmController.confirmBooking(booking.id!, context);
+                      }
+                    },
+                    bgGradient: const LinearGradient(
+                      colors: [Color(0xff2563EB), Color(0xff2563EB)],
+                    ),
                   ),
-                )),
+                ),
               ),
             ],
           ),
           SizedBox(height: 14.h),
 
-          // ৪. চ্যাট উইথ প্যারেন্ট
+          // Chat with parent
           CustomSuperButton(
             text: 'Chat with parent',
             onTap: chat,
@@ -118,26 +104,22 @@ class Paddinginpormationmodel extends StatelessWidget {
     );
   }
 
-  // ইনফরমেশন রো টাইল
   Widget _buildInfoTile(String label, String value) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(label, style: TextStyle(color: const Color(0xff888888), fontSize: 14.sp)),
         SizedBox(height: 8.h),
-        Text(value,
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 16.sp,
-                fontWeight: FontWeight.w600
-            )
+        Text(
+          value,
+          style: TextStyle(color: Colors.black, fontSize: 16.sp, fontWeight: FontWeight.w600),
         ),
       ],
     );
   }
 }
 
-//======================= Extra Buttons Dialog ==========================
+//======================== Extra Buttons Dialog ========================
 class Extrabuttonpaddinginpormationmodel extends StatelessWidget {
   final VoidCallback ontap1;
   final VoidCallback ontap2;
@@ -156,8 +138,8 @@ class Extrabuttonpaddinginpormationmodel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String studentName = bookingData.studentName ?? "N/A";
-    final String studentAge = (bookingData.studentAge != null && bookingData.studentAge! > 0)
+    String studentName = bookingData.studentName ?? "N/A";
+    String studentAge = (bookingData.studentAge != null && bookingData.studentAge! > 0)
         ? "${bookingData.studentAge} years old"
         : "N/A";
 
@@ -173,18 +155,17 @@ class Extrabuttonpaddinginpormationmodel extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: Text('Student Information', style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: Appgradient.textColor)),
+            child: Text(
+              'Student Information',
+              style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: Appgradient.textColor),
+            ),
           ),
           SizedBox(height: 35.h),
           _buildInfoTile('What is the student name?', studentName),
           SizedBox(height: 24.h),
           _buildInfoTile('What is the student age?', studentAge),
           SizedBox(height: 35.h),
-          CustomSuperButton(
-            text: buttonname1,
-            onTap: ontap1,
-            bgGradient: const LinearGradient(colors: [Color(0xff2563EB), Color(0xff2563EB)]),
-          ),
+          CustomSuperButton(text: buttonname1, onTap: ontap1, bgGradient: const LinearGradient(colors: [Color(0xff2563EB), Color(0xff2563EB)])),
           SizedBox(height: 12.h),
           CustomSuperButton(
             text: buttonname2,
@@ -209,14 +190,14 @@ class Extrabuttonpaddinginpormationmodel extends StatelessWidget {
   }
 }
 
-//======================= Rejection Dialog ==========================
+//======================== Rejection Dialog ========================
 class Rejecationpaddinginpormationmodel extends StatelessWidget {
   final VoidCallback ontap1;
   final VoidCallback ontap2;
   final String buttonname1;
   final String buttonname2;
   final BookingModel bookingData;
-  final bool isLoading; // ✅ লোডিং স্টেট গ্রহণ করার জন্য
+  final bool isLoading;
 
   const Rejecationpaddinginpormationmodel({
     super.key,
@@ -225,30 +206,29 @@ class Rejecationpaddinginpormationmodel extends StatelessWidget {
     required this.buttonname1,
     required this.buttonname2,
     required this.bookingData,
-    this.isLoading = false, // ✅ ডিফল্ট ভ্যালু false
+    this.isLoading = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    final String studentName = bookingData.studentName ?? "N/A";
-    final String studentAge = (bookingData.studentAge != null && bookingData.studentAge! > 0)
+    String studentName = bookingData.studentName ?? "N/A";
+    String studentAge = (bookingData.studentAge != null && bookingData.studentAge! > 0)
         ? "${bookingData.studentAge} years old"
         : "N/A";
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 24.h),
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-      ),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16.r)),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: Text('Student Information',
-                style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: Appgradient.textColor)),
+            child: Text(
+              'Student Information',
+              style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.bold, color: Appgradient.textColor),
+            ),
           ),
           SizedBox(height: 35.h),
           _buildInfoTile('What is the student name?', studentName),
@@ -256,23 +236,10 @@ class Rejecationpaddinginpormationmodel extends StatelessWidget {
           _buildInfoTile('What is the student age?', studentAge),
           SizedBox(height: 35.h),
 
-          // ✅ প্রথম বাটন: Mark as complete / Action button
-          CustomSuperButton(
-            text: buttonname1,
-            onTap: ontap1,
-            isLoading: isLoading, // ✅ এখানে isLoading পাস করা হয়েছে
-            bgGradient: const LinearGradient(colors: [Color(0xff2563EB), Color(0xff2563EB)]),
-          ),
-
+          // Action button
+          CustomSuperButton(text: buttonname1, onTap: ontap1, isLoading: isLoading, bgGradient: const LinearGradient(colors: [Color(0xff2563EB), Color(0xff2563EB)])),
           SizedBox(height: 12.h),
-
-          // দ্বিতীয় বাটন: Close / Cancel button
-          CustomSuperButton(
-            text: buttonname2,
-            onTap: ontap2,
-            borderColor: Colors.red,
-            textColor: Colors.red,
-          ),
+          CustomSuperButton(text: buttonname2, onTap: ontap2, borderColor: Colors.red, textColor: Colors.red),
         ],
       ),
     );

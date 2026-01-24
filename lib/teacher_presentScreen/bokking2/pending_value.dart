@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../Services/model_class/bokkingmodelclass.dart';
 import '../../../core/route/route.dart';
-import '../../Services/Controller_view/ConfirmBookingController.dart';
+import '../../Services/Controller_view/confirm_booking_controller.dart';
 import '../techerall_widget/customcard/customcard.dart';
 import '../techerall_widget/padding_information_model/padding_information_model.dart';
 
@@ -17,7 +17,9 @@ class Pendingvalue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // 1. Inject or get the confirm booking controller
-    final ConfirmBookingController confirmController = Get.put(ConfirmBookingController());
+    final ConfirmBookingController confirmController = Get.put(
+      ConfirmBookingController(),
+    );
 
     // 2. Show message if no pending requests
     if (list.isEmpty) {
@@ -45,8 +47,9 @@ class Pendingvalue extends StatelessWidget {
           //========================= Data Mapping =========================
           String parentName = booking.parentDetails?.fullName ?? 'Parent Name';
           String classLevel = booking.classDetails?.properties?.level ?? "N/A";
-          String profileImg = (booking.parentDetails?.profilePicture != null &&
-              booking.parentDetails!.profilePicture!.isNotEmpty)
+          String profileImg =
+              (booking.parentDetails?.profilePicture != null &&
+                  booking.parentDetails!.profilePicture!.isNotEmpty)
               ? booking.parentDetails!.profilePicture!
               : 'assets/backround/Rectangle 5050 (5).png';
 
@@ -74,7 +77,10 @@ class Pendingvalue extends StatelessWidget {
                       // Reject booking: navigate to reason input screen
                       reject: () {
                         Get.back(); // close dialog
-                        Get.toNamed(AppRoute.resonwigets, arguments: booking.id);
+                        Get.toNamed(
+                          AppRoute.resonwigets,
+                          arguments: booking.id,
+                        );
                       },
 
                       // Chat with parent
@@ -85,7 +91,10 @@ class Pendingvalue extends StatelessWidget {
                       // Accept booking via controller
                       accept: () {
                         if (booking.id != null) {
-                          confirmController.confirmBooking(booking.id!, context);
+                          confirmController.confirmBooking(
+                            booking.id!,
+                            context,
+                          );
                         }
                       },
                     ),

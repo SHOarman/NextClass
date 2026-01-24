@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../Parent_parsentScreen/widget/back_slash/back_slash.dart';
 import '../../Parent_parsentScreen/widget/custom_textfield/custom_textfield.dart';
-import '../../Services/Controller_view/MarkAsCompleteController.dart';
+import '../../Services/Controller_view/mark_as_complete_controller.dart';
 import '../../Services/Controller_view/booking_teacher_list_controller.dart';
 import '../../Services/model_class/bokkingmodelclass.dart';
 import '../../core/route/route.dart';
@@ -26,7 +26,7 @@ class Onlodingdetelsscareen extends StatelessWidget {
 
     //================= Initialize booking controller ========================
     final Bookingtecherlistcontroller controller =
-    Get.isRegistered<Bookingtecherlistcontroller>()
+        Get.isRegistered<Bookingtecherlistcontroller>()
         ? Get.find<Bookingtecherlistcontroller>()
         : Get.put(Bookingtecherlistcontroller());
 
@@ -53,6 +53,7 @@ class Onlodingdetelsscareen extends StatelessWidget {
                     ontap: () => Get.toNamed(
                       AppRoute.inacriveongoingdetelsscreen,
                       arguments: classItem,
+
                     ),
                   ),
                 ],
@@ -86,18 +87,18 @@ class Onlodingdetelsscareen extends StatelessWidget {
               //================= Enrolled student list section ========================
               Obx(() {
                 //================= Filter accepted or confirmed students ========================
-                final allInClass =
-                (controller.groupedBookings[classId] ?? []).where((b) {
-                  final s = (b.status ?? "").toLowerCase().trim();
-                  return s == "confirmed" || s == "accepted";
-                }).toList();
+                final allInClass = (controller.groupedBookings[classId] ?? [])
+                    .where((b) {
+                      final s = (b.status ?? "").toLowerCase().trim();
+                      return s == "confirmed" || s == "accepted";
+                    })
+                    .toList();
 
                 //================= Apply search filter ========================
                 final acceptedStudents = allInClass.where((student) {
-                  final sName =
-                  (student.studentName ?? "").toLowerCase();
-                  final pName =
-                  (student.parentDetails?.fullName ?? "").toLowerCase();
+                  final sName = (student.studentName ?? "").toLowerCase();
+                  final pName = (student.parentDetails?.fullName ?? "")
+                      .toLowerCase();
                   final query = controller.searchQuery.value;
                   return sName.contains(query) || pName.contains(query);
                 }).toList();
@@ -131,8 +132,7 @@ class Onlodingdetelsscareen extends StatelessWidget {
                     SizedBox(height: 12.h),
                     const Text(
                       'Accept new student requests in the Bookings Section',
-                      style:
-                      TextStyle(color: Color(0xff888888), fontSize: 12),
+                      style: TextStyle(color: Color(0xff888888), fontSize: 12),
                     ),
 
                     SizedBox(height: 24.h),
@@ -140,49 +140,41 @@ class Onlodingdetelsscareen extends StatelessWidget {
                     //================= Student list display ========================
                     acceptedStudents.isEmpty
                         ? Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 40.h),
-                        child: const Text(
-                          "No enrolled students found.",
-                          style:
-                          TextStyle(color: Colors.grey),
-                        ),
-                      ),
-                    )
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 40.h),
+                              child: const Text(
+                                "No enrolled students found.",
+                                style: TextStyle(color: Colors.grey),
+                              ),
+                            ),
+                          )
                         : ListView.builder(
-                      shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      physics:
-                      const NeverScrollableScrollPhysics(),
-                      itemCount: acceptedStudents.length,
-                      itemBuilder: (context, index) {
-                        final booking =
-                        acceptedStudents[index];
+                            shrinkWrap: true,
+                            padding: EdgeInsets.zero,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: acceptedStudents.length,
+                            itemBuilder: (context, index) {
+                              final booking = acceptedStudents[index];
 
-                        return Padding(
-                          padding:
-                          EdgeInsets.only(bottom: 16.h),
-                          child: CustomCardnew(
-                            title: booking
-                                .parentDetails
-                                ?.fullName ??
-                                "Parent name",
-                            subtitle:
-                            "Class ${props?.level ?? ''}",
-                            iconName: booking.studentName ??
-                                "Student name",
-                            imagePath: booking
-                                .parentDetails
-                                ?.profilePicture ??
-                                'assets/backround/Rectangle 5050 (5).png',
-                            fullscrenonTap: () {
-                              _showStudentInfoModal(
-                                  context, booking);
+                              return Padding(
+                                padding: EdgeInsets.only(bottom: 16.h),
+                                child: CustomCardnew(
+                                  title:
+                                      booking.parentDetails?.fullName ??
+                                      "Parent name",
+                                  subtitle: "Class ${props?.level ?? ''}",
+                                  iconName:
+                                      booking.studentName ?? "Student name",
+                                  imagePath:
+                                      booking.parentDetails?.profilePicture ??
+                                      'assets/backround/Rectangle 5050 (5).png',
+                                  fullscrenonTap: () {
+                                    _showStudentInfoModal(context, booking);
+                                  },
+                                ),
+                              );
                             },
                           ),
-                        );
-                      },
-                    ),
                   ],
                 );
               }),
@@ -194,10 +186,10 @@ class Onlodingdetelsscareen extends StatelessWidget {
   }
 
   //================= Student info modal and mark as complete logic ========================
-  void _showStudentInfoModal(
-      BuildContext context, BookingModel booking) {
-    final MarkAsCompleteController completeController =
-    Get.put(MarkAsCompleteController());
+  void _showStudentInfoModal(BuildContext context, BookingModel booking) {
+    final MarkAsCompleteController completeController = Get.put(
+      MarkAsCompleteController(),
+    );
 
     showDialog(
       context: context,
@@ -207,17 +199,17 @@ class Onlodingdetelsscareen extends StatelessWidget {
         contentPadding: EdgeInsets.zero,
         backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.r)),
+          borderRadius: BorderRadius.circular(16.r),
+        ),
         content: Obx(
-              () => Rejecationpaddinginpormationmodel(
+          () => Rejecationpaddinginpormationmodel(
             bookingData: booking,
             buttonname1: 'Mark as complete',
             buttonname2: 'Close',
             isLoading: completeController.isLoading.value,
             ontap1: completeController.isLoading.value
                 ? () {}
-                : () => completeController
-                .completeBooking(booking.id!),
+                : () => completeController.completeBooking(booking.id!),
             ontap2: completeController.isLoading.value
                 ? () {}
                 : () => Get.back(),
@@ -228,7 +220,4 @@ class Onlodingdetelsscareen extends StatelessWidget {
   }
 
   //================= Mark as inactive dialog ========================
-  void _showInactiveDialog(BuildContext context) {
-    // Inactive logic can be implemented here
-  }
 }

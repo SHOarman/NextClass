@@ -22,8 +22,9 @@ class Homeclassdetels extends StatefulWidget {
 class _HomeclassdetelsState extends State<Homeclassdetels> {
   // ======================= CONTROLLER =======================
   // Inject TeacherDetailsController using GetX
-  final TeacherDetailsController controller =
-  Get.put(TeacherDetailsController());
+  final TeacherDetailsController controller = Get.put(
+    TeacherDetailsController(),
+  );
 
   // ======================= STATE VARIABLES =======================
   // Favorite icon state
@@ -62,15 +63,10 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
                 children: [
                   BackSlashButton(onTap: () => Get.back()),
                   IconButton(
-                    onPressed: () =>
-                        setState(() => isFavorite = !isFavorite),
+                    onPressed: () => setState(() => isFavorite = !isFavorite),
                     icon: Icon(
-                      isFavorite
-                          ? Icons.favorite
-                          : Icons.favorite_border,
-                      color: isFavorite
-                          ? Colors.red
-                          : const Color(0xff2B2B2B),
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
+                      color: isFavorite ? Colors.red : const Color(0xff2B2B2B),
                       size: 28.sp,
                     ),
                   ),
@@ -89,7 +85,7 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
                     width: 200.w,
                     height: 200.h,
                     fit: BoxFit.cover,
-                    errorBuilder: (_, __, ___) => Image.asset(
+                    errorBuilder: (context, error, stackTrace) => Image.asset(
                       'assets/backround/placeholder.png',
                       fit: BoxFit.cover,
                     ),
@@ -104,10 +100,7 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
               Center(
                 child: OutlinedButton(
                   onPressed: () {
-                    Get.toNamed(
-                      AppRoute.viewtotureprofile,
-                      arguments: tutor,
-                    );
+                    Get.toNamed(AppRoute.viewtotureprofile, arguments: tutor);
                   },
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: Colors.grey.shade300),
@@ -144,7 +137,7 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
                 ("CLASS DESCRIPTION: ${properties.description}"),
                 style: TextStyle(
                   fontSize: 14.sp,
-                 color: Colors.black,
+                  color: Colors.black,
                   height: 1.4,
                 ),
               ),
@@ -154,7 +147,7 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
               // ======================= CLASS INFORMATION =======================
               _buildSimpleInfoText("Subject: ${properties.subject}"),
               _buildSimpleInfoText("Level: Class ${properties.level}"),
-             // _buildSimpleInfoText("Title: ${properties.title}"),
+              // _buildSimpleInfoText("Title: ${properties.title}"),
               _buildSimpleInfoText("Address: ${properties.address}"),
 
               SizedBox(height: 20.h),
@@ -176,21 +169,18 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
                   children: schedules.map((schedule) {
                     return Container(
                       padding: EdgeInsets.symmetric(
-                          horizontal: 14.w, vertical: 8.h),
+                        horizontal: 14.w,
+                        vertical: 8.h,
+                      ),
                       decoration: BoxDecoration(
-                        color:
-                        const Color(0xff2563EB).withOpacity(0.08),
+                        color: const Color(0xff2563EB).withValues(alpha: 0.08),
                         borderRadius: BorderRadius.circular(30.r),
                         border: Border.all(
-                          color: const Color(0xff2563EB)
-                              .withOpacity(0.5),
+                          color: const Color(0xff2563EB).withValues(alpha: 0.5),
                         ),
                       ),
                       child: Text(
-                        schedule.dayOfWeek
-                            .toString()
-                            .capitalizeFirst ??
-                            "N/A",
+                        schedule.dayOfWeek.toString().capitalizeFirst ?? "N/A",
                         style: TextStyle(
                           color: const Color(0xff2563EB),
                           fontSize: 14.sp,
@@ -234,10 +224,8 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
               // ======================= CHAT BUTTON =======================
               CustomSuperButton(
                 text: 'Chat with tutor',
-                onTap: () => Get.toNamed(
-                  AppRoute.chatConationTeacher,
-                  arguments: tutor,
-                ),
+                onTap: () =>
+                    Get.toNamed(AppRoute.chatConationTeacher, arguments: tutor),
                 borderColor: const Color(0xff2563EB),
                 textColor: const Color(0xff2563EB),
               ),

@@ -10,7 +10,6 @@ import '../../../../core/succesfullcontroler/succesfullcontroler.dart';
 import '../../../../core/route/route.dart';
 
 class Bokkingcontroller extends GetxController {
-
   // ======================== Text Controllers ========================
   TextEditingController namcontroler = TextEditingController();
   TextEditingController agecontroler = TextEditingController();
@@ -20,10 +19,8 @@ class Bokkingcontroller extends GetxController {
 
   // ======================== Create Booking API ========================
   Future<void> createBooking(int classId, BuildContext context) async {
-
     // ======================== Form Validation ========================
-    if (namcontroler.text.trim().isEmpty ||
-        agecontroler.text.trim().isEmpty) {
+    if (namcontroler.text.trim().isEmpty || agecontroler.text.trim().isEmpty) {
       Get.snackbar(
         "Error",
         "Please fill all fields",
@@ -82,13 +79,14 @@ class Bokkingcontroller extends GetxController {
 
       // ======================== Success ========================
       if (response.statusCode == 200 || response.statusCode == 201) {
-
         namcontroler.clear();
         agecontroler.clear();
+        if (!context.mounted) return;
         FocusScope.of(context).unfocus();
 
         Get.back();
 
+        if (!context.mounted) return;
         showDialog(
           context: context,
           barrierDismissible: false,
@@ -99,7 +97,8 @@ class Bokkingcontroller extends GetxController {
             ),
             content: Successfullmsg(
               name: 'Successful',
-              namedetels: 'Your request has been sent successfully to the tutor.',
+              namedetels:
+                  'Your request has been sent successfully to the tutor.',
               buName1: 'Track booking',
               ontap1: () {
                 Get.back();
@@ -114,15 +113,14 @@ class Bokkingcontroller extends GetxController {
       // ======================== Error ========================
       else {
         final errorData = jsonDecode(response.body);
-        final errorMessage =
-            errorData['message'] ?? 'Booking failed';
+        final errorMessage = errorData['message'] ?? 'Booking failed';
 
         debugPrint("Server Error: ${response.body}");
 
         Get.snackbar(
           "Booking Failed",
           errorMessage,
-          backgroundColor: Colors.red.withOpacity(0.7),
+          backgroundColor: Colors.red.withValues(alpha: 0.7),
           colorText: Colors.white,
         );
       }

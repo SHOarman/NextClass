@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -50,7 +49,9 @@ class SeeAll extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BackSlashButton(onTap: () => Get.back()), // Custom back button
+                  BackSlashButton(
+                    onTap: () => Get.back(),
+                  ), // Custom back button
                   SizedBox(height: 20.h),
                 ],
               );
@@ -62,8 +63,9 @@ class SeeAll extends StatelessWidget {
 
             // Extract class details safely
             String subject = props?.subject ?? "N/A";
-            String level =
-            props?.level != null ? "Class ${props!.level}" : "N/A";
+            String level = props?.level != null
+                ? "Class ${props!.level}"
+                : "N/A";
             bool isGroup = props?.isGroupClass ?? false;
             String groupStatus = isGroup ? "Group Class" : "Individual Class";
 
@@ -77,7 +79,8 @@ class SeeAll extends StatelessWidget {
                   // Navigation to Ongoing Details Screen
                   // Passing the specific class 'item' to filter bookings in the next screen
                   Get.toNamed(
-                    AppRoute.onlodingdetelsscreen, // Ensure this route is defined
+                    AppRoute
+                        .onlodingdetelsscreen, // Ensure this route is defined
                     arguments: item,
                   );
                 },

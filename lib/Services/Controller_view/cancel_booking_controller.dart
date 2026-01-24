@@ -33,12 +33,18 @@ class CancelBookingController extends GetxController {
 
       // Token Validation
       if (token == null) {
-        Get.snackbar("Authentication Error", "Session expired. Please login again.");
-        Get.offAllNamed(AppRoute.login); // Redirect to login if token is missing
+        Get.snackbar(
+          "Authentication Error",
+          "Session expired. Please login again.",
+        );
+        Get.offAllNamed(
+          AppRoute.login,
+        ); // Redirect to login if token is missing
         return;
       }
 
-      final String url = "${ApiServices.baseUrl}/api/bookings/$bookingId/cancel/";
+      final String url =
+          "${ApiServices.baseUrl}/api/bookings/$bookingId/cancel/";
 
       final response = await http.post(
         Uri.parse(url),
@@ -47,20 +53,21 @@ class CancelBookingController extends GetxController {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: jsonEncode({
-          "cancellation_reason": reasonController.text.trim(),
-        }),
+        body: jsonEncode({"cancellation_reason": reasonController.text.trim()}),
       );
 
       // Handle Success
       if (response.statusCode == 200 || response.statusCode == 201) {
+        if (!context.mounted) return;
         _showSuccessDialog(context);
       } else {
         // Handle API specified errors
         final errorData = jsonDecode(response.body);
         Get.snackbar(
           "Request Failed",
-          errorData['detail'] ?? errorData['message'] ?? "Could not cancel booking",
+          errorData['detail'] ??
+              errorData['message'] ??
+              "Could not cancel booking",
           backgroundColor: Colors.orange,
         );
       }

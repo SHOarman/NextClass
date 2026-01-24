@@ -1,10 +1,22 @@
-import 'package:first_project/core/route/route.dart';
+//==================== TUTION COMPLETED PAGE ==========================
+// This screen shows completed tuition details including:
+// - Tutor information
+// - Booking related class details
+// - User rating & review for this booking
+//====================================================================
+
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import '../../../../../../unity/app_colors/app_gradient.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get_navigation/src/root/parse_route.dart';
+
+import '../../../../../../Services/Controller_view/my_review_controller.dart';
 import '../../../../../widget/back_slash/back_slash.dart';
-import '../../../../../widget/custom_button/custom_button.dart';
 
 class Tutioncomplectadepage1 extends StatefulWidget {
   const Tutioncomplectadepage1({super.key});
@@ -14,215 +26,211 @@ class Tutioncomplectadepage1 extends StatefulWidget {
 }
 
 class _Tutioncomplectadepage1 extends State<Tutioncomplectadepage1> {
+
+  //==================== STATE VARIABLES ==============================
+  // Used to toggle favorite (heart) icon state
   bool isFavorite = false;
+
+  // Controller to manage and access user reviews
+  final MyReviewController reviewController = Get.find<MyReviewController>();
+  //===================================================================
 
   @override
   Widget build(BuildContext context) {
+
+    //==================== RECEIVE ARGUMENTS ===========================
+    // Receiving booking data passed from previous screen
+    final dynamic data = Get.arguments;
+    //===================================================================
+
+    //==================== DATA MAPPING ================================
+    // Safely mapping API / booking model data with fallback values
+    final String tutorName = data?.tutorDetails?.fullName ?? 'Unknown Tutor';
+    final String subject =
+        data?.classDetails?.properties?.subject ?? 'Subject';
+    final String address =
+        data?.classDetails?.properties?.address ?? 'Location not specified';
+    final String price = data?.totalPrice?.toString() ?? '0.00';
+    final String bio =
+        data?.tutorDetails?.profile?.bio ?? "No description available.";
+    //===================================================================
+
+    //==================== PROFILE IMAGE HANDLING ======================
+    // If API image exists → use NetworkImage
+    // Else → fallback to local asset image
+    final String profileImage =
+    (data?.tutorDetails?.profilePicture != null)
+        ? data!.tutorDetails!.profilePicture!
+        : 'assets/backround/Frame 91.png';
+    //===================================================================
+
+    //==================== FIND SPECIFIC REVIEW ========================
+    // Finding review that matches current booking ID
+    final specificReview = reviewController.reviews.firstWhereOrNull(
+          (rev) => rev.booking == data?.id,
+    );
+    //===================================================================
+
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// ===== Top Row: Back + Favorite
-            SizedBox(height: 100.h),
+
+            //==================== TOP BAR ===============================
+            // Back button + Favorite icon
+            SizedBox(height: 60.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                BackSlashButton(
-                  onTap: () {
-                    Get.back();
-                  },
-                ),
+                BackSlashButton(onTap: () => Get.back()),
                 IconButton(
-                  onPressed: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                  },
+                  onPressed: () =>
+                      setState(() => isFavorite = !isFavorite),
                   icon: Icon(
                     Icons.favorite,
-                    color: isFavorite ? Colors.red : const Color(0xff2B2B2B),
+                    color: isFavorite
+                        ? Colors.red
+                        : const Color(0xff2B2B2B),
                   ),
                 ),
               ],
             ),
+            //============================================================
 
-            const SizedBox(height: 20),
-
-            /// ===== Tutor Image
+            //==================== TUTOR IMAGE ===========================
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  'assets/backround/Frame 91.png',
-                  width: 200.w,
-                  height: 200.h,
+                child: profileImage.startsWith('http')
+                    ? Image.network(
+                  profileImage,
+                  width: 140.w,
+                  height: 140.h,
+                  fit: BoxFit.cover,
+                )
+                    : Image.asset(
+                  profileImage,
+                  width: 140.w,
+                  height: 140.h,
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-
-            SizedBox(height: 12.h),
-
-            /// ===== View Tutor Profile Button
-            Center(
-              child: Container(
-                height: 32.h,
-                width: 160.w,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xffDBDBDB),
-                    width: 1.5,
-                  ),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: TextButton(
-                  onPressed: () {
-                    // Button action
-                  },
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: Size.zero,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'View Tutor Profile',
-                      style: TextStyle(
-                        color: const Color(0xff2563EB),
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            //============================================================
 
             SizedBox(height: 24.h),
 
-            /// ===== Tutor Name + Rating Row
+            //==================== NAME & RATING =========================
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Tutor Name',
+                  tutorName,
                   style: TextStyle(
-                    color: const Color(0xff2B2B2B),
                     fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Row(
                   children: [
-                    Icon(
-                      Icons.star,
-                      color: const Color(0xffFFC107),
-                      size: 20.sp,
-                    ),
+                    Icon(Icons.star,
+                        color: const Color(0xffFFC107), size: 20.sp),
                     SizedBox(width: 4.w),
                     Text(
-                      '4.5',
-                      style: TextStyle(
-                        color: const Color(0xff2B2B2B),
-                        fontSize: 18.sp,
-                      ),
+                      specificReview?.rating?.toString() ?? '0.0',
+                      style: TextStyle(fontSize: 18.sp),
                     ),
                   ],
                 ),
               ],
             ),
-
-            SizedBox(height: 16.h),
-            Text(
-              'Lorem ipsum dolor sit amet consectetur. Urna massa mi tellus in sed ullamcorper tortor. Sit sed lorem in dictum. Maecenas elit est metus amet magna. Pretium sed vitae sit posuere. ',
-              style: TextStyle(color: Color(0xff888888), fontSize: 16),
-            ),
+            //============================================================
 
             SizedBox(height: 16.h),
 
+            //==================== TUTOR BIO =============================
             Text(
-              'Mathematics',
+              bio,
               style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
+                color: const Color(0xff888888),
+                fontSize: 16.sp,
               ),
             ),
-            SizedBox(height: 4.h),
-            Text(
-              'Class 1-4',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              'Group class',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              'Start from 02 January, 2026',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              '21/2 St road, Los Angles, USA',
-              style: TextStyle(
-                color: Color(0xff2B2B2B),
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            //============================================================
+
+            SizedBox(height: 16.h),
+
+            //==================== CLASS DETAILS =========================
+            _buildDetailText(subject),
+            _buildDetailText(
+                'Class ${data?.classDetails?.properties?.level ?? "N/A"}'),
+            _buildDetailText(address),
+            //============================================================
 
             SizedBox(height: 24.h),
 
+            //==================== PRICE ================================
             Text(
-              '\$560.00/monthly',
+              '\$$price/monthly',
               style: TextStyle(
-                color: Color(0xff2563EB),
+                color: const Color(0xff2563EB),
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            //============================================================
 
-            SizedBox(height: 62.h),
-            CustomSuperButton(
-              text: 'Write a review',
-              fontSize: 20,
-              onTap: () {
-                Get.toNamed(AppRoute.reviewpage);
-              },
-              bgGradient: Appgradient.primaryGradient,
+            SizedBox(height: 30.h),
+
+            //==================== RATING SECTION ========================
+            const Text(
+              'Rating',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-
-            SizedBox(height: 12.h),
-
-            CustomSuperButton(
-              text: 'chat with tutor',
-              onTap: () {
-                Get.toNamed(AppRoute.chatConationTeacher);
-              },
-              textGradient: Appgradient.primaryGradient,
-              borderColor: Appgradient.primaryGradient.colors[0],
+            Row(
+              children: [
+                Icon(Icons.star, color: Colors.amber, size: 18.sp),
+                Text(' ${specificReview?.rating ?? "No Rating"}'),
+              ],
             ),
+            //============================================================
 
             SizedBox(height: 20.h),
+
+            //==================== REVIEW SECTION ========================
+            const Text(
+              'Reviews',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            Text(
+              specificReview?.comment ??
+                  "No review comment available yet.",
+              style: const TextStyle(color: Color(0xff888888)),
+            ),
+            //============================================================
           ],
         ),
       ),
     );
   }
+
+  //==================== REUSABLE DETAIL TEXT ==========================
+  // Used for showing subject, class, address etc.
+  Widget _buildDetailText(String text) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: 4.h),
+      child: Text(
+        text,
+        style: const TextStyle(
+          color: Color(0xff2B2B2B),
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+    );
+  }
+//===================================================================
 }

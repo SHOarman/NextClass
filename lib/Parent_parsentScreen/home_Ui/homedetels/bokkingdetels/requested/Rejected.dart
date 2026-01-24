@@ -113,8 +113,7 @@ class Rejected extends StatelessWidget {
                       'Subject not specified',
 
                   // Status badge
-                  iconName:
-                  status == "rejected" ? 'Rejected' : 'Cancelled',
+                  iconName: status,
 
                   // Profile image
                   imagePath: profileImage,

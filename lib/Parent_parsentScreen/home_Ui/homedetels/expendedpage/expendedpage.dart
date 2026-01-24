@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-import '../../../../core/route/route.dart';
 import '../../../../unity/string_static/strig_static/static_string.dart';
 import '../../../widget/back_slash/back_slash.dart';
 import '../../../widget/custom_textfield/custom_textfield.dart';
@@ -40,8 +39,6 @@ class Expendedpage extends StatelessWidget {
                       prefixicon: true,
                     ),
                   ),
-
-
                 ],
               ),
 

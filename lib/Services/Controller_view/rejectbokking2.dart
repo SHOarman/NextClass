@@ -60,6 +60,7 @@ class Rejectbokking2 extends GetxController {
       if (response.statusCode == 200 || response.statusCode == 201) {
         // Refresh the list
         Get.put(Bookingtecherlistcontroller()).fetchMyBookings();
+        if (!context.mounted) return;
         _showSuccessDialog(context, onSuccess);
       } else {
         final errorData = jsonDecode(response.body);

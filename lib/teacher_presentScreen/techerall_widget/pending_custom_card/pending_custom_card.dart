@@ -17,12 +17,14 @@ class Pendingcustomcard extends StatelessWidget {
       width: 1.sw,
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
       decoration: BoxDecoration(
-        color: const Color(0xffB67EFF).withOpacity(0.1),
+        color: const Color(0xffB67EFF).withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(15.r),
-        border: Border.all(color: const Color(0xffB67EFF).withOpacity(0.2)),
+        border: Border.all(
+          color: const Color(0xffB67EFF).withValues(alpha: 0.2),
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -49,7 +51,7 @@ class Pendingcustomcard extends StatelessWidget {
             bottom: 15.h,
             left: 20.w,
             child: Obx(
-                  () => Text(
+              () => Text(
                 '${controller.pendingRequestCount.value}',
                 style: TextStyle(
                   color: const Color(0xff2B2B2B),
@@ -77,7 +79,8 @@ class Pendingcustomcard extends StatelessWidget {
                   padding: EdgeInsets.all(14.r),
                   child: SvgPicture.asset(
                     'assets/icon/pending.svg',
-                    placeholderBuilder: (context) => const CircularProgressIndicator(strokeWidth: 2),
+                    placeholderBuilder: (context) =>
+                        const CircularProgressIndicator(strokeWidth: 2),
                   ),
                 ),
               ),
