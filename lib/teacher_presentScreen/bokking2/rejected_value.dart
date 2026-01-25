@@ -15,7 +15,9 @@ class RejectedValue extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Initialize delete booking controller
-    final DeleteBookingController deleteController = Get.put(DeleteBookingController());
+    final DeleteBookingController deleteController = Get.put(
+      DeleteBookingController(),
+    );
 
     // Empty state
     if (list.isEmpty) {
@@ -38,7 +40,8 @@ class RejectedValue extends StatelessWidget {
           // Extract data safely
           String parentName = booking.parentDetails?.fullName ?? 'Parent Name';
           String classLevel = booking.classDetails?.properties?.level ?? 'N/A';
-          String profileImg = booking.parentDetails?.profilePicture?.isNotEmpty == true
+          String profileImg =
+              booking.parentDetails?.profilePicture?.isNotEmpty == true
               ? booking.parentDetails!.profilePicture!
               : 'assets/backround/Rectangle 5050 (5).png';
 
@@ -66,15 +69,14 @@ class RejectedValue extends StatelessWidget {
                       buttonname1: 'Chat with parent',
                       buttonname2: 'Delete from list',
                       ontap1: () {
-
-                        print("ljaj");
+                        // print("ljaj");
                         // Action for chat button
                         if (booking.id != null) {
                           deleteController.deleteOrRejectBooking(booking.id!);
                         }
                       },
                       ontap2: () {
-                        print("fufff");
+                        // print("fufff");
                         // Action for delete button
                         // if (booking.id != null) {
                         //   deleteController.deleteOrRejectBooking(booking.id!);

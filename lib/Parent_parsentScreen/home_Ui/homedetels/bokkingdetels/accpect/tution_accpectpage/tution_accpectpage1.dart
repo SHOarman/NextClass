@@ -181,10 +181,22 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
               text: 'Chat with tutor',
               fontWeight: FontWeight.bold,
               fontSize: 18.sp,
-              onTap: () => Get.toNamed(
-                AppRoute.chatConationTeacher,
-                arguments: data.tutorDetails,
-              ),
+                onTap: () {
+                  // arguments এর মাধ্যমে টিউটরের ID এবং নাম পাঠিয়ে দেওয়া হচ্ছে
+                  Get.toNamed(
+                    AppRoute.chatScreen1, // আপনার চ্যাট স্ক্রিন রুট
+                    arguments: {
+                      'id': data.id, // আপনার API অনুযায়ী conversation id বা tutor id
+                      'name': data.tutorDetails?.fullName ?? 'Tutor',
+                      'profile': data.tutorDetails?.profilePicture ?? '',
+                    },
+                  );
+                },
+
+              // onTap: () => Get.toNamed(
+              //   AppRoute.chatConationTeacher,
+              //   arguments: data.tutorDetails,
+              // ),
               borderColor: const Color(0xff2563EB),
               textGradient: Appgradient.primaryGradient,
             ),

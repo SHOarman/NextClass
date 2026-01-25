@@ -239,6 +239,7 @@ import 'package:geocoding/geocoding.dart';   // ✅ অক্ষাংশ থে
 import '../../../Services/api_Services/api_services.dart';
 
 class ProfileController extends GetxController {
+  var userId = 0.obs;
   // ================= ✅ REACTIVE VARIABLES ✅ =================
   var address = "Fetching location...".obs; // ✅ রিয়েল-টাইম লোকেশন
   var fullName = "Loading...".obs;
@@ -327,6 +328,7 @@ class ProfileController extends GetxController {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
+        userId.value = data['id'] ?? 0;
 
         fullName.value = data['full_name'] ?? "No Name";
         email.value = data['email'] ?? "No email";

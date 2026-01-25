@@ -369,6 +369,8 @@
 //   ];
 // }
 
+import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/chartdetels/perentchat.dart';
+import 'package:first_project/teacher_presentScreen/chat2/techerchat.dart';
 import 'package:get/get.dart';
 import 'package:first_project/Parent_parsentScreen/auth_Screen/reg_screen.dart';
 import 'package:first_project/Parent_parsentScreen/auth_Screen/creat_new_password.dart';
@@ -433,7 +435,7 @@ import 'package:first_project/teacher_presentScreen/myprofileexta/update_passwor
 import 'package:first_project/teacher_presentScreen/tech_slash.dart';
 
 // Import models and screens
-import '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/inbox_screen.dart';
+// import '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/inbox_screen.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_screen.dart';
 
 class AppRoute {
@@ -525,8 +527,29 @@ class AppRoute {
   static const String viewtotureprofile = '/viewtotureprofile';
   static const String resonwigets = "/resonwigets";
   static const String resonwigets2 = "/resonwigets2";
+  static const String chate1 = "/chart1";
+  // static const String chate3="/chate3";
+  //===============chat=============================
+  static const String techerchat = "/techerchat";
+  static const String perentchat = "/perentchat";
+  static const String chatScreen1 = "/chatScreen1";
 
   static List<GetPage> mypage = [
+    //================chat=============================
+    GetPage(name: perentchat, page: () => Perentchat()),
+    GetPage(name: techerchat, page: () => Techerchat()),
+    GetPage(
+      name: chatScreen1,
+      page: () {
+        final args = Get.arguments ?? {};
+        return ChatScreen(
+          conversationId: args['id'] ?? 0,
+          name: args['name'] ?? '',
+          profile: args['profile'] ?? '',
+        );
+      },
+    ),
+
     GetPage(name: slashscreen, page: () => const SlashScreen()),
     GetPage(name: onloding, page: () => const OnlodaingScreen()),
     GetPage(name: login, page: () => LoginScreen()),
@@ -559,12 +582,12 @@ class AppRoute {
     ),
 
     // ✅ Inbox (Chat List) Route Added
-    GetPage(
-      name: chartdetels,
-      page: () => const ChatInboxScreen(),
-      transition: Transition.noTransition,
-    ),
-
+    // GetPage(
+    //   name: chartdetels,
+    //   page: () => const ChatInboxScreen(),
+    //   transition: Transition.noTransition,
+    // ),
+    /// GetPage(name: chate1, page: ()=>Chate1()),
     GetPage(
       name: myProfiledetels,
       page: () => Myprofiledetels(),
@@ -575,8 +598,7 @@ class AppRoute {
     GetPage(name: requestboking, page: () => Requestboking()),
 
     // ✅ Parent Side Chat Connection Route (Fixed Argument Handling)
-    GetPage(name: chatConationTeacher, page: () => const ConversationScreen()),
-
+    // GetPage(name: chatConationTeacher, page: () => const ConversationScreen()),
     GetPage(
       name: home2,
       page: () => HomeUi(),
@@ -587,11 +609,11 @@ class AppRoute {
       page: () => Bokking2(),
       transition: Transition.noTransition,
     ),
-    GetPage(
-      name: chat2,
-      page: () => const ChatInboxScreen(),
-      transition: Transition.noTransition,
-    ),
+    // GetPage(
+    //   name: chat2,
+    //   page: () => const ChatInboxScreen(),
+    //   transition: Transition.noTransition,
+    // ),
     GetPage(
       name: classes,
       page: () => const Cleses(),
@@ -619,8 +641,7 @@ class AppRoute {
     GetPage(name: rejectiondetels, page: () => Tusionrejestiondetels()),
 
     // ✅ Teacher Side Conversation Route
-    GetPage(name: convarcation, page: () => const ConversationScreen()),
-
+    // GetPage(name: convarcation, page: () => const ConversationScreen()),
     GetPage(name: createNewClasses, page: () => CreateNewclasses()),
     GetPage(name: step1, page: () => Step1()),
     GetPage(name: step2, page: () => Step2()),

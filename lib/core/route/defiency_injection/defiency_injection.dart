@@ -14,6 +14,8 @@ import 'package:first_project/teacher_presentScreen/home_ui/home_controller.dart
 import 'package:get/get.dart';
 
 import '../../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/bokkingcontroller.dart';
+import '../../../Services/Controller_view/ChatListController.dart';
+import '../../../Services/Controller_view/InboxController.dart';
 import '../../../Services/Controller_view/confirm_booking_controller.dart';
 import '../../../Services/Controller_view/delete_class_controller.dart';
 import '../../../Services/Controller_view/mark_as_complete_controller.dart';
@@ -97,6 +99,9 @@ class DependencyInjection {
 
     //========================chatadata==================================
     Get.lazyPut(() => Chartmsg());
+    Get.lazyPut(()=>ChatListController());
+    Get.lazyPut(()=>InboxController());
+
 
     //============classdetels================================
     Get.lazyPut(() => TeacherDetailsController());

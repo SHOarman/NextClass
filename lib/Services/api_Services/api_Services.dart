@@ -69,4 +69,8 @@ class ApiServices {
   //==========================review===========================
 
   static const String reviewAdd = "$baseUrl/api/reviews/";
+
+
+  //==============msg====================
+// static const String conversetion="$baseUrl/chat/conversations";
 }

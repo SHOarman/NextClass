@@ -1,112 +1,100 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'chat_controller_teacher.dart';
+import 'package:intl/intl.dart';
+import '../../../../Services/Controller_view/InboxController.dart';
 import '../../../../Services/model_class/chat_models.dart';
+import '../../../profile_Screen/profileController/profile_controller.dart';
 
-class ConversationScreen extends StatefulWidget {
-  const ConversationScreen({super.key});
+class ChatScreen extends StatefulWidget {
+  final int conversationId;
+  final String name;
+  final String profile;
+
+  const ChatScreen({
+    super.key,
+    required this.conversationId,
+    required this.name,
+    required this.profile,
+  });
 
   @override
-  State<ConversationScreen> createState() => _ConversationScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _ConversationScreenState extends State<ConversationScreen> {
-  final ChatController controller = Get.put(ChatController());
-  final TextEditingController textController = TextEditingController();
-  final ScrollController scrollController = ScrollController();
+class _ChatScreenState extends State<ChatScreen> {
+  final InboxController controller = Get.put(InboxController());
+  final ProfileController profileController = Get.put(ProfileController());
+  final TextEditingController msgController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
 
-  int conversationId = 0;
-  String name = "Unknown";
-  String image = "";
+  late final int myId;
 
   @override
   void initState() {
     super.initState();
-    bool idFound = false;
-
-    debugPrint("ChatScreen: Arguments: ${Get.arguments}");
-
-    if (Get.arguments != null && Get.arguments is List) {
-      final args = Get.arguments as List;
-      if (args.length >= 3) {
-        if (args[0] is int) {
-          conversationId = args[0];
-        } else {
-          debugPrint("ChatScreen Error: Arg[0] is not int: ${args[0]}");
-        }
-        name = args[1]?.toString() ?? "Unknown";
-        image = args[2]?.toString() ?? "";
-        idFound = true;
-      }
-    }
-
-    // Fallback if arguments missing but controller has state
-    if (!idFound && controller.currentConversationId.value != 0) {
-      conversationId = controller.currentConversationId.value;
-      idFound = true;
-    }
-
-    if (idFound && conversationId != 0) {
-      // If controller isn't already set to this ID, enter the room
-      if (controller.currentConversationId.value != conversationId) {
-        controller.enterChatRoom(conversationId);
-      } else {
-        // If controller IS set, but socket might be disconnected, ensure connection
-        controller.connectSocket(conversationId);
-      }
-    } else {
-      debugPrint("ChatScreen Error: Conversation ID is 0 or Missing");
-      // Optional: Get.back() or show error
-    }
+    myId = profileController.userId.value; // dynamic user id
+    controller.connectToChat(widget.conversationId);
   }
 
-  @override
-  void dispose() {
-    textController.dispose();
-    scrollController.dispose();
-    super.dispose();
+  void _scrollToBottom() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF9FAFB), // Light gray background
+      backgroundColor: const Color(0xFFF5F7FB),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        elevation: 0.5,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.blue, size: 20.sp),
-          onPressed: () => Get.back(),
-        ),
-        titleSpacing: 0,
+        elevation: 1,
+        centerTitle: false,
+        iconTheme: const IconThemeData(color: Colors.black),
         title: Row(
           children: [
             CircleAvatar(
-              radius: 18.r,
-              backgroundImage: image.isNotEmpty
-                  ? NetworkImage(image)
-                  : const AssetImage("assets/backround/teacher.png")
-                        as ImageProvider,
-              backgroundColor: Colors.grey.shade200,
+              radius: 18,
+              backgroundColor: Colors.grey[200],
+              backgroundImage: widget.profile.isNotEmpty
+                  ? NetworkImage(widget.profile)
+                  : null,
+              child: widget.profile.isEmpty
+                  ? const Icon(Icons.person, size: 20)
+                  : null,
             ),
-            SizedBox(width: 10.w),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  name,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16.sp,
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    widget.name,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  "Online", // This can be dynamic later
-                  style: TextStyle(color: Colors.green, fontSize: 12.sp),
-                ),
-              ],
+                  Obx(
+                    () => Text(
+                      controller.isOtherUserTyping.value
+                          ? "typing..."
+                          : "Online",
+                      style: TextStyle(
+                        color: controller.isOtherUserTyping.value
+                            ? Colors.green
+                            : Colors.grey,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -115,25 +103,32 @@ class _ConversationScreenState extends State<ConversationScreen> {
         children: [
           Expanded(
             child: Obx(() {
+              // Loading state
               if (controller.isLoading.value && controller.messages.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
 
+              // No messages
+              if (controller.messages.isEmpty) {
+                return const Center(child: Text("No messages yet. Say hi!"));
+              }
+
+              // scroll after build
+              WidgetsBinding.instance.addPostFrameCallback(
+                (_) => _scrollToBottom(),
+              );
+
               return ListView.builder(
-                controller: scrollController,
-                padding: EdgeInsets.all(16.w),
-                reverse: true, // Show newest at bottom
+                controller: _scrollController,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 20,
+                ),
                 itemCount: controller.messages.length,
                 itemBuilder: (context, index) {
                   final msg = controller.messages[index];
-                  // Determine alignment
-                  bool isMe = msg.isMe;
-                  // Fallback if isMe isn't set perfectly (check senderId)
-                  if (!isMe && controller.myUserId != null) {
-                    isMe = msg.senderId == controller.myUserId;
-                  }
-
-                  return _buildMessageBubble(msg, isMe);
+                  final isMe = msg.senderId == myId;
+                  return _buildBubble(msg, isMe);
                 },
               );
             }),
@@ -144,100 +139,116 @@ class _ConversationScreenState extends State<ConversationScreen> {
     );
   }
 
-  Widget _buildMessageBubble(ChatMessage msg, bool isMe) {
-    return Align(
-      alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 4.h),
-        constraints: BoxConstraints(maxWidth: 0.75.sw), // 75% width
-        decoration: BoxDecoration(
-          color: isMe ? const Color(0xFF2563EB) : Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(12.r),
-            topRight: Radius.circular(12.r),
-            bottomLeft: isMe ? Radius.circular(12.r) : Radius.zero,
-            bottomRight: isMe ? Radius.zero : Radius.circular(12.r),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withValues(alpha: 0.1),
-              blurRadius: 4,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              msg.content,
-              style: TextStyle(
-                color: isMe ? Colors.white : Colors.black87,
-                fontSize: 14.sp,
-              ),
-            ),
-            SizedBox(height: 4.h),
-            Text(
-              _formatTime(msg.createdAt),
-              style: TextStyle(
-                color: isMe
-                    ? Colors.white.withValues(alpha: 0.7)
-                    : Colors.grey.shade500,
-                fontSize: 10.sp,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
   Widget _buildInputArea() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border(top: BorderSide(color: Colors.grey.shade200)),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 5),
+        ],
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF3F4F6),
-                borderRadius: BorderRadius.circular(24.r),
-              ),
+      child: SafeArea(
+        child: Row(
+          children: [
+            Expanded(
               child: TextField(
-                controller: textController,
-                decoration: const InputDecoration(
+                controller: msgController,
+                onChanged: (value) =>
+                    controller.sendTypingStatus(value.isNotEmpty),
+                decoration: InputDecoration(
                   hintText: "Type a message...",
-                  border: InputBorder.none,
+                  filled: true,
+                  fillColor: const Color(0xFFF3F4F6),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
+                  ),
                 ),
               ),
             ),
-          ),
-          SizedBox(width: 8.w),
-          GestureDetector(
-            onTap: () {
-              if (textController.text.trim().isNotEmpty) {
-                controller.sendMessage(textController.text);
-                textController.clear();
-              }
-            },
-            child: CircleAvatar(
-              radius: 20.r,
-              backgroundColor: const Color(0xFF2563EB),
-              child: const Icon(Icons.send, color: Colors.white, size: 20),
+            const SizedBox(width: 8),
+            CircleAvatar(
+              backgroundColor: Colors.blue,
+              child: IconButton(
+                icon: const Icon(Icons.send, color: Colors.white, size: 20),
+                onPressed: () {
+                  if (msgController.text.trim().isNotEmpty) {
+                    controller.sendMessage(msgController.text.trim());
+                    msgController.clear();
+                    controller.sendTypingStatus(false);
+                  }
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
-  String _formatTime(DateTime time) {
-    return "${time.hour}:${time.minute.toString().padLeft(2, '0')}";
+  Widget _buildBubble(ChatMessageModel msg, bool isMe) {
+    final DateTime timestamp = msg.timestamp;
+
+    return Align(
+      alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
+      child: Column(
+        crossAxisAlignment: isMe
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            constraints: BoxConstraints(maxWidth: Get.width * 0.75),
+            decoration: BoxDecoration(
+              color: isMe ? Colors.blue : Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: const Radius.circular(15),
+                topRight: const Radius.circular(15),
+                bottomLeft: Radius.circular(isMe ? 15 : 0),
+                bottomRight: Radius.circular(isMe ? 0 : 15),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.02),
+                  blurRadius: 2,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
+            child: Text(
+              msg.content,
+              style: TextStyle(
+                color: isMe ? Colors.white : Colors.black87,
+                fontSize: 15,
+              ),
+            ),
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                DateFormat('hh:mm a').format(timestamp),
+                style: const TextStyle(fontSize: 10, color: Colors.grey),
+              ),
+              if (isMe) ...[
+                const SizedBox(width: 4),
+                Icon(
+                  msg.isRead ? Icons.done_all : Icons.done,
+                  size: 14,
+                  color: msg.isRead ? Colors.blue : Colors.grey,
+                ),
+              ],
+            ],
+          ),
+          const SizedBox(height: 4),
+        ],
+      ),
+    );
   }
 }

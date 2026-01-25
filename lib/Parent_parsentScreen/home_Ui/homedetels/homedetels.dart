@@ -104,24 +104,24 @@ class Homedetels extends StatelessWidget {
                     // ),
                     // SizedBox(height: 15.h),
 
-
-
-
-
                     //======================== Recommended Header ========================
                     _buildSectionHeader(
                       'Recommended Classes',
-                          () => Get.toNamed(AppRoute.seDetels),
+                      () => Get.toNamed(AppRoute.seDetels),
                     ),
                     SizedBox(height: 15.h),
 
-//======================== Recommended Horizontal List ========================
+                    //======================== Recommended Horizontal List ========================
                     // Homedetels স্ক্রিনের Recommended সেকশন
                     SizedBox(
                       height: 240.h,
                       child: Obx(() {
-                        if (controller.isLoading.value) return const Center(child: CircularProgressIndicator());
-                        if (controller.recommendedList.isEmpty) return const Center(child: Text("No classes found"));
+                        if (controller.isLoading.value)
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        if (controller.recommendedList.isEmpty)
+                          return const Center(child: Text("No classes found"));
 
                         return ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -133,33 +133,75 @@ class Homedetels extends StatelessWidget {
 
                             return Container(
                               width: 160.w,
-                              margin: EdgeInsets.only(right: 15.w, bottom: 10.h),
+                              margin: EdgeInsets.only(
+                                right: 15.w,
+                                bottom: 10.h,
+                              ),
                               decoration: BoxDecoration(
                                 color: const Color(0xffF8FAFC),
                                 borderRadius: BorderRadius.circular(15.r),
-                                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 10)],
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.05),
+                                    blurRadius: 10,
+                                  ),
+                                ],
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   ClipRRect(
-                                    borderRadius: BorderRadius.vertical(top: Radius.circular(15.r)),
+                                    borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(15.r),
+                                    ),
                                     child: Image.network(
                                       item.profilePicture ?? "",
-                                      height: 105.h, width: double.infinity, fit: BoxFit.cover,
-                                      errorBuilder: (ctx, err, stack) => Image.asset('assets/backround/girls.png', fit: BoxFit.cover),
+                                      height: 105.h,
+                                      width: double.infinity,
+                                      fit: BoxFit.cover,
+                                      errorBuilder: (ctx, err, stack) =>
+                                          Image.asset(
+                                            'assets/backround/girls.png',
+                                            fit: BoxFit.cover,
+                                          ),
                                     ),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.all(10.r),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(item.tutorName ?? "Tutor", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp), maxLines: 1),
-                                        Text(props?.subject ?? "Subject", style: TextStyle(fontSize: 12.sp, color: Colors.grey)),
-                                        Text("Class ${props?.level ?? 'N/A'}", style: TextStyle(fontSize: 12.sp, color: Colors.grey)),
+                                        Text(
+                                          item.tutorName ?? "Tutor",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 14.sp,
+                                          ),
+                                          maxLines: 1,
+                                        ),
+                                        Text(
+                                          props?.subject ?? "Subject",
+                                          style: TextStyle(
+                                            fontSize: 12.sp,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                        Text(
+                                          "Class ${props?.level ?? 'N/A'}",
+                                          style: TextStyle(
+                                            fontSize: 12.sp,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
                                         SizedBox(height: 8.h),
-                                        Text("\$${props?.pricePerHour ?? '0'}/monthly", style: TextStyle(color: Color(0xff2563EB), fontWeight: FontWeight.bold)),
+                                        Text(
+                                          "\$${props?.pricePerHour ?? '0'}/monthly",
+                                          style: TextStyle(
+                                            color: Color(0xff2563EB),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -170,16 +212,6 @@ class Homedetels extends StatelessWidget {
                         );
                       }),
                     ),
-
-
-
-
-
-
-
-
-
-
 
                     //======================== Recommended Banner ========================
                     _buildRecommendedBanner(),

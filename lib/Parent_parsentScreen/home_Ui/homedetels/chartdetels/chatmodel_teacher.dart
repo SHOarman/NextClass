@@ -1,84 +1,56 @@
-// // Services/model_class/usershow_model.dart
-// class TutorDetails {
+// // চ্যাট লিস্টের জন্য মডেল
+// class ChatConversation {
 //   final int id;
-//   final String fullName;
-//   final String email;
-//   final String? profilePicture;
-//   final bool isVerified;
-//   final TutorProfile? profile;
+//   final String otherUserName;
+//   final String otherUserProfile;
+//   final String lastMessage;
+//   final bool isRead;
+//   final DateTime timestamp;
 //
-//   TutorDetails({
+//   ChatConversation({
 //     required this.id,
-//     required this.fullName,
-//     required this.email,
-//     this.profilePicture,
-//     required this.isVerified,
-//     this.profile,
+//     required this.otherUserName,
+//     required this.otherUserProfile,
+//     required this.lastMessage,
+//     required this.isRead,
+//     required this.timestamp,
 //   });
 //
-//   factory TutorDetails.fromJson(Map<String, dynamic> json) {
-//     return TutorDetails(
-//       id: json['id'] ?? 0,
-//       fullName: json['full_name'] ?? json['username'] ?? "Unknown",
-//       email: json['email'] ?? "",
-//       profilePicture: json['profile_picture'],
-//       isVerified: json['is_verified'] ?? false,
-//       profile: json['profile'] != null ? TutorProfile.fromJson(json['profile']) : null,
+//   factory ChatConversation.fromJson(Map<String, dynamic> json) {
+//     return ChatConversation(
+//       id: json['id'],
+//       otherUserName: json['other_user_name'] ?? 'Unknown',
+//       otherUserProfile: json['other_user_profile'] ?? '',
+//       lastMessage: json['last_message'] ?? '',
+//       isRead: json['is_read'] ?? false,
+//       timestamp: DateTime.parse(json['timestamp']),
 //     );
 //   }
 // }
 //
-// class TutorProfile {
-//   final String? bio;
-//   final String? verificationStatus;
-//
-//   TutorProfile({this.bio, this.verificationStatus});
-//
-//   factory TutorProfile.fromJson(Map<String, dynamic> json) {
-//     return TutorProfile(
-//       bio: json['bio'],
-//       verificationStatus: json['verification_status'],
-//     );
-//   }
-// }
-//
-// // Services/model_class/chatmodel.dart
+// // ইনবক্স মেসেজের জন্য মডেল
 // class ChatMessage {
 //   final int id;
 //   final int senderId;
 //   final String content;
-//   final String createdAt;
+//   final bool isSeen;
+//   final DateTime timestamp;
 //
-//   ChatMessage({required this.id, required this.senderId, required this.content, required this.createdAt});
+//   ChatMessage({
+//     required this.id,
+//     required this.senderId,
+//     required this.content,
+//     required this.isSeen,
+//     required this.timestamp,
+//   });
 //
 //   factory ChatMessage.fromJson(Map<String, dynamic> json) {
 //     return ChatMessage(
-//       id: json['id'] ?? 0,
-//       senderId: json['sender'] ?? 0,
-//       content: json['content'] ?? "",
-//       createdAt: json['created_at'] ?? "",
+//       id: json['id'],
+//       senderId: json['sender'],
+//       content: json['content'],
+//       isSeen: json['is_read'] ?? false,
+//       timestamp: DateTime.parse(json['timestamp']),
 //     );
 //   }
 // }
-
-
-
-
-
-class ChatMessage {
-  final String senderId;
-  final String content;
-  final String type; // সার্ভারের 'type' হ্যান্ডেল করতে
-  final DateTime timestamp;
-
-  ChatMessage({required this.senderId, required this.content, required this.timestamp, this.type = "chat_message"});
-
-  factory ChatMessage.fromJson(Map<String, dynamic> json) {
-    return ChatMessage(
-      senderId: (json['sender_id'] ?? "").toString(),
-      content: json['message'] ?? json['content'] ?? "", // Postman এ 'message' কি ব্যবহার হয়েছে
-      type: json['type'] ?? "chat_message",
-      timestamp: DateTime.parse(json['timestamp'] ?? DateTime.now().toIso8601String()),
-    );
-  }
-}

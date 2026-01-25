@@ -1,94 +1,134 @@
-class ChatMessage {
+import 'dart:convert';
+
+class ChatConversationModel {
   final int id;
-  final int conversationId;
+  final List<Participant> participants;
+  final int? classListing;
+  final String lastMessageContent;
+  final int unreadCount;
+  final DateTime createdAt; // ✅ DateTime
+  final DateTime updatedAt; // ✅ DateTime, latest message sort এর জন্য
+
+  ChatConversationModel({
+    required this.id,
+    required this.participants,
+    this.classListing,
+    required this.lastMessageContent,
+    required this.unreadCount,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory ChatConversationModel.fromJson(Map<String, dynamic> json) {
+    // last_message হ্যান্ডেল করা
+    var lastMsgData = json['last_message'];
+    String content = "No message yet";
+    DateTime updated = DateTime.now();
+
+    if (lastMsgData != null) {
+      if (lastMsgData is Map<String, dynamic>) {
+        content = lastMsgData['content']?.toString() ?? "No message yet";
+        updated = lastMsgData['updated_at'] != null
+            ? DateTime.tryParse(lastMsgData['updated_at']) ?? DateTime.now()
+            : DateTime.now();
+      } else if (lastMsgData is String) {
+        content = lastMsgData;
+      }
+    }
+
+    return ChatConversationModel(
+      id: json['id'] ?? 0,
+      participants: (json['participants'] as List?)
+          ?.map((p) => Participant.fromJson(p))
+          .toList() ??
+          [],
+      classListing: json['class_listing'],
+      lastMessageContent: content,
+      unreadCount: json['unread_count'] ?? 0,
+      createdAt: json['created_at'] != null
+          ? DateTime.parse(json['created_at'])
+          : DateTime.now(),
+      updatedAt: updated,
+    );
+  }
+
+  String get otherUserName {
+    if (participants.isEmpty) return "Unknown User";
+    try {
+      var other = participants.firstWhere(
+            (p) => p.userType == "tutor",
+        orElse: () => participants.first,
+      );
+      return other.fullName;
+    } catch (_) {
+      return "Unknown User";
+    }
+  }
+
+  String get otherUserProfile {
+    if (participants.isEmpty) return "";
+    try {
+      var other = participants.firstWhere(
+            (p) => p.userType == "tutor",
+        orElse: () => participants.first,
+      );
+      return other.profilePicture ?? "";
+    } catch (_) {
+      return "";
+    }
+  }
+}
+
+class Participant {
+  final int id;
+  final String username;
+  final String userType;
+  final String? profilePicture;
+  final String fullName;
+
+  Participant({
+    required this.id,
+    required this.username,
+    required this.userType,
+    this.profilePicture,
+    required this.fullName,
+  });
+
+  factory Participant.fromJson(Map<String, dynamic> json) {
+    return Participant(
+      id: json['id'] ?? 0,
+      username: json['username'] ?? '',
+      userType: json['user_type'] ?? '',
+      profilePicture: json['profile_picture'],
+      fullName: json['full_name'] ?? 'Unknown',
+    );
+  }
+}
+
+class ChatMessageModel {
+  final int id;
   final int senderId;
   final String content;
   final bool isRead;
-  final DateTime createdAt;
-  final bool isMe; // Helper to determine if I sent it
+  final DateTime timestamp;
 
-  ChatMessage({
+  ChatMessageModel({
     required this.id,
-    required this.conversationId,
     required this.senderId,
     required this.content,
     required this.isRead,
-    required this.createdAt,
-    this.isMe = false,
+    required this.timestamp,
   });
 
-  factory ChatMessage.fromJson(Map<String, dynamic> json, {int? myUserId}) {
-    int sender = json['sender'] ?? 0;
-    return ChatMessage(
+  factory ChatMessageModel.fromJson(Map<String, dynamic> json) {
+    return ChatMessageModel(
       id: json['id'] ?? 0,
-      conversationId: json['conversation'] ?? 0,
-      senderId: sender,
-      content:
-          json['content'] ??
-          json['message'] ??
-          '', // API and Socket might use different keys
+      senderId: json['sender'] ?? 0,
+      content: json['content'] ?? '',
       isRead: json['is_read'] ?? false,
-      createdAt: DateTime.parse(
-        json['created_at'] ??
-            json['timestamp'] ??
-            DateTime.now().toIso8601String(),
-      ),
-      isMe: myUserId != null ? (sender == myUserId) : false,
-    );
-  }
-}
-
-class ConversationModel {
-  final int id;
-  final OtherUser otherUser;
-  final String lastMessage; // Can be empty
-  final DateTime updatedAt;
-  final int unreadCount;
-
-  ConversationModel({
-    required this.id,
-    required this.otherUser,
-    required this.lastMessage,
-    required this.updatedAt,
-    this.unreadCount = 0,
-  });
-
-  factory ConversationModel.fromJson(Map<String, dynamic> json) {
-    // If 'other_user' is not present, try to find a user object that is not 'me' or just pick the 'receiver' if present.
-    // Or if the API calls it something else like 'receiver' or 'sender' object.
-
-    var userData = json['other_user'];
-    userData ??= (json['receiver'] is Map
-        ? json['receiver']
-        : (json['sender'] is Map ? json['sender'] : {}));
-
-    return ConversationModel(
-      id: json['id'] ?? 0,
-      otherUser: OtherUser.fromJson(userData ?? {}),
-      lastMessage: json['last_message'] ?? '',
-      updatedAt: DateTime.parse(
-        json['updated_at'] ?? DateTime.now().toIso8601String(),
-      ),
-      unreadCount: json['unread_count'] ?? 0,
-    );
-  }
-}
-
-class OtherUser {
-  final int id;
-  final String name;
-  final String? profilePicture;
-
-  OtherUser({required this.id, required this.name, this.profilePicture});
-
-  factory OtherUser.fromJson(Map<String, dynamic> json) {
-    return OtherUser(
-      id: json['id'] ?? 0,
-      name:
-          json['full_name'] ??
-          json['username'] ??
-          'Unknown', // Adjust based on actual API
-      profilePicture: json['profile_picture'],
+      timestamp: json['timestamp'] != null
+          ? DateTime.parse(json['timestamp'])
+          : DateTime.now(),
     );
   }
 }

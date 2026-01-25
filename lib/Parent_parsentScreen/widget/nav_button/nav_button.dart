@@ -20,15 +20,15 @@ class _NavButtonState extends State<NavButton> {
     super.initState();
   }
 
-
   // testing
   // --- Change made here: Replaced Get.toNamed with Get.offNamed ---
   void _navigateToScreen(int index) {
+    // print(index);
     // Get.offNamed replaces the current screen on the stack with the new one.
     // This prevents history buildup when switching between main navigation screens.
     if (index == 0) Get.offNamed(AppRoute.homedetels);
     if (index == 1) Get.offNamed(AppRoute.bokkingdetels);
-    if (index == 2) Get.offNamed(AppRoute.chartdetels);
+    if (index == 2) Get.offNamed(AppRoute.perentchat);
     if (index == 3) Get.offNamed(AppRoute.myProfiledetels);
   }
   // -----------------------------------------------------------------
