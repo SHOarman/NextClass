@@ -18,7 +18,6 @@ class Tusionrejestiondetels extends StatefulWidget {
 }
 
 class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
-
   //==================== STATE VARIABLES ===============================
   // Controls favorite (heart) icon state
   bool isFavorite = false;
@@ -26,7 +25,6 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
 
   @override
   Widget build(BuildContext context) {
-
     //==================== RECEIVE ARGUMENTS ===========================
     // Receiving booking model data from previous screen
     final dynamic data = Get.arguments;
@@ -34,29 +32,22 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
 
     //==================== DATA MAPPING ================================
     // Safely extracting data from API response
-    final String tutorName =
-        data?.tutorDetails?.fullName ?? 'Unknown Tutor';
-    final String subject =
-        data?.classDetails?.properties?.subject ?? 'Subject';
-    final String classLevel =
-        data?.classDetails?.properties?.level ?? 'N/A';
+    final String tutorName = data?.tutorDetails?.fullName ?? 'Unknown Tutor';
+    final String subject = data?.classDetails?.properties?.subject ?? 'Subject';
+    final String classLevel = data?.classDetails?.properties?.level ?? 'N/A';
     final String address =
-        data?.classDetails?.properties?.address ??
-            'Location not specified';
-    final String price =
-        data?.totalPrice?.toString() ?? '0.00';
+        data?.classDetails?.properties?.address ?? 'Location not specified';
+    final String price = data?.totalPrice?.toString() ?? '0.00';
     final String bio =
-        data?.tutorDetails?.profile?.bio ??
-            "No description available.";
-    final double rating =
-        data?.tutorDetails?.profile?.averageRating ?? 0.0;
+        data?.tutorDetails?.profile?.bio ?? "No description available.";
+    final double rating = data?.tutorDetails?.profile?.averageRating ?? 0.0;
     //==================================================================
 
     //==================== PROFILE IMAGE LOGIC =========================
     // Use network image if available, otherwise fallback to asset
     final String profileImage =
-    (data?.tutorDetails?.profilePicture != null &&
-        data!.tutorDetails!.profilePicture!.isNotEmpty)
+        (data?.tutorDetails?.profilePicture != null &&
+            data!.tutorDetails!.profilePicture!.isNotEmpty)
         ? data.tutorDetails!.profilePicture!
         : 'assets/backround/Frame 91.png';
     //==================================================================
@@ -68,7 +59,6 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-
             //==================== TOP BAR ===============================
             // Back button and favorite icon
             SizedBox(height: 60.h),
@@ -77,19 +67,16 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
               children: [
                 BackSlashButton(onTap: () => Get.back()),
                 IconButton(
-                  onPressed: () =>
-                      setState(() => isFavorite = !isFavorite),
+                  onPressed: () => setState(() => isFavorite = !isFavorite),
                   icon: Icon(
                     Icons.favorite,
-                    color: isFavorite
-                        ? Colors.red
-                        : const Color(0xff2B2B2B),
+                    color: isFavorite ? Colors.red : const Color(0xff2B2B2B),
                   ),
                 ),
               ],
             ),
-            //============================================================
 
+            //============================================================
             const SizedBox(height: 20),
 
             //==================== TUTOR IMAGE ===========================
@@ -98,27 +85,27 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
                 borderRadius: BorderRadius.circular(12),
                 child: profileImage.startsWith('http')
                     ? Image.network(
-                  profileImage,
-                  width: 200.w,
-                  height: 200.h,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) =>
-                      Image.asset(
-                        'assets/backround/boking1.png',
+                        profileImage,
                         width: 200.w,
                         height: 200.h,
-                      ),
-                )
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) =>
+                            Image.asset(
+                              'assets/backround/boking1.png',
+                              width: 200.w,
+                              height: 200.h,
+                            ),
+                      )
                     : Image.asset(
-                  profileImage,
-                  width: 200.w,
-                  height: 200.h,
-                  fit: BoxFit.cover,
-                ),
+                        profileImage,
+                        width: 200.w,
+                        height: 200.h,
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
-            //============================================================
 
+            //============================================================
             SizedBox(height: 12.h),
 
             //==================== VIEW PROFILE BUTTON ===================
@@ -129,8 +116,7 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
                   arguments: data?.tutorDetails,
                 ),
                 style: OutlinedButton.styleFrom(
-                  side: const BorderSide(
-                      color: Color(0xffDBDBDB), width: 1.5),
+                  side: const BorderSide(color: Color(0xffDBDBDB), width: 1.5),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -141,8 +127,8 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
                 ),
               ),
             ),
-            //============================================================
 
+            //============================================================
             SizedBox(height: 24.h),
 
             //==================== NAME & RATING =========================
@@ -159,9 +145,11 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.star,
-                        color: const Color(0xffFFC107),
-                        size: 20.sp),
+                    Icon(
+                      Icons.star,
+                      color: const Color(0xffFFC107),
+                      size: 20.sp,
+                    ),
                     SizedBox(width: 4.w),
                     Text(
                       rating.toString(),
@@ -174,20 +162,17 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
                 ),
               ],
             ),
-            //============================================================
 
+            //============================================================
             SizedBox(height: 16.h),
 
             //==================== TUTOR BIO =============================
             Text(
               bio,
-              style: TextStyle(
-                color: const Color(0xff888888),
-                fontSize: 16,
-              ),
+              style: TextStyle(color: const Color(0xff888888), fontSize: 16),
             ),
-            //============================================================
 
+            //============================================================
             SizedBox(height: 16.h),
 
             //==================== CLASS DETAILS =========================
@@ -195,8 +180,8 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
             _buildDetailText('Class $classLevel'),
             _buildDetailText('Group class'),
             _buildDetailText(address),
-            //============================================================
 
+            //============================================================
             SizedBox(height: 24.h),
 
             //==================== PRICE ================================
@@ -208,8 +193,8 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            //============================================================
 
+            //============================================================
             SizedBox(height: 62.h),
 
             //==================== CHAT BUTTON ===========================
@@ -224,11 +209,10 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
                 );
               },
               textColor: Colors.white,
-              borderColor:
-              Appgradient.primaryGradient.colors[0],
+              borderColor: Appgradient.primaryGradient.colors[0],
             ),
-            //============================================================
 
+            //============================================================
             SizedBox(height: 20.h),
           ],
         ),
@@ -251,5 +235,6 @@ class _Tusionrejestiondetels extends State<Tusionrejestiondetels> {
       ),
     );
   }
-//===================================================================
+
+  //===================================================================
 }

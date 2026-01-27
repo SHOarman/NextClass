@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
-import '../../../../Services/api_Services/api_Services.dart';
+import '../../../../Services/api_Services/api_services.dart';
 import '../../../../core/route/route.dart';
 
 class CustomProfileSectionTeacher extends StatelessWidget {
@@ -22,7 +21,8 @@ class CustomProfileSectionTeacher extends StatelessWidget {
         children: [
           // ================= PROFILE IMAGE =================
           GestureDetector(
-            onTap: () => Get.toNamed(AppRoute.myprofile2), // Navigate to profile screen
+            onTap: () =>
+                Get.toNamed(AppRoute.myprofile2), // Navigate to profile screen
             child: Obx(() {
               String imgUrl = controller.profileImgUrl.value;
 
@@ -30,7 +30,7 @@ class CustomProfileSectionTeacher extends StatelessWidget {
               // If URL is relative, prepend base API URL
               if (imgUrl.isNotEmpty && !imgUrl.startsWith('http')) {
                 imgUrl =
-                "${ApiServices.baseUrl}${imgUrl.startsWith('/') ? '' : '/'}$imgUrl";
+                    "${ApiServices.baseUrl}${imgUrl.startsWith('/') ? '' : '/'}$imgUrl";
               }
 
               return Container(
@@ -44,8 +44,10 @@ class CustomProfileSectionTeacher extends StatelessWidget {
                     // Show network image if available, else fallback to asset
                     image: imgUrl.isNotEmpty
                         ? NetworkImage(imgUrl)
-                        : const AssetImage('assets/backround/Rectangle 5040.png')
-                    as ImageProvider,
+                        : const AssetImage(
+                                'assets/backround/Rectangle 5040.png',
+                              )
+                              as ImageProvider,
                   ),
                 ),
               );
@@ -60,23 +62,31 @@ class CustomProfileSectionTeacher extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Teacher's name (reactive)
-                  Obx(() => Text(
-                    'Hi, ${controller.fullName.value}',
-                    style: const TextStyle(
-                        fontSize: 20, fontWeight: FontWeight.bold),
-                    overflow: TextOverflow.ellipsis,
-                  )),
+                  Obx(
+                    () => Text(
+                      'Hi, ${controller.fullName.value}',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                   const SizedBox(height: 4),
                   // Teacher's address or location (reactive)
-                  Obx(() => Text(
-                    controller.address.value.isEmpty
-                        ? 'Location not set'
-                        : controller.address.value,
-                    style: const TextStyle(
-                        color: Color(0xff2B2B2B), fontSize: 12),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  )),
+                  Obx(
+                    () => Text(
+                      controller.address.value.isEmpty
+                          ? 'Location not set'
+                          : controller.address.value,
+                      style: const TextStyle(
+                        color: Color(0xff2B2B2B),
+                        fontSize: 12,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
                 ],
               ),
             ),

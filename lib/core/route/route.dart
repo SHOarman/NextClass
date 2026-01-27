@@ -370,6 +370,7 @@
 // }
 
 import 'package:first_project/Parent_parsentScreen/home_Ui/homedetels/chartdetels/perentchat.dart';
+import 'package:first_project/teacher_presentScreen/chat2/chat2.dart';
 import 'package:first_project/teacher_presentScreen/chat2/techerchat.dart';
 import 'package:get/get.dart';
 import 'package:first_project/Parent_parsentScreen/auth_Screen/reg_screen.dart';
@@ -389,6 +390,7 @@ import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/completed/tu
 import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/completed/tution_Completed/tution_completed_page1.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/requestboking.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/bokkingdetels/requested/tusion_rejection_details.dart';
+import '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_screen.dart';
 import '../../Parent_parsentScreen/home_Ui/homedetels/expendedpage/expendedpage.dart';
 import '../../Parent_parsentScreen/home_Ui/homewigdet/tutor_profile_screen.dart';
 import '../../Parent_parsentScreen/home_Ui/homewigdet/homeclassdetels.dart';
@@ -433,10 +435,6 @@ import 'package:first_project/teacher_presentScreen/home_ui/see_all.dart';
 import 'package:first_project/teacher_presentScreen/myprofileexta/privacy_policy/privacy_policy.dart';
 import 'package:first_project/teacher_presentScreen/myprofileexta/update_passwordtecher/update_passwordtecher.dart';
 import 'package:first_project/teacher_presentScreen/tech_slash.dart';
-
-// Import models and screens
-// import '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/inbox_screen.dart';
-import '../../Parent_parsentScreen/home_Ui/homedetels/chartdetels/chat_screen.dart';
 
 class AppRoute {
   static const String slashscreen = '/slashscreen';
@@ -536,19 +534,18 @@ class AppRoute {
 
   static List<GetPage> mypage = [
     //================chat=============================
-    GetPage(name: perentchat, page: () => Perentchat()),
-    GetPage(name: techerchat, page: () => Techerchat()),
     GetPage(
-      name: chatScreen1,
-      page: () {
-        final args = Get.arguments ?? {};
-        return ChatScreen(
-          conversationId: args['id'] ?? 0,
-          name: args['name'] ?? '',
-          profile: args['profile'] ?? '',
-        );
-      },
+      name: perentchat,
+      page: () => Perentchat(),
+      transition: Transition.noTransition,
     ),
+    GetPage(
+      name: techerchat,
+      page: () => Techerchat(),
+      transition: Transition.noTransition,
+    ),
+    GetPage(name: chatScreen1, page: () => ChatScreen()),
+    GetPage(name: chat2, page: () => Chat2()),
 
     GetPage(name: slashscreen, page: () => const SlashScreen()),
     GetPage(name: onloding, page: () => const OnlodaingScreen()),

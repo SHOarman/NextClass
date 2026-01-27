@@ -6,7 +6,6 @@ import '../../../../core/route/route.dart';
 import '../../../../unity/app_colors/app_gradient.dart';
 import '../../../widget/back_slash/back_slash.dart';
 import '../../../widget/custom_button/custom_button.dart';
-import '../chartdetels/chat_controller_teacher.dart'; // Adjust path to your controller
 
 class RecommendedPageDetesTeacher0 extends StatefulWidget {
   const RecommendedPageDetesTeacher0({super.key});
@@ -26,8 +25,7 @@ class _RecommendedPageDetesTeacher0State
     // final dynamic data = Get.arguments;
 
     // Fallback values for illustration (Replace with actual data mapping)
-    int teacherId = 2;
-    int classListingId = 1;
+
     String teacherName = "Tutor Name";
     String teacherImage = 'assets/backround/Rectangle 5047.png';
 
@@ -105,7 +103,7 @@ class _RecommendedPageDetesTeacher0State
               fontWeight: FontWeight.bold,
               fontSize: 20,
               onTap: () async {
-              //  final ChatController controller = Get.put(ChatController());
+                //  final ChatController controller = Get.put(ChatController());
 
                 // 1. Show global loading
                 Get.dialog(
@@ -121,31 +119,31 @@ class _RecommendedPageDetesTeacher0State
                 //   classListingId: classListingId,
                 // );
 
-               // if (conversationId != null) {
-               //    // 3. Initialize Socket and Fetch History BEFORE moving to next screen
-               //    await controller.enterChatRoom(conversationId);
-               //
-               //    Get.back(); // Close loading dialog
-               //
-               //    // 4. Navigate to Chat Screen
-               //    Get.toNamed(
-               //      AppRoute.chatConationTeacher,
-               //      arguments: [
-               //        conversationId,
-               //        teacherName,
-               //        "",
-               //      ], // Passing empty string for network image fallback
-               //    );
-               //  } else {
-               //    Get.back(); // Close loading
-               //    Get.snackbar(
-               //      "Error",
-               //      "Could not initiate chat. Please try again.",
-               //      snackPosition: SnackPosition.BOTTOM,
-               //      backgroundColor: Colors.red,
-               //      colorText: Colors.white,
-               //    );
-               //  }
+                // if (conversationId != null) {
+                //    // 3. Initialize Socket and Fetch History BEFORE moving to next screen
+                //    await controller.enterChatRoom(conversationId);
+                //
+                //    Get.back(); // Close loading dialog
+                //
+                //    // 4. Navigate to Chat Screen
+                //    Get.toNamed(
+                //      AppRoute.chatConationTeacher,
+                //      arguments: [
+                //        conversationId,
+                //        teacherName,
+                //        "",
+                //      ], // Passing empty string for network image fallback
+                //    );
+                //  } else {
+                //    Get.back(); // Close loading
+                //    Get.snackbar(
+                //      "Error",
+                //      "Could not initiate chat. Please try again.",
+                //      snackPosition: SnackPosition.BOTTOM,
+                //      backgroundColor: Colors.red,
+                //      colorText: Colors.white,
+                //    );
+                //  }
               },
               borderColor: const Color(0xff2563EB),
               textGradient: Appgradient.primaryGradient,

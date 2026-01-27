@@ -6,7 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../api_Services/api_Services.dart';
+import '../api_Services/api_services.dart';
 import '../model_class/bokkingmodelclass.dart';
 
 class Bookingtecherlistcontroller extends GetxController {
@@ -82,8 +82,9 @@ class Bookingtecherlistcontroller extends GetxController {
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
 
-        BookingResponseModel responseData =
-        BookingResponseModel.fromJson(jsonData);
+        BookingResponseModel responseData = BookingResponseModel.fromJson(
+          jsonData,
+        );
 
         bookingList.assignAll(responseData.results ?? []);
 

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class RecommendedClassResponse {
   final List<RecommendedClass>? results;
 
@@ -22,7 +20,12 @@ class RecommendedClass {
   final String? profilePicture;
   final ClassProperties? properties;
 
-  RecommendedClass({this.id, this.tutorName, this.profilePicture, this.properties});
+  RecommendedClass({
+    this.id,
+    this.tutorName,
+    this.profilePicture,
+    this.properties,
+  });
 
   factory RecommendedClass.fromJson(Map<String, dynamic> json) {
     var propsJson = json['properties'];
@@ -32,7 +35,9 @@ class RecommendedClass {
       id: json['id'],
       tutorName: tutorDetails?['full_name'] ?? "No Name",
       profilePicture: tutorDetails?['profile_picture'] ?? "",
-      properties: propsJson != null ? ClassProperties.fromJson(propsJson) : null,
+      properties: propsJson != null
+          ? ClassProperties.fromJson(propsJson)
+          : null,
     );
   }
 }

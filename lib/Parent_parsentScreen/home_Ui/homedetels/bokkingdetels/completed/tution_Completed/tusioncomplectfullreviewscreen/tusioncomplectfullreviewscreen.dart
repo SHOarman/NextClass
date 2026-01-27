@@ -25,22 +25,21 @@ class _Tusioncomplectfullreviewscreen
     final String tutorName = data?.tutorDetails?.fullName ?? 'Unknown Tutor';
     final String subject =
         data?.classDetails?.properties?.subject ?? 'Subject not specified';
-    final String classLevel =
-        data?.classDetails?.properties?.level ?? 'N/A';
+    final String classLevel = data?.classDetails?.properties?.level ?? 'N/A';
     final String address =
         data?.classDetails?.properties?.address ?? 'Location not specified';
 
     final String price =
         data?.totalPrice ??
-            data?.classDetails?.properties?.pricePerHour ??
-            '0.00';
+        data?.classDetails?.properties?.pricePerHour ??
+        '0.00';
 
     final String bio =
         data?.tutorDetails?.profile?.bio ?? 'No description available.';
 
     final String profileImage =
-    (data?.tutorDetails?.profilePicture != null &&
-        data.tutorDetails.profilePicture.isNotEmpty)
+        (data?.tutorDetails?.profilePicture != null &&
+            data.tutorDetails.profilePicture.isNotEmpty)
         ? data.tutorDetails.profilePicture
         : 'assets/backround/boking1.png';
 
@@ -76,8 +75,7 @@ class _Tusioncomplectfullreviewscreen
                           ),
                         ),
                         GestureDetector(
-                          onTap: () =>
-                              setState(() => isFavorite = !isFavorite),
+                          onTap: () => setState(() => isFavorite = !isFavorite),
                           child: Container(
                             height: 40.h,
                             width: 40.w,
@@ -86,8 +84,7 @@ class _Tusioncomplectfullreviewscreen
                               borderRadius: BorderRadius.circular(8),
                               boxShadow: [
                                 BoxShadow(
-                                  color:
-                                  Colors.black.withValues(alpha: 0.05),
+                                  color: Colors.black.withValues(alpha: 0.05),
                                   blurRadius: 10,
                                   spreadRadius: 1,
                                 ),
@@ -115,23 +112,24 @@ class _Tusioncomplectfullreviewscreen
                         borderRadius: BorderRadius.circular(12),
                         child: profileImage.startsWith('http')
                             ? Image.network(
-                          profileImage,
-                          width: 140.w,
-                          height: 140.h,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => Image.asset(
-                            'assets/backround/boking1.png',
-                            width: 140.w,
-                            height: 140.h,
-                            fit: BoxFit.cover,
-                          ),
-                        )
+                                profileImage,
+                                width: 140.w,
+                                height: 140.h,
+                                fit: BoxFit.cover,
+                                errorBuilder: (context, error, stackTrace) =>
+                                    Image.asset(
+                                      'assets/backround/boking1.png',
+                                      width: 140.w,
+                                      height: 140.h,
+                                      fit: BoxFit.cover,
+                                    ),
+                              )
                             : Image.asset(
-                          profileImage,
-                          width: 140.w,
-                          height: 140.h,
-                          fit: BoxFit.cover,
-                        ),
+                                profileImage,
+                                width: 140.w,
+                                height: 140.h,
+                                fit: BoxFit.cover,
+                              ),
                       ),
                     ),
 
@@ -233,10 +231,7 @@ class _Tusioncomplectfullreviewscreen
                     child: ElevatedButton(
                       onPressed: () {
                         if (data?.id != null) {
-                          Get.toNamed(
-                            AppRoute.reviewpage,
-                            arguments: data.id,
-                          );
+                          Get.toNamed(AppRoute.reviewpage, arguments: data.id);
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -264,8 +259,7 @@ class _Tusioncomplectfullreviewscreen
                         // Add chat navigation here
                       },
                       style: OutlinedButton.styleFrom(
-                        side:
-                        const BorderSide(color: Color(0xff2563EB)),
+                        side: const BorderSide(color: Color(0xff2563EB)),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),

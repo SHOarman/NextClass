@@ -116,12 +116,14 @@ class Homedetels extends StatelessWidget {
                     SizedBox(
                       height: 240.h,
                       child: Obx(() {
-                        if (controller.isLoading.value)
+                        if (controller.isLoading.value) {
                           return const Center(
                             child: CircularProgressIndicator(),
                           );
-                        if (controller.recommendedList.isEmpty)
+                        }
+                        if (controller.recommendedList.isEmpty) {
                           return const Center(child: Text("No classes found"));
+                        }
 
                         return ListView.builder(
                           scrollDirection: Axis.horizontal,
@@ -142,7 +144,7 @@ class Homedetels extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(15.r),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withOpacity(0.05),
+                                    color: Colors.black.withValues(alpha: 0.05),
                                     blurRadius: 10,
                                   ),
                                 ],

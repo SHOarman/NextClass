@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../core/route/route.dart';
 import '../../teacher_presentScreen/home_ui/home_controller.dart';
 import 'booking_teacher_list_controller.dart';
-import '../api_Services/api_Services.dart';
+import '../api_Services/api_services.dart';
 
 //========================= Delete / Reject Booking Controller =========================
 class DeleteBookingController extends GetxController {

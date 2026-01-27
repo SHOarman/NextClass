@@ -1,22 +1,13 @@
 Analyzing first_project...                                      
 
-  error - Target of URI doesn't exist: 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\auth_Screen\login_screen.dart:8:8 - uri_does_not_exist
-  error - Undefined class 'GenaralControler' - lib\Parent_parsentScreen\auth_Screen\login_screen.dart:20:9 - undefined_class
-  error - The method 'GenaralControler' isn't defined for the type 'LoginScreen' - lib\Parent_parsentScreen\auth_Screen\login_screen.dart:20:47 - undefined_method
-  error - Target of URI doesn't exist: '../../core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:6:8 - uri_does_not_exist
-  error - Undefined class 'GenaralControler' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:20:11 - undefined_class
-  error - The method 'GenaralControler' isn't defined for the type 'RegScreen' - lib\Parent_parsentScreen\auth_Screen\reg_screen.dart:20:52 - undefined_method
-  error - Target of URI doesn't exist: 'package:first_project/core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:3:8 - uri_does_not_exist
-  error - Undefined class 'Card3' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:22:11 - undefined_class
-  error - The method 'Card3' isn't defined for the type 'FilterModel' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:22:38 - undefined_method
-  error - Undefined class 'Card4' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:23:11 - undefined_class
-  error - The method 'Card4' isn't defined for the type 'FilterModel' - lib\Parent_parsentScreen\home_Ui\filtermodel\filtermodel.dart:23:41 - undefined_method
-  error - Target of URI doesn't exist: '../../core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:240:8 - uri_does_not_exist
-  error - Undefined class 'GenaralControler' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:249:9 - undefined_class
-  error - The method 'GenaralControler' isn't defined for the type 'HomeScreen' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:249:47 - undefined_method
-  error - Undefined class 'Card2' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:250:9 - undefined_class
-  error - The method 'Card2' isn't defined for the type 'HomeScreen' - lib\Parent_parsentScreen\home_Ui\home_screen.dart:250:41 - undefined_method
-  error - Target of URI doesn't exist: '../../core/route/Genaral_Controler/genaral_controler.dart' - lib\Parent_parsentScreen\slash_onloding\onboarding_screen.dart:10:8 - uri_does_not_exist
-  error - Undefined class 'GenaralControler' - lib\Parent_parsentScreen\slash_onloding\onboarding_screen.dart:24:9 - undefined_class
-  error - The method 'GenaralControler' isn't defined for the type '_OnlodaingScreenState' - lib\Parent_parsentScreen\slash_onloding\onboarding_screen.dart:24:51 - undefined_method
+  error - Target of URI doesn't exist: '../../../../Services/Controller_view/InboxController.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_screen.dart:292:8 - uri_does_not_exist
+  error - Undefined class 'InboxController' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_screen.dart:305:9 - undefined_class
+  error - The method 'InboxController' isn't defined for the type '_ChatScreenState' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_screen.dart:305:46 - undefined_method
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\chat_screen.dart:444:41 - deprecated_member_use
+  error - Target of URI doesn't exist: '../../../../Services/Controller_view/ChatListController.dart' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\perentchat.dart:191:8 - uri_does_not_exist
+  error - Undefined class 'ChatListController' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\perentchat.dart:199:11 - undefined_class
+  error - The method 'ChatListController' isn't defined for the type 'Perentchat' - lib\Parent_parsentScreen\home_Ui\homedetels\chartdetels\perentchat.dart:199:51 - undefined_method
+  error - Target of URI doesn't exist: '../../../../Services/Controller_view/InboxController.dart' - lib\teacher_presentScreen\chat2\chat2.dart:230:8 - uri_does_not_exist
+  error - Undefined class 'InboxController' - lib\teacher_presentScreen\chat2\chat2.dart:243:9 - undefined_class
+  error - The method 'InboxController' isn't defined for the type '_Chat2ScreenState' - lib\teacher_presentScreen\chat2\chat2.dart:243:46 - undefined_method
 

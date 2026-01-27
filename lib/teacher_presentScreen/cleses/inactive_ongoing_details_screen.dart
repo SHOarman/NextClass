@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../Parent_parsentScreen/widget/back_slash/back_slash.dart';
 import '../../Parent_parsentScreen/widget/custom_button/custom_button.dart';
 import '../../Services/Controller_view/delete_class_controller.dart';
-import '../../core/route/route.dart';
+
 import '../../unity/app_colors/app_gradient.dart';
 import '../bokking2/bokkingWidget/tuition_details.dart';
 
@@ -15,7 +15,9 @@ class Inacriveongoingdetelsscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Initialize delete class controller
-    final DeleteClassController deleteClassController = Get.put(DeleteClassController());
+    final DeleteClassController deleteClassController = Get.put(
+      DeleteClassController(),
+    );
 
     // Receive full class item from arguments
     final dynamic classItem = Get.arguments;
@@ -40,17 +42,21 @@ class Inacriveongoingdetelsscreen extends StatelessWidget {
               // Tuition details section
               Tuitiondetails(
                 title: 'Tuition details',
-                title1: props?.level != null ? 'Class ${props!.level}' : 'Class N/A',
+                title1: props?.level != null
+                    ? 'Class ${props!.level}'
+                    : 'Class N/A',
                 title2: props?.subject ?? 'Untitled Subject',
                 title3: '\$${props?.pricePerHour ?? '0.00'}',
-                title4: (props?.isGroupClass ?? false) ? 'Group class' : 'Individual class',
+                title4: (props?.isGroupClass ?? false)
+                    ? 'Group class'
+                    : 'Individual class',
               ),
 
               SizedBox(height: 400.h),
 
               // Delete class button with loading state
               Obx(
-                    () => CustomSuperButton(
+                () => CustomSuperButton(
                   text: 'Delete class',
                   isLoading: deleteClassController.isLoading.value,
                   onTap: () {

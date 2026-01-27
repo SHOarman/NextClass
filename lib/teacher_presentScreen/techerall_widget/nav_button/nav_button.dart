@@ -22,7 +22,6 @@ class _NavButtonState extends State<NavButton2> {
 
   // --- Change made here: Replaced Get.toNamed with Get.offNamed ---
   void _navigateToScreen(int index) {
-    print(index);
     if (index == 0) {
       Get.offNamed(AppRoute.home2);
     }
@@ -32,8 +31,7 @@ class _NavButtonState extends State<NavButton2> {
     if (index == 2) {
       Get.offNamed(AppRoute.classes);
     } else if (index == 3) {
-       Get.toNamed(AppRoute.techerchat);
-
+      Get.toNamed(AppRoute.techerchat);
     }
     if (index == 4) {
       Get.offNamed(AppRoute.myprofile2);

@@ -11,7 +11,7 @@ class EditModel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProfileController profileController = Get.find<ProfileController>();
+    final ProfileController profileController = Get.put(ProfileController());
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -47,14 +47,13 @@ class EditModel extends StatelessWidget {
               hintText: 'Write here..',
             ),
 
-          //  SizedBox(height: 16.h),
+            //  SizedBox(height: 16.h),
 
             /// ===== Bio TextField =====
             // Customdetesl(
             //   controller: profileController.bioController,
             //   hintText: 'Write here..',
             // ),
-
             SizedBox(height: 48.h),
 
             /// ===== Save Changes Button
@@ -63,7 +62,6 @@ class EditModel extends StatelessWidget {
               bgGradient: Appgradient.primaryGradient,
               onTap: () {
                 if (profileController.editProfileController.text.isNotEmpty) {
-
                   profileController.updateProfile();
                 } else {
                   Get.snackbar(

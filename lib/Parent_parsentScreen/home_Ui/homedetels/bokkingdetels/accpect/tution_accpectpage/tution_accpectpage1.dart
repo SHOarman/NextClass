@@ -181,26 +181,46 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
               text: 'Chat with tutor',
               fontWeight: FontWeight.bold,
               fontSize: 18.sp,
-                onTap: () {
-                  // arguments এর মাধ্যমে টিউটরের ID এবং নাম পাঠিয়ে দেওয়া হচ্ছে
-                  Get.toNamed(
-                    AppRoute.chatScreen1, // আপনার চ্যাট স্ক্রিন রুট
-                    arguments: {
-                      'id': data.id, // আপনার API অনুযায়ী conversation id বা tutor id
-                      'name': data.tutorDetails?.fullName ?? 'Tutor',
-                      'profile': data.tutorDetails?.profilePicture ?? '',
-                    },
-                  );
-                },
-
-              // onTap: () => Get.toNamed(
-              //   AppRoute.chatConationTeacher,
-              //   arguments: data.tutorDetails,
-              // ),
+              onTap: () {
+                // এখানে conversationId হিসেবে data.id পাঠানো হচ্ছে।
+                // যদি আপনার API অনুযায়ী conversationId এবং booking id আলাদা হয়, তবে সঠিক আইডিটি দিন।
+                Get.toNamed(
+                  AppRoute.chatScreen1,
+                  arguments: {
+                    'conversationId': data
+                        .id, // আপনার InboxController এই কি (Key) টি ইক্সপেক্ট করছে
+                    'name': data.tutorDetails?.fullName ?? 'Tutor',
+                    'profile': data.tutorDetails?.profilePicture ?? '',
+                  },
+                );
+              },
               borderColor: const Color(0xff2563EB),
               textGradient: Appgradient.primaryGradient,
             ),
 
+            // CustomSuperButton(
+            //   text: 'Chat with tutor',
+            //   fontWeight: FontWeight.bold,
+            //   fontSize: 18.sp,
+            //     onTap: () {
+            //       // arguments এর মাধ্যমে টিউটরের ID এবং নাম পাঠিয়ে দেওয়া হচ্ছে
+            //       Get.toNamed(
+            //         AppRoute.chatScreen1, // আপনার চ্যাট স্ক্রিন রুট
+            //         arguments: {
+            //           'id': data.id, // আপনার API অনুযায়ী conversation id বা tutor id
+            //           'name': data.tutorDetails?.fullName ?? 'Tutor',
+            //           'profile': data.tutorDetails?.profilePicture ?? '',
+            //         },
+            //       );
+            //     },
+
+            //   // onTap: () => Get.toNamed(
+            //   //   AppRoute.chatConationTeacher,
+            //   //   arguments: data.tutorDetails,
+            //   // ),
+            //   borderColor: const Color(0xff2563EB),
+            //   textGradient: Appgradient.primaryGradient,
+            // ),
             SizedBox(height: 50.h),
           ],
         ),
