@@ -103,47 +103,19 @@ class _RecommendedPageDetesTeacher0State
               fontWeight: FontWeight.bold,
               fontSize: 20,
               onTap: () async {
-                //  final ChatController controller = Get.put(ChatController());
+                // For now, using a static ID as this page seems to be static/demo
+                // In a real app, this should come from Get.arguments or Constructor
+                int teacherId = 2; // Example ID
 
-                // 1. Show global loading
-                Get.dialog(
-                  const Center(
-                    child: CircularProgressIndicator(color: Colors.blue),
-                  ),
-                  barrierDismissible: false,
+                Get.toNamed(
+                  AppRoute.chatScreen1,
+                  arguments: {
+                    'id': 0, // Conversation ID 0 means new chat
+                    'name': teacherName,
+                    'profile': teacherImage,
+                    'receiverId': teacherId, // ✅ Passing Receiver ID
+                  },
                 );
-
-                // 2. Start/Get the conversation ID from API
-                // int? conversationId = await controller.startConversation(
-                //   teacherId,
-                //   classListingId: classListingId,
-                // );
-
-                // if (conversationId != null) {
-                //    // 3. Initialize Socket and Fetch History BEFORE moving to next screen
-                //    await controller.enterChatRoom(conversationId);
-                //
-                //    Get.back(); // Close loading dialog
-                //
-                //    // 4. Navigate to Chat Screen
-                //    Get.toNamed(
-                //      AppRoute.chatConationTeacher,
-                //      arguments: [
-                //        conversationId,
-                //        teacherName,
-                //        "",
-                //      ], // Passing empty string for network image fallback
-                //    );
-                //  } else {
-                //    Get.back(); // Close loading
-                //    Get.snackbar(
-                //      "Error",
-                //      "Could not initiate chat. Please try again.",
-                //      snackPosition: SnackPosition.BOTTOM,
-                //      backgroundColor: Colors.red,
-                //      colorText: Colors.white,
-                //    );
-                //  }
               },
               borderColor: const Color(0xff2563EB),
               textGradient: Appgradient.primaryGradient,

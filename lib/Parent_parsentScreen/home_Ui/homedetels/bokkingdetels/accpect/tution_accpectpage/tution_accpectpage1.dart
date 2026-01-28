@@ -1,6 +1,239 @@
+// import 'package:flutter/material.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:get/get.dart';
+//
+// //=============== CONTROLLER ===================
+// // Controller that provides booking and tutor details
+// import '../../../../../../Services/Controller_view/bokkingdetels_controller.dart';
+//
+// //=============== ROUTES ===================
+// // App routes for navigation
+// import '../../../../../../core/route/route.dart';
+//
+// //=============== UI & STYLES ===================
+// import '../../../../../../unity/app_colors/app_gradient.dart';
+// import '../../../../../widget/back_slash/back_slash.dart';
+// import '../../../../../widget/custom_button/custom_button.dart';
+//
+// class TutionAccpectpage1 extends StatefulWidget {
+//   const TutionAccpectpage1({super.key});
+//
+//   @override
+//   State<TutionAccpectpage1> createState() => _TutionAccpectpage1();
+// }
+//
+// class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
+//   //=============== STATE ===================
+//   // Used to toggle favorite (heart) icon UI
+//   bool isFavorite = false;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     //=============== CONTROLLER INITIALIZATION ===================
+//     // Inject BookingDetailsController using GetX
+//     // This controller holds booking, tutor, and student data
+//     final controller = Get.put(BookingDetailsController());
+//
+//     // Booking data fetched from controller
+//     final data = controller.bookingData;
+//
+//     return Scaffold(
+//       backgroundColor: Colors.white,
+//       body: SingleChildScrollView(
+//         //=============== PAGE PADDING ===================
+//         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             SizedBox(height: 60.h),
+//
+//             //=============== TOP BAR ===================
+//             // Back button and Favorite icon
+//             Row(
+//               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//               children: [
+//                 // Back navigation
+//                 BackSlashButton(onTap: () => Get.back()),
+//
+//                 //=============== FAVORITE BUTTON ===================
+//                 // Toggle favorite state for UI feedback
+//                 GestureDetector(
+//                   onTap: () => setState(() => isFavorite = !isFavorite),
+//                   child: Container(
+//                     padding: EdgeInsets.all(8.w),
+//                     decoration: BoxDecoration(
+//                       shape: BoxShape.circle,
+//                       color: Colors.grey.withValues(alpha: 0.1),
+//                     ),
+//                     child: Icon(
+//                       isFavorite ? Icons.favorite : Icons.favorite_border,
+//                       color: isFavorite ? Colors.red : const Color(0xff2B2B2B),
+//                       size: 24.sp,
+//                     ),
+//                   ),
+//                 ),
+//               ],
+//             ),
+//
+//             const SizedBox(height: 20),
+//
+//             //=============== TUTOR IMAGE ===================
+//             // Displays tutor profile image from network
+//             Center(
+//               child: ClipRRect(
+//                 borderRadius: BorderRadius.circular(12),
+//                 child: Image.network(
+//                   data.tutorDetails?.profilePicture ?? "",
+//                   width: 200.w,
+//                   height: 200.h,
+//                   fit: BoxFit.cover,
+//
+//                   //=============== IMAGE FALLBACK ===================
+//                   // Shows default image if network image fails
+//                   errorBuilder: (context, error, stackTrace) => Image.asset(
+//                     'assets/backround/Frame 91.png',
+//                     width: 200.w,
+//                     height: 200.h,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//
+//             SizedBox(height: 16.h),
+//
+//             //=============== VIEW TUTOR PROFILE ===================
+//             Center(
+//               child: OutlinedButton(
+//                 onPressed: () {
+//                   // Navigate only if tutor details exist
+//                   if (data.tutorDetails != null) {
+//                     Get.toNamed(
+//                       AppRoute.viewtotureprofile,
+//                       arguments: data.tutorDetails,
+//                     );
+//                   }
+//                 },
+//                 style: OutlinedButton.styleFrom(
+//                   side: const BorderSide(color: Color(0xff2563EB)),
+//                   shape: RoundedRectangleBorder(
+//                     borderRadius: BorderRadius.circular(8.r),
+//                   ),
+//                 ),
+//                 child: Text(
+//                   "View Tutor Profile",
+//                   style: TextStyle(
+//                     color: const Color(0xff2563EB),
+//                     fontSize: 14.sp,
+//                   ),
+//                 ),
+//               ),
+//             ),
+//
+//             SizedBox(height: 24.h),
+//
+//             //=============== TUTOR NAME ===================
+//             Text(
+//               data.tutorDetails?.fullName ?? 'Unknown Tutor',
+//               style: TextStyle(
+//                 color: const Color(0xff2B2B2B),
+//                 fontSize: 22.sp,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//
+//             SizedBox(height: 20.h),
+//
+//             //=============== BOOKING DETAILS ===================
+//             _buildDetailText(
+//               "Subject: ${data.classDetails?.properties?.subject ?? 'N/A'}",
+//             ),
+//             _buildDetailText(
+//               "Level: ${data.classDetails?.properties?.level ?? 'N/A'}",
+//             ),
+//             _buildDetailText("Student Name: ${data.studentName ?? 'N/A'}"),
+//             _buildDetailText(
+//               "Student Age: ${data.studentAge != null ? "${data.studentAge} Yrs" : 'N/A'}",
+//             ),
+//             _buildDetailText('Booking Date: ${data.bookingDate ?? 'N/A'}'),
+//             _buildDetailText(
+//               'Address: ${data.classDetails?.properties?.address ?? 'No Address'}',
+//             ),
+//
+//             SizedBox(height: 24.h),
+//
+//             //=============== PRICE SECTION ===================
+//             Text(
+//               '\$${data.totalPrice ?? '0.00'}/monthly',
+//               style: TextStyle(
+//                 color: const Color(0xff2563EB),
+//                 fontSize: 26.sp,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//
+//             SizedBox(height: 40.h),
+//
+//             //=============== CANCEL BOOKING ===================
+//             CustomSuperButton(
+//               text: 'Cancel booking',
+//               fontSize: 18.sp,
+//               fontWeight: FontWeight.bold,
+//               onTap: () =>
+//                   Get.toNamed(AppRoute.cancelModel, arguments: data.id),
+//               bgGradient: const LinearGradient(
+//                 colors: [Color(0xff2563EB), Color(0xff2563EB)],
+//               ),
+//             ),
+//
+//             SizedBox(height: 16.h),
+//
+//             //=============== CHAT WITH TUTOR ===================
+//             //=============== CHAT WITH TUTOR ===================
+//             Obx(() {
+//               return CustomSuperButton(
+//                 text: controller.isChatLoading.value
+//                     ? "Starting Chat..."
+//                     : 'Chat with tutor',
+//                 fontWeight: FontWeight.bold,
+//                 fontSize: 18.sp,
+//                 onTap: controller.isChatLoading.value
+//                     ? () {} // Disable tap while loading
+//                     : () {
+//                         controller.startChatWithTutor();
+//                       },
+//                 borderColor: const Color(0xff2563EB),
+//                 textGradient: Appgradient.primaryGradient,
+//               );
+//             }),
+//
+//             SizedBox(height: 50.h),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+//
+//   //=============== REUSABLE TEXT WIDGET ===================
+//   // Keeps consistent styling for booking detail texts
+//   Widget _buildDetailText(String text) {
+//     return Padding(
+//       padding: EdgeInsets.only(bottom: 6.h),
+//       child: Text(
+//         text,
+//         style: TextStyle(
+//           color: const Color(0xff2B2B2B),
+//           fontSize: 16.sp,
+//           fontWeight: FontWeight.w600,
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
 import '../../../../../../Services/Controller_view/bokkingdetels_controller.dart';
 import '../../../../../../core/route/route.dart';
 import '../../../../../../unity/app_colors/app_gradient.dart';
@@ -11,21 +244,17 @@ class TutionAccpectpage1 extends StatefulWidget {
   const TutionAccpectpage1({super.key});
 
   @override
-  State<TutionAccpectpage1> createState() => _TutionAccpectpage1();
+  State<TutionAccpectpage1> createState() => _TutionAccpectpage1State();
 }
 
-class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
+class _TutionAccpectpage1State extends State<TutionAccpectpage1> {
   bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
-    // Get controller and fetch booking data
+    // কন্ট্রোলার ইনজেকশন
     final controller = Get.put(BookingDetailsController());
     final data = controller.bookingData;
-
-    // Show loading if data not yet available
-    // Data is guaranteed to be non-null by the time this widget builds
-    // if (data == null) { return ... } check removed as it was dead code
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -36,20 +265,18 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
           children: [
             SizedBox(height: 60.h),
 
-            /// ===== Top Bar: Back + Favorite Button
+            // TOP BAR
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 BackSlashButton(onTap: () => Get.back()),
-
-                // Favorite toggle
                 GestureDetector(
                   onTap: () => setState(() => isFavorite = !isFavorite),
                   child: Container(
                     padding: EdgeInsets.all(8.w),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.grey.withValues(alpha: 0.1),
+                      color: Colors.grey.withOpacity(0.1),
                     ),
                     child: Icon(
                       isFavorite ? Icons.favorite : Icons.favorite_border,
@@ -63,7 +290,7 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
 
             const SizedBox(height: 20),
 
-            /// ===== Tutor Image
+            // TUTOR IMAGE
             Center(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
@@ -83,7 +310,7 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
 
             SizedBox(height: 16.h),
 
-            /// ===== View Tutor Profile Button
+            // VIEW TUTOR PROFILE
             Center(
               child: OutlinedButton(
                 onPressed: () {
@@ -112,7 +339,7 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
 
             SizedBox(height: 24.h),
 
-            /// ===== Tutor Name
+            // TUTOR NAME
             Text(
               data.tutorDetails?.fullName ?? 'Unknown Tutor',
               style: TextStyle(
@@ -124,7 +351,7 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
 
             SizedBox(height: 20.h),
 
-            /// ===== Booking & Student Details
+            // DETAILS SECTION
             _buildDetailText(
               "Subject: ${data.classDetails?.properties?.subject ?? 'N/A'}",
             ),
@@ -142,7 +369,7 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
 
             SizedBox(height: 24.h),
 
-            /// ===== Price Section
+            // PRICE SECTION
             Text(
               '\$${data.totalPrice ?? '0.00'}/monthly',
               style: TextStyle(
@@ -154,16 +381,7 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
 
             SizedBox(height: 40.h),
 
-            /// ===== Start Date
-            // Center(
-            //   child: Text(
-            //     'Starts on ${data.startTime ?? 'TBA'}',
-            //     style: TextStyle(color: const Color(0xff1A73E8), fontSize: 13.sp),
-            //   ),
-            // ),
-            SizedBox(height: 16.h),
-
-            /// ===== Action Buttons
+            // CANCEL BOOKING BUTTON
             CustomSuperButton(
               text: 'Cancel booking',
               fontSize: 18.sp,
@@ -177,50 +395,22 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
 
             SizedBox(height: 16.h),
 
-            CustomSuperButton(
-              text: 'Chat with tutor',
-              fontWeight: FontWeight.bold,
-              fontSize: 18.sp,
-              onTap: () {
-                // এখানে conversationId হিসেবে data.id পাঠানো হচ্ছে।
-                // যদি আপনার API অনুযায়ী conversationId এবং booking id আলাদা হয়, তবে সঠিক আইডিটি দিন।
-                Get.toNamed(
-                  AppRoute.chatScreen1,
-                  arguments: {
-                    'conversationId': data
-                        .id, // আপনার InboxController এই কি (Key) টি ইক্সপেক্ট করছে
-                    'name': data.tutorDetails?.fullName ?? 'Tutor',
-                    'profile': data.tutorDetails?.profilePicture ?? '',
-                  },
-                );
-              },
-              borderColor: const Color(0xff2563EB),
-              textGradient: Appgradient.primaryGradient,
-            ),
+            // CHAT WITH TUTOR BUTTON (Updated with Messenger Flow)
+            Obx(() {
+              return CustomSuperButton(
+                text: controller.isChatLoading.value
+                    ? "Initializing..."
+                    : 'Chat with tutor',
+                fontWeight: FontWeight.bold,
+                fontSize: 18.sp,
+                onTap: controller.isChatLoading.value
+                    ? () {} // Disable if loading
+                    : () => controller.startChatWithTutor(),
+                borderColor: const Color(0xff2563EB),
+                textGradient: Appgradient.primaryGradient,
+              );
+            }),
 
-            // CustomSuperButton(
-            //   text: 'Chat with tutor',
-            //   fontWeight: FontWeight.bold,
-            //   fontSize: 18.sp,
-            //     onTap: () {
-            //       // arguments এর মাধ্যমে টিউটরের ID এবং নাম পাঠিয়ে দেওয়া হচ্ছে
-            //       Get.toNamed(
-            //         AppRoute.chatScreen1, // আপনার চ্যাট স্ক্রিন রুট
-            //         arguments: {
-            //           'id': data.id, // আপনার API অনুযায়ী conversation id বা tutor id
-            //           'name': data.tutorDetails?.fullName ?? 'Tutor',
-            //           'profile': data.tutorDetails?.profilePicture ?? '',
-            //         },
-            //       );
-            //     },
-
-            //   // onTap: () => Get.toNamed(
-            //   //   AppRoute.chatConationTeacher,
-            //   //   arguments: data.tutorDetails,
-            //   // ),
-            //   borderColor: const Color(0xff2563EB),
-            //   textGradient: Appgradient.primaryGradient,
-            // ),
             SizedBox(height: 50.h),
           ],
         ),
@@ -228,7 +418,6 @@ class _TutionAccpectpage1 extends State<TutionAccpectpage1> {
     );
   }
 
-  /// Helper method for consistent detail text styling
   Widget _buildDetailText(String text) {
     return Padding(
       padding: EdgeInsets.only(bottom: 6.h),

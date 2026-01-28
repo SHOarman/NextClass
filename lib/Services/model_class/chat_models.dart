@@ -1,23 +1,51 @@
-// --- ১. চ্যাট মেসেজ মডেল (মেসেজ ডিটেইলস স্ক্রিনের জন্য) ---
+//==================== MESSAGES LIST MODEL ====================
+class ChatMessageResponse {
+  final int count;
+  final String? next;
+  final String? previous;
+  final List<ChatMessageModel> results;
+
+  ChatMessageResponse({
+    required this.count,
+    this.next,
+    this.previous,
+    required this.results,
+  });
+
+  factory ChatMessageResponse.fromJson(Map<String, dynamic> json) {
+    return ChatMessageResponse(
+      count: json['count'] ?? 0,
+      next: json['next'],
+      previous: json['previous'],
+      results:
+          (json['results'] as List?)
+              ?.map((e) => ChatMessageModel.fromJson(e))
+              .toList() ??
+          [],
+    );
+  }
+}
+
+//==================== SINGLE MESSAGE MODEL ====================
 class ChatMessageModel {
   final int id;
   final int conversation;
   final int sender;
-  final SenderDetails senderDetails;
-  final String messageType;
   final String content;
-  final bool isRead;
+  final String messageType;
+  bool isRead; // Modified to be non-final for local updates
   final DateTime createdAt;
+  final SenderDetails senderDetails;
 
   ChatMessageModel({
     required this.id,
     required this.conversation,
     required this.sender,
-    required this.senderDetails,
-    required this.messageType,
     required this.content,
+    required this.messageType,
     required this.isRead,
     required this.createdAt,
+    required this.senderDetails,
   });
 
   factory ChatMessageModel.fromJson(Map<String, dynamic> json) {
@@ -25,91 +53,127 @@ class ChatMessageModel {
       id: json['id'] ?? 0,
       conversation: json['conversation'] ?? 0,
       sender: json['sender'] ?? 0,
-      senderDetails: SenderDetails.fromJson(json['sender_details'] ?? {}),
-      messageType: json['message_type'] ?? 'text',
-      content: json['content'] ?? '',
+      content: json['content'] ?? "",
+      messageType: json['message_type'] ?? "text",
       isRead: json['is_read'] ?? false,
-      createdAt: json['created_at'] != null
-          ? DateTime.parse(json['created_at']).toLocal()
-          : DateTime.now(),
+      createdAt: DateTime.parse(
+        json['created_at'] ?? DateTime.now().toString(),
+      ),
+      senderDetails: SenderDetails.fromJson(json['sender_details'] ?? {}),
     );
   }
 }
 
-// --- ২. সেন্ডার ডিটেইলস মডেল (ইউজার প্রোফাইলের জন্য) ---
+//==================== SENDER DETAILS MODEL ====================
 class SenderDetails {
   final int id;
-  final String username;
-  final String profilePicture;
   final String fullName;
+  final String profilePicture;
+  final String userType;
   final String status;
 
   SenderDetails({
     required this.id,
-    required this.username,
-    required this.profilePicture,
     required this.fullName,
+    required this.profilePicture,
+    required this.userType,
     required this.status,
   });
 
   factory SenderDetails.fromJson(Map<String, dynamic> json) {
     return SenderDetails(
       id: json['id'] ?? 0,
-      username: json['username'] ?? '',
-      profilePicture: json['profile_picture'] ?? '',
-      fullName:
-          json['full_name']?.toString() ??
-          json['username']?.toString() ??
-          ((json['first_name'] != null || json['last_name'] != null)
-              ? "${json['first_name'] ?? ''} ${json['last_name'] ?? ''}".trim()
-              : 'Unknown'),
-      status: json['status'] ?? 'inactive',
+      fullName: json['full_name'] ?? "Unknown",
+      profilePicture: json['profile_picture'] ?? "",
+      userType: json['user_type'] ?? "",
+      status: json['status'] ?? "offline",
     );
   }
 }
 
-// --- ৩. চ্যাট কনভারসেশন মডেল (ইনবক্স লিস্ট স্ক্রিনের জন্য) ---
 class ChatConversationModel {
   final int id;
-  final SenderDetails otherUser;
   final String lastMessage;
   final int unreadCount;
   final DateTime updatedAt;
+  final OtherUser otherUser;
 
   ChatConversationModel({
     required this.id,
-    required this.otherUser,
     required this.lastMessage,
     required this.unreadCount,
     required this.updatedAt,
+    required this.otherUser,
   });
 
-  factory ChatConversationModel.fromJson(Map<String, dynamic> json) {
-    // API থেকে আসা লাস্ট মেসেজ ডাটা হ্যান্ডেল করা
-    var lastMsgData = json['last_message'];
-    String content = "";
+  factory ChatConversationModel.fromJson(
+    Map<String, dynamic> json, {
+    int? currentUserId,
+  }) {
+    var participants = json['participants'] as List? ?? [];
+    Map<String, dynamic>? targetUserJson;
 
-    if (lastMsgData is Map) {
-      content = lastMsgData['content'] ?? "";
+    if (currentUserId != null && participants.isNotEmpty) {
+      try {
+        targetUserJson = participants.firstWhere(
+          (p) => p['id'] != currentUserId,
+        );
+      } catch (e) {
+        targetUserJson = participants.isNotEmpty ? participants[0] : null;
+      }
     } else {
-      content = json['content'] ?? "";
+      targetUserJson = participants.isNotEmpty ? participants[0] : null;
+    }
+
+    OtherUser defaultUser = OtherUser(
+      id: 0,
+      fullName: "Unknown User",
+      profilePicture: "",
+      status: "offline",
+    );
+
+    String messageContent = "No message yet";
+    if (json['last_message'] != null) {
+      if (json['last_message'] is Map) {
+        messageContent = json['last_message']['content'] ?? "No message yet";
+      } else if (json['last_message'] is String) {
+        messageContent = json['last_message'];
+      }
     }
 
     return ChatConversationModel(
       id: json['id'] ?? 0,
-      otherUser: SenderDetails.fromJson(
-        json['sender_details'] ?? json['other_user'] ?? {},
-      ),
-      lastMessage: content.isEmpty ? "No messages yet" : content,
+      lastMessage: messageContent,
       unreadCount: json['unread_count'] ?? 0,
-      updatedAt: json['updated_at'] != null
-          ? DateTime.parse(json['updated_at']).toLocal()
-          : DateTime.now(),
+      updatedAt: DateTime.parse(
+        json['updated_at'] ?? DateTime.now().toString(),
+      ),
+      otherUser: targetUserJson != null
+          ? OtherUser.fromJson(targetUserJson)
+          : defaultUser,
     );
   }
+}
 
-  // UI-তে ব্যবহারের জন্য হেল্পার গেটার্স
-  String get otherUserName => otherUser.fullName;
-  String get otherUserProfile => otherUser.profilePicture;
-  bool get isOnline => otherUser.status == "active";
+class OtherUser {
+  final int id;
+  final String fullName;
+  final String profilePicture;
+  final String status;
+
+  OtherUser({
+    required this.id,
+    required this.fullName,
+    required this.profilePicture,
+    required this.status,
+  });
+
+  factory OtherUser.fromJson(Map<String, dynamic> json) {
+    return OtherUser(
+      id: json['id'] ?? 0,
+      fullName: json['full_name'] ?? "Unknown",
+      profilePicture: json['profile_picture'] ?? "",
+      status: json['status'] ?? "offline",
+    );
+  }
 }

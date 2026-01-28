@@ -101,7 +101,6 @@
 //
 // }
 
-
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -117,17 +116,22 @@ class ApiServices {
   static const String register = '$baseUrl/api/accounts/auth/register/';
   static const String sendOtp = '$baseUrl/api/accounts/auth/resend_otp/';
   static const String verifyOtp = '$baseUrl/api/accounts/auth/verify_otp/';
-  static const String passwordResetRequest = '$baseUrl/api/accounts/auth/password_reset_request/';
-  static const String passwordResetConfirm = '$baseUrl/api/accounts/auth/password_reset_confirm/';
+  static const String passwordResetRequest =
+      '$baseUrl/api/accounts/auth/password_reset_request/';
+  static const String passwordResetConfirm =
+      '$baseUrl/api/accounts/auth/password_reset_confirm/';
 
   static const String parentReg = '$baseUrl/api/auth/register/parent/';
   static const String tutorReg = '$baseUrl/api/auth/register/tutor/';
-  static const String changepassword = '$baseUrl/api/accounts/users/change_password/';
+  static const String changepassword =
+      '$baseUrl/api/accounts/users/change_password/';
 
-  static const String uploadocument = "$baseUrl/api/tutors/profiles/upload_document/";
+  static const String uploadocument =
+      "$baseUrl/api/tutors/profiles/upload_document/";
   static const String updateAcound = "$baseUrl/api/accounts/users/me/";
 
-  static const String createAvailability = "$baseUrl/api/tutors/availability/bulk_create/";
+  static const String createAvailability =
+      "$baseUrl/api/tutors/availability/bulk_create/";
   static const String topRated = "$baseUrl/api/tutors/profiles/topRated/";
   static const String featuredtutors = "$baseUrl/api/tutors/profiles/featured/";
 
@@ -140,15 +144,18 @@ class ApiServices {
   static const String classSummary = "$baseUrl/api/classes/summary/";
 
   //==========================location ways Parents=================================
-  static const String teachersListLocationsWise = "$baseUrl/api/tutors/profiles/nearby/";
+  static const String teachersListLocationsWise =
+      "$baseUrl/api/tutors/profiles/nearby/";
 
   //=====================Booking Secation=========================================
   static const String createbookings = "$baseUrl/api/bookings/";
 
   //======================================Classes Nearb============================
-  static const String parentApprovedClasses = "$baseUrl/api/classes/parent-approved-by-admin/";
+  static const String parentApprovedClasses =
+      "$baseUrl/api/classes/parent-approved-by-admin/";
   static const String listoffclass = "$baseUrl/api/classes/";
-  static const String recommendedClasses = "/api/accounts/parent-profile/active_classes/";
+  static const String recommendedClasses =
+      "/api/accounts/parent-profile/active_classes/";
 
   //bokking===========================================================
   static const String bookingRequest = "$baseUrl/api/bookings/";
@@ -167,12 +174,15 @@ class ApiServices {
   // =============== Chat Endpoints ==========================
   static const String chatMessages = "$baseUrl/api/chat/messages/";
   static const String conversationsBase = "$baseUrl/api/chat/conversations/";
-  static const String startConversation = "$baseUrl/api/chat/conversations/start_conversation/";
+  static const String startConversation =
+      "$baseUrl/api/chat/conversations/start_conversation/";
 
   //============================================================================
   // ১. getChatMessages: মেসেজ লিস্ট নিয়ে আসার জন্য মেথড
   //============================================================================
-  static Future<Map<String, dynamic>?> getChatMessages(int conversationId) async {
+  static Future<Map<String, dynamic>?> getChatMessages(
+    int conversationId,
+  ) async {
     try {
       final prefs = await SharedPreferences.getInstance();
       final token = prefs.getString('token');
@@ -219,7 +229,69 @@ class ApiServices {
       return false;
     }
   }
+
+  //============================================================================
+  // ৩. sendMessage: HTTP এর মাধ্যমে মেসেজ পাঠানো (Socket Fallback)
+  //============================================================================
+  static Future<bool> sendChatMessage(
+    int conversationId,
+    String message,
+  ) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      final response = await http.post(
+        Uri.parse("$chatMessages?conversation_id=$conversationId"),
+        headers: {
+          "Authorization": "Bearer $token",
+          "Content-Type": "application/json",
+        },
+        body: json.encode({
+          "message": message,
+        }), // Backend expected format check required
+      );
+
+      debugPrint("📤 HTTP Send Response: ${response.statusCode}");
+      return response.statusCode == 200 || response.statusCode == 201;
+    } catch (e) {
+      debugPrint("❌ HTTP Send Exception: $e");
+      return false;
+    }
+  }
+
+  //============================================================================
+  // ৪. startChatConversation: নতুন কনভারসেশন তৈরি বা ফেচ করা
+  //============================================================================
+  static Future<Map<String, dynamic>?> startChatConversation(
+    int otherUserId,
+  ) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      debugPrint("🚀 Starting Conversation with User ID: $otherUserId");
+
+      final response = await http.post(
+        Uri.parse(startConversation),
+        headers: {
+          "Authorization": "Bearer $token",
+          "Content-Type": "application/json",
+        },
+        body: json.encode({"other_user_id": otherUserId}),
+      );
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        debugPrint("✅ Conversation Started/Fetched: ${response.body}");
+        return json.decode(response.body);
+      } else {
+        debugPrint("❌ Start Conversation Failed: ${response.statusCode}");
+        debugPrint("❌ Body: ${response.body}");
+        return null;
+      }
+    } catch (e) {
+      debugPrint("❌ Start Conversation Exception: $e");
+      return null;
+    }
+  }
 }
-
-
-

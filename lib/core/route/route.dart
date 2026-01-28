@@ -544,7 +544,7 @@ class AppRoute {
       page: () => Techerchat(),
       transition: Transition.noTransition,
     ),
-    GetPage(name: chatScreen1, page: () => ChatScreen()),
+    GetPage(name: chatScreen1, page: () => const ChatScreen()),
     GetPage(name: chat2, page: () => Chat2()),
 
     GetPage(name: slashscreen, page: () => const SlashScreen()),

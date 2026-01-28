@@ -2,7 +2,6 @@ import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/a
 import 'package:first_project/Parent_parsentScreen/auth_Screen/auth_controller/parsent_tutor_reg_controller/parsent_tutor_reg_controller.dart';
 
 import 'package:first_project/Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
-import 'package:first_project/Services/Controller_view/chartmsg.dart';
 
 import 'package:first_project/core/route/general_controller/general_controller.dart';
 import 'package:first_project/teacher_presentScreen/Techechercontrler/techercotroler.dart';
@@ -98,7 +97,7 @@ class DependencyInjection {
     // Get.lazyPut(()=>ParentHomeController());
 
     //========================chatadata==================================
-    Get.lazyPut(() => Chartmsg());
+    // Get.lazyPut(() => Chartmsg());
     Get.lazyPut(() => ChatListController());
     Get.lazyPut(() => InboxController());
 

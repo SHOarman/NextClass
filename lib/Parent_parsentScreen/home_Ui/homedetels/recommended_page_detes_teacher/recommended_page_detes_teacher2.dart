@@ -222,7 +222,22 @@ class _RecommendedPageDetesTecher0State
               fontWeight: FontWeight.bold,
               fontSize: 20,
               onTap: () {
-                Get.toNamed(AppRoute.chatConationTeacher);
+                // For now, using a static ID as this page seems to be static/demo
+                // In a real app, this should come from Get.arguments or Constructor
+                int teacherId = 2; // Example ID
+                String teacherName = "Tutor Name";
+                String teacherImage =
+                    'assets/backround/class4.png'; // Match the image used in build
+
+                Get.toNamed(
+                  AppRoute.chatScreen1,
+                  arguments: {
+                    'id': 0, // Conversation ID 0 means new chat
+                    'name': teacherName,
+                    'profile': teacherImage,
+                    'receiverId': teacherId, // ✅ Passing Receiver ID
+                  },
+                );
               },
               borderColor: Color(0xff2563EB),
               textGradient: Appgradient.primaryGradient,

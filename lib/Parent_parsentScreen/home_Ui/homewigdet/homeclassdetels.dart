@@ -225,8 +225,30 @@ class _HomeclassdetelsState extends State<Homeclassdetels> {
               CustomSuperButton(
                 text: 'Chat with tutor',
                 onTap: () =>
-                    Get.toNamed(AppRoute.chatScreen1, arguments:{"id":controller.classData!.id ,'name': tutor.fullName,
-                      'profile': tutor.profilePicture ?? "",}),
+
+        //
+        // Get.toNamed(
+        // AppRoute.chatScreen1,
+        // arguments: {
+        // 'conversationId': classData.id,
+        // 'name': data.tutorDetails?.fullName ?? 'Tutor',
+        // 'profile':
+        // data.tutorDetails?.profilePicture ?? '',
+        // },
+        // );
+        //
+
+
+
+
+                    Get.toNamed(
+                  AppRoute.chatScreen1,
+                  arguments: {
+                    "id": controller.classData!.id,
+                    'name': tutor.fullName,
+                    'profile': tutor.profilePicture ?? "",
+                  },
+                ),
                 borderColor: const Color(0xff2563EB),
                 textColor: const Color(0xff2563EB),
               ),

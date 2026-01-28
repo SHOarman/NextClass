@@ -3,92 +3,96 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// আপনার প্রোজেক্টের সঠিক পাথ অনুযায়ী ইম্পোর্ট নিশ্চিত করুন
 import '../../../../Services/Controller_view/inbox_controller.dart';
 import '../../../../Services/model_class/chat_models.dart';
-import '../../Parent_parsentScreen/profile_Screen/profileController/profile_controller.dart';
+import '../../../profile_Screen/profileController/profile_controller.dart';
 
-class Chat2 extends StatefulWidget {
-  const Chat2({super.key});
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({super.key});
 
   @override
-  State<Chat2> createState() => _Chat2ScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _Chat2ScreenState extends State<Chat2> {
-  // কন্ট্রোলারগুলো খুঁজে বের করা বা ইনিশিয়ালাইজ করা
+class _ChatScreenState extends State<ChatScreen> {
   final InboxController controller = Get.put(InboxController());
-  final ProfileController profileController = Get.find<ProfileController>();
+  final ProfileController profileController = Get.put(ProfileController());
   final TextEditingController msgController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
-    // InboxController এর onInit এ arguments রিসিভ করা আছে,
-    // তাই আলাদা করে এখানে সেট করার দরকার নেই।
+    // InboxController's onInit handles arguments.
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF1F5F9), // মেসেঞ্জার লাইক ব্যাকগ্রাউন্ড
+      backgroundColor: const Color(
+        0xFFF1F5F9,
+      ), // Light background like Messenger
       appBar: _buildAppBar(),
       body: Column(
         children: [
-          // ১. মেসেজ লিস্ট এরিয়া (Real-time & Reverse)
           Expanded(
             child: Obx(() {
+              // 1. Loading
               if (controller.isLoading.value && controller.messages.isEmpty) {
                 return const Center(child: CircularProgressIndicator());
               }
 
+              // 2. Empty State
               if (controller.messages.isEmpty) {
                 return const Center(
                   child: Text(
-                    "No messages here. Say hello!",
+                    "No messages yet. Say hi!",
                     style: TextStyle(color: Colors.grey),
                   ),
                 );
               }
 
+              // 3. Message List
               return ListView.builder(
                 controller: _scrollController,
-                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
-                reverse: true, // নতুন মেসেজ নিচে (Index 0) দেখানোর জন্য
+                reverse: true,
+                padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 15.h),
                 itemCount: controller.messages.length,
                 itemBuilder: (context, index) {
                   final msg = controller.messages[index];
-                  // currentUserId ব্যবহার করে isMe নির্ধারণ করা
-                  final int myId = controller.currentUserId.value;
-                  final bool isMe = msg.sender == myId;
 
-                  return _buildMessageBubble(msg, isMe);
+                  // Use InboxController's trusted currentUserId
+                  return Obx(() {
+                    final int myId = controller.currentUserId.value;
+                    final bool isMe = (msg.sender == myId);
+
+                    // Debug print to trace if alignment issue persists
+                    if (index == 0) {
+                      // Only log for the latest message to avoid spam
+                      // debugPrint("MSG: ${msg.content}, Sender: ${msg.sender}, MyID: $myId, IsMe: $isMe");
+                    }
+
+                    return _buildMessageBubble(msg, isMe);
+                  });
                 },
               );
             }),
           ),
-
-          // ২. ইনপুট এরিয়া ও টাইপিং ইন্ডিকেটর
           _buildInputArea(),
         ],
       ),
     );
   }
 
-  // অ্যাপ বার ডিজাইন (Real-time Status Sync)
-  AppBar _buildAppBar() {
+  PreferredSizeWidget _buildAppBar() {
     return AppBar(
       backgroundColor: Colors.white,
       elevation: 0.5,
-      leading: IconButton(
-        icon: const Icon(Icons.arrow_back, color: Colors.black),
-        onPressed: () => Get.back(),
-      ),
+      leadingWidth: 40.w,
       title: Row(
         children: [
           Obx(
-                () => CircleAvatar(
+            () => CircleAvatar(
               radius: 18.r,
               backgroundImage: controller.userProfile.value.isNotEmpty
                   ? NetworkImage(controller.userProfile.value)
@@ -104,7 +108,7 @@ class _Chat2ScreenState extends State<Chat2> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Obx(
-                      () => Text(
+                  () => Text(
                     controller.userName.value,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
@@ -116,12 +120,12 @@ class _Chat2ScreenState extends State<Chat2> {
                   ),
                 ),
                 Obx(
-                      () => Text(
+                  () => Text(
                     controller.isOtherUserTyping.value
                         ? "typing..."
                         : (controller.isConnected.value
-                        ? "Online"
-                        : "Connecting..."),
+                              ? "Online"
+                              : "Connecting..."),
                     style: TextStyle(
                       fontSize: 11.sp,
                       color: controller.isOtherUserTyping.value
@@ -138,48 +142,70 @@ class _Chat2ScreenState extends State<Chat2> {
     );
   }
 
-  // মেসেজ বাবল ডিজাইন (Messenger Style)
   Widget _buildMessageBubble(ChatMessageModel msg, bool isMe) {
     return Align(
       alignment: isMe ? Alignment.centerRight : Alignment.centerLeft,
-      child: Column(
-        crossAxisAlignment: isMe
-            ? CrossAxisAlignment.end
-            : CrossAxisAlignment.start,
+      child: Row(
+        mainAxisSize: MainAxisSize.min, // Wrap content width
+        mainAxisAlignment: isMe
+            ? MainAxisAlignment.end
+            : MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 10.h),
-            margin: EdgeInsets.only(top: 5.h, bottom: 2.h),
-            constraints: BoxConstraints(maxWidth: Get.width * 0.75),
-            decoration: BoxDecoration(
-              color: isMe ? const Color(0xFF2563EB) : Colors.white,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(16.r),
-                topRight: Radius.circular(16.r),
-                bottomLeft: Radius.circular(isMe ? 16.r : 4.r),
-                bottomRight: Radius.circular(isMe ? 4.r : 16.r),
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
-                  blurRadius: 2,
-                  offset: const Offset(0, 1),
+          // if (!isMe) ...[
+          //   CircleAvatar(
+          //     radius: 12.r,
+          //     backgroundImage: msg.senderDetails.profilePicture.isNotEmpty
+          //         ? NetworkImage(msg.senderDetails.profilePicture)
+          //         : null,
+          //     child: msg.senderDetails.profilePicture.isEmpty
+          //         ? Icon(Icons.person, size: 12.r)
+          //         : null,
+          //   ),
+          //   SizedBox(width: 8.w),
+          // ],
+          Flexible(
+            child: Column(
+              crossAxisAlignment: isMe
+                  ? CrossAxisAlignment.end
+                  : CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 14.w,
+                    vertical: 10.h,
+                  ),
+                  margin: EdgeInsets.symmetric(vertical: 4.h),
+                  decoration: BoxDecoration(
+                    color: isMe ? const Color(0xFF0084FF) : Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(18.r),
+                      topRight: Radius.circular(18.r),
+                      bottomLeft: Radius.circular(isMe ? 18.r : 2.r),
+                      bottomRight: Radius.circular(isMe ? 2.r : 18.r),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.05),
+                        blurRadius: 2,
+                        offset: const Offset(0, 1),
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    msg.content,
+                    style: TextStyle(
+                      color: isMe ? Colors.white : Colors.black87,
+                      fontSize: 14.sp,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 2.h),
+                Text(
+                  DateFormat('hh:mm a').format(msg.createdAt),
+                  style: TextStyle(fontSize: 10.sp, color: Colors.grey),
                 ),
               ],
-            ),
-            child: Text(
-              msg.content,
-              style: TextStyle(
-                color: isMe ? Colors.white : Colors.black87,
-                fontSize: 14.sp,
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 4.w),
-            child: Text(
-              DateFormat('hh:mm a').format(msg.createdAt),
-              style: TextStyle(fontSize: 9.sp, color: Colors.grey),
             ),
           ),
         ],
@@ -187,7 +213,6 @@ class _Chat2ScreenState extends State<Chat2> {
     );
   }
 
-  // ইনপুট বক্স ডিজাইন
   Widget _buildInputArea() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
@@ -207,8 +232,8 @@ class _Chat2ScreenState extends State<Chat2> {
                     controller.sendTypingStatus(val.trim().isNotEmpty),
                 decoration: InputDecoration(
                   hintText: "Aa",
-                  fillColor: const Color(0xFFF1F5F9),
                   filled: true,
+                  fillColor: const Color(0xFFF1F5F9),
                   contentPadding: EdgeInsets.symmetric(
                     horizontal: 16.w,
                     vertical: 8.h,
@@ -222,13 +247,13 @@ class _Chat2ScreenState extends State<Chat2> {
             ),
             SizedBox(width: 8.w),
             Obx(
-                  () => IconButton(
+              () => IconButton(
                 icon: Icon(
                   Icons.send,
                   color: controller.isConnected.value
-                      ? const Color(0xFF2563EB)
+                      ? const Color(0xFF0084FF)
                       : Colors.grey,
-                  size: 24.sp,
+                  size: 28.sp,
                 ),
                 onPressed: controller.isConnected.value ? _handleSend : null,
               ),
@@ -239,22 +264,16 @@ class _Chat2ScreenState extends State<Chat2> {
     );
   }
 
-  // মেসেজ পাঠানোর ফাংশন
   void _handleSend() {
-    final String text = msgController.text.trim();
-    if (text.isNotEmpty) {
-      controller.sendMessage(text);
+    if (msgController.text.trim().isNotEmpty) {
+      controller.sendMessage(msgController.text.trim());
       msgController.clear();
       controller.sendTypingStatus(false);
-
-      // পাঠানোর পর স্ক্রিন নিচে স্ক্রল করা (যেহেতু reverse: true, তাই offset 0 ই নিচে)
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          0,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeOut,
-        );
-      }
+      _scrollController.animateTo(
+        0,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
     }
   }
 
